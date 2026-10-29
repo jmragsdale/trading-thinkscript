@@ -8,3 +8,4 @@ private-imports/**/*.thinkscript
 .env
 .env.*
 !.env.example
+node_modules/

@@ -1,35 +1,106 @@
-# Custom ThinkScript Library
+<a href="docs/INSTALLATION.md">
+<picture>
+  <source media="(max-width: 600px)" srcset="docs/assets/readme/header-mobile.png">
+  <img src="docs/assets/readme/header.png" width="1440" alt="ThinkScript library — 52 projects, 59 current public scripts and 13 projects with historical evidence. Documented studies, scanners, strategies and watchlist columns for thinkorswim.">
+</picture>
+</a>
+
+<p>
+  <a href="docs/INSTALLATION.md"><strong>Install a script ↗</strong></a> &nbsp; / &nbsp;
+  <a href="https://github.com/jmragsdale/trading-thinkscript/releases/latest/download/thinkscript-library-2026-10-29.zip">Download ZIP</a> &nbsp; / &nbsp;
+  <a href="docs/PERFORMANCE.md">Performance evidence</a> &nbsp; / &nbsp;
+  <a href="https://github.com/jmragsdale">Profile</a>
+</p>
 
 A documented collection of thinkorswim studies, scanners, strategies and watchlist columns. Each project includes source, a description, saved defaults, usage notes and known limitations.
 
-**52 projects · 60 current library scripts · 2 references · one current implementation per script role**  
-One current script is kept as a private imported source. The GitHub package contains its documentation but omits that source.
+**52 projects · 59 current public scripts · 2 references**<br>
+The full local inventory has 60 current scripts. One imported source stays private; its documentation is included publicly. Each script role has one current implementation.
 
-## TOS capture completed
+> **Validation boundary:** Historical evidence is available for 13 projects; native Thinkorswim profitability remains unverified. Some studies use whole-chart or future-dependent calculations. Review the [validation notes](docs/VALIDATION.md) and each project's limitations before interpreting results.
 
-Captured and reconciled **64 installed definitions: 61 studies, 1 strategy and 2 custom quotes**, representing 60 distinct source contents. Every installed name maps to an organized source in the [TOS reconciliation](docs/TOS_RECONCILIATION.md) and [installed inventory](tos-inventory.json).
+## Browse the library
 
-The capture identified **35 previously missing distinct scripts and 2 different installed OTE Wheel versions**. The current library now excludes 13 superseded revisions and those 2 older installed snapshots. Four pairs of installed names share one source each. Retained source code is unchanged; no installed script, alert or trading configuration was edited. See the [consolidation record](docs/CONSOLIDATION.md).
+Choose a category. Every project in the index below retains its description, source links, usage notes and limitations.
+
+<p>
+<a href="#chart-studies">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/studies-dark.png">
+  <img src="docs/assets/readme/studies-light.png" width="360" alt="Chart studies. 19 projects: indicators, chart signals and visual references.">
+</picture>
+</a>
+<a href="#stock-hacker-scanners">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/scanners-dark.png">
+  <img src="docs/assets/readme/scanners-light.png" width="360" alt="Scanners. 8 projects: one-plot Stock Hacker filters and companion studies.">
+</picture>
+</a>
+<a href="#historical-strategies">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/strategies-dark.png">
+  <img src="docs/assets/readme/strategies-light.png" width="360" alt="Strategies. 2 projects: hypothetical historical strategy research.">
+</picture>
+</a>
+<a href="#watchlist-columns">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/watchlists-dark.png">
+  <img src="docs/assets/readme/watchlists-light.png" width="360" alt="Watchlist columns. 2 projects: custom quote signals and labels.">
+</picture>
+</a>
+<a href="#imported-and-shared-studies">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/imported-dark.png">
+  <img src="docs/assets/readme/imported-light.png" width="360" alt="Imported and shared studies. 20 projects with attribution and source limitations.">
+</picture>
+</a>
+<a href="#performance-metrics">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme/performance-dark.png">
+  <img src="docs/assets/readme/performance-light.png" width="360" alt="Performance records. 52 historical configurations across 13 projects; native Thinkorswim profitability unverified.">
+</picture>
+</a>
+</p>
 
 ## Start here
 
-- [Review removed versions and canonical sources](docs/CONSOLIDATION.md)
+- **[Install a script](docs/INSTALLATION.md)** — chart studies, scanners, strategies and watchlist columns.
+- **[Find the current source](docs/CONSOLIDATION.md)** — canonical implementations and removed versions.
+- **[Review saved evidence](docs/PERFORMANCE.md)** — historical results, coverage and validation limits.
+- **[Check installed names](docs/TOS_RECONCILIATION.md)** — aliases, matches and version differences.
+
+<details>
+<summary>Inventory, provenance and publishing notes</summary>
+
 - [Open the public GitHub repository](https://github.com/jmragsdale/trading-thinkscript)
-- [Download the packaged library](https://github.com/jmragsdale/trading-thinkscript/releases/latest/download/thinkscript-library-2026-10-29.zip)
-- [Install a chart study, scanner, strategy or watchlist column](docs/INSTALLATION.md)
-- [See all installed names, matches and version differences](docs/TOS_RECONCILIATION.md)
 - [Read validation status and known limitations](docs/VALIDATION.md)
 - [Prepare the collection for GitHub](docs/GITHUB.md)
 - [Understand source provenance and capture coverage](docs/PROVENANCE.md)
 - [Inspect source hashes, defaults and roles](inventory.json)
+- [Inspect the installed inventory](tos-inventory.json)
+
+</details>
 
 `.ts`, `.txt` and `.thinkscript` contain ThinkScript here. Use the current source identified by each README. Captured hashes identify older installed versions; only the canonical implementations are distributed. Saved chart-input overrides and unsaved editor buffers are outside this source capture.
 
-## Browse the library
+## Performance metrics
+
+[Performance evidence and coverage](docs/PERFORMANCE.md) documents saved results for 13 projects, including signal-event studies, related Python models and native Pine exports. Each project README links its status. The remaining 39 have no matched quantitative results found. No exact-source native Thinkorswim profitability is verified. Source dates, costs, selection bias, withdrawn claims and version limits are recorded in [performance.json](performance.json).
+
+<!-- STANDARDIZED PERFORMANCE: START -->
+## Standardized performance records
+
+The existing evidence is normalized into **52 historical configurations across 13 projects**, with `run.json`, `summary.json`, generated Markdown and available event/trade CSVs. See the [run index](docs/performance/RUNS.md) and [format](docs/performance/FORMAT.md). Unknown values remain null with reasons; related models, withdrawn results and historical cost scenarios stay distinguishable. No new backtests were run.
+<!-- STANDARDIZED PERFORMANCE: END -->
+
+## Project index
 
 ### Chart studies
 
 Custom chart indicators and visual signals; authorship is identified only where supported by the source.
+
+<details>
+<summary>Browse 19 projects</summary>
 
 | Project | Purpose |
 | --- | --- |
@@ -53,9 +124,14 @@ Custom chart indicators and visual signals; authorship is identified only where 
 | [VWAP Rejection Arrows](studies/vwap-rejection/README.md) | Draws VWAP and marks bullish/bearish three-bar rejection patterns with a configurable raw-price distance. |
 | [Wash and Rinse v2 Study](studies/wash-rinse-v2/README.md) | Marks a sweep of a prior reference level followed by a close back through it, displaying wash levels and extremes. |
 
+</details>
+
 ### Stock Hacker scanners
 
 One-plot filters with their separate chart alert/helper companions.
+
+<details>
+<summary>Browse 8 projects</summary>
 
 | Project | Purpose |
 | --- | --- |
@@ -68,27 +144,42 @@ One-plot filters with their separate chart alert/helper companions.
 | [Warrior Eye Hybrid Scanner](scanners/warrior-eye/README.md) | Combines low-priced momentum, relative bar volume and an intraday moving-average pullback/recovery with a measured reward-to-risk filter. |
 | [Wash and Rinse v2 Scanner](scanners/wash-rinse-v2/README.md) | Screens bullish, bearish or either close-back-through wash-and-rinse events using confirmed pivots or reconstructed prior-period levels. |
 
+</details>
+
 ### Historical strategies
 
 Hypothetical strategy research and reporting.
+
+<details>
+<summary>Browse 2 projects</summary>
 
 | Project | Purpose |
 | --- | --- |
 | [ORB15 MNQ Historical Research Strategy](strategies/orb15-mnq/README.md) | Models a 09:30-09:44 ET opening-range breakout, one contract and one entry per session, with Original and frozen StopCap100 variants. |
 | [Wash and Rinse v2 Strategy](strategies/wash-rinse-v2/README.md) | Models next-bar-open entries after a rinse, locked stops beyond the wash extreme, R-multiple targets and optional end-of-day exits. |
 
+</details>
+
 ### Watchlist columns
 
 Numeric or label-based custom quotes.
+
+<details>
+<summary>Browse 2 projects</summary>
 
 | Project | Purpose |
 | --- | --- |
 | [Covered-Call Candidate Watchlist Labels](watchlist-columns/covered-call-screen/README.md) | Displays BUY/HOLD/AVOID labels from stock price, implied-volatility range rank, average volume, RSI, EMA trend and ATR conditions. |
 | [GCR Inflection Column](watchlist-columns/gcr-inflection/README.md) | Produces a signed numeric inflection code using RSI extremes, Bollinger-band contact, and elevated volume. |
 
+</details>
+
 ### Imported and shared studies
 
 Source credited to community authors, installed under shared names, or containing reused components. Preserved credit does not assign a new license.
+
+<details>
+<summary>Browse 20 projects</summary>
 
 | Project | Purpose |
 | --- | --- |
@@ -113,6 +204,8 @@ Source credited to community authors, installed under shared names, or containin
 | [Volume Price Analysis](imported-studies/volume-price-analysis/README.md) | Classifies price spread, closing location, volume and trend slopes into upthrust, test, weakness and strength patterns with chart symbols and labels. |
 | [ZigZag High/Low Supply and Demand](imported-studies/zigzag-supply-demand/README.md) | Plots ZigZag pivots and supply/demand references with optional reversal arrows, price/volume bubbles and alerts. |
 
+</details>
+
 ### Private imported source
 
 Documentation is included publicly; the individual-use-only source stays local.
@@ -126,6 +219,21 @@ Documentation is included publicly; the individual-use-only source stays local.
 - [GCR scanner query examples](references/gcr-scanner-queries/README.md)
 - [Warrior Eye workspace notes](references/warrior-eye-workspace/README.md)
 
+## TOS capture completed
+
+<details>
+<summary>Capture coverage and consolidation record</summary>
+
+Captured and reconciled **64 installed definitions: 61 studies, 1 strategy and 2 custom quotes**, representing 60 distinct source contents. Every installed name maps to an organized source in the [TOS reconciliation](docs/TOS_RECONCILIATION.md) and [installed inventory](tos-inventory.json).
+
+The capture identified **35 previously missing distinct scripts and 2 different installed OTE Wheel versions**. The current library now excludes 13 superseded revisions and those 2 older installed snapshots. Four pairs of installed names share one source each. Retained source code is unchanged; no installed script, alert or trading configuration was edited. See the [consolidation record](docs/CONSOLIDATION.md).
+
+</details>
+
+## Validation status
+
+Source capture is complete for the local TOS user-defined Studies/Strategies lists and the separate custom-quote cache as observed October 29, 2026. A fresh native compilation, replay, alert or performance test was not performed. Current OTE Wheel installations retain an older event gate; certain imported studies use whole-chart or future-dependent calculations; the open-interest overlay is a 2022 snapshot. Read the individual project notes before interpreting results.
+
 ## Maintain the collection
 
 ```bash
@@ -134,16 +242,4 @@ python3 tools/verify_library.py
 
 The checker validates file hashes, source metadata, project membership, relative documentation links, scanner structure and installed-alias mappings. It also works in the public ZIP, where the private source is intentionally absent. Update the inventory and relevant README together when intentionally editing a source.
 
-## Validation status
-
-Source capture is complete for the local TOS user-defined Studies/Strategies lists and the separate custom-quote cache as observed October 29, 2026. A fresh native compilation, replay, alert or performance test was not performed. Current OTE Wheel installations retain an older event gate; certain imported studies use whole-chart or future-dependent calculations; the open-interest overlay is a 2022 snapshot. Read the individual project notes before interpreting results.
-
-## Performance metrics
-
-[Performance evidence and coverage](docs/PERFORMANCE.md) documents saved results for 13 projects, including signal-event studies, related Python models and native Pine exports. Each project README links its status. The remaining 39 have no matched quantitative results found. No exact-source native Thinkorswim profitability is verified. Source dates, costs, selection bias, withdrawn claims and version limits are recorded in [performance.json](performance.json).
-
-<!-- STANDARDIZED PERFORMANCE: START -->
-## Standardized performance records
-
-The existing evidence is normalized into **52 historical configurations across 13 projects**, with `run.json`, `summary.json`, generated Markdown and available event/trade CSVs. See the [run index](docs/performance/RUNS.md) and [format](docs/performance/FORMAT.md). Unknown values remain null with reasons; related models, withdrawn results and historical cost scenarios stay distinguishable. No new backtests were run.
-<!-- STANDARDIZED PERFORMANCE: END -->
+The [README artwork notes](docs/assets/readme/README.md) explain how to regenerate the matching header and category cards.
