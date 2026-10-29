@@ -1,0 +1,187 @@
+# Leak restamp + clean re-baseline of farm economics — BACKLOG 0AC
+
+Date: 2026-07-30 · Session: weekly-quant
+Scripts: `scripts/rebaseline_clean_farm_economics_2026-07-30.py` (new; imports
+`scripts/rescore_incumbent_clean_engine_2026-07-27.py` verbatim for generation + package rules)
+Data: `analysis/independent_exec_audit_2026_07_22/engine_v3.py` `Cfg(sym, htf=15, chart=1)`,
+1m parquets `~/Downloads/Luchi Top Tick Class/analysis/data/{MNQ,MYM,MGC}_front_1m.parquet`
+Outputs: `analysis/clean_rebaseline_2026_07_30/{clean_monthly_income.csv,
+clean_monthly_last12.csv, clean_firm_shape_scorecard.csv}`
+Prior: `research/memos/2026-07-27_incumbent_clean_engine_rescore.md` (0AA)
+
+## Question
+
+0AA proved the incumbent package's headline is a B5-lookahead artifact and that the package is a
+REJECT on a clean engine. Two jobs remained (BACKLOG 0AC): **(a)** stamp every leak-derived
+artifact so no future session re-quotes a void number, and **(b)** re-baseline the farm's
+*economics* — monthly income and the multi-firm scorecard — off clean lists, so the project has
+real numbers instead of merely a warning that the old ones are fake.
+
+Concretely: what does the farm actually earn, and what does an eval slot actually produce, once
+the leak is removed?
+
+## Method
+
+**(b) Re-baseline.** The new script imports 0AA's rescore module rather than re-implementing it,
+so trade generation (`clean_trades`), mix construction (`build_mix`) and the combined package
+rules (`daily_pnl_with_package_rules` — 5 entries/day, −2.5R/+4.5R lockouts, 1R=$200, combined
+across instruments) are byte-identical to what produced the 43.3%/54.4% headline. Only the
+downstream reporting is new: monthly aggregation, and a firm-shape campaign sweep.
+
+Two cost conventions are carried side by side throughout, never mixed:
+- `incumbent` — fixed per-symbol `COST_R` (MNQ 0.060R / MYM 0.149R / MGC 0.068R) at 1R=$200.
+  This is the convention the *old artifacts used*, so it is the apples-to-apples comparison.
+- `honest_2.50ct` — engine_v3's per-trade $2.50/contract round turn on actual filled quantity.
+
+Firm-shape sweep: rolling starts, no timeout, closed daily PnL, EOD trailing max loss,
+consistency evaluated at pass time, min-trading-days counted on non-zero days — the conventions
+of `analysis/mtf_ote_multi_firm_scaling.md`, so the old and new tables are directly comparable.
+
+**Harness validity.** The re-baseline reproduces 0AA exactly on the overlapping cells:
+MNQ+MYM/MFFU/incumbent gives P(pass) **0.456**, ≤21d **0.316**, funded/slot **0.623**, net PnL
+**$43,301.60** — matching `clean_rescore_scorecard.csv`'s `clean:MNQ+MYM` row to the digit
+(0.4561 / 0.3159 / 0.6228 / 43301.60). The honest-cost cell reproduces **−$104,691.63**
+identically. So the new numbers below are new *reporting*, not a new model.
+
+**(a) Restamp.** Banner citing 0AA on every artifact named in 0AC, plus two additions found this
+session: `reports/mtf_ote_live_ready_report.md` (the source of the "LIVE_READY" verdict itself,
+not in the 0AC list) and the six scripts that *read* the leaked CSVs — stamping the outputs alone
+leaves the generators live, which is how a future session would re-mint void numbers.
+
+## Result
+
+### Monthly income — `clean_monthly_income.csv`
+
+MNQ+MYM, 61 months Jun 2021 – Jun 2026, same package rules, same cost convention as the
+published table:
+
+| Statistic | Published (leaked) | **Clean (incumbent cost)** | Clean (honest $2.50/ct) |
+| --- | ---: | ---: | ---: |
+| Mean | $4,741 | **$710** | −$1,716 |
+| Median | $4,838 | **$688** | −$1,505 |
+| 25th pct | $3,305 | **−$1,438** | −$3,990 |
+| 10th pct | $1,778 | **−$3,093** | −$6,177 |
+| Worst month | $477 (Jul 2021) | **−$5,411 (Apr 2022)** | −$8,458 (Oct 2025) |
+| Best month | $9,348 (Jun 2022) | **$6,734 (Dec 2024)** | $4,725 (Sep 2022) |
+| **Losing months** | **0 / 61** | **24 / 61** | **41 / 61** |
+| 5y total | $289,171 | **$43,302** | −$104,692 |
+
+By year (incumbent cost): 2021 $6,618 · 2022 $9,549 · 2023 $7,094 · 2024 $18,534 · 2025 $5,820 ·
+2026 (6mo) **−$4,313**. At honest fills **every year is negative**: −$17,541 / −$6,404 /
+−$34,433 / −$15,752 / −$17,033 / −$13,529.
+
+**Trailing 12 months (Jul 2025 – Jun 2026), incumbent cost: −$9,607, 8 of 12 months losing.**
+At honest fills: −$34,694, 11 of 12 losing. The published memo's headline claim — "0/61 losing
+backtest months … each funded account ≈ one conservative $1,000–2,000/mo stream" — inverts.
+
+Other mixes (incumbent cost): MNQ-only $377/mo mean, 22/61 losing, $22,998 total.
+MNQ+MYM+MGC $998/mo mean, 23/62 losing, $61,885 total — MGC's clean list (2,799 trades from
+2021-07-12, vs the truncated leaked 763 from 2025-06-10) is the only mix that improves, and it
+still loses money 37% of months and fails every gate.
+
+### Firm-shape scorecard — `clean_firm_shape_scorecard.csv`
+
+MNQ+MYM, incumbent cost convention, rolling starts, no timeout:
+
+| Firm (50K) | P(pass) leaked → **clean** | ≤21d | Med | Funded/slot/mo | E[$/funded] |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| MFFU Builder Default | 94.7% → **45.6%** | 31.6% | 16d | **0.62** (was 1.38) | **$219** (was $106) |
+| Blusky 50K (widest DD) | 96.8% → **50.8%** | 31.3% | 18d | 0.58 | $136 (was $71) |
+| Lucid Pro 50K | 93.9% → **44.8%** | 31.4% | 16d | 0.63 | $248 |
+| Topstep 50K Combine | 93.9% → **44.6%** | 31.1% | 16d | 0.62 | $133 (was $61) |
+| Tradeify Select 50K | 93.9% → **44.1%** | 29.7% | 16d | 0.60 | $224 |
+| FundedNext Flex 50K | 79.9% → **29.7%** | 26.4% | 12d | 0.61 | $239 |
+
+**No rule shape rescues the strategy.** The spread across the entire firm universe is 29.7%–50.8%
+P(pass); the best available shape (Blusky's $2,500 drawdown, no consistency) still leaves a
+**49.2% fail rate** against a 10% gate. Consistency rules and daily-loss limits remain nearly
+non-binding — the old memo's observation that the +$900 lockout keeps big days small still holds;
+it is the *edge*, not the rule shape, that is absent. At honest $2.50/ct fills the whole universe
+collapses to 11.1%–20.4% P(pass), MFFU at 16.8% and $594/funded.
+
+**Four firms were deliberately not regenerated:** Legends Elite 50K, Earn2Trade GAU50,
+FundedNext Legacy 50K, TradeDay FastPass 50K. Their rule shapes appear nowhere in this hub —
+they lived only in the external `MTF OTE/mc_audit/` firm table — and inventing parameters to fill
+a table is how the last set of unfounded numbers got into circulation. `data/firm_shape_scorecard_ote.csv`
+is stamped void for all 11 firms; those four need their rules re-sourced before they can be re-scored.
+
+### Restamp — 14 artifacts
+
+Stamped with a banner naming 0AA as proof and pointing at the clean replacement:
+- `analysis/monthly_income_distribution.md`, `analysis/mtf_ote_multi_firm_scaling.md`,
+  `analysis/spy_0dte_signal_validation.md`
+- `data/mtf_ote_exact_rule_scorecard.csv`, `data/firm_shape_scorecard_ote.csv` (leading `#`
+  comment line; verified nothing in the repo *reads* either file, only writes/cites them)
+- `research/memos/2026-07-19_live_faithful_risk_scorer.md` (structural findings preserved as
+  directional, absolute numbers marked void)
+- `reports/mtf_ote_live_ready_report.md` — **not in the 0AC list**; it is the origin of the
+  "LIVE_READY" verdict and was still unstamped
+- `dashboard.html` — full-width red banner above the fold + the MNQ+MYM "FULL" edge-catalog row
+  struck through with the clean figures inline (rendered and screenshot-verified)
+- **Six scripts that read the leaked CSVs** — `score_mtf_ote_package_exact_rules.py`,
+  `score_mtf_ote_live_faithful.py`, `score_mtf_ote_per_symbol_caps.py`,
+  `score_mtf_ote_5m_close_variant.py`, `markov_regime_filter_backtest.py`, `live_drift_check.py`.
+  Header block states the output is void and names the clean generator + worked example. All six
+  still compile and `rescore_incumbent_clean_engine` still imports cleanly (verified).
+
+`analysis/mtf_ote_exact_rule_scorecard.csv` named in 0AC **does not exist** — only the `data/`
+copy does. Nothing lost; noted so the next reader does not go looking.
+
+**SPY 0DTE is void but not re-baselineable here.** The leak reaches it through the *generator*
+(`MTF OTE/mc_audit/validate_spy_5y.py` shares the `ote_mc_audit.gen_trades` lineage), not through
+a CSV — and its reported **47.5% win rate sits squarely in the leak signature band** (MNQ 48.9% /
+MYM 50.1% / MGC 47.8%, all of which fell to 33–36% clean). engine_v3 is futures-parquet bound and
+has no SPY path, so a clean re-run is a build, not a re-score. Filed as **0AD**.
+
+## Gates checklist (PROTOCOL.md)
+
+1. **Exact-rule campaign scoring — FAIL (restated, not newly tested).** Conventions inherited
+   byte-fixed from 0AA. MNQ+MYM clean: 43.3% pass / 54.4% fail / worst-start edge −0.336 against
+   thresholds pass ≥40% / fail ≤10% / edge ≥+5%. Fail rate misses by 44pp. No firm shape in the
+   universe brings fail under 49%.
+2. **Conservative fills — PASS.** engine_v3 stop-first on ambiguous bars (ambiguity 1.6% MNQ /
+   1.0% MYM). Target-first is reported in 0AA only as an upper bound and also fails.
+3. **Realistic costs — PASS.** Both conventions reported separately and never blended; the
+   honest $2.50/ct-on-actual-qty series is the one that matters and is far worse.
+4. **Lookahead audit — PASS.** This item *is* the lookahead remediation; the clean generator is
+   the audited one and the leaked path is now stamped at the source scripts.
+5. **Portfolio-level limits — PASS.** 5 entries / −$500 / +$900 applied combined across
+   instruments via the imported package-rules function; all three mixes scored in package context.
+6. **Sample discipline — PASS on sample, n/a on holdout.** 61–62 months, 6,250 trades (MNQ+MYM).
+   No holdout split re-run and none needed: **no selection was performed this session** — nothing
+   was fit, tuned or chosen. 0AA's holdout stands (clean holdout 22.5% pass / 61.2% fail, worse
+   than dev — the honest OOS signature).
+7. **Multiple-testing ledger — PASS.** Logged in `_tried_ledger.md`.
+8. **Dead-end list — n/a.** Nothing on it was re-tested.
+
+## Verdict
+
+**DONE (remediation) — and the re-baseline CONFIRMS REJECT with the economics now quantified.**
+
+The clean farm is not a smaller version of the published one; it is a different business. At the
+old cost convention it earns **$710/mo with 24 of 61 months negative** (published: $4,741 with
+zero negative months) and has **lost money over the trailing year**. At honest fills it loses
+money in every year of the sample. An eval slot mints **0.62 funded accounts/month at $219 each**
+rather than 1.40 at $106 — but that number is close to meaningless, because a 54% fail rate means
+the funded accounts produced would be funding a negative-expectancy strategy.
+
+Nothing here changes the standing conclusion from 0AA: **the farm has no validated live
+strategy.** What changes is that the project's economic claims are now quoted from something real
+instead of from a warning label.
+
+## Next step
+
+1. **0AD (new, P0):** clean SPY re-run for the 0DTE lane — requires porting engine_v3 to equity
+   1m parquet. Until then the lane is void and hard-gated, per the stamp.
+2. **Re-source the four missing firm rule shapes** (Legends Elite, Earn2Trade GAU50, FundedNext
+   Legacy, TradeDay FastPass) so the firm scorecard is complete — cheap, but it is data
+   acquisition from firm pages, not computation. Conclusion will not change (a 49% floor on fail
+   rate is not a rule-shape problem), so this is bookkeeping, not decision-relevant.
+3. **Quarantine remains Jermaine's call and is still NOT executed.** Renaming the CSVs to
+   `*.LEAKED.csv` breaks six scripts by name; they are now stamped at the top instead, which
+   gets the safety without the breakage. Recommend leaving it that way.
+4. **The real open question is unchanged and is upstream of all of this:** 0v — build the
+   purged/embargoed walk-forward harness. Every remaining P0 (0u, 0x, 0v, gate-1 resolution)
+   is blocked behind a methodology that can actually resolve a cap choice, and there is now no
+   incumbent worth protecting, which makes this the cheapest time in the project's history to
+   rebuild that foundation properly.

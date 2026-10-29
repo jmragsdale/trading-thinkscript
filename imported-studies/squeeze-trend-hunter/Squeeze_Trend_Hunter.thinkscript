@@ -1,0 +1,238 @@
+#Scipt contains portions from 'perfect leading indicator', 'Dans arrows', and #'zero line squeeze dots'
+
+# # # # # # # # # # # # # # # # # # #
+#WaveTrend Oscillator script for ThinkorSwim. Came from Came LazyBear over at TradingView version that was ported from TS/MT
+# also known as "The Perfect Leading Indicator."
+#ported by BenTen 6/18/19
+#WT_LB Short Name TV
+# # # # # # # # # # # # # # # # # # #
+
+declare lower;
+input price = close;
+input showLines = Yes;
+input Channel_Length = 10; #10
+input Average_Length = 21; #10
+input over_bought_1 = 60;
+input over_bought_2 = 53;
+input over_sold_1 = -60;
+input over_sold_2 = -53;
+input show_bubbles = yes;
+input show_sec_bbls = no;
+input show_alerts = yes;
+def ap = hlc3;
+def esa = ExpAverage(ap, Channel_Length);
+def d = ExpAverage(AbsValue(ap - esa), Channel_Length);
+def ci = (ap - esa) / (0.015 * d);
+def tci = ExpAverage(ci, Average_Length);
+def wt1 = tci;
+def wt2 = SimpleMovingAvg(wt1, 4);
+#def zero = 0;
+
+plot obLevel1 = over_bought_1;
+obLevel1.SetDefaultColor(Color.RED);
+plot osLevel1 = over_sold_1;
+osLevel1.SetDefaultColor(Color.GREEN);
+plot  obLevel2 = over_bought_2;
+obLevel2.SetDefaultColor(Color.RED);
+obLevel2.SetStyle(Curve.SHORT_DASH);
+plot  osLevel2 = over_sold_2;
+osLevel2.SetDefaultColor(Color.GREEN);
+osLevel2.SetStyle(Curve.SHORT_DASH);
+
+plot wt1_1 = wt1;
+wt1_1.SetDefaultColor(Color.GREEN);
+plot wt2_1 = wt2;
+wt2_1.SetDefaultColor(Color.RED);
+wt2_1.SetStyle(Curve.POINTS);
+def signal1 = wt1 crosses above wt2 and wt1 < over_sold_2;
+plot Signal = if signal1  then (signal1 * over_sold_2) else Double.NaN;
+Signal.SetDefaultColor(Color.GREEN);
+Signal.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+Signal.SetLineWeight(3);
+Signal.HideTitle();
+def signal2 = wt1 crosses below wt2 and wt1 > over_bought_2;
+plot Signal2_ = if signal2  then (signal2 * over_bought_2) else Double.NaN;
+Signal2_.SetDefaultColor(Color.RED);
+Signal2_.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+Signal2_.SetLineWeight(3);
+Signal2_.HideTitle();
+
+
+# # # # # # # # # # # # # # # # # # #
+#Name:             DonchianChannel
+#Programmed By:    Chris Ball (chris.m.ball@gmail.com) on 10/23/08
+#Posted At:        http://chartingwithchris.blogspot.com
+#Description:      This is a channel system that is used frequently for trend trading.  Google the term "turtle trader" for more information.
+#Modified 2020-06-10 by rad14733 to utilize AddCloud()
+# # # # # # # # # # # # # # # # # # #
+
+input length_donchian = 34;
+
+plot upperBand = Highest(wt1_1[1], length_donchian);
+plot lowerBand = Lowest(wt1_1[1],  length_donchian);
+plot middleBand = (upperBand + lowerBand) / 2;
+
+upperBand.SetDefaultColor(Color.DARK_GRAY);
+lowerBand.SetDefaultColor(Color.DARK_GRAY);
+middleBand.SetDefaultColor(Color.ORANGE);
+
+AddCloud(upperBand, lowerBand, Color.DARK_GRAY, Color.WHITE);
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+#  ,.-~*´¨¯¨`*·~-.¸-(_Zero line squeeze dot section_)-,.-~*´¨¯¨`*·~-.¸
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+# Momentum coding and "squeeze" concept made popular by John Carter.
+#yellow dots are pre-squeeze, red is 'regular squeeze', and red dots are hot saucy extra extra squeeze where it's about to go nuclear
+
+input length = 20;
+input Num_Dev_Dn = -2.0;
+input Num_Dev_up = 2.0;
+input averageType = AverageType.SIMPLE;
+input displace = 0;
+def sDev = StDev(data = price[-displace], length = length);
+def MidLineBB = MovingAverage(averageType, data = price[-displace], length = length);
+def LowerBandBB = MidLineBB + Num_Dev_Dn * sDev;
+def UpperBandBB = MidLineBB + Num_Dev_up * sDev;
+input factorhigh = 1.0;
+input factormid = 1.5;
+input factorlow = 2.0;
+input trueRangeAverageType = AverageType.SIMPLE;
+def shifthigh = factorhigh * MovingAverage(trueRangeAverageType, TrueRange(high, close, low), length);
+def shiftMid = factormid * MovingAverage(trueRangeAverageType, TrueRange(high, close, low), length);
+def shiftlow = factorlow * MovingAverage(trueRangeAverageType, TrueRange(high, close, low), length);
+def average = MovingAverage(averageType, price, length);
+
+def Avg = average[-displace];
+
+def UpperBandKCLow = average[-displace] + shiftlow[-displace];
+def LowerBandKCLow = average[-displace] - shiftlow[-displace];
+
+def UpperBandKCMid = average[-displace] + shiftMid[-displace];
+def LowerBandKCMid = average[-displace] - shiftMid[-displace];
+
+def UpperBandKCHigh = average[-displace] + shifthigh[-displace];
+def LowerBandKCHigh = average[-displace] - shifthigh[-displace];
+
+def K = (Highest(high, length) + Lowest(low, length)) /
+2 + ExpAverage(close, length);
+def momo = Inertia(price - K / 2, length);
+
+def pos         = momo >= 0;
+def neg         = momo < 0;
+def up         = momo >= momo[1];
+def dn         = momo < momo[1];
+
+def presqueeze      = LowerBandBB > LowerBandKCLow and UpperBandBB < UpperBandKCLow;
+def originalSqueeze     = LowerBandBB > LowerBandKCMid and UpperBandBB < UpperBandKCMid;
+def ExtrSqueeze     = LowerBandBB > LowerBandKCHigh and UpperBandBB < UpperBandKCHigh;
+
+def PosUp = pos and up;
+def PosDn = pos and dn;
+def NegDn = neg and dn;
+def NegUp = neg and up;
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #                            
+#change your squeeze dot colors here
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+
+plot squeezeline = 0;
+squeezeline.SetPaintingStrategy(PaintingStrategy.POINTS);
+squeezeline.AssignValueColor(if ExtrSqueeze then Color.MAGENTA else if originalSqueeze  then Color.RED else if presqueeze then Color.YELLOW else Color.GRAY);
+
+plot momentum = momo;
+momentum.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+momentum.AssignValueColor( if PosUp then Color.GREEN else if PosDn then Color.DARK_GREEN else if NegDn then Color.DARK_ORANGE else if NegUp then Color.YELLOW else Color.YELLOW);
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+#  ,.-~*´¨¯¨`*·~-.¸-(_Arrows portion_)-,.-~*´¨¯¨`*·~-.¸
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+
+## HOHO INPUTS
+# hint nHoMA: nHoMA is mov. avg length. \n nHo1 is 1st osc. period. \n nHo2 is 2nd osc. period. \n nHoSm is smoothing length. \n Change mov. avg  types (hoType..) to speed up/ slow down oscillators.
+input nHoMA = 8;#10
+input nHo1 = 17;#20
+input nHo2 = 34;#50
+input nHoSm = 8;#5
+input hoTypeMA = AverageType.EXPONENTIAL;
+input hoType1 = AverageType.EXPONENTIAL;
+input hoType2 = AverageType.EXPONENTIAL;
+input hoTypeSM = AverageType.EXPONENTIAL;
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+## SQUEEZE INPUTS
+# hint bbKcLength: bbKcLength is mov. avg length for \n bollinger band (BB) and #keltner channel (KC). \n bbDevUp is the number of deviations for BB. \n kcFactor #is the coef. for KC ATR. \n bbKcAvgType is the mov. avg type for BB and KC mid.
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+
+input bbKcLength = 20;#20
+input bbDevUp = 2.0;
+input kcFactor = 1.5;#1.5
+input bbKcAvgType = AverageType.SIMPLE;
+
+def stdDev = StDev(price, bbKcLength);
+def MA = MovingAverage(bbKcAvgType, price, bbKcLength);
+def bbUB = MA + bbDevUp * stdDev;
+def kcUB = MA + (kcFactor * Average(TrueRange(high,  close,  low),  bbKcLength));
+
+def squeezed = bbUB < kcUB;
+
+def P = ((nHoMA - 1) 
+        * MovingAverage(hoTypeMA, price, nHoMA)[1] 
+        + price) / nHoMA;
+
+def pr1 = price[(-nHo1 / 2) + 1];
+def pr2 = price[(-nHo2 / 2) + 1];
+
+def rHo1 = CompoundValue(3, if !IsNaN(pr1) then 
+    MovingAverage(hoType1, pr1, AbsValue(nHo1)) 
+else rHo1[1] + (rHo1[1] - rHo1[2]), price);
+
+def rHo2 = CompoundValue(3, if !IsNaN(pr2) then 
+    MovingAverage(hoType2, pr2, AbsValue(nHo2)) 
+else rHo2[1] + (rHo2[1] - rHo2[2]), price);
+
+def Osc1 = MovingAverage(hoTypeSM, rHo1 - P, nHoSm);
+def Osc2 = MovingAverage(hoTypeSM, rHo2 - P, nHoSm);
+
+## Check if Osc1 is crossing zero.
+def cr1 = if Osc1 crosses above 0 then 1
+else if Osc1 crosses below 0 then -1
+else 0;
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+#u1 and d1 suggest a trend direction, comment this section out if you only want #to do squeeze trading.
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+plot U1;
+plot D1;
+
+## Signal up outside squeeze.
+U1 = if Osc2 > 0 and cr1 > 0 and !squeezed then 0 else Double.NaN;
+U1.SetDefaultColor(Color.CYAN);
+U1.SetLineWeight(2);
+U1.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+
+## Signal down outside squeeze.
+D1 = if Osc2 < 0 and cr1 < 0 and !squeezed then 0 else Double.NaN;
+D1.SetDefaultColor(Color.MAGENTA);
+D1.SetLineWeight(1);
+D1.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+#u2 and d2 suggest a direction when in a squeeze
+# # # # # # # # # # # # # # # # # # # # # # # # # # #   
+plot U2;
+plot D2;
+
+## Signal up in squeeze.
+U2 = if Osc2 > 0 and cr1 > 0 and squeezed then 0 else Double.NaN;
+U2.SetDefaultColor(Color.UPTICK);
+U2.SetLineWeight(5);
+U2.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+
+## Signal down in squeeze.
+D2 = if Osc2 < 0 and cr1 < 0 and squeezed then 0 else Double.NaN;
+D2.SetDefaultColor(Color.DOWNTICK);
+D2.SetLineWeight(5);
+D2.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+
+## The End, roll credits

@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d",
+  "family": "mtf-ote",
+  "label": "clean-15m-1m",
+  "record_type": "strategy",
+  "reported_on": "2026-07-27",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "304a7ecefd1d886a4a9c02bc8c850134a6e33b47de2d1fde2cec01a5bf36c76f",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "studies/mtf-ote",
+        "source_path": "studies/mtf-ote/MTF_OTE_TOS.ts",
+        "source_sha256": "c902e38c0fbf821a1f58492ef484339c63d22b8881bde4cfe32a86906f46a212",
+        "relationship": "related-model"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [],
+    "tested_model_version": "engine_v3",
+    "inputs": {
+      "higher_timeframe_minutes": 15,
+      "chart_minutes": 1,
+      "entry_fib": 0.705,
+      "atr_stop_multiplier": 0.1,
+      "target_fib": 0.0,
+      "bias_lookback": 20
+    }
+  },
+  "test_environment": {
+    "engine": "python",
+    "engine_version": null,
+    "instrument": "MYM",
+    "aggregation_minutes": 1,
+    "session": "03:00–05:00 / 09:30–12:00 / 14:00–15:55 ET",
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": null,
+    "start": null,
+    "end": null,
+    "reported_period": "June 2021–June 2026; MGC starts July 12, 2021.",
+    "missing_data_treatment": null,
+    "rollover_treatment": null,
+    "raw_data_hash": null
+  },
+  "execution": {
+    "entry_rule": "No arm-bar fill; order must already be resting.",
+    "exit_rule": "Clean Python engine_v3 model.",
+    "position_sizing": null,
+    "same_bar_stop_target": "stop-first",
+    "initial_capital_usd": null,
+    "overlap_rule": null
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": null,
+    "slippage_points_each_side": null,
+    "total_round_trip_usd": 2.5,
+    "total_round_trip_points": null,
+    "pnl_basis": "net",
+    "description": "Related engine_v3 per-contract RT cost on actual quantity; component split not established."
+  },
+  "sample": {
+    "development_period": null,
+    "test_period": null,
+    "test_used_in_selection": null,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "mtf-clean-rescore",
+      "mtf-cost-rebaseline"
+    ],
+    "source_records": {
+      "mtf-clean-rescore": {
+        "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-27_incumbent_clean_engine_rescore.md",
+        "original_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+        "original_bytes": 11948,
+        "evidence": "docs/performance/evidence/mtf-clean-rescore.txt",
+        "evidence_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "mtf-cost-rebaseline": {
+        "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-30_leak_restamp_and_clean_rebaseline.md",
+        "original_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+        "original_bytes": 12269,
+        "evidence": "docs/performance/evidence/mtf-cost-rebaseline.txt",
+        "evidence_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      }
+    }
+  },
+  "validation": {
+    "status": "reported",
+    "source_relationship": "related-model",
+    "native_parity": "not-verified",
+    "lookahead_audit": "Clean engine audit reported in saved sources; no new independent rerun.",
+    "warnings": [
+      "Related execution model, not a native backtest of the TOS chart study.",
+      "Older leak-derived generator results explicitly voided."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.provider": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.start": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.end": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.missing_data_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.rollover_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.raw_data_hash": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.position_sizing": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.initial_capital_usd": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.overlap_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.development_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_used_in_selection": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "costs.commission_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.slippage_points_each_side": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_points": "Cost component not separately established; see costs.description and pnl_basis."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d/run.json",
+    "summary": "docs/performance/runs/mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d/summary.json",
+    "markdown": "docs/performance/runs/mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d/PERFORMANCE.md",
+    "observations": {
+      "path": null,
+      "kind": "trades",
+      "sha256": null,
+      "row_count": null,
+      "reason": "Observation-level ledger not available in the retrieved evidence; aggregate report only."
+    },
+    "summary_sha256": "69399c3c109d2e12fb1572be6419e959681985661d8a4e5972e6fb6f02f5ef3b"
+  }
+}

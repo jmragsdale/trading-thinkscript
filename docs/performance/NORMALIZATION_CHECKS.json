@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0.0",
+  "checked_on": "2026-10-29",
+  "new_backtests_run": false,
+  "projects_with_runs": 13,
+  "runs": 52,
+  "unique_observation_files": 24,
+  "sources": 24,
+  "checks": [
+    {
+      "run_id": "macdv-2026-10-01-mnq-corrected-base-3c1968fc5a4f",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 72,
+      "passed": true
+    },
+    {
+      "run_id": "macdv-2026-10-01-mnq-double-total-cost-3e3532b39b8d",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 72,
+      "passed": true
+    },
+    {
+      "run_id": "macdv-2026-10-01-mnq-original-lower-cost-cf68d3e72de3",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 72,
+      "passed": true
+    },
+    {
+      "run_id": "macdv-2026-10-01-mnq-original-double-cost-935e2290ddba",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 72,
+      "passed": true
+    },
+    {
+      "run_id": "macdv-2026-10-01-spy-corrected-base-1d115044eece",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 72,
+      "passed": true
+    },
+    {
+      "run_id": "macdv-2026-10-01-spy-double-total-cost-b06fa09a98c1",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 72,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-corrected-base-36b3de50af98",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 44,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-double-total-cost-774eb88d8678",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 44,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-original-lower-cost-94bab78820e5",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 44,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-original-double-cost-0000f71a4b13",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 44,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-spy-corrected-base-c184c11a6f35",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 40,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-spy-double-total-cost-a73e6c49aa14",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 40,
+      "passed": true
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-corrected-base-229b64b6b0b3",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 88,
+      "passed": true
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-double-total-cost-8d303b5dc62f",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 88,
+      "passed": true
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-original-lower-cost-ae0e94976f3c",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 88,
+      "passed": true
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-original-double-cost-7dcfe7eb2e51",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 88,
+      "passed": true
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-spy-corrected-base-9df6bbfd524d",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 88,
+      "passed": true
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-spy-double-total-cost-8b20b4c6b178",
+      "check": "all event slice counts, days and scenario means match saved summary",
+      "rows_checked": 88,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-3-63059a30c1ec",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-5-3261d9aa9723",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-10-1ce16a0f42bd",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-15-07e07c3d52c0",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-3-a3b09f1bee9b",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-5-4ff5f8f1e9cf",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-10-f4b1b7f16ea0",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-15-dd61809f5ab0",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-3-1440d2115b70",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-5-7232729e891d",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-10-03ca397e4369",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-15-5197360f14b8",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-3-5cbb92cda763",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-5-59edd27ae804",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-10-65a659f915bb",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-15-9509bc00ed6a",
+      "check": "all three side slices reconcile to saved hypothetical trades within report rounding",
+      "rows_checked": 3,
+      "passed": true
+    },
+    {
+      "run_id": "orb15-mnq-2026-10-01-mnq-original-68192489f25b",
+      "check": "entry/exit pairing, 19 exits, saved net/wins, PF and closed-trade drawdown",
+      "rows_checked": 19,
+      "passed": true
+    },
+    {
+      "run_id": "orb15-mnq-2026-10-01-mnq-stopcap100-aac1118a7f47",
+      "check": "entry/exit pairing, 19 exits, saved net/wins, PF and closed-trade drawdown",
+      "rows_checked": 19,
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Report-only rows cannot be reconciled to observations; original reported values and their uncertainty are retained.",
+    "Only existing saved scenarios were normalized; no parameters optimized."
+  ]
+}

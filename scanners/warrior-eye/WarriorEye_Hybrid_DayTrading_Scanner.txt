@@ -1,0 +1,128 @@
+# Warrior Eye Hybrid - corrected Stock Hacker build
+# Aggregation: 1 or 5 minutes. Exactly one plot is active.
+# IMPORTANT: thinkScript does not expose dependable share-float data here.
+# Add a separate Stock Hacker fundamental filter for float if your data supports it.
+# The original experimental source is retained under versions/.
+
+input minPercentGainFromRTHOpen = 10.0;
+input minRelativeBarVolume = 3.0;
+input minPrice = 1.00;
+input maxPrice = 20.00;
+input volumeLookbackBars = 30;
+input minAtrPercent = 3.0;
+
+input fastMALength = 9;
+input slowMALength = 20;
+input maxPullbackBars = 10;
+input volumeContractionPct = 50.0;
+input targetLookbackBars = 20;
+input minRiskReward = 2.0;
+input minQualityScore = 10;
+
+def tradingDate = GetYYYYMMDD();
+def rthStart = RegularTradingStart(tradingDate);
+def rthEnd = RegularTradingEnd(tradingDate);
+def inRTH = GetTime() >= rthStart and GetTime() < rthEnd;
+def firstRTHBar = GetTime() >= rthStart and GetTime()[1] < rthStart;
+def rthOpen = CompoundValue(
+    1,
+    if firstRTHBar then open else rthOpen[1],
+    Double.NaN
+);
+
+def priceInRange = close >= minPrice and close <= maxPrice;
+def percentChangeFromRTHOpen =
+    if inRTH and rthOpen > 0
+    then (close / rthOpen - 1) * 100
+    else 0;
+def isUpEnough = percentChangeFromRTHOpen >= minPercentGainFromRTHOpen;
+
+# Relative volume is intentionally bar-based at the selected scan aggregation.
+# The current bar is compared with the prior N bars and is not included in its
+# own baseline.
+def averagePriorBarVolume = Average(volume[1], volumeLookbackBars);
+def relativeBarVolume =
+    if averagePriorBarVolume > 0
+    then volume / averagePriorBarVolume
+    else 0;
+def hasHighVolume = relativeBarVolume >= minRelativeBarVolume;
+
+def atr = Average(TrueRange(high, close, low), 14);
+def atrPercent = if close > 0 then atr / close * 100 else 0;
+def isVolatile = atrPercent >= minAtrPercent;
+
+def momentumFilter =
+    inRTH and
+    priceInRange and
+    isUpEnough and
+    hasHighVolume and
+    isVolatile;
+
+def fastMA = SimpleMovingAvg(close, fastMALength);
+def slowMA = SimpleMovingAvg(close, slowMALength);
+def slowMARising = slowMA > slowMA[1];
+def bullishCross = fastMA[1] <= slowMA[1] and fastMA > slowMA;
+def bearishCross = fastMA[1] >= slowMA[1] and fastMA < slowMA;
+
+def barsInPullback = CompoundValue(
+    1,
+    if bearishCross then 1
+    else if barsInPullback[1] > 0 and fastMA < slowMA
+         then barsInPullback[1] + 1
+         else 0,
+    0
+);
+def validPullbackDuration =
+    barsInPullback > 0 and barsInPullback <= maxPullbackBars;
+
+def maxRecentVolume = Highest(volume, maxPullbackBars);
+def volumeContracted =
+    maxRecentVolume > 0 and
+    volume <= maxRecentVolume * volumeContractionPct / 100;
+
+def bodyLow = Min(open, close);
+def lowerShadowSize = bodyLow - low;
+def bodySize = AbsValue(close - open);
+def hasLowerShadow = lowerShadowSize > bodySize * 0.5;
+def isBullishCandle = close > open;
+
+def pullbackSetup =
+    momentumFilter and
+    slowMARising and
+    validPullbackDuration and
+    fastMA < slowMA and
+    volumeContracted;
+
+def buySignal =
+    inRTH and
+    pullbackSetup[1] and
+    bullishCross and
+    isBullishCandle and
+    hasLowerShadow;
+
+# Reward is measured to the highest prior high in the target lookback. Unlike
+# the original fixed 2R target, this produces a non-tautological R/R filter.
+def stopLoss = Lowest(low, maxPullbackBars) - TickSize();
+def riskPerShare = close - stopLoss;
+def targetPrice = Highest(high[1], targetLookbackBars);
+def rewardPerShare = targetPrice - close;
+def riskReward =
+    if riskPerShare > 0 and rewardPerShare > 0
+    then rewardPerShare / riskPerShare
+    else 0;
+def validRiskReward = riskReward >= minRiskReward;
+
+def qualityScore =
+    (if momentumFilter then 3 else 0) +
+    (if relativeBarVolume >= 5 then 2 else if hasHighVolume then 1 else 0) +
+    (if percentChangeFromRTHOpen >= 20 then 2 else if isUpEnough then 1 else 0) +
+    (if volumeContracted[1] then 2 else 0) +
+    (if hasLowerShadow then 2 else 0) +
+    (if validRiskReward then 2 else 0) +
+    (if slowMARising then 1 else 0) +
+    (if barsInPullback[1] > 0 and barsInPullback[1] <= 5 then 1 else 0);
+
+plot signal =
+    buySignal and
+    validRiskReward and
+    qualityScore >= minQualityScore;

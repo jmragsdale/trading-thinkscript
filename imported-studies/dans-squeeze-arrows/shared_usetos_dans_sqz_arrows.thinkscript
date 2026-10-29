@@ -1,0 +1,146 @@
+declare lower;
+
+input paintBars = {default Off, Fast, Slow};
+input showLines = Yes;
+input price = close;
+
+## HOHO INPUTS
+# hint nHoMA: nHoMA is mov. avg length. \n nHo1 is 1st osc. period. \n nHo2 is 2nd osc. period. \n nHoSm is smoothing length. \n Change mov. avg  types (hoType..) to speed up/ slow down oscillators.
+input nHoMA = 8;#10
+input nHo1 = 17;#20
+input nHo2 = 34;#50
+input nHoSm = 8;#5
+input hoTypeMA = AverageType.Exponential;
+input hoType1 = AverageType.EXPONENTIAL;
+input hoType2 = AverageType.EXPONENTIAL;
+input hoTypeSM = AverageType.EXPONENTIAL;
+
+
+## SQUEEZE INPUTS
+# hint bbKcLength: bbKcLength is mov. avg length for \n bollinger band (BB) and keltner channel (KC). \n bbDevUp is the number of deviations for BB. \n kcFactor is the coef. for KC ATR. \n bbKcAvgType is the mov. avg type for BB and KC mid.
+input bbKcLength = 20;#20
+input bbDevUp = 2.0;
+input kcFactor = 1.5;#1.5
+input bbKcAvgType = AverageType.SIMPLE;
+
+DefineGlobalColor("U0", Color.LIGHT_GRAY);
+DefineGlobalColor("D0", Color.DARK_GRAY);
+DefineGlobalColor("U1", Color.ORANGE);
+DefineGlobalColor("D1", Color.PINK);
+DefineGlobalColor("U2", Color.Dark_GREEN);
+DefineGlobalColor("D2", Color.Dark_RED);
+
+def sDev = StDev(price, bbKcLength);
+def MA = MovingAverage(bbKcAvgType, price, bbKcLength);
+def bbUB = MA + bbDevUp * sDev;
+def kcUB = MA + (kcFactor * Average(TrueRange(high,  close,  low),  bbKcLength));
+
+def squeezed = bbUB < kcUB;
+
+plot U1;
+plot D1;
+
+plot U2;
+plot D2;
+
+def P = ((nHoMA - 1) 
+        * MovingAverage(hoTypeMA, price, nHoMA)[1] 
+        + price) / nHoMA;
+
+def pr1 = price[(-nHo1 / 2) + 1];
+def pr2 = price[(-nHo2 / 2) + 1];
+
+def rHo1 = compoundValue(3, if !IsNaN(pr1) then 
+    MovingAverage(hoType1, pr1, AbsValue(nHo1)) 
+else rHo1[1] + (rHo1[1] - rHo1[2]), price);
+
+def rHo2 = compoundValue(3, if !IsNaN(pr2) then 
+    MovingAverage(hoType2, pr2, AbsValue(nHo2)) 
+else rHo2[1] + (rHo2[1] - rHo2[2]), price);
+
+plot Osc1 = MovingAverage(hoTypeSM, rHo1 - P, nHoSm);
+Osc1.SetLineWeight(3);
+Osc1.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Osc1.SetDefaultColor(Color.GREEN);
+Osc1.DefineColor("U2", Color.GREEN);
+Osc1.DefineColor("D2", Color.RED);
+Osc1.DefineColor("U4", Color.DARK_GREEN);
+Osc1.DefineColor("D4", Color.DARK_RED);
+Osc1.AssignValueColor(
+    if Osc1 > 0 then 
+        if Osc1 > Osc1[1] then Osc1.Color("U2") 
+        else Osc1.Color("U4")
+    else if Osc1 < Osc1[1] then Osc1.Color("D2")  
+    else Osc1.Color("D4") 
+);
+
+plot Osc2 = MovingAverage(hoTypeSM, rHo2 - P, nHoSm);
+Osc2.SetLineWeight(5);
+Osc2.SetPaintingStrategy(PaintingStrategy.HISTOGRAM);
+Osc2.SetDefaultColor(Color.MAGENTA);
+Osc2.DefineColor("U1", Color.CYAN);
+Osc2.DefineColor("D1", Color.MAGENTA);
+Osc2.DefineColor("U3", Color.BLUE);
+Osc2.DefineColor("D3", Color.PINK);
+Osc2.AssignValueColor(
+    if Osc2 > 0 then 
+        if Osc2 > Osc2[1] then Osc2.Color("U3") 
+        else Osc2.Color("U1") 
+    else if Osc2 < Osc2[1] then Osc2.Color("D3")
+    else Osc2.Color("D1")
+);
+
+plot Zero = if !IsNaN(price) then 0 else Double.NaN;
+Zero.DefineColor("NotSqueezed", Color.Black);
+Zero.DefineColor("Squeezed", Color.RED);
+Zero.AssignValueColor(if squeezed then Zero.Color("Squeezed") else Zero.Color("NotSqueezed"));
+Zero.SetPaintingStrategy(PaintingStrategy.POINTS);
+Zero.SetLineWeight(2);
+
+## Check if Osc1 is crossing zero.
+def cr1 = if Osc1 crosses above 0 then 1
+else if Osc1 crosses below 0 then -1
+else 0;
+
+## Signal up outside squeeze.
+U1 = if Osc2 > 0 and cr1 > 0 and !squeezed then 0 else Double.NaN;
+U1.SetDefaultColor(Color.CYAN);
+U1.SetLineWeight(2);
+U1.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+
+## Signal down outside squeeze.
+D1 = if Osc2 < 0 and cr1 < 0 and !squeezed then 0 else Double.NaN;
+D1.SetDefaultColor(Color.MAGENTA);
+D1.SetLineWeight(1);
+D1.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+
+## Signal up in squeeze.
+U2 = if Osc2 > 0 and cr1 > 0 and squeezed then 0 else Double.NaN;
+U2.SetDefaultColor(Color.UPTICK);
+U2.SetLineWeight(5);
+U2.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+
+## Signal down in squeeze.
+D2 = if Osc2 < 0 and cr1 < 0 and squeezed then 0 else Double.NaN;
+D2.SetDefaultColor(Color.DOWNTICK);
+D2.SetLineWeight(4);
+D2.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+
+AssignPriceColor(if paintBars == paintBars.Off then Color.CURRENT
+else if paintBars == paintBars.Fast then 
+    if Osc1 > 0 then 
+        if Osc2 > 0 then GlobalColor("U2") 
+        else GlobalColor("U1")
+    else if Osc1 < 0 then 
+        if Osc2 < 0 then GlobalColor("D2") 
+        else GlobalColor("D1")
+    else GlobalColor("U0")
+else if Osc1 > 0 then GlobalColor("U2") 
+else if Osc1 < 0 then GlobalColor("D2") 
+else GlobalColor("U0") );
+
+AddVerticalLine(showLines and IsNaN(pr1[-1]) and !IsNaN(pr1), "1", Color.PLUM, 1);
+
+AddVerticalLine(showLines and IsNaN(pr2[-1]) and !IsNaN(pr2), "2", Color.Dark_GREEN, 2);
+
+## END STUDY

@@ -1,0 +1,105 @@
+# ORB15 MNQ research package
+
+Two standalone local scripts implement **Original** and the frozen **StopCap100** experiment with one-contract measurement defaults. Pine was compiled and executed in an isolated TradingView research chart; TOS native compilation remains unverified. No broker or routing connection was created. The files contain no alert functions, routing payloads, endpoint URLs or account credentials. Pine hypothetical order calls request alert suppression. Pine now rejects non-standard/synthetic chart types. TOS is disabled unless the symbol is exactly `/MNQ:XCME` and the user confirms a one-minute **time** chart. The numeric aggregation check alone cannot distinguish a 60,000-tick chart. TOS native compilation remains unverified. thinkScript `AddOrder` is hypothetical strategy reporting, not order routing.
+
+## What to open
+
+| File | Purpose |
+|---|---|
+| `ORB15_MNQ_Research.pine` | Pine v6 native strategy-simulation candidate, Original/StopCap100 selector |
+| `ORB15_MNQ_Research.thinkscript` | TOS historical price-path model, Original/StopCap100 selector; optional shifted hypothetical markers |
+| `fixtures.json` | Frozen synthetic OHLC cases and winter/summer clock expectations |
+| `replay_fixtures.py` | Standard-library offline fixture oracle and static/clock checks |
+| `offline_validation.json` | Observed offline results; explicitly no native compilation |
+| `source_to_model.csv` | Original-source and new-file line mapping and deliberate differences |
+| `frozen_stopcap_protocol.json` | Frozen final experiment protocol |
+| `experiment_summary.csv`, `experiment_annual.csv` | Previously completed experiment evidence; not newly reproduced native results |
+| `manifest.json` | Source/version/file hashes and validation scope |
+
+## Frozen rules and risk formula
+
+Use standard **one-minute MNQ time bars**, $2 per point and 0.25-point tick. Opening range uses all fifteen bars labelled 09:30–09:44 in America/New_York. It is known after the 09:44 close; at the 09:45 close both stop entries are staged, first eligible from 09:46. First direction wins; one entry per date, no re-entry. The original stop is the opposite range boundary and target is 5R from the actual slipped fill.
+
+The source originally allowed `orBars >= 14` and variable sizing `floor(500/(range×2))` capped at 40. This package reproduces the **causal research baseline**: all fifteen opening minutes and exactly one contract. It does not reproduce original variable sizing or missing-opening-bar behavior.
+
+Let `E` be filled entry including adverse entry slippage, direction `d` = +1/−1, and original opposite boundary `S0`. Set `R0 = d×(E−S0)`. Original mode uses `R0`. StopCap100 uses:
+
+```
+D = floor(((100 − 1.90 − 0.25×2)/2)/0.25)×0.25 = 48.75 points
+R = min(R0, D)
+stop = E − d×R
+target = E + d×5R
+```
+
+Entry slippage is already inside `E`; expected exit slippage and fee remain in the budget. Binding planned benchmark loss is $99.90. This is a new experiment, not a source bug fix or live approval. Both modes leave the first fill bar unprotected: the bracket is submitted after the position becomes visible at that bar's close. At 15:59 close, orders are cancelled and a market closure is requested for the next available open, normally 16:00.
+
+Costs are $0.95 per side, adverse one-tick entry/stop/market-exit slippage; target limits receive no adverse market slippage. Favorable target gaps can improve fills. A $100 planned budget is **not** a hard loss limit: gaps, the unprotected fill bar and actual market liquidity can exceed it. Fixed research capital is $50,000; Pine margin=0 deliberately measures exposure without native full-notional capital rejection. Neither file implements prop account rules, a trailing evaluation floor, funding eligibility or account reconciliation.
+
+For a separately recorded doubled-cost comparison, Pine Properties can use $1.90 per side and two-tick slippage, keeping the 48.75-point cap unchanged. That manual sensitivity is not a new optimized parameter. TOS supplied source fixes benchmark costs; its custom dollar ledger includes fees, while Strategy Report marker P&L may not. Do not double charge fees or treat the report as a broker ledger.
+
+## Platform differences that must be reconciled
+
+Pine's emulator fills staged orders using its own historical OHLC assumptions and next-tick scheduling; its default closer-extreme path cannot be forced to the Python high-first/low-first scenarios by this script. Bar Magnifier, order-fill recalculation and close processing are disabled. Queued entry-stop activation and newly submitted protective-stop activation are carried from the previous close to the next open in the TOS model and revised oracle, including rebound bars. The two independent-review rebound fixtures now pass. Marketable-target limit rebound ordering and competing activated OCA/gap-open priority remain native parity limits; no exact equality is claimed. Inverted gap-entry geometry is explicitly rejected/flagged rather than silently assigned new exits. Entry, bracket, market-close/price-order priority, gap and price-rounding exports must be checked before calling the scripts equivalent. [Official Pine strategy documentation](https://www.tradingview.com/pine-script-docs/concepts/strategies/) and [current language reference](https://www.tradingview.com/pine-script-reference/v6/).
+
+TOS `AddOrder` records an order for the **next bar**. The script therefore models completed historical OHLC fills in a custom state machine; AddOrder rows use the modeled price but markers occur one bar later. It is not a native resting OCA/bracket simulation. The custom net label computes $2/point and $1.90 fees; shifted marker timestamps and native Strategy Report are not authoritative execution records. TOS unsupported geometry/price-domain cases increment a prominent incomplete-model count; if nonzero, custom net is not a complete strategy result. Current incomplete-bar calculations can change, so no realtime confirmed-signal or alert reliability is claimed. [Official AddOrder documentation](https://toslc.thinkorswim.com/center/reference/thinkScript/Functions/Others/AddOrder).
+
+TOS uses a single self-recursive packed state to avoid mutual recursion: 0 flat/unused, 1 flat/used, signed entry/stop tick integers for held positions. It supports positive frozen MNQ prices below 250,000 and US post-2007 daylight-saving dates; other domains are unsupported. It explicitly converts epoch minutes to New York minutes with the second-March-Sunday/first-November-Sunday rule. Cash-session winter/summer fixtures pass offline. However, `GetYYYYMMDD` returns a **trading-session date**, which can differ from the civil date for futures. Overnight/DST-transition/session-reset behavior still requires native verification. [GetTime](https://toslc.thinkorswim.com/center/reference/thinkScript/Functions/Date---Time/GetTime), [GetYYYYMMDD](https://toslc.thinkorswim.com/center/reference/thinkScript/Functions/Date---Time/GetYYYYMMDD), [GetDayOfWeek](https://toslc.thinkorswim.com/center/reference/thinkScript/Functions/Date---Time/GetDayOfWeek).
+
+The TOS path selector is a predeclared OHLC uncertainty scenario, not an optimization control. HighFirst/LowFirst can alter first entry side when both boundaries are touched, and exit when both brackets are touched. Neither is a guaranteed outcome bound.
+
+## Reproduce offline first
+
+Extract the ZIP into a new folder. No packages or market-data download are needed:
+
+```
+python3 replay_fixtures.py
+```
+
+It writes `offline_validation.json`. The observed package run passed numerical fixture, cap, DST-clock, integer-encoding and static checks. These checks execute the Python oracle, **not Pine or thinkScript**. These offline results do not perform native compilation; separately recorded Pine native execution is described below. Fixture success does not validate an unseen compiler, feed, realtime bar or all native emulator paths.
+
+The expected cases include:
+
+| Case | Expected modeled behavior |
+|---|---|
+| Small stop/nonbinding cap | Original and capped geometry/fills coincide; favorable target gap improves price |
+| Wide stop | Cap tightens stop to 48.75 points and sets 5R target; original retains opposite boundary |
+| Fill-bar adverse excursion then gap | No fill-bar protective exit; next stop gap can exceed $100 |
+| Both entry boundaries touched | First direction depends on frozen historical path |
+| Both live exits touched | HighFirst/LowFirst give distinct feasible outcomes |
+| 15:59 entry | Resting order can fill before close cancellation; EOD exits at next 16:00 open |
+| Marketable entry rebound | Prior 09:45 close112 activates buy110; next open108 fills108.25 even with high109 below110 |
+| Marketable protective rebound | Fill-bar close99 activates sell stop100; next open102 fills101.75 despite low101 above100 |
+| Missing opening minute | Research eligibility rejects the day |
+| 09:45 excursion | Orders created at that close cannot retroactively fill earlier in the bar |
+
+Explicit neutral 09:45 and 15:59 calculation bars are added in fixtures when needed. This avoids silently assuming an order-submission bar existed. Fixtures are a price-path oracle; platforms cannot be assumed to ingest this JSON as native OHLC. Native reproduction requires matching exported bars or a separately verified synthetic-feed setup, not fabricating market prices.
+
+## Manual research-only platform steps
+
+**Pine:** create a new private Pine Editor script, paste the `.pine` text and attempt compilation on an isolated standard one-minute MNQ chart. Choose Original first, preserve frozen settings, then separately choose StopCap100. Save compiler diagnostics, script hash, Properties, actual dated contract, feed/session settings, bars and hypothetical trade export. Do not create alerts or connect the script to an execution service. See the native verification record below for the completed Pine subset; TOS actions remain unverified.
+
+**TOS:** the exact symbol guard currently supports `/MNQ:XCME`; other namespaces, composites, equities, MES and dated-contract identifiers are disabled. Any dated-contract guard expansion requires a recorded mechanical source review and compiler/export check, not a casual symbol override. Create a separate Strategy in an isolated chart workspace and paste the `.thinkscript` text. Select one-minute MNQ time bars, confirm `confirmedOneMinuteTimeChart` only after verifying TIME aggregation in chart settings, and verify the winter/summer 09:30 range clock. Choose Original then StopCap100 in separate recorded runs. Compare custom ledger and plotted bracket events; recognize shifted AddOrder markers. Hide markers if their report timing is confusing. Save compiler diagnostics and chart/export context. Do not add scan alerts, conditional orders or live automation. See the native verification record below for the completed Pine subset; TOS actions remain unverified.
+
+Native code may require a mechanical syntax repair after compiler feedback. Record the exact diff and hash; do not silently change timing, parameters, price paths or risk logic to improve results. First reconcile a small matched-bar sample before any long native backtest.
+
+## Evidence and next gate
+
+The earlier causal Python final experiment retained 1,203 entries: original net $20,628–$20,908 versus capped-stop $11,930–$12,210. Capped marked DD remained about $2,883, above a $2,000 allowance; 2025 was weak and partial 2026 negative. These supplied historical results are provenance, **not results of these newly packaged native files**. The previous historical Python runner omitted the two queued-activation rebound semantics; its unchanged historical totals were not rerun during packaging. Fixture corrections cannot be claimed to preserve those totals. The next matched native export must reconcile these specific cases before any new performance comparison. No platform parity, future edge, funded economics or prop readiness is certified.
+
+The next operational gate is native compilation followed by matched-bar signal/fill/bracket/EOD reconciliation, including gaps, missing sessions and DST. Calendar completion and genuinely unseen, predeclared forward observations are separate evidence gates. No more optimization variants were introduced. Original Trading sources, previous research data/results and all live systems remain unchanged.
+
+Chart guard sources: [Pine chart information](https://www.tradingview.com/pine-script-docs/concepts/chart-information/), [TOS GetSymbol namespaces](https://toslc.thinkorswim.com/center/reference/thinkScript/Functions/Others/GetSymbol), and [TOS aggregation units](https://toslc.thinkorswim.com/center/reference/thinkScript/Functions/Others/GetAggregationPeriod). The TOS confirmation checkbox is an explicit chart prerequisite, not automatic aggregation-type detection.
+
+## Native TradingView verification — 2026-10-01
+
+Pine compiled and executed on the isolated saved layout ORB15 MNQ PRIVATE RESEARCH 2026-10-01 (jRFUHdUF), CME_MINI:MNQ1!, standard one-minute Candles, electronic trading hours, UTC-4 chart display, back-adjustment off. Final saved mode: StopCap100. Source unchanged. TOS native compilation remains unverified: the prior import UI could not select/import the text candidate; it was cancelled without changing existing scripts.
+
+Properties observed: USD50,000 initial capital, quantity1, pyramiding0, default four ticks per bar, on-bar-close execution, commission USD0.95 per contract per side, one-tick slippage, infinite long/short leverage, requested-price limits, one-tick order delay. No routing or alert was created; existing live layouts and alerts were untouched. Source static checks suppress order alerts and contain no routing endpoints.
+
+Native trade exports span September7–October1 (report window September6–October1), nineteen completed one-contract entries in both modes. Entry dates/times/directions/prices/size match exactly. Original net USD98.40 (7 wins); StopCap100 net USD250.90 (4 wins). Thirteen capped exits net minusUSD99.90; three target exits plusUSD485.60. This short sample does not validate edge, a hard loss cap, or five-year parity.
+
+October1 short E=30734.00 at09:46. Exported OR high30856.25/low30734.25. Original plotted stop30856.25 and target30122.75 match R=122.25 and5R=611.25. Original stop fill30856.50 at13:30 nets minusUSD246.90. Capped R48.75 implies stop30782.75/target30490.25; native exit30783.00 at09:53 nets minusUSD99.90 including0.25-point stop slippage andUSD1.90 fees. September21 long E30366.50 exits capped target30610.25 (243.75points=5x48.75), netUSD485.60 at11:39. September18 nonbinding-cap short matches both modes at minusUSD95.90.
+
+Original Research EOD exports normally show16:00; September7 holiday shows18:01. This is consistent with next-available-bar behavior but cannot be proven without that day's bars. September30 Original15:59 is LX (protective price exit), not Research EOD. Entry earliest09:46 agrees with staging after09:45 calculation.
+
+Bar exports contain305 Original and306 capped visible bars beginningOctober1 10:41, after entry; their shared closed-bar OHLC agrees. They omit the opening range/fill bar and cannot establish matched-bar full replay. The frozen synthetic oracle is an independent offline price-path reference and does not replay these native events. Native OHLC path priority, activated-stop rebound, gap, DST and holiday missing-bar semantics remain unresolved parity gates. No optimization or source repair performed.

@@ -1,0 +1,136 @@
+# Eye Pattern Reversal Strategy - ThinkorSwim Study
+# Based on Chinese Technical Analysis Pattern
+# Entry: 5MA crosses below then quickly recovers above 20MA with volume contraction
+
+declare upper;
+
+# === INPUTS ===
+input fastLength = 5;
+input slowLength = 20;
+input volumeContractionPercent = 30; # Volume drops to this % of recent high
+input volumeLookback = 20; # Period to find volume high
+input maxPullbackPercent = 15; # Maximum pullback from recent high
+input maxPullbackDays = 30; # Maximum days in pullback
+input ma20SlopeMinimum = 0.0001; # 20MA must be rising (positive slope)
+input showSignals = yes;
+input showMAs = yes;
+input showVolZones = yes;
+
+# === MOVING AVERAGES ===
+def MA5 = SimpleMovingAvg(close, fastLength);
+def MA20 = SimpleMovingAvg(close, slowLength);
+
+plot FastMA = if showMAs then MA5 else Double.NaN;
+FastMA.SetDefaultColor(Color.CYAN);
+FastMA.SetLineWeight(2);
+
+plot SlowMA = if showMAs then MA20 else Double.NaN;
+SlowMA.SetDefaultColor(Color.MAGENTA);
+SlowMA.SetLineWeight(2);
+
+# === MA SLOPE (20MA must be rising) ===
+def MA20_Slope = (MA20 - MA20[1]) / MA20[1];
+def MA20_Rising = MA20_Slope > ma20SlopeMinimum;
+
+# === CROSSOVER DETECTION ===
+def MA5_CrossedBelow = MA5[1] >= MA20[1] and MA5 < MA20;
+def MA5_CrossedAbove = MA5[1] <= MA20[1] and MA5 > MA20;
+
+# === VOLUME ANALYSIS ===
+def avgVolume = Average(volume, volumeLookback);
+def maxVolume = Highest(volume, volumeLookback);
+def volumeContracted = volume <= maxVolume * (volumeContractionPercent / 100);
+def volumeContracting = volume < Average(volume, 5) and volumeContracted;
+
+# === PRICE ACTION ===
+# Find recent high before pullback
+def recentHigh = Highest(high, maxPullbackDays);
+def pullbackPercent = ((recentHigh - close) / recentHigh) * 100;
+def validPullback = pullbackPercent <= maxPullbackPercent;
+
+# === COUNT DAYS SINCE CROSS BELOW ===
+def daysSinceCrossBelow;
+if MA5_CrossedBelow {
+    daysSinceCrossBelow = 1;
+} else if daysSinceCrossBelow[1] > 0 and MA5 < MA20 {
+    daysSinceCrossBelow = daysSinceCrossBelow[1] + 1;
+} else {
+    daysSinceCrossBelow = 0;
+}
+
+def withinTimeLimit = daysSinceCrossBelow <= maxPullbackDays and daysSinceCrossBelow > 0;
+
+# === LOWER SHADOW DETECTION (Quick recovery signal) ===
+def bodyHigh = Max(open, close);
+def bodyLow = Min(open, close);
+def lowerShadow = bodyLow - low;
+def bodySize = bodyHigh - bodyLow;
+def hasLowerShadow = lowerShadow > bodySize * 0.5; # Lower shadow > 50% of body
+
+# === EYE PATTERN FORMATION ===
+# Pattern forms when MA5 briefly dips below MA20 then recovers
+def eyePatternForming = 
+    daysSinceCrossBelow[1] > 0 and 
+    daysSinceCrossBelow[1] <= maxPullbackDays and
+    MA5 >= MA20 and # Now crossing back above
+    MA20_Rising and # 20MA still rising
+    volumeContracted and # Volume contracted
+    validPullback; # Pullback within limits
+
+# === ENTRY SIGNAL ===
+def entrySignal = eyePatternForming and MA5_CrossedAbove;
+
+# === STOP LOSS ===
+# Stop loss at recent swing low or below lower shadow
+def swingLow = Lowest(low, 5);
+def stopLoss = Min(swingLow, low - lowerShadow * 0.5);
+
+# === TARGET LEVELS ===
+# Target 1: Recent resistance or 1.5:1 risk/reward
+# Target 2: 2:1 risk/reward
+# Target 3: 3:1 risk/reward
+def riskAmount = close - stopLoss;
+def target1 = close + (riskAmount * 1.5);
+def target2 = close + (riskAmount * 2.0);
+def target3 = close + (riskAmount * 3.0);
+
+# === PLOTS ===
+# Entry Signal
+plot EntryArrow = if showSignals and entrySignal then low * 0.995 else Double.NaN;
+EntryArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+EntryArrow.SetDefaultColor(Color.GREEN);
+EntryArrow.SetLineWeight(5);
+
+# Volume Contraction Zone
+plot VolZone = if showVolZones and volumeContracted then low * 0.99 else Double.NaN;
+VolZone.SetPaintingStrategy(PaintingStrategy.POINTS);
+VolZone.SetDefaultColor(Color.YELLOW);
+VolZone.SetLineWeight(2);
+
+# === ALERTS ===
+Alert(entrySignal, "Eye Pattern Entry Signal", Alert.BAR, Sound.Chimes);
+Alert(close <= stopLoss, "Stop Loss Hit", Alert.BAR, Sound.Ring);
+Alert(close >= target1, "Target 1 Reached", Alert.BAR, Sound.Bell);
+Alert(close >= target2, "Target 2 Reached", Alert.BAR, Sound.Bell);
+Alert(close >= target3, "Target 3 Reached", Alert.BAR, Sound.Bell);
+
+# === LABELS ===
+AddLabel(yes, "MA5: " + Round(MA5, 2), if MA5 > MA20 then Color.GREEN else Color.RED);
+AddLabel(yes, "MA20: " + Round(MA20, 2), if MA20_Rising then Color.GREEN else Color.RED);
+AddLabel(yes, "Vol: " + AsPercent(volume/avgVolume), if volumeContracted then Color.YELLOW else Color.GRAY);
+
+AddLabel(entrySignal, "ENTRY SIGNAL", Color.WHITE);
+
+# Additional labels when in trade
+AddLabel(entrySignal, "Entry: " + Round(close, 2), Color.CYAN);
+AddLabel(entrySignal, "Stop: " + Round(stopLoss, 2), Color.RED);
+AddLabel(entrySignal, "T1: " + Round(target1, 2), Color.GREEN);
+AddLabel(entrySignal, "T2: " + Round(target2, 2), Color.GREEN);
+AddLabel(entrySignal, "T3: " + Round(target3, 2), Color.GREEN);
+AddLabel(entrySignal, "R/R: " + Round((target1-close)/(close-stopLoss), 2), Color.YELLOW);
+
+# === CHART BUBBLES FOR STOP AND TARGETS ===
+AddChartBubble(entrySignal, stopLoss, "STOP", Color.RED, no);
+AddChartBubble(entrySignal, target1, "T1", Color.GREEN, yes);
+AddChartBubble(entrySignal, target2, "T2", Color.GREEN, yes);
+AddChartBubble(entrySignal, target3, "T3", Color.GREEN, yes);

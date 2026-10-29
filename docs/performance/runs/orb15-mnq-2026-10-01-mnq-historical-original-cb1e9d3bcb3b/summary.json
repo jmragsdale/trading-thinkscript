@@ -1,0 +1,298 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b",
+  "record_type": "strategy",
+  "row_grain": "One reported slice of this fixed configuration/cost scenario. Side/year/regime/horizon/split rows can overlap.",
+  "metric_definitions": "docs/performance/FORMAT.md",
+  "rows": [
+    {
+      "dimensions": {
+        "split": "full",
+        "mode": "Original",
+        "precision": "approximate guide rounding"
+      },
+      "metrics": {
+        "signals": {
+          "value": null,
+          "unit": "count",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "completed_trades": {
+          "value": 1203,
+          "unit": "count",
+          "method": "reported",
+          "source_id": "orb-research-guide",
+          "missing_reason": null
+        },
+        "trading_days": {
+          "value": null,
+          "unit": "count",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "wins": {
+          "value": null,
+          "unit": "count",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "losses": {
+          "value": null,
+          "unit": "count",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "breakevens": {
+          "value": null,
+          "unit": "count",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "win_rate_pct": {
+          "value": null,
+          "unit": "percent",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "profit_factor_gross": {
+          "value": null,
+          "unit": "ratio",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "profit_factor_net": {
+          "value": null,
+          "unit": "ratio",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "profit_factor_unspecified": {
+          "value": null,
+          "unit": "ratio",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "net_profit_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "net_profit_usd_low": {
+          "value": 20628,
+          "unit": "USD",
+          "method": "reported",
+          "source_id": "orb-research-guide",
+          "missing_reason": null
+        },
+        "net_profit_usd_high": {
+          "value": 20908,
+          "unit": "USD",
+          "method": "reported",
+          "source_id": "orb-research-guide",
+          "missing_reason": null
+        },
+        "gross_profit_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "net_return_pct": {
+          "value": null,
+          "unit": "percent",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_net_points": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_gross_points": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_points_unspecified": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_net_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_r_unspecified": {
+          "value": null,
+          "unit": "R",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_net_r": {
+          "value": null,
+          "unit": "R",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_win_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_loss_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "closed_trade_max_drawdown_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "marked_max_drawdown_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "marked_max_drawdown_pct": {
+          "value": null,
+          "unit": "percent",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "longest_losing_streak": {
+          "value": null,
+          "unit": "trades",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "matched_excess_points": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "excess_ci_low_points": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "excess_ci_high_points": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_mfe_points": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "mean_mae_points": {
+          "value": null,
+          "unit": "points",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "positive_endpoint_fraction": {
+          "value": null,
+          "unit": "fraction",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "monthly_mean_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "monthly_median_usd": {
+          "value": null,
+          "unit": "USD",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "losing_months": {
+          "value": null,
+          "unit": "count",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "months": {
+          "value": null,
+          "unit": "count",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "touch_hold_pct": {
+          "value": null,
+          "unit": "percent",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "expiry_hold_swing_pct": {
+          "value": null,
+          "unit": "percent",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        },
+        "expiry_hold_1pct_cushion_pct": {
+          "value": null,
+          "unit": "percent",
+          "method": null,
+          "source_id": null,
+          "missing_reason": "Not supplied by the saved evidence; no new test was run."
+        }
+      }
+    }
+  ]
+}

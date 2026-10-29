@@ -1,0 +1,118 @@
+# Supply and Demand Zones Support and Resistance
+# Mobius
+# V01.01.2020
+# Study plots Demand Zone Support area (cyan), Supply Zone Area (pink) and Over Head Resistance (orange)
+
+input n = 5;
+input DemandIndexValue = 0.35;
+
+def h = high;
+def l = low;
+def c = close;
+def v = volume;
+def x = barNumber();
+def nan = double.nan;
+def wC = (h + l + 2 * c) * 0.25;
+def wCR = (wC - wC[1]) / Min(wC, wC[1]);
+def cR = 3 * wC / Average(Highest(h, 2) - Lowest(l, 2), n) * AbsValue(wCR);
+def vR = V / Average(V, n);
+def vPerC = vR / exp(Min(88, cR));
+def atr = average(trueRange(h,c,l),n)*1.5;
+def buyP;
+def sellP;
+if (wCR > 0) {
+    buyP = vR;
+    sellP = vPerC;
+} else {
+    buyP = vPerC;
+    sellP = vR;
+}
+def buyPres = if IsNaN(buyPres[1]) then 0 else ((buyPres[1] * (n - 1)) + buyP) / n;
+def sellPres = if IsNaN(sellPres[1]) then 0 else ((sellPres[1] * (n - 1)) + sellP) / n;
+def DI;
+if ((((sellPres[1] * (n - 1)) + sellP) / n - ((buyPres[1] * (n - 1)) + buyP) / n) > 0) 
+    {
+     DI = - if (sellPres != 0) then buyPres / sellPres else 1;
+    }
+else 
+    {
+     DI = if (buyPres != 0) then sellPres / buyPres else 1;
+    }
+def DMI = if IsNaN(c) then nan else if DI < 0 then -1 - DI else 1 - DI;
+def DemandL = if DMI crosses below -DemandIndexValue
+             then l
+             else if DMI < -.2 and l < DemandL[1]
+             then l
+             else DemandL[1];
+def DemandH = if l == DemandL
+              then h
+              else DemandH[1];
+def DemandX = if l == DemandL
+              then x
+              else DemandX[1];
+plot DL = if x >= highestAll(DemandX)
+          then highestAll(if isNaN(c[-1])
+                          then DemandL
+                          else nan)
+          else nan;
+     DL.SetStyle(Curve.Firm);
+     DL.SetLineWeight(2);
+     DL.SetDefaultColor(Color.Cyan);
+plot DH = if x >= highestAll(DemandX)
+          then highestAll(if isNaN(c[-1])
+                          then DemandH
+                          else nan)
+          else nan;
+     DH.SetStyle(Curve.Firm);
+     DH.SetLineWeight(2);
+     DH.SetDefaultColor(Color.Cyan);
+addCloud(DH, DL, Color.Cyan);
+def SupplyH = if DMI crosses above DemandIndexValue
+              then h
+             else if DMI > .5 and h > SupplyH[1]
+             then H
+             else SupplyH[1];
+def SupplyL = if H == SupplyH
+              then l
+              else SupplyL[1];
+def SupplyX = if h == SupplyH
+              then x
+              else SupplyX[1];
+plot SH = if x >= highestAll(SupplyX)
+          then highestAll(if isNaN(c[-1])
+                          then SupplyH
+                          else nan)
+          else nan;
+     SH.SetStyle(Curve.Firm);
+     SH.SetLineWeight(2);
+     SH.SetDefaultColor(Color.Pink);
+plot SL = if x >= highestAll(SupplyX)
+          then highestAll(if isNaN(c[-1])
+                          then SupplyL
+                          else nan)
+          else nan;
+     SL.SetStyle(Curve.Firm);
+     SL.SetLineWeight(2);
+     SL.SetDefaultColor(Color.Pink);
+addCloud(SH, SL, Color.Pink);
+def res = if c crosses above SH
+          then atr
+          else res[1];
+plot RL = if x >= highestAll(SupplyX)
+          then highestAll(if isNaN(c[-1])
+                          then SH + res
+                          else nan)
+          else nan;
+     RL.SetStyle(Curve.Firm);
+     RL.SetLineWeight(1);
+     RL.SetDefaultColor(Color.Orange);
+plot RH = if x >= highestAll(SupplyX)
+          then highestAll(if isNaN(c[-1])
+                          then RL + res
+                          else nan)
+          else nan;
+     RH.SetStyle(Curve.Firm);
+     RH.SetLineWeight(1);
+     RH.SetDefaultColor(Color.Orange);
+addCloud(RH, RL, Color.Light_Orange);
+# End Code

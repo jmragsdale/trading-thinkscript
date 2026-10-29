@@ -1,0 +1,28 @@
+# Relative Vigor Index
+# Assembled by BenTen at useThinkScript.com
+# Converted from https://www.tradingview.com/script/0pbCZxRN-Relative-Vigour-Index-RVI-Ehlers/
+
+declare lower;
+
+input p = 14;
+
+def CO = close - open;
+def HL = high - low;
+
+def value1 = (CO + 2 * CO[1] + 2 * CO[2] + CO[3]) / 6;
+def value2 = (HL + 2 * HL[1] + 2 * HL[2] + HL[3]) / 6;
+
+def num = sum(value1, p);
+def denom = sum(value2, p);
+
+def RVI = if denom != 0 then num / denom else 0;
+
+def RVIsig = (RVI + 2 * RVI[1] + 2 * RVI[2] + RVI[3]) / 6;
+
+plot line1 = RVI;
+plot line2 = RVIsig;
+
+line1.setDefaultColor(getColor(0));
+line2.setDefaultColor(getColor(1));
+input level1= 0;
+plot z1 = level1;

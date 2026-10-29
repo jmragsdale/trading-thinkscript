@@ -1,0 +1,194 @@
+{
+  "offline-summary": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/summary.csv",
+    "original_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+    "original_bytes": 132861,
+    "evidence": "docs/performance/evidence/offline-summary.csv",
+    "evidence_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-protocol": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/protocol.md",
+    "original_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+    "original_bytes": 2536,
+    "evidence": "docs/performance/evidence/offline-protocol.txt",
+    "evidence_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-parity": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/parity_mapping.md",
+    "original_sha256": "f7a918ee926d36e8b1954b664e3f15d00ab14aad4bbb383c8880de2453f95b89",
+    "original_bytes": 2202,
+    "evidence": "docs/performance/evidence/offline-parity.txt",
+    "evidence_sha256": "4bf70b939afecdbd98bbbb6855c153d1cdf31e8dd84cdc47158de5a810a36d34",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-readme": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/README.md",
+    "original_sha256": "9ba8a7cdf92f65dd57ba7a62f00b6b37fe1bed8234506d56c4973b26a61d05ef",
+    "original_bytes": 2305,
+    "evidence": "docs/performance/evidence/offline-readme.txt",
+    "evidence_sha256": "adfe01fc6b7366a2a1cb16abe032b9a94005ae722999570c4d96eb215df98d56",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-hashes": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/original_hashes.json",
+    "original_sha256": "9a3e9cd32b1ec2391b74885b93ac834fbe92123e20811bd40741e14c59c27212",
+    "original_bytes": 1299,
+    "evidence": "docs/performance/evidence/offline-hashes.json",
+    "evidence_sha256": "3a141060ce1786214ed72703d4ed3dcf76cf658f6aa81877481abfab71dcf02a",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-provenance": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/provenance.json",
+    "original_sha256": "08f9ad2434854985f360e732ff6e6d4e3a1ed483cd3a67dd5446c2d9ad96c9d2",
+    "original_bytes": 935,
+    "evidence": "docs/performance/evidence/offline-provenance.json",
+    "evidence_sha256": "3ef9f59b70fd8d4586082ed98da6da805ab5c4a251802ed21b1ac14dcac40daf",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-costs": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/cost_assumptions.json",
+    "original_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+    "original_bytes": 863,
+    "evidence": "docs/performance/evidence/offline-costs.json",
+    "evidence_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-validation": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/validation.json",
+    "original_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+    "original_bytes": 243,
+    "evidence": "docs/performance/evidence/offline-validation.json",
+    "evidence_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "nshape-selected-report": {
+    "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_quant_adjustment_report.md",
+    "original_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+    "original_bytes": 5093,
+    "evidence": "docs/performance/evidence/nshape-selected-report.txt",
+    "evidence_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "nshape-filter-sweep": {
+    "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/quant_filter_sweep.csv",
+    "original_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+    "original_bytes": 1377833,
+    "evidence": "docs/performance/evidence/nshape-filter-sweep.csv",
+    "evidence_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "nshape-simple-report": {
+    "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_2m_event_study_report.md",
+    "original_sha256": "9aa58d52d9e99bac69ed5054f185de3e7b650f2687caef45c0aa68a489f08a41",
+    "original_bytes": 3653,
+    "evidence": "docs/performance/evidence/nshape-simple-report.txt",
+    "evidence_sha256": "50c6cec1d011f213216300ef17b9a7e1820cb4fbf5f99136927345669c55e1a4",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "nshape-simple-summary": {
+    "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/nshape_event_study_summary.csv",
+    "original_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+    "original_bytes": 7873,
+    "evidence": "docs/performance/evidence/nshape-simple-summary.csv",
+    "evidence_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "orb-native-report": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task-3/native_verification.md",
+    "original_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+    "original_bytes": 2670,
+    "evidence": "docs/performance/evidence/orb-native-report.txt",
+    "evidence_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "orb-original-trades": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task-3/original_trades.csv",
+    "original_sha256": "790814cb5c064445bf79b47c6dbeb80b8bdc2183843e73c4791ef3b73e090267",
+    "original_bytes": 4388,
+    "evidence": "docs/performance/evidence/orb-original-trades.csv",
+    "evidence_sha256": "5859d1c29f64abc4e88e9f333be4d19ff7abab779fc868bea4d7c21f76c0cec1",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "orb-capped-trades": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task-3/capped_trades.csv",
+    "original_sha256": "156b64a4a2dbcd63675166ca56864ab5a3e441309648cd8a2e345594db771f78",
+    "original_bytes": 4213,
+    "evidence": "docs/performance/evidence/orb-capped-trades.csv",
+    "evidence_sha256": "aec5bd8bf969ea55e397f71a53952ed3516106e55c8524a64418ee37963e8ad8",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "orb-research-guide": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task-3/ORB15_MNQ_research_guide.md",
+    "original_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+    "original_bytes": 15564,
+    "evidence": "docs/performance/evidence/orb-research-guide.txt",
+    "evidence_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "wick-verification-update": {
+    "origin": "HOME/Documents/Claude/Projects/JJ Simon Mean Reversion - Prop Firm Automation/strategy_comparison.md",
+    "original_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+    "original_bytes": 11527,
+    "evidence": "docs/performance/evidence/wick-verification-update.txt",
+    "evidence_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "mtf-clean-rescore": {
+    "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-27_incumbent_clean_engine_rescore.md",
+    "original_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+    "original_bytes": 11948,
+    "evidence": "docs/performance/evidence/mtf-clean-rescore.txt",
+    "evidence_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "mtf-cost-rebaseline": {
+    "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-30_leak_restamp_and_clean_rebaseline.md",
+    "original_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+    "original_bytes": 12269,
+    "evidence": "docs/performance/evidence/mtf-cost-rebaseline.txt",
+    "evidence_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "daily-ote-historical": {
+    "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/ote-wheel-scan-tos/backtests/2026-07-15_daily_ote_tos_scanner.md",
+    "original_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+    "original_bytes": 4903,
+    "evidence": "docs/performance/evidence/daily-ote-historical.txt",
+    "evidence_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "wash-python-audit": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/qice_wash_parity_audit.json",
+    "original_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+    "original_bytes": 1832,
+    "evidence": "docs/performance/evidence/wash-python-audit.json",
+    "evidence_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "wash-research-report": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/report.md",
+    "original_sha256": "fe0d151fac4f8a8fd5b3a8ebf632943086a306bca8edadabf54dde1421ed096a",
+    "original_bytes": 36590,
+    "evidence": "docs/performance/evidence/wash-research-report.txt",
+    "evidence_sha256": "9e0e98b98cd0639d5fa130bd533b3502fd59f87186ebb217889820a877c91f81",
+    "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+  },
+  "offline-events": {
+    "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/events.csv",
+    "original_sha256": "36a0ddd51b1c13e36e15c6f0b48c14adcb1d490305c3f5dd6a0390d05d0b5bc6",
+    "original_bytes": 18300709,
+    "evidence": "docs/performance/evidence/offline-events.csv.gz",
+    "evidence_sha256": "aa68d6473929cb2fb997b232495c4cc2f1e777a08b53eec9998adbc4a2f57dc5",
+    "transformation": "Lossless gzip, fixed mtime=0; decompressed bytes equal original CSV. Saved research observations, not a newly run backtest."
+  },
+  "nshape-simple-trades": {
+    "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/nshape_event_study_trades.csv",
+    "original_sha256": "314403c9e2fcd6c5a3c8ce888e7df0a12877dbbcf90af1370a5a251aedd8c8ae",
+    "original_bytes": 2405633,
+    "evidence": "docs/performance/evidence/nshape-simple-trades.csv.gz",
+    "evidence_sha256": "127df2583a610965e7045321a050ede09b12ef895f0e19818be6b5bbfc51db8f",
+    "transformation": "Lossless gzip, fixed mtime=0; decompressed bytes equal original CSV. Saved research observations, not a newly run backtest."
+  }
+}

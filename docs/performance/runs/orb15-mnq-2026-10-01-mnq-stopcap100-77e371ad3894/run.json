@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894",
+  "family": "orb15-mnq",
+  "label": "StopCap100",
+  "record_type": "strategy",
+  "reported_on": "2026-10-01",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "77e371ad3894197d176369c2ad6c69d050391155fa43261213959c93fee29f6c",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "strategies/orb15-mnq",
+        "source_path": "strategies/orb15-mnq/ORB15_MNQ_Research.thinkscript",
+        "source_sha256": "99d43201b4d951d2e578cb8d2a10a483ebb41a0d8d9fa5010d4bb60f3a61e5c2",
+        "relationship": "related-model"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [],
+    "tested_model_version": null,
+    "inputs": {
+      "mode": "StopCap100",
+      "quantity": 1,
+      "cap_points": 48.75,
+      "target_r": 5
+    }
+  },
+  "test_environment": {
+    "engine": "pine",
+    "engine_version": null,
+    "instrument": "MNQ",
+    "aggregation_minutes": 1,
+    "session": "Electronic trading hours; standard 1m candles; back-adjustment off; chart display UTC-4.",
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": null,
+    "start": "2026-09-07",
+    "end": "2026-10-01",
+    "reported_period": null,
+    "missing_data_treatment": null,
+    "rollover_treatment": null,
+    "raw_data_hash": null
+  },
+  "execution": {
+    "entry_rule": "Staged after 09:45 close, earliest next eligible fill 09:46; one entry/day.",
+    "exit_rule": "5R target, opposite-range or capped stop, next-available-open EOD close.",
+    "position_sizing": "One MNQ contract.",
+    "same_bar_stop_target": "Native Pine emulator priority; TOS parity unresolved.",
+    "initial_capital_usd": 50000,
+    "overlap_rule": "One entry per date; two modes share the same 19 entries."
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": 1.9,
+    "slippage_points_each_side": 0.25,
+    "total_round_trip_usd": null,
+    "total_round_trip_points": null,
+    "pnl_basis": "net",
+    "description": "$0.95/contract/side, one tick adverse market/stop slippage; limits differ. No second cost deduction from exported net P&L."
+  },
+  "sample": {
+    "development_period": null,
+    "test_period": null,
+    "test_used_in_selection": null,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "orb-native-report",
+      "orb-capped-trades",
+      "orb-research-guide"
+    ],
+    "source_records": {
+      "orb-native-report": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task-3/native_verification.md",
+        "original_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+        "original_bytes": 2670,
+        "evidence": "docs/performance/evidence/orb-native-report.txt",
+        "evidence_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "orb-capped-trades": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task-3/capped_trades.csv",
+        "original_sha256": "156b64a4a2dbcd63675166ca56864ab5a3e441309648cd8a2e345594db771f78",
+        "original_bytes": 4213,
+        "evidence": "docs/performance/evidence/orb-capped-trades.csv",
+        "evidence_sha256": "aec5bd8bf969ea55e397f71a53952ed3516106e55c8524a64418ee37963e8ad8",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "orb-research-guide": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task-3/ORB15_MNQ_research_guide.md",
+        "original_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+        "original_bytes": 15564,
+        "evidence": "docs/performance/evidence/orb-research-guide.txt",
+        "evidence_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      }
+    }
+  },
+  "validation": {
+    "status": "reported",
+    "source_relationship": "related-model",
+    "native_parity": "not-verified",
+    "lookahead_audit": null,
+    "warnings": [
+      "Short native Pine simulation, not a verified ThinkScript result.",
+      "Closed-trade drawdown excludes intratrade marked excursions.",
+      "Native bar export omits opening/fill bars; gaps, holidays and activation ordering not reconciled.",
+      "Planned $100 cap is not a hard loss guarantee."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "script_identity.tested_model_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.provider": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.reported_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.missing_data_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.rollover_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.raw_data_hash": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.development_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_used_in_selection": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "costs.total_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_points": "Cost component not separately established; see costs.description and pnl_basis."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894/run.json",
+    "summary": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894/summary.json",
+    "markdown": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894/PERFORMANCE.md",
+    "observations": {
+      "path": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894/trades.csv",
+      "kind": "trades",
+      "sha256": "ad4a175bf63937cf408e3566f5351a74bb442518212c35b23bb7c34516e9ce9c",
+      "row_count": 19,
+      "reason": null
+    },
+    "summary_sha256": "b6545b8fcdca3a5cbfebd8083a93ed1445cbc0fe8fb71e18001fb1ddd049e98a"
+  }
+}

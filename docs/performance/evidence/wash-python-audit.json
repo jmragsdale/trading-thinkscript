@@ -1,0 +1,27 @@
+{
+  "QICE": {
+    "hash": "62b0665225bc51999ad4a2148e4b87c80dd1eb68618a5363f6bff1162628c0fd",
+    "source_session": "09:30-16:00 exchange Chicago =10:30-17:00 ET; maintenance can delay first outside-session bar to18:00 ET and market close fill18:01",
+    "port_session": "09:30-16:00 ET, truncated data ends before EOD evaluation",
+    "source_execution": "signal-close submission; next-open entry; protective exit only submitted after entry observed at bar close, default no calc_on_order_fills",
+    "exit_reservation": "static full-size Long Exit precedes separate Long Trail with no qty; reservation behavior may leave trailing ID no quantity; requires emulator parity",
+    "source_native_costs": "$2.50 percontract perside,2tick slip versus benchmark .95perside1tick",
+    "disposition": "source-parity blocked, no new numerical QICE claim"
+  },
+  "wash": {
+    "hash": "6f73e525794ec2653e4b69869b86badd396b162cf0027c6451d88b702e904e4c",
+    "fixed_default": "20-bar lookback;3confirm; reversalcandle; ATR14simplemean;1ATRstop;.6ATRtarget;next-open09:35-15:30ET;15:55flat;one trade;stopfirst",
+    "causal_signal_prefix_test": "passed",
+    "original_context_gap": "wr_sweep.py starts with undefined rth and imports no data; original ToS strategy source absent from census; no symbol, source calendar or fixed chart timeframe established",
+    "disposition": "runnable Python default with disclosed1mMNQ RTH input; no originalToS parity assertion",
+    "risk": "overnight gaps enter simpleATR because RTH slices are concatenated; stops atidealizedprice acrossgaps",
+    "new_causal_result": {
+      "trades": 32641,
+      "net": -93038.9499999999,
+      "PF": 0.7334593325984232,
+      "closedDD": 93142.10000000162,
+      "first_input": "2021-06-10 09:30:00-04:00",
+      "last_input": "2026-06-09 15:59:00-04:00"
+    }
+  }
+}

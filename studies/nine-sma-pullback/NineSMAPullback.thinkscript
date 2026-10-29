@@ -1,0 +1,125 @@
+# 9 SMA Pullback Strategy - CLEAN PRODUCTION VERSION
+# Only shows high-quality entry signals
+
+declare upper;
+
+# Input Parameters - Tighter for quality signals
+input sma_length = 9;
+input sma_length_2 = 20;
+input volume_threshold = 0.75; # More restrictive volume
+input min_price = 1.00;
+input max_price = 50.00;
+input pullback_tolerance = 0.015; # Tighter tolerance
+input min_flag_bars = 3; # Require longer consolidation
+
+# Calculate Moving Averages
+def sma9 = Average(close, sma_length);
+def sma20 = Average(close, sma_length_2);
+
+# Volume Analysis - Must be significantly lighter
+def avg_volume = Average(volume, 20);
+def light_volume = volume < (avg_volume * volume_threshold);
+def volume_declining = volume < volume[1] and volume[1] < volume[2];
+
+# Trend Requirements - Must be in strong uptrend
+def smas_bullish = sma9 > sma20;
+def sma9_rising = sma9 > sma9[3]; # 9 SMA rising over 3 bars
+def strong_uptrend = smas_bullish and sma9_rising;
+
+# Pullback Requirements - Must touch but not break 9 SMA badly
+def pullback_to_sma9 = close <= sma9 * (1 + pullback_tolerance) and 
+                      close >= sma9 * (1 - pullback_tolerance);
+def was_above_sma9 = close[1] > sma9[1] and close[2] > sma9[2]; # Was above before
+
+# Bull Flag Pattern - Tight consolidation required
+def range_5bars = Highest(high, 5) - Lowest(low, 5);
+def tight_flag = range_5bars / close < 0.025; # Very tight range
+def sideways_drift = AbsValue(close - close[min_flag_bars]) / close < 0.015;
+def bull_flag = tight_flag and sideways_drift;
+
+# Entry Trigger - Strong bounce signal
+def green_candle = close > open;
+def bounce_from_sma9 = low <= sma9 * 1.005 and close > sma9;
+def volume_confirmation = light_volume or volume_declining;
+
+# Price Filter
+def price_ok = close >= min_price and close <= max_price;
+
+# MAIN ENTRY CONDITION - All must be true
+def high_quality_entry = pullback_to_sma9 and
+                        strong_uptrend and
+                        was_above_sma9 and
+                        bull_flag and
+                        bounce_from_sma9 and
+                        green_candle and
+                        volume_confirmation and
+                        price_ok;
+
+# Plot only the essential elements
+plot SMA9_Line = sma9;
+SMA9_Line.SetDefaultColor(Color.CYAN);
+SMA9_Line.SetLineWeight(2);
+
+plot SMA20_Line = sma20;
+SMA20_Line.SetDefaultColor(Color.ORANGE);
+SMA20_Line.SetLineWeight(2);
+
+# HIGH QUALITY ENTRY ARROWS ONLY
+plot Entry_Signal = if high_quality_entry then low * 0.995 else Double.NaN;
+Entry_Signal.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+Entry_Signal.SetDefaultColor(Color.LIME);
+Entry_Signal.SetLineWeight(4);
+
+# Optional: Show SMA cloud (can remove if too busy)
+AddCloud(sma9, sma20, Color.LIGHT_GREEN, Color.LIGHT_RED);
+
+# Clean Labels - Only show when conditions are met
+AddLabel(pullback_to_sma9 and strong_uptrend, "PULLBACK SETUP", Color.CYAN);
+AddLabel(high_quality_entry, "*** ENTRY SIGNAL ***", Color.LIME);
+
+# Risk Management & Daily Tracking
+def entry_price = if high_quality_entry then close else entry_price[1];
+def stop_loss = entry_price * 0.97; # 3% stop
+def target_1 = entry_price * 1.045; # 4.5% target (1.5:1 R/R)
+def target_2 = entry_price * 1.09; # 9% second target (3:1 R/R)
+
+# Track all entries for the day
+def today = GetYYYYMMDD() == GetYYYYMMDD();
+def entry_count = if today then TotalSum(if high_quality_entry then 1 else 0) else 0;
+
+# Store up to 5 entries per day with their prices
+def entry1_price = if today and entry_count >= 1 and high_quality_entry and entry_count == 1 then close else entry1_price[1];
+def entry2_price = if today and entry_count >= 2 and high_quality_entry and entry_count == 2 then close else entry2_price[1];
+def entry3_price = if today and entry_count >= 3 and high_quality_entry and entry_count == 3 then close else entry3_price[1];
+def entry4_price = if today and entry_count >= 4 and high_quality_entry and entry_count == 4 then close else entry4_price[1];
+def entry5_price = if today and entry_count >= 5 and high_quality_entry and entry_count == 5 then close else entry5_price[1];
+
+# Calculate P/L for each entry (assuming you exit at current price)
+def entry1_pnl = if entry1_price > 0 then Round((close - entry1_price) / entry1_price * 100, 1) else 0;
+def entry2_pnl = if entry2_price > 0 then Round((close - entry2_price) / entry2_price * 100, 1) else 0;
+def entry3_pnl = if entry3_price > 0 then Round((close - entry3_price) / entry3_price * 100, 1) else 0;
+def entry4_pnl = if entry4_price > 0 then Round((close - entry4_price) / entry4_price * 100, 1) else 0;
+def entry5_pnl = if entry5_price > 0 then Round((close - entry5_price) / entry5_price * 100, 1) else 0;
+
+# Calculate total P/L for the day
+def total_daily_pnl = entry1_pnl + entry2_pnl + entry3_pnl + entry4_pnl + entry5_pnl;
+
+# Current trade levels (most recent entry)
+AddLabel(entry_price > 0, "Current Entry: $" + Round(entry_price, 2), Color.WHITE);
+AddLabel(entry_price > 0, "Stop: $" + Round(stop_loss, 2), Color.RED);
+AddLabel(entry_price > 0, "T1: $" + Round(target_1, 2), Color.GREEN);
+AddLabel(entry_price > 0, "T2: $" + Round(target_2, 2), Color.LIME);
+
+# Daily entry summary
+AddLabel(entry_count > 0, "Today's Entries: " + entry_count, Color.CYAN);
+AddLabel(entry1_price > 0, "E1: $" + Round(entry1_price, 2) + " (" + entry1_pnl + "%)", if entry1_pnl > 0 then Color.GREEN else Color.RED);
+AddLabel(entry2_price > 0, "E2: $" + Round(entry2_price, 2) + " (" + entry2_pnl + "%)", if entry2_pnl > 0 then Color.GREEN else Color.RED);
+AddLabel(entry3_price > 0, "E3: $" + Round(entry3_price, 2) + " (" + entry3_pnl + "%)", if entry3_pnl > 0 then Color.GREEN else Color.RED);
+AddLabel(entry4_price > 0, "E4: $" + Round(entry4_price, 2) + " (" + entry4_pnl + "%)", if entry4_pnl > 0 then Color.GREEN else Color.RED);
+AddLabel(entry5_price > 0, "E5: $" + Round(entry5_price, 2) + " (" + entry5_pnl + "%)", if entry5_pnl > 0 then Color.GREEN else Color.RED);
+
+# Total daily performance
+AddLabel(entry_count > 0, "Daily Total: " + Round(total_daily_pnl, 1) + "%", if total_daily_pnl > 0 then Color.GREEN else Color.RED);
+
+# Alert for high-quality signals only
+Alert(high_quality_entry, "HIGH QUALITY 9 SMA Entry Signal", Alert.BAR, Sound.Ding);

@@ -1,0 +1,666 @@
+# WARRIOR EYE HYBRID - OPTIMAL TOS WORKSPACE SETUP
+# Complete ThinkOrSwim configuration for day trading execution
+# Platform: ThinkorSwim Desktop (NOT Web version)
+
+========================================
+WORKSPACE LAYOUT OVERVIEW
+========================================
+
+This workspace is designed for SPEED and CLARITY during live trading.
+
+SCREEN LAYOUT (Recommended for single monitor):
+┌─────────────────────────────────────────────────┐
+│  TOP: Scanner Results + Watchlist  (30% height) │
+├─────────────────────────────────────────────────┤
+│  LEFT: 4 Chart Grid (50% width, 70% height)    │
+│  RIGHT: Trade Tools + News (50% width)         │
+└─────────────────────────────────────────────────┘
+
+SCREEN LAYOUT (Recommended for dual monitor):
+Monitor 1 (Primary):                Monitor 2 (Secondary):
+┌──────────────────────────┐       ┌──────────────────────────┐
+│  4 Chart Grid            │       │  Scanner + Watchlist     │
+│  (Full Screen)           │       │  (Top Half)              │
+│                          │       ├──────────────────────────┤
+│                          │       │  News + Active Trader    │
+│                          │       │  (Bottom Half)           │
+└──────────────────────────┘       └──────────────────────────┘
+
+========================================
+STEP-BY-STEP WORKSPACE BUILD
+========================================
+
+PART 1: CREATE THE MAIN TRADING WORKSPACE
+------------------------------------------
+
+1. OPEN THINKORSWIM
+   - Launch TOS Desktop (not mobile/web)
+   - Go to Setup → Application Settings → Startup
+   - Uncheck "Reuse saved workspace on startup" (for now)
+   - Click OK
+
+2. CREATE NEW WORKSPACE
+   - Top menu: Setup → Open Shared Item → Search "blank"
+   - Or: Setup → Save Workspace As → Name: "WarriorEye_Trading"
+   - This gives you a clean slate
+
+3. SET UP TOP PANEL - SCANNER + WATCHLIST (30% height)
+
+   A. ADD STOCK SCANNER
+      - Go to: MarketWatch → Stock Hacker
+      - Dock it at the TOP of screen
+      - Resize to about 30% of screen height
+
+      SCANNER CONFIGURATION:
+      □ Click "Scan in: All Stocks" dropdown
+      □ Select timeframe: "5 min" (or "1 min" for faster signals)
+      □ Click "+ Add Filter"
+      □ Select: Custom Study Filter → Study: Custom...
+      □ Paste your WarriorEye_Hybrid_DayTrading_Scanner code
+      □ Name it: "WARRIOR EYE HYBRID - Day Trading Scanner"
+      □ Click OK
+
+      COLUMNS TO ADD (create custom columns):
+      1. BuySignal - Show which stocks have entry signal NOW
+      2. Quality - Pattern quality score (0-15)
+      3. %Change - Percent gain today
+      4. RelVol - Relative volume ratio
+      5. Volume - Current volume
+      6. Price - Last price
+      7. RiskReward - R/R ratio for setup
+      8. Bars - Days/bars in pullback
+
+      SORT ORDER:
+      - Primary: BuySignal (descending) - signals at top
+      - Secondary: Quality (descending) - best quality first
+
+      AUTO-REFRESH SETTINGS:
+      - Right-click scanner header
+      - Select "Auto-refresh"
+      - Set interval: "30 seconds" (balance speed vs server load)
+
+   B. ADD WATCHLIST (next to scanner)
+      - Right-click in scanner area → Detach to new window
+      - Or: Click "Watchlist" tab if combined
+      - Create custom watchlist: Name "WarriorEye_Daily"
+
+      WATCHLIST COLUMNS:
+      1. Symbol
+      2. Last Price
+      3. Net Change
+      4. % Change
+      5. Volume
+      6. Relative Volume (custom)
+      7. MA9 (custom - SimpleMovingAvg(close, 9))
+      8. MA20 (custom - SimpleMovingAvg(close, 20))
+      9. Signal Status (custom - "BUY" if MA9 > MA20 else "WAIT")
+
+      POPULATION METHOD:
+      - Manually add stocks from scanner results
+      - Or use pre-market gappers from external source
+      - Keep max 5 stocks (focus = edge)
+
+4. SET UP BOTTOM-LEFT: 4-CHART GRID (50% width, 70% height)
+
+   - Go to: Charts → Chart Settings → Grid
+   - Select: "2x2 Grid" (4 charts total)
+   - Click "Apply to Grid"
+
+   CHART 1 (Top-Left): 1-MINUTE CHART - Precision Entry Timing
+   ----------------------------------------
+   Timeframe: 1 min
+   Candle Type: Standard (or Heikin Ashi for smooth trend view)
+   Time Range: "Day" (full trading day)
+   Extended Hours: Yes (show pre/post market)
+
+   STUDIES TO ADD:
+   □ SimpleMovingAvg: Length = 9, Color = Yellow, Thickness = 2
+   □ SimpleMovingAvg: Length = 20, Color = Cyan, Thickness = 3
+   □ Volume: Show = Yes, Color = Gradient (green up, red down)
+
+   DRAWINGS/MARKERS:
+   - Enable auto horizontal lines at round numbers
+   - Add VWAP (Volume Weighted Average Price)
+
+   CHART 2 (Top-Right): 5-MINUTE CHART - Primary Entry Signal
+   ------------------------------------------
+   Timeframe: 5 min
+   Candle Type: Standard
+   Time Range: "Day"
+   Extended Hours: Yes
+
+   STUDIES TO ADD:
+   □ SimpleMovingAvg: Length = 9, Color = Yellow, Thickness = 2
+   □ SimpleMovingAvg: Length = 20, Color = Cyan, Thickness = 3
+   □ Volume: Show = Yes
+   □ ATR (14 period): For stop loss reference
+   □ Custom: WarriorEye Entry Signals (add arrows for buy/exit)
+
+   CUSTOM ENTRY SIGNAL ARROWS (optional):
+   - Add study: "Custom Study" with this code:
+     ```
+     def buySignal = MA9 crosses above MA20 and close > open;
+     plot signal = if buySignal then low - 0.1 else Double.NaN;
+     signal.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+     signal.SetDefaultColor(Color.GREEN);
+     signal.SetLineWeight(3);
+     ```
+
+   CHART 3 (Bottom-Left): 15-MINUTE CHART - Trend Context
+   -------------------------------------------
+   Timeframe: 15 min
+   Candle Type: Standard
+   Time Range: "5 Days" (to see overall structure)
+
+   STUDIES TO ADD:
+   □ SimpleMovingAvg: Length = 20, Color = Cyan, Thickness = 3
+   □ SimpleMovingAvg: Length = 50, Color = Orange, Thickness = 2
+   □ Volume: Show = Yes
+   □ Support/Resistance levels (manual horizontal lines)
+
+   PURPOSE:
+   - Confirm overall uptrend
+   - Identify major support/resistance zones
+   - Avoid counter-trend trades
+
+   CHART 4 (Bottom-Right): DAILY CHART - Big Picture
+   ------------------------------------------
+   Timeframe: Daily (1D)
+   Candle Type: Standard
+   Time Range: "3 Months" (60 bars)
+
+   STUDIES TO ADD:
+   □ SimpleMovingAvg: Length = 20, Color = Cyan, Thickness = 2
+   □ SimpleMovingAvg: Length = 50, Color = Orange, Thickness = 2
+   □ Volume: Show = Yes
+   □ Previous day's high/low lines
+
+   PURPOSE:
+   - Understand overall trend (bull/bear/range)
+   - Identify if near all-time highs/lows
+   - Check for earnings dates, gaps
+   - See if this is a "turnaround story" (Warrior style)
+
+5. SET UP BOTTOM-RIGHT: TRADE EXECUTION TOOLS (50% width, 70% height)
+
+   A. ACTIVE TRADER (TOP - 40% of right panel)
+      - Go to: Trade → Active Trader
+      - Dock in bottom-right area
+
+      CONFIGURATION:
+      - Quantity: Set to your calculated position size
+      - Order Type: Market (for fast entry) or Limit (for price control)
+      - TIF (Time in Force): DAY
+
+      HOTKEY SETUP (Advanced):
+      - Buy Market: Ctrl+B
+      - Sell Market: Ctrl+S
+      - Cancel All: Ctrl+X
+      - Flatten Position: Ctrl+F
+
+      ONE-CLICK TRADING:
+      - Enable "Quick Order Entry"
+      - Set default: "Confirm orders" = OFF (speed trading)
+      - WARNING: Only do this if experienced!
+
+      POSITION MANAGEMENT BUTTONS:
+      - "Close 50%" button (for T1 scaling)
+      - "Close 30%" button (for T2 scaling)
+      - "Flatten" button (exit all immediately)
+
+   B. NEWS FEED (MIDDLE - 30% of right panel)
+      - Go to: MarketWatch → News
+      - Dock below Active Trader
+
+      FILTERS:
+      - Source: All (or prefer Benzinga, Reuters, Bloomberg)
+      - Show: "Breaking News" only
+      - Relevance: Symbol-specific
+
+      ALERTS:
+      - Enable sound for breaking news on your watchlist stocks
+
+   C. LEVEL 2 / TIME & SALES (BOTTOM - 30% of right panel) [OPTIONAL]
+      - Go to: Trade → Level II
+      - Or: Trade → Time & Sales
+
+      PURPOSE (Advanced traders):
+      - See bid/ask spread
+      - Identify support/resistance in real-time
+      - Gauge buying/selling pressure
+
+      NOTE: Beginners can skip this and use space for larger charts
+
+========================================
+PART 2: CUSTOM SCANNER COLUMNS (DETAILED)
+========================================
+
+To add custom columns to your scanner, follow these steps:
+
+1. IN STOCK HACKER → COLUMNS
+   - Click gear icon (⚙) in scanner
+   - Select "Customize..."
+   - Click "+ Add Column"
+
+COLUMN 1: BUY SIGNAL
+---------------------
+Name: BuySignal
+ThinkScript Code:
+```
+# Shows 1 if buy signal active, 0 otherwise
+def MA_Fast = SimpleMovingAvg(close, 9);
+def MA_Slow = SimpleMovingAvg(close, 20);
+def bullishCross = MA_Fast[1] <= MA_Slow[1] and MA_Fast > MA_Slow;
+def isBullish = close > open;
+def hasLowerShadow = (Min(open, close) - low) > AbsValue(close - open) * 0.5;
+
+plot signal = bullishCross and isBullish and hasLowerShadow;
+```
+
+COLUMN 2: QUALITY SCORE
+-----------------------
+Name: Quality
+ThinkScript Code:
+```
+# Quality score 0-15
+def MA_Fast = SimpleMovingAvg(close, 9);
+def MA_Slow = SimpleMovingAvg(close, 20);
+def today = GetYYYYMMDD();
+def isNewDay = today != today[1];
+def todayOpen = if isNewDay then open else todayOpen[1];
+def pctChange = if todayOpen > 0 then ((close - todayOpen) / todayOpen) * 100 else 0;
+def avgVol = Average(volume, 30);
+def relVol = if avgVol > 0 then volume / avgVol else 0;
+def hasLowerShadow = (Min(open, close) - low) > AbsValue(close - open) * 0.5;
+
+plot score =
+    (if close >= 1 and close <= 20 then 3 else 0) +
+    (if relVol >= 5 then 2 else if relVol >= 3 then 1 else 0) +
+    (if pctChange >= 20 then 2 else if pctChange >= 10 then 1 else 0) +
+    (if hasLowerShadow then 2 else 0) +
+    (if MA_Slow > MA_Slow[1] then 2 else 0) +
+    (if MA_Fast > MA_Slow then 2 else 0);
+```
+
+COLUMN 3: PERCENT CHANGE
+-------------------------
+Name: %Change
+ThinkScript Code:
+```
+def today = GetYYYYMMDD();
+def isNewDay = today != today[1];
+def todayOpen = if isNewDay then open else todayOpen[1];
+plot pctChange = if todayOpen > 0 then ((close - todayOpen) / todayOpen) * 100 else 0;
+```
+
+COLUMN 4: RELATIVE VOLUME
+--------------------------
+Name: RelVol
+ThinkScript Code:
+```
+def avgVol = Average(volume, 30);
+plot relVol = if avgVol > 0 then Round(volume / avgVol, 1) else 0;
+```
+
+COLUMN 5: RISK/REWARD
+---------------------
+Name: RR
+ThinkScript Code:
+```
+def swingLow = Lowest(low, 10);
+def lowerShadow = Min(open, close) - low;
+def stopLoss = Min(swingLow, low - lowerShadow);
+def risk = close - stopLoss;
+def target = close + (risk * 2);
+plot rr = if risk > 0 then Round((target - close) / risk, 1) else 0;
+```
+
+COLUMN 6: BARS IN PULLBACK
+---------------------------
+Name: Bars
+ThinkScript Code:
+```
+def MA_Fast = SimpleMovingAvg(close, 9);
+def MA_Slow = SimpleMovingAvg(close, 20);
+def bearishCross = MA_Fast[1] >= MA_Slow[1] and MA_Fast < MA_Slow;
+
+def barsInPullback;
+if bearishCross {
+    barsInPullback = 1;
+} else if barsInPullback[1] > 0 and MA_Fast < MA_Slow {
+    barsInPullback = barsInPullback[1] + 1;
+} else {
+    barsInPullback = 0;
+}
+
+plot bars = barsInPullback;
+```
+
+COLUMN 7: ENTRY PRICE
+---------------------
+Name: Entry
+ThinkScript Code:
+```
+def MA_Fast = SimpleMovingAvg(close, 9);
+def MA_Slow = SimpleMovingAvg(close, 20);
+def bullishCross = MA_Fast[1] <= MA_Slow[1] and MA_Fast > MA_Slow;
+
+plot entry = if bullishCross then close else Double.NaN;
+```
+
+COLUMN 8: STOP LOSS PRICE
+-------------------------
+Name: Stop
+ThinkScript Code:
+```
+def swingLow = Lowest(low, 10);
+def lowerShadow = Min(open, close) - low;
+def stopLoss = Min(swingLow, low - lowerShadow);
+
+def MA_Fast = SimpleMovingAvg(close, 9);
+def MA_Slow = SimpleMovingAvg(close, 20);
+def bullishCross = MA_Fast[1] <= MA_Slow[1] and MA_Fast > MA_Slow;
+
+plot stop = if bullishCross then stopLoss else Double.NaN;
+```
+
+========================================
+PART 3: CHART LINKING & SYNCHRONIZATION
+========================================
+
+LINK ALL CHARTS TO SAME SYMBOL:
+1. Click the chain link icon (🔗) on each chart
+2. Select same color (e.g., "Blue") for all 4 charts
+3. Now when you click a symbol in scanner → all charts update
+
+LINK WATCHLIST TO CHARTS:
+1. Click watchlist settings (gear icon)
+2. Enable "Link to charts"
+3. Select same color as charts
+4. Click any stock → all charts show that stock instantly
+
+========================================
+PART 4: ALERTS & NOTIFICATIONS
+========================================
+
+ALERT 1: BUY SIGNAL ON WATCHLIST STOCK
+---------------------------------------
+1. Right-click any stock in watchlist
+2. Create Alert → Study Alert
+3. Study: Custom (paste WarriorEye scanner code)
+4. Condition: buySignal == 1
+5. Alert: Popup + Sound + Push notification (to mobile)
+6. Message: "BUY SIGNAL: [symbol] - Quality: [score]"
+7. Check "Apply to entire watchlist"
+
+ALERT 2: PRICE TARGET HIT
+--------------------------
+1. Right-click chart
+2. Create Alert → Price Alert
+3. Set target price (from scanner's Target1 column)
+4. Alert: Popup + Sound
+5. Message: "[symbol] Target 1 reached - Sell 50%"
+
+ALERT 3: STOP LOSS WARNING
+---------------------------
+1. Create Alert → Price Alert
+2. Set price 2% above stop loss (warning)
+3. Alert: Popup + Sound
+4. Message: "[symbol] Approaching Stop Loss"
+
+ALERT 4: EXIT SIGNAL (MA CROSS DOWN)
+-------------------------------------
+1. Right-click chart
+2. Create Alert → Study Alert
+3. Study: Custom code:
+   ```
+   def MA9 = SimpleMovingAvg(close, 9);
+   def MA20 = SimpleMovingAvg(close, 20);
+   plot signal = MA9 crosses below MA20;
+   ```
+4. Alert: Popup + LOUD Sound + Push
+5. Message: "EXIT NOW: [symbol] - MA Cross Down"
+
+========================================
+PART 5: WORKSPACE FINE-TUNING
+========================================
+
+COLOR SCHEME (for clarity):
+---------------------------
+- Background: Dark theme (easier on eyes)
+- MA9: Bright Yellow (fast-moving average)
+- MA20: Cyan/Light Blue (slow-moving average)
+- Bullish candles: Green
+- Bearish candles: Red
+- Volume up: Light Green
+- Volume down: Light Red
+- Grid lines: Subtle gray (not distracting)
+
+CHART SETTINGS:
+--------------
+- Right-click chart → Settings
+- Appearance → Background: Black or Dark Gray
+- Price Axis: Right side, large font
+- Time Axis: Bottom, show time labels
+- Crosshair: Enable (helpful for precision)
+- Show Extend-Hours: Yes (see pre/post market action)
+
+SCANNER SETTINGS:
+-----------------
+- Auto-refresh: 30 seconds (fast but not overload)
+- Max results: 50 stocks
+- Sort: BuySignal DESC, then Quality DESC
+- Highlight: Rows with BuySignal = 1 (use conditional formatting)
+
+HOTKEYS (Customize in Setup → Application Settings):
+----------------------------------------------------
+- Switch to Chart 1 (1-min): Ctrl+1
+- Switch to Chart 2 (5-min): Ctrl+2
+- Switch to Chart 3 (15-min): Ctrl+3
+- Switch to Chart 4 (Daily): Ctrl+4
+- Quick Buy: Ctrl+B
+- Quick Sell: Ctrl+S
+- Flatten Position: Ctrl+F
+- Next Symbol in Watchlist: Down Arrow
+- Previous Symbol: Up Arrow
+
+========================================
+PART 6: SAVE & LOAD WORKSPACE
+========================================
+
+SAVE YOUR WORKSPACE:
+1. Setup → Save Workspace As
+2. Name: "WarriorEye_Trading_v1"
+3. Description: "Warrior Eye Hybrid Day Trading - Complete Setup"
+4. Click Save
+
+LOAD WORKSPACE:
+1. Setup → Open Workspace
+2. Select "WarriorEye_Trading_v1"
+3. All your settings, charts, scanner restored instantly
+
+AUTO-LOAD ON STARTUP:
+1. Setup → Application Settings → Startup
+2. Check "Reuse saved workspace on startup"
+3. Select: "WarriorEye_Trading_v1"
+4. Click OK
+5. Now TOS opens to your trading workspace every day!
+
+========================================
+PART 7: PRE-MARKET CHECKLIST
+========================================
+
+EVERY MORNING BEFORE 9:30 AM:
+
+□ Open TOS and load WarriorEye workspace
+□ Verify scanner is running (check auto-refresh)
+□ Clear watchlist from previous day
+□ Run pre-market scan (8:30 AM) for gappers
+□ Add top 3-5 stocks to watchlist
+□ Check news for each watchlist stock
+□ Verify chart linking is active (all charts synced)
+□ Test alerts (create test alert and trigger it)
+□ Check internet connection speed
+□ Set max daily loss limit mentally ($XXX)
+□ Clear head, focus, ready to trade at 9:30 AM
+
+========================================
+PART 8: SINGLE MONITOR OPTIMIZATION
+========================================
+
+If you only have ONE monitor, prioritize this layout:
+
+TOP (20% height): Scanner results only
+- Show only: BuySignal, Quality, %Change, Symbol
+- Make rows bigger (easier to read at a glance)
+
+MIDDLE (60% height): Primary 5-min chart
+- Make this LARGE - your main decision-making chart
+- Add MA9, MA20, Volume, entry/exit arrows
+- This is where you watch the action
+
+BOTTOM-RIGHT (20% height, 50% width): 1-min chart
+- For precise entry timing
+
+BOTTOM-LEFT (20% height, 50% width): Active Trader
+- Quick order entry
+
+WHAT TO SKIP (Single Monitor):
+✗ Level 2 / Time & Sales (not critical)
+✗ 15-min chart (check periodically, not constantly)
+✗ Daily chart (check once at start of day)
+✗ News feed (check on phone or separate browser)
+
+========================================
+PART 9: DUAL MONITOR OPTIMIZATION
+========================================
+
+MONITOR 1 (Left - Primary Trading):
+- Full screen 2x2 chart grid
+- Chart 1: 1-min
+- Chart 2: 5-min (MAIN)
+- Chart 3: 15-min
+- Chart 4: Daily
+- Active Trader overlay (bottom-right corner, transparent)
+
+MONITOR 2 (Right - Scanning & Tools):
+TOP:
+- Scanner results (full width)
+- Watchlist (below scanner)
+
+BOTTOM:
+- News feed (left half)
+- Level 2 + Time & Sales (right half)
+- Chat room / Discord (if you use one)
+
+========================================
+PART 10: MOBILE APP COMPANION
+========================================
+
+ThinkorSwim Mobile (for alerts on-the-go):
+
+1. Install TOS Mobile app
+2. Enable push notifications
+3. Link to same account
+4. View watchlist on phone
+5. Receive buy/exit alerts
+6. Can execute trades from phone (backup)
+
+RECOMMENDED USE:
+- Use desktop for primary trading
+- Use mobile for alerts when away from desk
+- Emergency exit capability
+
+========================================
+FINAL WORKSPACE CHECKLIST
+========================================
+
+YOUR WORKSPACE SHOULD HAVE:
+
+✓ Stock scanner with WarriorEye code (auto-refresh 30s)
+✓ Custom columns: BuySignal, Quality, %Change, RelVol, RR
+✓ Watchlist (max 5 stocks, linked to charts)
+✓ 4 charts: 1-min, 5-min, 15-min, Daily (all linked)
+✓ MA9 and MA20 on all charts (yellow + cyan)
+✓ Volume bars on all charts
+✓ Active Trader for quick order entry
+✓ News feed for catalyst monitoring
+✓ Alerts set for buy/exit signals
+✓ Hotkeys configured for speed
+✓ Workspace saved and auto-loads on startup
+
+========================================
+TROUBLESHOOTING
+========================================
+
+PROBLEM: Scanner not showing results
+FIX:
+- Check timeframe is 5-min (not Daily)
+- Verify code has no errors
+- Try reducing filters (lower minPercentGain to 5%)
+- Check "Scan in: All Stocks" is selected
+
+PROBLEM: Charts not linking
+FIX:
+- Click chain link icon on each chart
+- Make sure all are same color
+- Restart TOS if still broken
+
+PROBLEM: Alerts not triggering
+FIX:
+- Go to Setup → Application Settings → Notifications
+- Enable "Desktop Alerts"
+- Enable "Sounds"
+- Check phone has TOS mobile app with notifications ON
+
+PROBLEM: Scanner slow/laggy
+FIX:
+- Increase auto-refresh to 60 seconds
+- Reduce max results to 25
+- Close other programs (free up RAM)
+- Check internet speed
+
+PROBLEM: Too many false signals
+FIX:
+- Increase qualityScore minimum to 12+
+- Increase minPercentGain to 15%
+- Increase minRelativeVolume to 5x
+- Only trade first hour (9:30-10:30 AM)
+
+========================================
+NEXT STEPS
+========================================
+
+1. Build this workspace step-by-step (takes 30-60 min)
+2. Save workspace as "WarriorEye_Trading_v1"
+3. Test with paper trading for 2 weeks
+4. Refine based on your preferences
+5. Go live with small position sizes
+6. Scale up as confidence grows
+
+Good luck and happy trading!
+
+========================================
+WORKSPACE TEMPLATE SUMMARY
+========================================
+
+Name: WarriorEye_Trading_v1
+Purpose: Warrior Eye Hybrid Day Trading
+Timeframe: Intraday (9:30 AM - 11:30 AM prime window)
+Charts: 4 (1-min, 5-min, 15-min, Daily)
+Scanner: Custom (WarriorEye Hybrid)
+Monitors: Optimized for 1 or 2 monitors
+Experience: Beginner to Advanced
+
+This workspace gives you:
+✓ Fast stock discovery (scanner)
+✓ Multi-timeframe analysis (4 charts)
+✓ Quick execution (Active Trader)
+✓ Risk management (auto-calculated stops/targets)
+✓ News monitoring (catalyst awareness)
+✓ Real-time alerts (never miss a signal)
+
+Everything you need to trade the Warrior Eye system
+with speed, precision, and confidence.
+
+========================================

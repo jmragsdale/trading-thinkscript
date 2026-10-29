@@ -1,0 +1,13 @@
+# Static parity mapping and deliberate research adaptations
+Base: [LOCAL_HOME]/Downloads/Trading/
+
+MACD-V source: Strategies & Tools/trading strategies/Projects/Miscellaneous_Trading_Projects/MACDV_Chart_Study_Entries_Exits.ts
+23–26 -> research.signals MACD/ATR/simple-mean/signal core; 36–51 -> EMA200 regime, strict ±50/±150 bands and crosses. Scanner companion 15–26/82 has $2–$20 gate: event detector deliberately omits it for index futures; events records original_price_gate. Exit alerts not executed. `ewm(adjust=False)` seed + 250-bar warmup approximates TOS ExpAverage; TOS prefetch/runtime numerical equivalence not proven.
+
+Wick source: Pine Scripts/tos - displacement wicks/DisplacementWickAlerts_Study.ts
+34–52 -> population body standard deviation, default min strength=1; 61–81 -> wick proportions and opposite-direction setups; 86–107 -> latest-side-zone state, strict crossing, first sweep, age <50, same-bar replacement priority. FVG default off. Python explicitly initializes empty zone state; historical TOS recursive seed behavior requires actual runtime export. Scanner companion same detector but 90–100 has multiple active plots; not live-compiled here.
+
+NShape source: Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/thinkscript/NShape_QuantFiltered_SPY_Scalp.ts
+39–52 -> averages, calendar-date VWAP, time/range; 54–77 -> bullish three-bar detector and default filters. Shorts disabled; target/stop not executed. Scanner companion 91–93 returns current or previous rawSignal; event harness uses rawSignal timestamps exactly once, rather than treating scanner persistence as fresh entries. Study filters C3 timestamp, not next-open timestamp. Explicit RTH research gate and gap exclusion additionally imposed.
+
+Eight executable unittest cases plus six assertions: NShape positive case, strict C3/C2 boundaries, time end exclusion, full-prefix vs truncated-prefix equality, replacement precedence, strict wick crossing/age limit/once-only, cross/band endpoints, population std, rolling scanner envelope. These establish implementation checks, not observed historical TOS parity. Compile/chart exports remain outstanding.

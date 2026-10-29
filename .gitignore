@@ -1,0 +1,10 @@
+.DS_Store
+.local/
+__pycache__/
+*.pyc
+dist/
+tos-capture/
+private-imports/**/*.thinkscript
+.env
+.env.*
+!.env.example

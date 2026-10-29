@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826",
+  "family": "displacement-wick",
+  "label": "withdrawn-sandbox",
+  "record_type": "strategy",
+  "reported_on": "2026-06-21",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "1790b758082610b57deb734a2660b92d9186351c3dc42959134dd22f4f0d253e",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "scanners/displacement-wick",
+        "source_path": "scanners/displacement-wick/DisplacementWickAlerts_Scanner.ts",
+        "source_sha256": "fead94d0959f40eb043ac2136047a420e193d61244cdd88377a72b6dcbae0e66",
+        "relationship": "related-model"
+      },
+      {
+        "project": "studies/displacement-wick",
+        "source_path": "studies/displacement-wick/DisplacementWickAlerts_Study.ts",
+        "source_sha256": "aff6d61e92bf191726bebfd142519ffab879a2c62f939cdf4ccf1ff726091082",
+        "relationship": "related-model"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [],
+    "tested_model_version": null,
+    "inputs": {
+      "target_r": 1.5,
+      "lookback": 20,
+      "throttles": "omitted"
+    }
+  },
+  "test_environment": {
+    "engine": "python",
+    "engine_version": null,
+    "instrument": "NQ",
+    "aggregation_minutes": 5,
+    "session": null,
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": null,
+    "start": "2026-04-20",
+    "end": "2026-05-11",
+    "reported_period": null,
+    "missing_data_treatment": null,
+    "rollover_treatment": null,
+    "raw_data_hash": null
+  },
+  "execution": {
+    "entry_rule": null,
+    "exit_rule": null,
+    "position_sizing": null,
+    "same_bar_stop_target": null,
+    "initial_capital_usd": null,
+    "overlap_rule": null
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": null,
+    "slippage_points_each_side": null,
+    "total_round_trip_usd": null,
+    "total_round_trip_points": null,
+    "pnl_basis": "unspecified",
+    "description": "Realistic cost deduction not established by retrieved report."
+  },
+  "sample": {
+    "development_period": null,
+    "test_period": null,
+    "test_used_in_selection": null,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "wick-verification-update"
+    ],
+    "source_records": {
+      "wick-verification-update": {
+        "origin": "HOME/Documents/Claude/Projects/JJ Simon Mean Reversion - Prop Firm Automation/strategy_comparison.md",
+        "original_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+        "original_bytes": 11527,
+        "evidence": "docs/performance/evidence/wick-verification-update.txt",
+        "evidence_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      }
+    }
+  },
+  "validation": {
+    "status": "withdrawn",
+    "source_relationship": "related-model",
+    "native_parity": "not-verified",
+    "lookahead_audit": null,
+    "warnings": [
+      "Optimistic sandbox omitted real throttles; its +0.20R and ~84% pass claim were explicitly withdrawn.",
+      "Retained only for provenance; never eligible for comparison/ranking."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "script_identity.tested_model_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.session": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.provider": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.reported_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.missing_data_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.rollover_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.raw_data_hash": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.entry_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.exit_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.position_sizing": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.same_bar_stop_target": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.initial_capital_usd": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.overlap_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.development_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_used_in_selection": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "costs.commission_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.slippage_points_each_side": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_points": "Cost component not separately established; see costs.description and pnl_basis."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826/run.json",
+    "summary": "docs/performance/runs/displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826/summary.json",
+    "markdown": "docs/performance/runs/displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826/PERFORMANCE.md",
+    "observations": {
+      "path": null,
+      "kind": "trades",
+      "sha256": null,
+      "row_count": null,
+      "reason": "Observation-level ledger not available in the retrieved evidence; aggregate report only."
+    },
+    "summary_sha256": "9ad359b1caee17ca4fceac60cdf69fb4240fd5e348faf0eeddff63243200b074"
+  }
+}

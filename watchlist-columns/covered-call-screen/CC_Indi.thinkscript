@@ -1,0 +1,38 @@
+# Covered Call Watchlist Indicator for Small Accounts (~$1,000)
+# Displays "BUY", "HOLD", or "AVOID" based on covered call suitability
+
+# Stock Price Range (Under $50 for Small Accounts)
+def price = close;
+def validPrice = price >= 5 and price <= 50;
+
+# Implied Volatility (High IV = Higher Premium)
+def IVRank = (imp_volatility - Lowest(imp_volatility, 252)) / 
+             (Highest(imp_volatility, 252) - Lowest(imp_volatility, 252));
+def highIV = IVRank > 0.50;  # Only stocks with IV Rank above 50th percentile
+
+# Volume (Ensures Good Liquidity)
+def avgVolume = Average(volume, 50);
+def liquidStock = avgVolume > 500000; # Requires at least 500K daily volume
+
+# RSI (Avoid Oversold Stocks)
+def RSI = RSI();
+def rsiCheck = RSI > 40; # Stock must be above RSI 40 to avoid strong downtrends
+
+# Moving Average Trend Check (Avoid Downtrending Stocks)
+def EMA20 = ExpAverage(close, 20);
+def EMA50 = ExpAverage(close, 50);
+def emaTrend = EMA20 > EMA50; # Ensures stock is sideways or slightly bullish
+
+# Average True Range (ATR) - Avoid Highly Volatile Stocks
+def ATR = Average(TrueRange(high, close, low), 14);
+def atrCheck = ATR < price * 0.05; # ATR must be less than 5% of price
+
+# Final Decision Logic
+def BUY = validPrice and highIV and liquidStock and rsiCheck and emaTrend and atrCheck;
+def HOLD = validPrice and liquidStock and rsiCheck;
+def AVOID = !BUY and !HOLD;
+
+# Assign Labels for Watchlist
+AddLabel(BUY, "BUY", Color.GREEN);
+AddLabel(HOLD, "HOLD", Color.YELLOW);
+AddLabel(AVOID, "AVOID", Color.RED);

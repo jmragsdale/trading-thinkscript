@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361",
+  "family": "nshape-spy",
+  "label": "selected-fixed-r",
+  "record_type": "strategy",
+  "reported_on": "2026-07-16",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "9212b01e63615a722676ce5b1a740e503fb1af78a0e8d24b110b8613f3fc72ed",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "scanners/nshape-spy",
+        "source_path": "scanners/nshape-spy/NShape_QuantFiltered_SPY_Scanner.ts",
+        "source_sha256": "4a5925a0ccbbb99f101ecf6a15e617f6acb594d89f5727b7fcdff73955feacd9",
+        "relationship": "related-model"
+      },
+      {
+        "project": "studies/nshape-spy",
+        "source_path": "studies/nshape-spy/NShape_QuantFiltered_SPY_Scalp.ts",
+        "source_sha256": "f63d5606b4a052fa31962488dbce6d9e8296c1d92f663f132fbfd6d92ced2877",
+        "relationship": "related-model"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [],
+    "tested_model_version": null,
+    "inputs": {
+      "direction": "long",
+      "signal_window": "13:30–before 15:30 ET",
+      "ema_length": 20,
+      "ema_filter": true,
+      "vwap_filter": true,
+      "range_filter": true,
+      "target_r": 1.5,
+      "maximum_hold_bars": 10,
+      "stop": "candle-2 low"
+    }
+  },
+  "test_environment": {
+    "engine": "python",
+    "engine_version": null,
+    "instrument": "SPY",
+    "aggregation_minutes": 1,
+    "session": "13:30–before 15:30 ET",
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": null,
+    "start": "2021-07-12",
+    "end": "2026-07-10",
+    "reported_period": null,
+    "missing_data_treatment": null,
+    "rollover_treatment": null,
+    "raw_data_hash": null
+  },
+  "execution": {
+    "entry_rule": "Next bar open.",
+    "exit_rule": "1.5R target, candle-2 stop, or 10-bar maximum hold.",
+    "position_sizing": null,
+    "same_bar_stop_target": "stop-first as reported research convention",
+    "initial_capital_usd": null,
+    "overlap_rule": null
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": null,
+    "slippage_points_each_side": null,
+    "total_round_trip_usd": null,
+    "total_round_trip_points": null,
+    "pnl_basis": "unspecified",
+    "description": "Realistic cost deduction not established by retrieved report."
+  },
+  "sample": {
+    "development_period": "2021–2024",
+    "test_period": "2025–2026 partial",
+    "test_used_in_selection": true,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "nshape-selected-report",
+      "nshape-filter-sweep"
+    ],
+    "source_records": {
+      "nshape-selected-report": {
+        "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_quant_adjustment_report.md",
+        "original_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+        "original_bytes": 5093,
+        "evidence": "docs/performance/evidence/nshape-selected-report.txt",
+        "evidence_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "nshape-filter-sweep": {
+        "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/quant_filter_sweep.csv",
+        "original_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+        "original_bytes": 1377833,
+        "evidence": "docs/performance/evidence/nshape-filter-sweep.csv",
+        "evidence_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      }
+    }
+  },
+  "validation": {
+    "status": "reported",
+    "source_relationship": "related-model",
+    "native_parity": "not-verified",
+    "lookahead_audit": null,
+    "warnings": [
+      "Holdout PF was a selection criterion; this is not an untouched independent test.",
+      "ThinkScript displays references and does not execute the 10-bar maximum-hold rule.",
+      "No options P&L or realistic execution friction established."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "script_identity.tested_model_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.provider": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.reported_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.missing_data_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.rollover_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.raw_data_hash": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.position_sizing": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.initial_capital_usd": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.overlap_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "costs.commission_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.slippage_points_each_side": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_points": "Cost component not separately established; see costs.description and pnl_basis."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361/run.json",
+    "summary": "docs/performance/runs/nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361/summary.json",
+    "markdown": "docs/performance/runs/nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361/PERFORMANCE.md",
+    "observations": {
+      "path": null,
+      "kind": "trades",
+      "sha256": null,
+      "row_count": null,
+      "reason": "Observation-level ledger not available in the retrieved evidence; aggregate report only."
+    },
+    "summary_sha256": "fa957c8dccb6b4b9b67672316cab89c4d1bc582413ebe974673812b3e43835fe"
+  }
+}

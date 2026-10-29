@@ -1,0 +1,217 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8",
+  "family": "nshape-spy",
+  "label": "corrected-base",
+  "record_type": "signal-event",
+  "reported_on": "2026-10-01",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "b1537ad880c843ba5752de3cb3ea793e35adc9735efd948a45abb2caf2f37230",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "scanners/nshape-spy",
+        "source_path": "scanners/nshape-spy/NShape_QuantFiltered_SPY_Scanner.ts",
+        "source_sha256": "4a5925a0ccbbb99f101ecf6a15e617f6acb594d89f5727b7fcdff73955feacd9",
+        "relationship": "exact-frozen-source"
+      },
+      {
+        "project": "studies/nshape-spy",
+        "source_path": "studies/nshape-spy/NShape_QuantFiltered_SPY_Scalp.ts",
+        "source_sha256": "f63d5606b4a052fa31962488dbce6d9e8296c1d92f663f132fbfd6d92ced2877",
+        "relationship": "exact-frozen-source"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [
+      "4a5925a0ccbbb99f101ecf6a15e617f6acb594d89f5727b7fcdff73955feacd9",
+      "f63d5606b4a052fa31962488dbce6d9e8296c1d92f663f132fbfd6d92ced2877"
+    ],
+    "tested_model_version": null,
+    "inputs": {
+      "cost_scenario": "corrected-base",
+      "direction": "long",
+      "horizon_bars": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "de_overlap_bars": 10,
+      "default_detector": true,
+      "time_start": "13:30",
+      "time_end_exclusive": "15:30",
+      "ema_length": 20,
+      "ema_filter": true,
+      "calendar_vwap_filter": true,
+      "range_filter": true
+    }
+  },
+  "test_environment": {
+    "engine": "python",
+    "engine_version": null,
+    "instrument": "MNQ",
+    "aggregation_minutes": 1,
+    "session": "RTH signal/entry/endpoints; full-session detector history; SPY includes extended hours for calendar VWAP.",
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": "Owned Databento OHLCV files listed in offline-provenance; provider inferred from feed filenames, not a fresh download.",
+    "start": "2021-06-10",
+    "end": "2026-06-09",
+    "reported_period": null,
+    "missing_data_treatment": "Reject horizons crossing a missing elapsed minute, calendar date or selected-contract change.",
+    "rollover_treatment": "MNQ previous available ET-date volume front outright contract; reset on change.",
+    "raw_data_hash": "a6ecb847be006e8cdba28c9d2a1855b4399c6892a2cf114e81079a1cdc361772"
+  },
+  "execution": {
+    "entry_rule": "Next bar open after confirmed signal close.",
+    "exit_rule": "Directional terminal close at declared horizon, not strategy exits.",
+    "position_sizing": "One MNQ contract or one SPY share for dollar conversion only.",
+    "same_bar_stop_target": null,
+    "initial_capital_usd": null,
+    "overlap_rule": "Within family/side require >10 signal bars between retained events; opposite sides/families can overlap."
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": 1.9,
+    "slippage_points_each_side": 0.25,
+    "total_round_trip_usd": 2.9,
+    "total_round_trip_points": 1.45,
+    "pnl_basis": "net",
+    "description": "Historical October 1 cost scenario; doubled cases double total fee+slippage, not just fees. SPY is per one share; MNQ per one contract."
+  },
+  "sample": {
+    "development_period": null,
+    "test_period": null,
+    "test_used_in_selection": null,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "offline-summary",
+      "offline-events",
+      "offline-protocol",
+      "offline-parity",
+      "offline-readme",
+      "offline-hashes",
+      "offline-provenance",
+      "offline-costs",
+      "offline-validation"
+    ],
+    "source_records": {
+      "offline-summary": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/summary.csv",
+        "original_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+        "original_bytes": 132861,
+        "evidence": "docs/performance/evidence/offline-summary.csv",
+        "evidence_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "offline-events": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/events.csv",
+        "original_sha256": "36a0ddd51b1c13e36e15c6f0b48c14adcb1d490305c3f5dd6a0390d05d0b5bc6",
+        "original_bytes": 18300709,
+        "evidence": "docs/performance/evidence/offline-events.csv.gz",
+        "evidence_sha256": "aa68d6473929cb2fb997b232495c4cc2f1e777a08b53eec9998adbc4a2f57dc5",
+        "transformation": "Lossless gzip, fixed mtime=0; decompressed bytes equal original CSV. Saved research observations, not a newly run backtest."
+      },
+      "offline-protocol": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/protocol.md",
+        "original_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+        "original_bytes": 2536,
+        "evidence": "docs/performance/evidence/offline-protocol.txt",
+        "evidence_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "offline-parity": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/parity_mapping.md",
+        "original_sha256": "f7a918ee926d36e8b1954b664e3f15d00ab14aad4bbb383c8880de2453f95b89",
+        "original_bytes": 2202,
+        "evidence": "docs/performance/evidence/offline-parity.txt",
+        "evidence_sha256": "4bf70b939afecdbd98bbbb6855c153d1cdf31e8dd84cdc47158de5a810a36d34",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "offline-readme": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/README.md",
+        "original_sha256": "9ba8a7cdf92f65dd57ba7a62f00b6b37fe1bed8234506d56c4973b26a61d05ef",
+        "original_bytes": 2305,
+        "evidence": "docs/performance/evidence/offline-readme.txt",
+        "evidence_sha256": "adfe01fc6b7366a2a1cb16abe032b9a94005ae722999570c4d96eb215df98d56",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "offline-hashes": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/original_hashes.json",
+        "original_sha256": "9a3e9cd32b1ec2391b74885b93ac834fbe92123e20811bd40741e14c59c27212",
+        "original_bytes": 1299,
+        "evidence": "docs/performance/evidence/offline-hashes.json",
+        "evidence_sha256": "3a141060ce1786214ed72703d4ed3dcf76cf658f6aa81877481abfab71dcf02a",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "offline-provenance": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/provenance.json",
+        "original_sha256": "08f9ad2434854985f360e732ff6e6d4e3a1ed483cd3a67dd5446c2d9ad96c9d2",
+        "original_bytes": 935,
+        "evidence": "docs/performance/evidence/offline-provenance.json",
+        "evidence_sha256": "3ef9f59b70fd8d4586082ed98da6da805ab5c4a251802ed21b1ac14dcac40daf",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "offline-costs": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/cost_assumptions.json",
+        "original_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+        "original_bytes": 863,
+        "evidence": "docs/performance/evidence/offline-costs.json",
+        "evidence_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "offline-validation": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/validation.json",
+        "original_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+        "original_bytes": 243,
+        "evidence": "docs/performance/evidence/offline-validation.json",
+        "evidence_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      }
+    }
+  },
+  "validation": {
+    "status": "reported",
+    "source_relationship": "frozen",
+    "native_parity": "not-verified",
+    "lookahead_audit": "Offline prefix/source checks reported; not native TOS parity.",
+    "warnings": [
+      "Endpoint measurements do not execute stop/target rules or define a tradeable strategy.",
+      "Source hashes match frozen ThinkScript text; native runtime equivalence remains unverified.",
+      "Horizon, year and regime slices overlap and must not be summed.",
+      "95% intervals are reported day-block bootstrap, 500 fixed-seed resamples; multiple comparisons uncorrected.",
+      "MNQ transfer is experimental. Scanner persistence is counted once per raw event.",
+      "Does not reproduce the selected 222-trade fixed-R model."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "script_identity.tested_model_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.reported_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.same_bar_stop_target": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.initial_capital_usd": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.development_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_used_in_selection": "Not established by the retrieved evidence; not inferred from current library defaults."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8/run.json",
+    "summary": "docs/performance/runs/nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8/summary.json",
+    "markdown": "docs/performance/runs/nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8/PERFORMANCE.md",
+    "observations": {
+      "path": "docs/performance/runs/nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8/events.csv",
+      "kind": "events",
+      "sha256": "172d9b356280a0ea25b044de43ab628340a2c7f4e21ca28d981077aef521b8a6",
+      "row_count": 792,
+      "reason": null
+    },
+    "summary_sha256": "8e4f08194591d86e90e0eda9618fe64a080e50a92412ed9ce743795dae35dec3"
+  }
+}

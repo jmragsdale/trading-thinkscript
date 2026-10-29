@@ -1,0 +1,201 @@
+# Trading library: coverage and completed constructive development
+
+**2026-10-01 · Offline filesystem and computation only · MNQ research**
+
+The pending STRG-HOLP and three-candle repairs, source-mapped tests, fixed-default reruns, QICE isolated execution harness and wash-rinse audit, and executable-family disposition table are complete. Original sources and earlier reports/results were preserved. No parameter sweeps, browser UI, trading account, broker, live bot, credentials or trading actions were used. Official Pine documentation was read through the web API to resolve execution semantics.
+
+## Final constructive-development decision
+
+The final stop-cap test is complete; no further tuning is being run. It retains all 1,203 one-MNQ ORB entries, caps fill-relative initial distance at 48.75 points (tick-rounded benchmark planned loss $99.90), and keeps the 5R target. Delayed protection and EOD closure remain unchanged. This is an experimental strategy change, not a bug fix or approved live configuration.
+
+| Current same-calendar MNQ configuration | Benchmark net across two paths | Marked drawdown | Participation |
+|---|---:|---:|---:|
+| Original ORB control | $20,627.80–$20,907.80 | $4,546.60–$4,586.10 | 1,203 trades |
+| Skip-cap $100 planned risk | $3,732.20–$4,012.20 | $1,212.20 | 142 trades |
+| Final capped-stop, all signals | $11,929.80–$12,209.80 | $2,878.60–$2,882.60 | 1,203 trades |
+
+The stop-cap remains positive under doubled fees/slippage at $8,774.10–$9,054.10. It improves participation and aggregate profit versus skipping, but historical marked drawdown still exceeds $2,000. Two benchmark gap-stop losses exceed $100 (worst $123.90); sixteen dates mark adverse exposure over $100 (worst $168.40). Capped geometry is not guaranteed loss. Stop-cap 2025 earns $691.30 and partial 2026 loses $730.20 despite restoring entries. Six synthetic and ten output checks pass; no observed-data model pass occurs in its 30/90/180-day cohorts. Two resolved-only longer-horizon qualifications remain indeterminate because earlier calendar/exposure states are missing.
+
+Earlier frozen experiments diagnose different tradeoffs: literature A/B momentum loses gross/net; the ORB range gate removes profitable opportunities; MES transfer is weak and cost-sensitive; skip-cap reduces downside but recent admission collapses. None calls for selecting a new threshold from these results. Detailed final evidence and consolidated slate: `orb_stopcap_final_20261001/report.md`; exact controls/risk ledgers: `orb_risk_instrument_20261001/`.
+
+Operational model checks, exploratory historical profitability and unproven future edge are separate conclusions. Fair Price and original ORB remain provisional positive research cores with distinct execution, drawdown, prior-selection and economic problems; there is no full-library winner or prop-ready strategy. Stop optimization here. Next evidence is native-source/fill reconciliation, complete archived calendars and a predeclared genuine forward-paper mechanics/expectancy study with enough signals to estimate a worthwhile net edge. No forward monitor, broker action, source/alert edit or deployment was created.
+
+## Consolidated decision and coverage
+
+**The library has been inventoried broadly; its strategies have not all been validated.** The content-based census records **296 eligible source files, 272 distinct source hashes and 83 family/domain groups**, including indicators, research fragments and utilities. It also checked 80 archives; their 34 eligible source members add no distinct hash beyond the loose inventory. The **23-domain disposition ledger** is an assessment queue, not 23 successful backtests and not 23 independent proven strategies.
+
+The census's initial `tested_current_source_files = 8` is a historical snapshot: six TOS source/companion files supporting three adapted signal families and two selected Python ports. It predates subsequent isolated strategy work. **A current exact count of tested inventory hashes remains unverified** until every runner, source version, duplicate and research repair is joined to the census by hash. Active Fair Price revision 16 is an externally captured source absent from that local inventory. A tested port, an inspected original and a native export reconciliation are different evidence levels. No percentage of “the library tested” is asserted. The source-version ledger below replaces the stale eight-source coverage claim; hashes/settings remain in each controlling manifest.
+
+**Fair Price and ORB are provisional positive research candidates; no full-library winner or prop-ready strategy is established.** Fair Price has a small September native export reconciliation and positive historical core, but holiday closure, virtual/external execution differences, prior selection, low frequency and evaluation renewal economics remain material. ORB has positive corrected timing results but larger drawdown, variable-size participation, gap risk beyond its nominal budget and missing native/tick parity. Their different calendars, sizes and execution models prevent a simple net-profit ranking. Closed equity cannot establish prop compliance or funded economics.
+
+| Source version or domain | Evidence and result | Decision limit |
+|---|---|---|
+| Fair Price v2 revision 16 | Captured external source; causal core, lifecycle and 12-trade native export reconciliation. +$13,614 core at 1 MNQ; independent holdout absent | Holiday exits, external execution and virtual/account ledger mismatch; low frequency and recurring evaluation costs |
+| ORB 15m 5R Prop Farm | Existing Pine and isolated causal source-timing model. +$20,987 fixed 1 MNQ; +$55,273 variable $500-risk mode | Different size calendars; gaps can exceed risk budget; tick/export parity and substantial drawdown |
+| Luchi default research harness | Python default; corrected HTF availability; historical prefix checks. −$31.80, PF 0.9982 | Effectively flat; indicator interpretation does not validate all Pine presets or 102 Python modules |
+| STRG-HOLP | Hash-mapped Pine rules; reversal/pyramiding/sizing tests. −$552,816 at 1 MNQ per entry; native whole-MNQ size conditionally zero | Original chart/quantity semantics absent; negative exposure sum continues after depletion |
+| Three-candle futures | Hash-mapped Pine rules; session/equity risk/state tests. −$21,746 fixed 1 MNQ; conditional native margin accepts only 5 trades | Nominal sizing stop can be narrower than final stop; post-entry reset; native runtime/export parity |
+| QICE replica | Hash-mapped Pine rules; 10 tests; eight semantic/cost scenarios. −$116,654 to −$116,646 benchmark, fixed 1 MNQ | Undocumented priority bounded; original context, tick/rounding and native long-history order cap unresolved |
+| Wash/rinse Python default | Causal RTH MNQ adaptation and signal prefix test. −$93,039, PF 0.733 | Original ToS source and original instrument/timeframe absent; stop gaps idealized |
+| Range Break v6 fixed | Two identical source copies; isolated MNQ/MES source-rule baseline. MNQ −$32,524 to −$27,304; MES −$40,348 to −$35,248, default 10 contracts | Four-tick stop versus friction; fill bar unprotected; HTF session construction/native tick parity |
+| MFFU Experiment 2a | Two identical source copies; isolated MNQ/MES once-per-close adaptation. MNQ −$12,975 to −$9,018; MES −$16,066 to −$15,656, fixed 1 | Literal calc_on_order_fills and stop/trailing precedence unverified; not exact native performance |
+| Displacement Strength Companion original | Two identical source copies; actual-detector lifecycle regression. Original totals incomplete: 20 management-loss censors per instrument/path | Cleanup can erase replacement-trade state; native runtime confirmation missing |
+| Companion research-only cleanup guard | One-line isolated research repair; 6 lifecycle tests. MNQ −$102,458; MES −$65,617, 1 contract; gross also negative | State loss removed; one MNQ roll censor remains; original/live source unchanged |
+| N-shape RTH selected Python port / refill 60m default | Previously tested selected ports only. N-shape +$16,562 with DD $4,873; refill −$2,303 | N-shape regime losses/cross-date trades; other Pine versions and refill 5m variants untested |
+| TOS MACDV / N-shape / displacement-wick studies | Source inspection and adapted completed-bar signal tests. Signal evidence only; no executable strategy profitability claim | Missing complete entry/exit/risk/position rules; compilation/active settings not certified |
+| MTF OTE Sweep Strategy | Source-mapped isolated default; 13 synthetic and 3 historical prefix checks. 28,494 trades, −$76,546, PF 0.782; six scenarios negative | Three roll censors; native margin, limit-gap, rounding/tick parity unverified; fixed 1-minute MNQ binding |
+| Other executable domains | Static source assessment; precise 23-domain disposition ledger. No numerical verdict | Golden wrappers lack rules; MT4 includes/ticks/contract bindings absent; DIAD command log absent; broker bots need pure offline extraction; options need point-in-time chains/context |
+
+The common MNQ benchmark is $1.90 round-trip commission plus 0.25 point slippage per side ($2.90 total at $2/point). The separate MES batch uses the same fee and point slippage, totaling $4.40 per contract at $5/point. QICE original-cost sensitivity is separate. Fair Price's older 08:00–16:00 ET sample, this worker's all-hours prior-ET-day stream, and the separate MNQ/MES CME-session stream differ in available history, roll exclusion, warmup and session labels. No matched full-library calendar rerun was performed. Reported ranges are specific scenario sensitivities, not guaranteed profit bounds.
+
+**Research order:** first close Fair Price and ORB's respective execution, calendar and independent holdout gaps before considering optimization. MTF’s completed baseline also shows a small positive gross edge overwhelmed by benchmark friction; targeted research is more informative than blanket rejection. Keep Luchi's corrected default as a flat reference rather than upgrading old optimized claims. Deprioritize the tested negative default bindings, while retaining their original-context gaps. Missing source, tick data, contract definitions, discretionary command logs and point-in-time options history are genuine inputs; account access does not supply them.
+
+**Source repairs and unsupported configurations:** Luchi's causal harness delays HTF information until actual close. The Companion guard changes only an isolated research copy and removes management-state loss, without improving its negative economics. STRG/three-candle/QICE translations repair earlier port omissions and preserve disclosed source defects; originals are unchanged. None of these tests covers every chart timeframe, symbol, preset, Pine revision, Luchi experiment, N-shape sizing choice, refill inducement variant or indicator-to-strategy conversion. One-minute MNQ adaptation failures do not invalidate all original contexts. Existing historical reports are provenance, not new independent validation.
+
+Controlling evidence: `consolidated_evidence_ledger.csv`, the census `source_inventory.csv`/`family_coverage_matrix.csv`, and the isolated artifacts named in the ledger. The 23-domain detail below specifies actual assessed evidence and remaining inputs. **MTF OTE is now incorporated.** Its main normalized gross is +$6,086 before $82,633 benchmark friction. Six predeclared scenarios net −$76,744 to −$75,921, with three roll-censored positions each. Source $10,000 with conditional default full-notional margin accepts zero MNQ orders; the 1-contract exposure run is separate and becomes unfunded in January 2022. These are default-binding findings, not a verdict on all contexts. Controlling report: `[LOCAL_HOME]/Documents/Codex/2026-10-01/task/mtf_ote_source_baseline/results_report.html`.
+
+## Newly completed fixed-default comparisons
+
+The common input is the rebuilt **prior available ET calendar-day volume-selected contract stream**, with contract-change days quarantined: 1,745,552 one-minute bars, 2021-06-10 through 2026-06-09, all hours retained. Source SHA256: `a6ecb847be006e8cdba28c9d2a1855b4399c6892a2cf114e81079a1cdc361772`. Calendar/window filters remain source-specific; the timeframe is a disclosed 1-minute MNQ research binding where the source leaves chart selection unspecified.
+
+Benchmark costs for all new numerical runs: **MNQ $2/point; $1.90 round-trip fee per contract; 0.25 point slippage on each side**. These deliberately replace source-native commissions rather than pretending source tester costs are the same. Source sizes and one-contract normalization are separate. No prop rules or pass probabilities are invented.
+
+| New source-rule model | Closed trades | Net | PF | Closed drawdown | Meaning |
+|---|---:|---:|---:|---:|---|
+| STRG-HOLP, native 100% equity / $10,000 / whole MNQ | 0 | $0 | N/A | $0 | Conditional size-affordability result; not a strategy profitability verdict |
+| STRG-HOLP, corrected rules, one MNQ per entry | 171,172 | −$552,816 | 0.729 | $553,200 | Unrestricted exposure normalization with reversals and pyramiding |
+| Three-candle, source equity risk + assumed Pine v6 full-notional margin | 5 | −$1,341 | 0.080 | $1,457 | Conditional execution-assumption result; 5,675 order attempts rejected |
+| Three-candle, source equity-risk intent, margin unconstrained | 5,587 | −$59,544 | 0.760 | $60,632 | Exposure stress; depleted $50,000 starting equity during sample |
+| Three-candle, corrected rules, fixed one MNQ | 5,591 | −$21,746 | 0.816 | $22,841 | Unrestricted size normalization; source state/session preserved |
+| QICE frozen source, benchmark semantic bounds | 38,402 | −$116,654 to −$116,646 | 0.834 | $117,551–117,559 | Fixed 1 MNQ; full history is hypothetical after capital depletion |
+| QICE frozen source, original-cost sensitivity | 38,402 | −$262,097 to −$262,081 | 0.677 | $262,632–262,647 | Source fee/slippage convention; separate from benchmark |
+| Wash/rinse Python default, causal RTH 1-minute MNQ | 32,641 | −$93,039 | 0.733 | $93,142 | Disclosed instrument/timeframe input; original ToS parity absent |
+
+**Capital and comparability limits:** STRG's normalized $10,000 closed equity first reached zero on 2021-07-16 after 3,489 closed trades, net −$10,008. Three-candle's unconstrained equity-risk path reached zero on 2024-05-20 after 3,358 trades, net −$50,003. Full-sample totals after depletion are hypothetical exposure sums, not feasible funded-account returns. They show weak normalized expectancy; they do not establish how an unfunded account could continue trading. Source default margin/granularity assumptions remain conditional until an offline emulator/export comparison confirms them. No live account margin was obtained or assumed.
+
+The underlying rules were frozen. Prior negative screening ports were insufficient to discard originals. These new models repair specific omissions but still do not claim exact TradingView broker-emulator parity or every chart/instrument variant.
+
+## STRG-HOLP: reversal, pyramiding and sizing repair
+
+Source: `TradingView/Tradingview Scripts/STRG-HOLP.pine`, SHA256 `7a68875b36c350aaa692539c8c0c04e090cdb9bf4bf76e0420a0ff8709cd6918`.
+
+The isolated harness now updates the source's new-low/new-high state **on every bar**, including while a position is open; submits signals at close for **next-open market fills**; supports **five same-ID entries**; handles an opposite entry as a next-open reversal; and updates same-ID brackets across open entries. Stop and 3R target reference the signal-close source formulas. Static exits use adverse interbar gap prices and conservative stop-first resolution. Benchmark entry/exit slippage and fees are included. Original files were not edited.
+
+Native source size is 100% equity from $10,000. Under the disclosed whole-MNQ contract assumption, initial equity divided by MNQ notional is below one throughout this input, so 171,172 source signals request zero whole contracts. This is a **conditional native-MNQ affordability gap**, not evidence that the source cannot work on a lower-notional instrument or another capital/chart configuration. Its actual intended instrument and minimum-quantity handling remain unbound.
+
+The one-contract model observed 87,061 reversals, maximum three concurrently open entries, and 3,625 overlapping entries. Overlap is the source's pyramiding, not independent samples; no independent-trade bootstrap or scaled pass probability was produced. Fifteen closed trades crossed stitched contracts, contributing −$6,318. Their same-contract-only descriptive subset remains −$546,498, but removing trades after the fact does not repair path-dependent state/capital. The stitched stream is a research price history, not an executable rolling futures position ledger.
+
+## Three-candle: original equity sizing and risk/state repair
+
+Source: `TradingView/Tradingview Scripts/3_candle_scalping_futures.pine`, SHA256 `76407bdbeae9e51b1b1700b4035c049dd3687d193f285011df551158310ff585`.
+
+The isolated harness retains the default 3-candle/EMA50/Stochastic5-3-3/ATR14 filters, 1% equity risk, nominal 1.5ATR sizing stop, wider structural final stop, 2R target, close entry, five daily attempts, 3% daily loss comparison, breakeven after 1ATR with two-tick offset, and 0.5ATR trailing offset after 1ATR. Initial capital is $50,000. Source-size and fixed-one-contract variants use the same rules and input history.
+
+Three important source behaviors are now preserved rather than silently repaired:
+
+- **Sizing uses the nominal ATR distance, while the final stop can be wider.** The source can therefore exceed its nominal risk budget. A mapped synthetic case with $50,000 equity, ATR4 and a 10-point final stop requests 41 MNQ and implies $820 pre-cost risk against the nominal $500 budget. The unconstrained run observed 3,460 attempts whose structural/slippage-adjusted risk exceeded 1% equity; maximum requested size was 130 contracts.
+- **The timezone input is unused by `time(timeframe.period, sessionStart)`.** On the MNQ binding, source session 08:30–15:00 uses CME exchange Chicago time, corresponding to 09:30–16:00 ET. The older screening port incorrectly used 08:30–15:00 ET. Day reset also follows the exchange calendar.
+- **Daily PnL and variable-reset ordering are source-specific.** Source daily PnL estimates at the bar close when the calculation sees a flat-position transition; it excludes actual fill costs and may be stale. The reset block follows entry submission, so a same-bar re-entry can have its new tracking reference erased. The research calculation-state model recorded 23 such cases. Full emulator position-history semantics are still a parity limit; the source defect was preserved and surfaced, not changed in the original.
+
+The assumed native Pine v6 100% full-notional margin model accepts only five trades and rejects 5,675 order attempts. This is distinct from the **margin-unconstrained risk-intent stress**, which reveals the source's exposure and capital depletion. Native default margin, stop-price rounding, close-fill/position-series timing and margin-call behavior must be confirmed with a broker-free source export before calling the model exact. None of the three-candle closed trades crossed contracts or overlapped positions.
+
+## Source-mapped tests and execution audit
+
+`source_faithful_tests.json` records eight passed checks: inspected source defaults; five same-ID entries then rejection of the sixth; opposite signal closing five lots and reversing at next open; benchmark reversal-fill slippage; native whole-MNQ percent-size floor; three-candle requested size and conditional full-notional rejection; actual Chicago session despite unused timezone input; and source reset ordering after entry submission. Synthetic injected signals isolate the execution model and are not new tuned entries.
+
+`resume_roll_overlap_audit.json` records contract continuity and overlap for all new source-rule trade lists, with no missing symbol matches. Gap fills are adverse at available interbar opens. Stop-first same-minute treatment is conservative but cannot certify tick order or intraminute gaps. No closed-equity result is presented as prop compliance.
+
+## QICE and wash/rinse disposition
+
+**QICE's isolated source-rule harness is now complete; undocumented execution ties are bounded explicitly.** Source SHA256 is `62b0665225bc51999ad4a2148e4b87c80dd1eb68618a5363f6bff1162628c0fd`. Defaults are unchanged: fixed one contract, $25,000 initial capital, ATR14, structure lookback5/confirmation2, EMA9/21, momentum10 greater than0.5ATR, all optional filters off, 1ATR stop and2ATR target (4ATR when range exceeds1.2×SMA20 range), three-flat-bar cooldown. Stop/target references use signal-close formulas.
+
+The default session uses exchange09:30–16:00, bound here to CME Chicago10:30–17:00ET. Maintenance means the first outside-session calculation can occur18:00ET, with source market closure18:01. [Official Pine time documentation](https://www.tradingview.com/pine-script-docs/concepts/time/) establishes exchange-time default sessions.
+
+The model enters at next open, leaves that entry bar unprotected, and activates the bracket after its close. The static exit reserves100% before the separate trailing exit, leaving zero trailing quantity. Interbar gaps fill at available opens; intrabar order follows the documented nearer-extreme OHLC path. Limit targets may improve on favorable gaps. These behaviors follow [Pine v5 strategy documentation](https://www.tradingview.com/pine-script-docs/v5/concepts/strategies/). Equal-distance OHLC ties and market-close versus eligible price-gap priority lack sufficient documented ordering, so high/low-first and market/price-first are separate scenarios. Eight runs are four semantic bounds at each of two cost conventions, not parameter optimization.
+
+Benchmark costs remain $0.95 per side and0.25point adverse friction on every entry/exit, including targets. **Original-cost sensitivity** uses source $2.50 per side and two ticks (0.50point) on market/stop fills; limit targets have no adverse slippage. Results must not be mixed as one common-cost ranking.
+
+Every scenario closed38,402trades, with no final open position/pending entry. Benchmark net ranges **−$116,654.43 to−$116,646.25**, PF0.8341, closed DD$117,550.83–117,559.01. Original-cost net ranges **−$262,096.63 to−$262,081.45**, PF0.6766. Semantics change the totals only slightly. There were44,536 zero-reserved trailing calls,5,827 boosted-target entries,205 trades crossing ET dates and two crossing stitched contracts. The latter remain a roll-ledger limitation, not independent continuous-contract executions.
+
+The source's Pine v5 default margin is zero: it does not check sufficient funds. [Official migration documentation](https://www.tradingview.com/pine-script-docs/migration-guides/to-pine-version-6/) also identifies v5's ordinary9,000-order limit. The benchmark closed capital first became nonpositive2022-07-01; original-cost capital2021-11-30. Subsequent totals are hypothetical exposure sums, not funded-account returns. The38,402-trade full-history Python run exceeds ordinary native order limits; Deep Backtesting/runtime/export configuration is absent. Order-count boundary diagnostics are descriptive, not a claim of native counting parity.
+
+`qice_exact_tests.json` records **10 passed synthetic tests** covering exchange session/maintenance, exit reservation, next-open and delayed protection, gap stops, OHLC ties, margin, EOD closure, cooldown, separate cost conventions and EOD priority. `qice_exact_manifest.json` freezes settings, input, hashes and scenario definitions. Exact original symbol/timeframe/properties, native export, tick sequence, price rounding and queue behavior remain unavailable. The negative finding applies to this declared causal MNQ1-minute binding; it does not discard every original QICE context.
+
+**Wash/rinse's actual Python default was rerun on causal data.** It uses 20-bar previous range, three-bar confirmation, reversal candle, simple-mean ATR14, 1ATR stop, 0.6ATR target, next-open entry 09:35–15:30 ET, 15:55 flatten, one active trade and stop-first. A causal signal-prefix test passed. RTH slices are concatenated across days, so overnight gaps affect ATR; idealized stop-gap fills remain a known limitation. The companion `wr_sweep.py` begins with an undefined `rth` variable and supplies no instrument/data binding. No original ToS wash/rinse source was found in the census. The newly negative result applies to this **fixed 1-minute MNQ input adaptation**, not an asserted exact ToS implementation.
+
+## Complete disposition of executable domains in scope
+
+The detailed 23-row `remaining_executable_disposition.csv` covers the census's direct-strategy queue and the other executable domains without pretending its 83 family/domain groups are 83 complete strategies.
+
+| Family/domain | Evidence disposition | Exact remaining gap |
+|---|---|---|
+| STRG-HOLP | New corrected source-rule tests/reruns | Native quantity granularity, instrument/chart and broker-emulator parity |
+| Three-candle | New source-size/state/session tests/reruns | Conditional v6 margin and position-history/rounding parity |
+| QICE | New isolated harness,10 tests,8 semantic/cost bounds | Original chart/properties/export, native order-limit configuration, tick/rounding/queue parity |
+| Wash/rinse Python | New causal default rerun and prefix test | Original ToS source/data/timeframe binding absent |
+| ORB15 | Previous causal source-timing/path tests retained | Tick/emulator fill parity; substantial drawdown |
+| Luchi default | Previous corrected HTF and real-prefix tests retained | Exact Pine/preset parity; idealized stop gaps |
+| MTF OTE strategy | Completed source-mapped normalized baseline; six scenarios negative | Native limit-gap/margin/rounding parity and original chart/properties remain missing; three roll censors |
+| Displacement companion | Parent's separate repair completed; not repeated here | Parent worker's exact-source results control; reported defaults remain negative |
+| Range Break / MFFU Experiment2a | Parent's delegated exact-source lane; not repeated here | Use parent results rather than supplemental older ports |
+| N-shape / FairPrice / selected refill | Prior parent validation; excluded here | Evidence controls selected models, not every family version |
+| GoldenSetup NinjaTrader | Source blocked | Three C# files are generated wrappers; genuine rules/defaults missing |
+| Cash-profit MT4 | Tick-data/contract-binding blocked | Seven-point movement within14seconds; bid/ask ticks, forex/CFD lots/points/spread required |
+| DIAD manual MT4 | Entry strategy incomplete | Manual `enterNow/orderType/entryLevel`; need actual command sequence, not invented auto-entry |
+| MetaQuotes MACD / MA+SAR / MA+SAR size optimized / MAMA | Include/runtime/binding blocked | Referenced Expert/Signal/Trailing/Money `.mqh` behavior absent locally; Symbol/Period/point costs unspecified |
+| Tradovate momentum bot | Not executed | Pure extracted tick logic/sizing and tick history needed; account access does not solve it |
+| Schwab options wheel / AWS zero-DTE | Data/isolation blocked | Historical point-in-time option chains/quotes/greeks, assignment/context and saved external inputs; no bot/Lambda run |
+| Indicator-only/utility domains | Classification gap | No complete entries/exits/risk; no invented wrapper counted as a strategy |
+
+MTF OTE’s separate implementation is complete and source-mapped. The prior ICTExecution indicator engine was not used. Source geometry, next-tick pending limits, replacement, invalidation, 16-observed-HTF-change expiry and delayed protection were tested. Native limit-gap ordering remains bounded rather than asserted exact.
+
+The exact23-domain evidence ledger follows. “Missing” distinguishes unprovided original context and unavailable source/data from work owned by other workers; local one-minute MNQ adaptations do not settle all original contexts.
+
+| Domain | Evidence | Remaining input or gap |
+|---|---|---|
+| STRG-HOLP | NEW source-rule+synthetic tests | Broker-emulator percent-size granularity, order reservation and actual intended instrument/chart remain unverified. |
+| 3 Candle Scalping Strategy [Futures] | NEW source-rule+synthetic tests | Pine v6 margin100% is conditional offline assumption; min-contract rounding, same-bar reset/position history, native margin emulator parity unverified. |
+| Qice Strategy (Replica Attempt) | NEW isolated source-rule harness;10synthetictests;8frozen semantics/cost scenarios | Original intended symbol/chart/session/properties and native exports/DeepBacktesting configuration absent; tick/rounding/queue parity unverified. Timing/reservation/EOD implementation gap completed; documented ties/priority bounded. No general all-context verdict. |
+| Wash/rinse Python | NEW causal default1mMNQ RTH rerun+prefix test | Original ToS source and rth data binding absent; instrument/chart input is disclosed adaptation, stop gaps idealized. |
+| ORB15 5R Prop Farm | Previously NEW causal source timing+path tests | Minute path cannot certify tick fills/queue or prop rules; earlier report preserved. |
+| Luchi default probability harness | Previously NEW corrected HTF+real prefix tests | Harness is indicator interpretation, not every Pine preset; idealized stop gaps and exact Pine parity unresolved. |
+| MTF OTE sweep strategy | Completed separate source-rule baseline; 13 synthetic and 3 prefix tests | Original symbol/chart/properties, native margin/limit-gap/rounding/tick parity; three unresolved roll positions |
+| Displacement strength/companion | Parent delegated exact-source worker | Use parent worker exact-source result; current-source close-stop/order parity must not inherit older-port verdict. |
+| Range Break Scalp | Parent delegated exact-source worker | Use parent source result for offset HTF range/stop sizing/fill tests. |
+| MFFU Experiment2a | Parent delegated exact-source worker | Use parent source result for offset HTF/trailing/protective scheduling. |
+| N-shape Pine | Prior parent validation; excluded here | Full-library superiority or all-version parity not established. |
+| FairPrice/refill selected models | Prior parent validation; excluded here | Parent evidence controls selected settings only. |
+| GoldenSetup NinjaTrader | Assessed source blocked | Need genuine strategy source/defaults or trustworthy offline fills/settings. DLL not executed. |
+| Cash-profit MT4 | Assessed tick-data blocked | Bid/ask tick sequence and forex/CFD point/lot/spread contract definitions required; 1mMNQ substitution invalid. No EA executed. |
+| DIAD manual MT4 | Manual engine, automatic strategy incomplete | No deterministic entry sequence without command log; do not invent discretionary entries. |
+| MetaQuotes Expert MACD | Assessed include/runtime blocked | Expert.mqh/SignalMACD.mqh/MoneyNone includes missing locally; intended Symbol/Period, point units and bid/ask costs unbound. |
+| MetaQuotes Expert MA+SAR | Assessed include/runtime blocked | Expert/Signal/Trailing/Money include behavior missing; instrument/timeframe/bidask/point-cost binding absent. |
+| MetaQuotes Expert MA+SAR size optimized | Assessed include/runtime blocked | Missing standard library sizing/trailing semantics plus instrument/timeframe/bidask binding. |
+| MetaQuotes Expert MAMA | Assessed include/runtime blocked | Missing standard library execution semantics and declared instrument/timeframe; no comparable fees chosen. |
+| Tradovate momentum bot | Assessed, execution prohibited | Extract pure tick-sequence logic and sizing safely; local1mOHLC insufficient. Credentials/account access irrelevant. |
+| Schwab options wheel | Assessed data/isolation blocked | Need historical option chains, quotes, assignment/exercise/dividend/corporate action inputs and pure offline strategy; equity bars insufficient. |
+| AWS zero-DTE options automation | Assessed data/isolation blocked | Need point-in-time option chains/greeks/spreads and saved external alert inputs; no Lambda/broker action executed. |
+| Indicator-only/utility domains | Classification gap, not complete strategies | No entries/exits/risk means no strategy expectancy test; no invented conversion counted. |
+
+## Earlier controlling causal checks retained
+
+No ORB/Luchi sweeps or delegated companion/range/MFFU tests were repeated. The preserved causal report contains:
+
+- ORB Pine close-schedule, adverse feasible ordering: native $500-risk net **+$55,273**, PF1.196, closed DD$7,180, prior-EOD-to-intratrade decline$7,272. Fixed-one-MNQ net **+$20,987**, PF1.179, DD$4,033. On matched native traded dates, one-contract net+$16,304. Native and fixed-size calendars differ because the risk-budget mode skips wide ranges.
+- Luchi corrected 5-minute default: **−$31.80**,867 trades, PF0.9982, closed DD$4,376.50. Five synthetic prefixes, three historical feature prefixes and a782-closed-trade prefix passed after HTF/roadmap confirmations were made available at actual candle close.
+
+These establish neither a full-library winner nor FairPrice superiority. ORB remains a positive research candidate with execution/drawdown limits; Luchi default remains effectively flat. The new source-rule checks strengthen the negative assessment of the **specified MNQ one-minute normalizations**, while native sizing and unimplemented parity gaps are kept visible.
+
+## Deliverables and provenance
+
+All analysis is isolated under `[LOCAL_HOME]/Documents/Codex/2026-10-01/task-2/overlooked_strategies`. New evidence: `source_faithful_resume.py`, `source_faithful_results.json`, `source_faithful_tests.json`, `resume_fixed_default_summary.csv`, `resume_fixed_default_annual.csv`, `qice_wash_parity_audit.json`, `wash_rinse_causal_default_1mnq_trades.csv`, `resume_roll_overlap_audit.json`, `remaining_executable_disposition.csv`, and source-rule trade lists. Runner SHA256 values are in `research_runner_hashes.json`; dataset selection/hash/roll dates are in `causal_stream_manifest.json`.
+
+QICE deliverables: `qice_isolated_exact.py`, `test_qice_exact.py`, `qice_exact_tests.json`, `qice_exact_results.json`, `qice_exact_manifest.json`, `qice_exact_summary.csv`, `qice_exact_annual.csv`, `qice_order_limit_context.json`, and eight scenario trade lists. Earlier reports are preserved as `report_phase1_preserved.md`, `report_phase2_causal_preserved.md`, and `report_phase3_source_fidelity_preserved.md`. Native-cost/source-platform conclusions were not substituted for common benchmark comparisons. The Library report keeps its existing identity and version history when updated.
+
+## Constructive improvement batch completed
+
+Exactly three frozen candidates were tested; details are in `improvement_batch_20261001/report.md`. A late-session momentum loses $8,417.60; B morning agreement loses $8,394.90 and improves only $22.70 while worsening retained expectancy. C opening-range/previous20median ≥1.0 remains positive at $7,663.40 but reduces same-calendar ORB control net of $20,521.80 by $12,858.40 and increases drawdown. These are specific modification findings, not blanket rejection of the systems. Original FP/ORB controls remain unchanged; no grid or deployment occurred. Annual results, paired effects,20-session block uncertainty, doubled-cost stress and input gaps are preserved.
+
+## ORB risk and instrument improvement completed
+
+The frozen one-contract $100 planned-risk cap preserves positive MNQ expectancy while reducing modeled marked drawdown to $1,212.20 from roughly $4,547–$4,586. Net is $3,732.20–$4,012.20 versus baseline $20,627.80–$20,907.80; only 142 trades remain. Recent admission is ten trades in 2025 and zero in partial 2026. Gaps still exceed planned risk. MES transfer is nearly flat after benchmark costs and negative under doubled costs. On 1,196 matched dates, MNQ baseline/cap net is $20,954.50/$3,690.60 and MES $618.25/$438.45. No cap configuration reaches the modeled target within any frozen 30/90/180-day cohort, and unresolved calendars prevent full compliance claims. This is a constructive downside improvement with unresolved target-speed and renewal economics, not a deployable conclusion. Detailed protocol, true-price fills, annual results, admitted/skipped risk and continuous account ledgers are in `orb_risk_instrument_20261001/report.md`. Original/live scripts remain unchanged.

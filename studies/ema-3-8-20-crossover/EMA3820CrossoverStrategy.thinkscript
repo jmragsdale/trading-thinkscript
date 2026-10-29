@@ -1,0 +1,180 @@
+#My3820EMACrossover
+
+declare upper;
+
+input price = close;
+input EMA1 = 3;
+input EMA2 = 8;
+input EMA3 = 20;
+input EMA4 = 50;
+input SMA5 = 50;
+input displace = 0;
+input showBreakoutSignals = no;
+
+#EMA Cloud 
+def emaLength1 = ExpAverage(close, EMA1);
+def emaLength2 = ExpAverage(close, EMA2);
+AddCloud(emaLength1, emaLength2, Color.green, Color.pink);
+def emaLength3 = ExpAverage(close, EMA3);
+def emaLength4 = ExpAverage(close, EMA4);
+AddCloud(emaLength3, emaLength4, Color.cyan, Color.red);
+
+#SMA
+plot SMA = Average(price[-displace], SMA5);
+SMA.SetPaintingStrategy(PaintingStrategy.line);
+SMA.SetLineWeight(5);
+SMA.SetDefaultColor(Color.dark_orange);
+
+def emaValue1 = movavgExponential (close, EMA1);
+def emaValue2 = movavgExponential (close, EMA2);
+def emaValue3 = movavgExponential (close, EMA3);
+def emavalue4 = movAvgExponential (close, EMA4);
+
+def CrossoverUp1 = emaValue1 [1] < emaValue2 [1] and emaValue1 > emaValue2;
+def CrossoverDn1 = emaValue1 [1] > emaValue2 [1] and emaValue1 < emaValue2;
+def Diff1 = emavalue1 - emavalue2;
+
+def CrossoverUp2 = emaValue1 [1] < emaValue3 [1] and emaValue1 > emaValue3;
+def CrossoverDn2 = emaValue1 [1] > emaValue3 [1] and emaValue1 < emaValue3;
+def Diff2 = emavalue1 - emavalue3;
+
+def CrossoverUp3 = emaValue3 [1] < emaValue4 [1] and emaValue3 > emaValue4;
+def CrossoverDn3 = emaValue3 [1] > emaValue4 [1] and emaValue3 < emaValue4;
+def Diff4 = emavalue3 - emavalue4;
+
+# EMA3 and EMA8 Crossover
+
+Plot ArrowUp1 = if emaValue1 crosses above emaValue2
+then low
+else double.nan;
+Arrowup1.SetPaintingStrategy(PaintingStrategy.points);
+ArrowUp1.SetLineWeight(3);
+ArrowUp1.SetDefaultColor(Color.white);
+plot ArrowDN1 = if emaValue1 crosses below emaValue2
+then high
+else double.nan;
+ArrowDN1.SetPaintingStrategy(PaintingStrategy.points);
+ArrowDN1.SetLineWeight(3);
+ArrowDN1.SetDefaultColor(Color.white);
+
+AddLabel(emavalue1 > emavalue2, "3>8|$" + Round(Diff1,4), Color.Green);
+AddLabel(emavalue1 < emavalue2, "8>3|$" + Round(Diff1,4), Color.Red);
+
+# EMA3 and EMA8 Crossover bubbles
+
+#def condup1 = if emaValue1 [1] < emaValue2 [1] and emaValue1 > emaValue2 then BarNumber() else Double.NaN;
+#input bubblemover_up1 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == condup1,
+# emaValue2 - bubblemover_up1 * TickSize(),
+# "3up",
+# Color.uptick, no);
+
+#def conddown1 = if emaValue1 [1] > emaValue2 [1] and emaValue1 < emaValue2 then BarNumber() else Double.NaN;
+#input bubblemover_down1 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == conddown1,
+# emaValue2 - bubblemover_up1 * TickSize(),
+# "8up",
+# Color.downtick, no);
+
+# EMA20 and Price Crossover
+
+def Diff3 = emavalue3 - price;
+Plot ArrowDN2 = if emaValue3 crosses above price
+then high
+else double.nan;
+ArrowDN2.SetPaintingStrategy(PaintingStrategy.points);
+ArrowDN2.SetLineWeight(3);
+ArrowDN2.SetDefaultColor(Color.Yellow);
+plot ArrowUP2 = if emaValue3 crosses below price
+then low
+else double.nan;
+ArrowUP2.SetPaintingStrategy(PaintingStrategy.points);
+ArrowUP2.SetLineWeight(3);
+ArrowUP2.SetDefaultColor(Color.yellow);
+
+AddLabel(emavalue3 < Price, "Price>20|$" + Round(Diff3,4), Color.Green);
+AddLabel(emavalue3 > Price, "20>Price|$" + Round(Diff3,4), Color.Red);
+
+# EMA20 and Price Crossover bubbles
+
+#def condup2 = if emaValue3 [1] < price [1] and emaValue3 > price then BarNumber() else Double.NaN;
+#input bubblemover_up2 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == condup2,
+# price - bubblemover_up2 * TickSize(),
+# "Priceup",
+# Color.uptick, no);
+
+#def conddown2 = if emaValue1 [1] > price [1] and emaValue1 < price then BarNumber() else Double.NaN;
+#input bubblemover_down2 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == conddown2,
+# price - bubblemover_up2 * TickSize(),
+# "20up",
+# Color.downtick, no);
+
+# EMA3 and EMA20 Crossover
+
+Plot ArrowUp3 = if emaValue1 crosses above emaValue3
+then low
+else double.nan;
+ArrowUP3.SetPaintingStrategy(PaintingStrategy.Arrow_UP);
+ArrowUP3.SetLineWeight(5);
+ArrowUP3.SetDefaultColor(Color.Green);
+plot ArrowDN3 = if emaValue1 crosses below emaValue3
+then high
+else double.nan;
+ArrowDN3.SetPaintingStrategy(PaintingStrategy.Arrow_DOWN);
+ArrowDN3.SetLineWeight(5);
+ArrowDN3.SetDefaultColor(Color.Red);
+
+AddLabel(emavalue1 > emavalue3, "3>20|$" + Round(Diff2,4), Color.Green);
+AddLabel(emavalue1 < emavalue3, "20>3|$" + Round(Diff2,4), Color.Red);
+
+# EMA3 and EMA20 Crossover bubbles
+
+#def condup3 = if emaValue1 [1] < emaValue3 [1] and emaValue1 > emaValue3 then BarNumber() else Double.NaN;
+#input bubblemover_up3 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == condup2,
+# emaValue3 - bubblemover_up3 * TickSize(),
+# "3up",
+# Color.uptick, no);
+
+#def conddown3 = if emaValue1 [1] > emaValue3 [1] and emaValue1 < emaValue3 then BarNumber() else Double.NaN;
+#input bubblemover_down3 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == conddown2,
+# emaValue3 - bubblemover_up3 * TickSize(),
+# "8up",
+# Color.downtick, no);
+
+# EMA20 and EMA50 Crossover
+
+Plot ArrowUp4 = if emaValue3 crosses above emaValue4
+then low
+else double.nan;
+ArrowUP4.SetPaintingStrategy(PaintingStrategy.points);
+ArrowUP4.SetLineWeight(5);
+ArrowUP4.SetDefaultColor(Color.cyan);
+plot ArrowDN4 = if emaValue3 crosses below emaValue4
+then high
+else double.nan;
+ArrowDN4.SetPaintingStrategy(PaintingStrategy.points);
+ArrowDN4.SetLineWeight(5);
+ArrowDN4.SetDefaultColor(Color.pink);
+
+AddLabel(emavalue3 > emavalue4, "20>50|$" + Round(Diff4,4), Color.Green);
+AddLabel(emavalue3 < emavalue4, "50>20|$" + Round(Diff4,4), Color.Red);
+
+# EMA20 and EMA50 Crossover bubbles
+
+#def condup4 = if emaValue3 [1] < emaValue4 [1] and emaValue3 > emaValue4 then BarNumber() else Double.NaN;
+#input bubblemover_up4 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == condup2,
+# emaValue4 - bubblemover_up4 * TickSize(),
+# "20up",
+# Color.uptick, no);
+
+#def conddown4 = if emaValue3 [1] > emaValue4 [1] and emaValue3 < emaValue4 then BarNumber() else Double.NaN;
+#input bubblemover_down4 = 3;#Moves bubbles up or down away from other candles
+#AddChartBubble(BarNumber() == conddown2,
+# emaValue4 - bubblemover_up4 * TickSize(),
+# "50up",
+# Color.downtick, no);

@@ -1,0 +1,105 @@
+# VolumeProfile focused on prior day/week/month levels to help find "naked" POCs
+# created by tony_futures
+
+# setup Colors
+DefineGlobalColor("lowColor", CreateColor(109, 59, 81));
+DefineGlobalColor("highColor", CreateColor(59, 109, 88));
+DefineGlobalColor("midColor", CreateColor(94, 110, 59));
+
+def yyyymmdd = GetYYYYMMDD();
+def day_number = DaysFromDate(First(yyyymmdd)) + GetDayOfWeek(First(yyyymmdd));
+def month = GetYear() * 12 + GetMonth();
+def weekPeriod = Floor(day_number / 7);
+def dayPeriod = CountTradingDays(Min(First(yyyymmdd), yyyymmdd), yyyymmdd) - 1;
+def monthPeriod = Floor(month - First(month));
+
+#Prior Day Profile
+rec ctr1 = CompoundValue(1, if !(dayPeriod != dayPeriod[1]) then ctr1[1] + 1 else 1, 1);
+def priorperiod = if IsNaN(ctr1[1]) then 1 else Max(ctr1, ctr1[1]);
+profile volprofile1 = VolumeProfile("startNewProfile" = dayPeriod != dayPeriod[1], "onExpansion" = no);
+
+def vahprior = volprofile1.GetHighestValueArea();
+def pocprior = volprofile1.GetPointOfControl();
+def valprior = volprofile1.GetLowestValueArea();
+
+def Today = GetLastDay() == GetDay();
+input showDaily = yes;
+input showAllDailies = no;
+
+plot vahprev = if showDaily and Today then GetValue(vahprior, priorperiod) else Double.NaN;
+vahprev.SetDefaultColor(GlobalColor("midColor"));
+vahprev.SetPaintingStrategy(paintingStrategy = PaintingStrategy.HORIZONTAL);
+vahprev.HideBubble();
+
+plot pocprev = if showDaily and (Today or showAllDailies) then GetValue(pocprior, priorperiod) else Double.NaN;
+pocprev.SetDefaultColor(GlobalColor("lowColor"));
+pocprev.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+pocprev.HideBubble();
+
+
+plot valprev = if showDaily and Today then GetValue(valprior, priorperiod) else Double.NaN;
+valprev.SetDefaultColor(GlobalColor("midColor"));
+valprev.SetPaintingStrategy(paintingStrategy = PaintingStrategy.HORIZONTAL);
+valprev.HideBubble();
+
+#Prior Week Profile
+rec ctr2 = CompoundValue(1, if !(weekPeriod != weekPeriod[1]) then ctr2[1] + 1 else 1, 1);
+def priorperiod2 = if IsNaN(ctr2[1]) then 1 else Max(ctr2, ctr2[1]);
+profile volprofile2 = VolumeProfile("startNewProfile" = weekPeriod != weekPeriod[1], "onExpansion" = no);
+
+def vahprior2 = volprofile2.GetHighestValueArea();
+def pocprior2 = volprofile2.GetPointOfControl();
+def valprior2 = volprofile2.GetLowestValueArea();
+
+def ThisWeek = GetLastWeek() == GetWeek();
+input showWeekly = yes;
+input showAllWeeks = yes;
+
+plot vahprevweek = if showWeekly and ThisWeek then GetValue(vahprior2, priorperiod2) else Double.NaN;
+vahprevweek.SetDefaultColor(GlobalColor("highColor"));
+vahprevweek.SetPaintingStrategy(paintingStrategy = PaintingStrategy.HORIZONTAL);
+vahprevweek.HideBubble();
+
+plot pocprevweek = if showWeekly and (ThisWeek or showAllWeeks) then GetValue(pocprior2, priorperiod2) else Double.NaN;
+pocprevweek.SetDefaultColor(GlobalColor("lowColor"));
+pocprevweek.SetPaintingStrategy(PaintingStrategy.DASHES);
+pocprevweek.HideBubble();
+
+plot valprevweek = if showWeekly and ThisWeek then GetValue(valprior2, priorperiod2) else Double.NaN;
+valprevweek.SetDefaultColor(GlobalColor("highColor"));
+valprevweek.SetPaintingStrategy(paintingStrategy = PaintingStrategy.HORIZONTAL);
+valprevweek.HideBubble();
+
+#Prior Month Profile
+rec ctr3 = CompoundValue(1, if !(monthPeriod != monthPeriod[1]) then ctr3[1] + 1 else 1, 1);
+def priorperiod3 = if IsNaN(ctr3[1]) then 1 else Max(ctr3, ctr3[1]);
+profile volprofile3 = VolumeProfile("startNewProfile" = monthPeriod != monthPeriod[1], "onExpansion" = no);
+
+def vahprior3 = volprofile3.GetHighestValueArea();
+def pocprior3 = volprofile3.GetPointOfControl();
+def valprior3 = volprofile3.GetLowestValueArea();
+
+def ThisMonth = GetLastMonth() == GetMonth();
+input showMonthly = no;
+
+plot vahprevmonth = if showMonthly and ThisMonth then GetValue(vahprior3, priorperiod3) else Double.NaN;
+vahprevmonth.SetDefaultColor(GlobalColor("highColor"));
+vahprevmonth.SetPaintingStrategy(paintingStrategy = PaintingStrategy.HORIZONTAL);
+vahprevmonth.HideBubble();
+
+plot pocprevmonth = if showMonthly and ThisMonth then GetValue(pocprior3, priorperiod3) else Double.NaN;
+pocprevmonth.SetDefaultColor(GlobalColor("lowColor"));
+pocprevmonth.SetPaintingStrategy(PaintingStrategy.DASHES);
+pocprevmonth.HideBubble();
+
+plot valprevmonth = if showMonthly and ThisMonth then GetValue(valprior3, priorperiod3) else Double.NaN;
+valprevmonth.SetDefaultColor(GlobalColor("highColor"));
+valprevmonth.SetPaintingStrategy(paintingStrategy = PaintingStrategy.HORIZONTAL);
+valprevmonth.HideBubble();
+
+def showBubbleNow = !IsNaN(close) and IsNaN(close[-1]);
+input showBubbles = yes;
+AddChartBubble(showBubbles and showMonthly and showBubbleNow[1], pocprevmonth[1], "Monthly POC", Color.GRAY, yes);
+AddChartBubble(showBubbles and showWeekly and !showAllWeeks and showBubbleNow[1], pocprevweek[1], "Weekly POC", Color.GRAY, yes);
+AddChartBubble(showBubbles and showDaily and showBubbleNow[1], pocprev[1], "Yday POC", Color.GRAY, no);
+AddChartBubble(showBubbles and showWeekly and showAllWeeks and pocprevweek != pocprevweek[1], pocprevweek, "Weekly POC", Color.GRAY, no);

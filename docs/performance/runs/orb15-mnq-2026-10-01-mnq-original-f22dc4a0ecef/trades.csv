@@ -1,0 +1,20 @@
+trade_id,instrument,side,entry_time,exit_time,timestamp_timezone,entry_price,exit_price,quantity,exit_reason,net_pnl_usd,commission_usd_included,reported_favorable_excursion_usd,reported_adverse_excursion_usd,duration_bars
+1,MNQ,short,2026-09-07 10:20,2026-09-07 18:01,UTC-04:00 as exported; no DST conversion inferred,29602.5,29608,1,Research EOD,-12.9,1.9,76.55,-61.45,161
+2,MNQ,short,2026-09-08 09:53,2026-09-08 16:00,UTC-04:00 as exported; no DST conversion inferred,29466,29543.25,1,Research EOD,-156.4,1.9,82.05,-358.95,367
+3,MNQ,long,2026-09-09 09:49,2026-09-09 11:11,UTC-04:00 as exported; no DST conversion inferred,29506.75,29416.75,1,LX,-181.9,1.9,173.55,-180.95,82
+4,MNQ,long,2026-09-10 09:49,2026-09-10 16:00,UTC-04:00 as exported; no DST conversion inferred,29200.25,29137.75,1,Research EOD,-126.9,1.9,149.05,-223.95,371
+5,MNQ,long,2026-09-11 09:46,2026-09-11 10:47,UTC-04:00 as exported; no DST conversion inferred,29441.25,29347,1,LX,-190.4,1.9,66.55,-189.45,61
+6,MNQ,long,2026-09-14 09:46,2026-09-14 16:00,UTC-04:00 as exported; no DST conversion inferred,28968,29151.25,1,Research EOD,364.6,1.9,674.55,-25.45,374
+7,MNQ,long,2026-09-15 09:46,2026-09-15 10:07,UTC-04:00 as exported; no DST conversion inferred,29442,29371.5,1,LX,-142.9,1.9,2.55,-141.95,21
+8,MNQ,long,2026-09-16 09:46,2026-09-16 14:32,UTC-04:00 as exported; no DST conversion inferred,29434.25,29372.75,1,LX,-124.9,1.9,235.55,-123.95,286
+9,MNQ,long,2026-09-17 10:28,2026-09-17 16:00,UTC-04:00 as exported; no DST conversion inferred,29738,29744.75,1,Research EOD,11.6,1.9,109.55,-172.95,332
+10,MNQ,short,2026-09-18 09:48,2026-09-18 14:53,UTC-04:00 as exported; no DST conversion inferred,29798.5,29845.5,1,SX,-95.9,1.9,277.55,-94.95,305
+11,MNQ,long,2026-09-21 09:46,2026-09-21 16:00,UTC-04:00 as exported; no DST conversion inferred,30366.5,30783.5,1,Research EOD,832.1,1.9,992.05,-30.45,374
+12,MNQ,long,2026-09-22 09:50,2026-09-22 16:00,UTC-04:00 as exported; no DST conversion inferred,30927.75,31029.5,1,Research EOD,201.6,1.9,275.55,-89.45,370
+13,MNQ,short,2026-09-23 09:46,2026-09-23 16:00,UTC-04:00 as exported; no DST conversion inferred,30901.5,30770.25,1,Research EOD,260.6,1.9,521.55,0,374
+14,MNQ,long,2026-09-24 09:46,2026-09-24 16:00,UTC-04:00 as exported; no DST conversion inferred,30607,30756,1,Research EOD,296.1,1.9,440.05,-211.45,374
+15,MNQ,long,2026-09-25 09:52,2026-09-25 10:05,UTC-04:00 as exported; no DST conversion inferred,30890.5,30767,1,LX,-248.9,1.9,70.55,-247.95,13
+16,MNQ,short,2026-09-28 09:46,2026-09-28 16:00,UTC-04:00 as exported; no DST conversion inferred,30601.25,30567.75,1,Research EOD,65.1,1.9,488.55,-242.45,374
+17,MNQ,short,2026-09-29 11:26,2026-09-29 16:00,UTC-04:00 as exported; no DST conversion inferred,30545,30617.25,1,Research EOD,-146.4,1.9,81.05,-232.95,274
+18,MNQ,long,2026-09-30 09:59,2026-09-30 15:59,UTC-04:00 as exported; no DST conversion inferred,30810.5,30682,1,LX,-258.9,1.9,190.05,-257.95,360
+19,MNQ,short,2026-10-01 09:46,2026-10-01 13:30,UTC-04:00 as exported; no DST conversion inferred,30734,30856.5,1,SX,-246.9,1.9,404.05,-245.95,224

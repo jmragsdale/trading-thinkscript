@@ -1,0 +1,23 @@
+{
+  "original_MNQ": {
+    "fees_roundtrip_dollars": 1.48,
+    "slippage_points_roundtrip": 0.5,
+    "total_roundtrip_dollars": 2.48,
+    "total_points": 1.24
+  },
+  "corrected_MFFU_MNQ": {
+    "fees_roundtrip_dollars": 1.9,
+    "slippage_points_roundtrip": 0.5,
+    "point_value": 2,
+    "total_roundtrip_dollars": 2.9,
+    "total_points": 1.45,
+    "source": "https://help.myfundedfutures.com/en/articles/9735811-futures-instrument-list",
+    "source_article_date": "2026-08-24",
+    "verified": "2026-10-01"
+  },
+  "SPY_underlying_proxy": {
+    "total_cost_dollars_per_share": 0.02,
+    "options_inference": false
+  },
+  "units": "net_points = net dollars divided by 2 for MNQ; forward gross points are signed terminal-close minus next-open before any costs; MFE/MAE gross; equal costs cancel in matched excess; doubling means twice total cost, not only fees"
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86",
+  "family": "wash-rinse-v2",
+  "label": "different-python-default",
+  "record_type": "strategy",
+  "reported_on": "2026-10-01",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "a1b0d3c86a86a353ecad78ed25a902b85331b0e6f759f4636cb71bee218f1dd3",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "scanners/wash-rinse-v2",
+        "source_path": "scanners/wash-rinse-v2/WashRinse_v2_Scan_Corrected.ts",
+        "source_sha256": "5a4410a5853b69709f4778f3099491428748cce1ded984b26f7662a6c4d88d98",
+        "relationship": "different-model"
+      },
+      {
+        "project": "strategies/wash-rinse-v2",
+        "source_path": "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts",
+        "source_sha256": "d39bf43cf2398d15024fe7af35d8518c081f0c2b642512df6d6e2d59686b9662",
+        "relationship": "different-model"
+      },
+      {
+        "project": "studies/wash-rinse-v2",
+        "source_path": "studies/wash-rinse-v2/WashRinse_v2_Study_Corrected.ts",
+        "source_sha256": "0eee0a34a4d3cb77fc3cc9ac2586f598ac1fa9500f5f544c0a64f475de409110",
+        "relationship": "different-model"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [],
+    "tested_model_version": null,
+    "inputs": {
+      "lookback_bars": 20,
+      "confirmation_bars": 3,
+      "atr_length": 14,
+      "atr_average": "simple",
+      "stop_atr": 1.0,
+      "target_atr": 0.6,
+      "flatten_time": "15:55"
+    }
+  },
+  "test_environment": {
+    "engine": "python",
+    "engine_version": null,
+    "instrument": "MNQ",
+    "aggregation_minutes": 1,
+    "session": "MNQ RTH",
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": null,
+    "start": "2021-06-10",
+    "end": "2026-06-09",
+    "reported_period": null,
+    "missing_data_treatment": null,
+    "rollover_treatment": null,
+    "raw_data_hash": null
+  },
+  "execution": {
+    "entry_rule": "Next open 09:35–15:30 ET, reversal candle confirmation.",
+    "exit_rule": "1ATR stop / 0.6ATR target, 15:55 flatten.",
+    "position_sizing": "One MNQ contract.",
+    "same_bar_stop_target": "stop-first",
+    "initial_capital_usd": null,
+    "overlap_rule": "One active position."
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": 1.9,
+    "slippage_points_each_side": 0.25,
+    "total_round_trip_usd": 2.9,
+    "total_round_trip_points": 1.45,
+    "pnl_basis": "net",
+    "description": "Historical benchmark, one MNQ."
+  },
+  "sample": {
+    "development_period": null,
+    "test_period": null,
+    "test_used_in_selection": null,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "wash-python-audit",
+      "wash-research-report"
+    ],
+    "source_records": {
+      "wash-python-audit": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/qice_wash_parity_audit.json",
+        "original_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+        "original_bytes": 1832,
+        "evidence": "docs/performance/evidence/wash-python-audit.json",
+        "evidence_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "wash-research-report": {
+        "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/report.md",
+        "original_sha256": "fe0d151fac4f8a8fd5b3a8ebf632943086a306bca8edadabf54dde1421ed096a",
+        "original_bytes": 36590,
+        "evidence": "docs/performance/evidence/wash-research-report.txt",
+        "evidence_sha256": "9e0e98b98cd0639d5fa130bd533b3502fd59f87186ebb217889820a877c91f81",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      }
+    }
+  },
+  "validation": {
+    "status": "reported",
+    "source_relationship": "different-model",
+    "native_parity": "not-verified",
+    "lookahead_audit": null,
+    "warnings": [
+      "Original TOS source absent from prior census; this is a different Python model.",
+      "Current WashRinse v2 has different swing/state rules and default 2R target.",
+      "Concatenated RTH slices affect ATR through overnight gaps; gap stops idealized."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "script_identity.tested_model_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.provider": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.reported_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.missing_data_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.rollover_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.raw_data_hash": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.initial_capital_usd": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.development_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_used_in_selection": "Not established by the retrieved evidence; not inferred from current library defaults."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86/run.json",
+    "summary": "docs/performance/runs/wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86/summary.json",
+    "markdown": "docs/performance/runs/wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86/PERFORMANCE.md",
+    "observations": {
+      "path": null,
+      "kind": "trades",
+      "sha256": null,
+      "row_count": null,
+      "reason": "Observation-level ledger not available in the retrieved evidence; aggregate report only."
+    },
+    "summary_sha256": "7d070bb625481487c9250ecaaccfc651a225a39ef5761fda1ba69f981e693306"
+  }
+}

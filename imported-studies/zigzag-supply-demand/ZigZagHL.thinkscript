@@ -1,0 +1,198 @@
+# ZigZag High Low Supply Demand
+# ZigZag High Low modified in part by Linus' and Lar's code
+# ZZZ, with modifications by tomsk
+# 1.12.2020
+
+# https://usethinkscript.com/threads/...d-zones-for-thinkorswim.172/page-2#post-13790
+
+# V1.0 - 10.09.2016 - ZZZ - Initial release of ZigZag High Low Supply Demand
+# V1.1 - 06.28.2017 - tomsk - Sectionalized code, and rearranged flow of some ZZ Logic
+# V1.2 - 01.12.2020 - tomsk - Removed Fibonacci related code per user request
+
+input showBubblesChange = no; # Price Change between Zigzags
+input showBubblesPrice = no; # Price at Zigzag High/Low
+input showBubblesBarCount = no; # Bar Count between Zigzags
+input showBubblesVolume = no; # Volume at Zigzag Reversals
+
+input showArrows = no;
+input useAlerts = no;
+input numberSuppDemandToShow = 2;
+input showSupplyDemand = {default Pivot, Arrow, None};
+input showSupplyDemandCloud = yes;
+
+input BubbleOffset = .50000;
+input PercentAmount = .01;
+input RevAmount = .15;
+input ATRreversal = 1.0;
+input ATRlength = 5;
+
+def zz = ZigZagHighLow("price h" = high, "price l" = low, "percentage reversal" = PercentAmount,
+"absolute reversal" = RevAmount, "atr length" = ATRlength, "atr reversal" = ATRreversal);
+
+def ReversalAmount = if (close * PercentAmount / 100) > Max(RevAmount < ATRreversal * ATRlength, RevAmount)
+then (close * PercentAmount / 100)
+else if RevAmount < ATRreversal * ATRlength
+then ATRreversal * ATRlength
+else RevAmount;
+# Zig Zag Specific Data
+
+def zzSave = if !IsNaN(zz) then zz else GetValue(zzSave, 1);
+def chg = (if zzSave == high then high else low) - GetValue(zzSave, 1);
+def isUp = chg >= 0;
+def isConf = AbsValue(chg) >= ReversalAmount or (IsNaN(GetValue(zz, 1)) and GetValue(isConf, 1));
+
+# Price Change Between ZigZags
+
+def xxHigh = if zzSave == high then high else xxHigh[1];
+def chgHigh = high - xxHigh[1];
+def xxLow = if zzSave == low then low else xxLow[1];
+def chgLow = low - xxLow[1];
+
+# Bar Count Between ZigZags
+
+def zzCount = if zzSave[1] != zzSave then 1 else if zzSave[1] == zzSave then zzCount[1] + 1 else 0;
+def zzCountHiLo = if zzCountHiLo[1] == 0 and (zzSave == high or zzSave == low) then 1
+else if zzSave == high or zzSave == low then zzCountHiLo[1] + 1
+else zzCountHiLo[1];
+def zzHiLo = if zzSave == high or zzSave == low then zzCountHiLo else zzCountHiLo + 1;
+def zzCountHigh = if zzSave == high then zzCount[1] else Double.NaN;
+def zzCountLow = if zzSave == low then zzCount[1] else Double.NaN;
+
+# Volume at Reversals
+
+def vol = if BarNumber() == 0 then 0 else volume + vol[1];
+def vol1 = if BarNumber() == 1 then volume else vol1[1];
+def xxVol = if zzSave == high or zzSave == low then TotalSum(volume) else xxVol[1];
+def chgVol = if xxVol - xxVol[1] + vol1 == vol then vol else xxVol - xxVol[1];
+
+# Label for Confirmed/Unconfirmed Status of Current Zigzag
+
+AddLabel(BarNumber() != 1, (if isConf then "Confirmed " else "Unconfirmed ") + "ZigZag: " + chg,
+if !isConf then Color.Dark_Orange else if isUp then Color.Green else Color.Red);
+
+# Zig Zag Plot
+
+plot zzp = if isUp <= 1 then zz else Double.NaN;
+zzp.AssignValueColor(if isUp then Color.Green else if !isUp then Color.Red else Color.Dark_Orange);
+zzp.SetStyle(Curve.FIRM);
+zzp.EnableApproximation();
+
+plot zzdot = if isUp <= 1 then zz else Double.NaN;
+zzdot.setpaintingStrategy(paintingStrategy.POINTS);
+zzdot.setlineWeight(5);
+zzdot.assignvalueColor(if zzsave==high then color.yellow else color.blue);
+
+# Bubbles
+
+# Price Change between Zigzags
+
+AddChartBubble(showBubblesChange and !IsNaN(zz) and BarNumber() != 1, if isUp then high * (1 + BubbleOffset) else low * (1 - BubbleOffset), "$" + chg, if isUp and chgHigh > 0 then Color.Green else if isUp and chgHigh < 0 then Color.Red else if isUp then Color.Yellow else if !isUp and chgLow > 0 then Color.Green else if !isUp and chgLow < 0 then Color.Red else Color.Yellow, isUp);
+
+# Price at Zigzag High/Low
+
+AddChartBubble(showBubblesPrice and !IsNaN(zz) and BarNumber() != 1, if isUp then high * (1 + BubbleOffset) else low * (1 - BubbleOffset), if isUp then "$" + high else "$" + low , if isUp and chgHigh > 0 then Color.Green else if isUp and chgHigh < 0 then Color.Red else if isUp then Color.Yellow else if !isUp and chgLow > 0 then Color.Green else if !isUp and chgLow < 0 then Color.Red else Color.Yellow, isUp);
+
+# Bar Count between Zigzags
+
+AddChartBubble(showBubblesBarCount and !IsNaN(zz) and BarNumber() != 1, if isUp then high * (1 + BubbleOffset) else low * (1 - BubbleOffset), if zzSave == high then zzCountHigh else zzCountLow, if isUp and chgHigh > 0 then Color.Green else if isUp and chgHigh < 0 then Color.Red else if isUp then Color.Yellow else if !isUp and chgLow > 0 then Color.Green else if !isUp and chgLow < 0 then Color.Red else Color.Yellow, if isUp then yes else no );
+
+# Volume at Zigzag Reversals
+
+AddChartBubble(showBubblesVolume and !IsNaN(zz) and BarNumber() != 1, if isUp then high * (1 + bubbleoffset) else low * (1 - bubbleoffset), chgVol,if isUp and chghigh > 0 then Color.Green else if isUp and chghigh < 0 then Color.Red else if isUp then Color.Yellow else if !isUp and chglow > 0 then Color.Green else if !isUp and chglow < 0 then Color.Red else Color.Yellow, if isUp then yes else no );
+
+# Arrows
+
+def zzL = if !IsNaN(zz) and !isUp then low else GetValue(zzL, 1);
+def zzH = if !IsNaN(zz) and isUp then high else GetValue(zzH, 1);
+
+def dir = CompoundValue(1, if zzL != zzL[1] or low == zzL[1] and low == zzSave then 1
+else if zzH != zzH[1] or high == zzH[1] and high == zzSave then -1
+else dir[1], 0);
+
+def signal = CompoundValue(1, if dir > 0 and low > zzL
+then if signal[1] <= 0 then 1 else signal[1]
+else if dir < 0 and high < zzH
+then if signal[1] >= 0 then -1 else signal[1]
+else signal[1], 0);
+
+plot U1 = showArrows and signal > 0 and signal[1] <= 0;
+U1.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_UP);
+U1.SetDefaultColor(Color.Green);
+U1.SetLineWeight(4);
+
+plot D1 = showArrows and signal < 0 and signal[1] >= 0;
+D1.SetPaintingStrategy(PaintingStrategy.BOOLEAN_ARROW_DOWN);
+D1.SetDefaultColor(Color.Red);
+D1.SetLineWeight(4);
+
+# Alerts
+
+Alert(useAlerts and U1, "ZIG-UP", Alert.BAR, Sound.Bell);
+Alert(useAlerts and D1, "ZAG-DOWN", Alert.BAR, Sound.Chimes);
+
+# Supply Demand Areas
+
+def data1 = CompoundValue(1, if (zzSave == high or zzSave == low) then data1[1] + 1 else data1[1], 0);
+def dataCount1 = (HighestAll(data1) - data1[1]);
+def idx = showSupplyDemand == showSupplyDemand.Pivot;
+
+def rLow;
+def rHigh;
+if signal crosses 0 {
+rLow = low[idx];
+rHigh = high[idx];
+} else {
+rLow = rLow[1];
+rHigh = rHigh[1];
+}
+
+plot HighLine = if dataCount1 <= numberSuppDemandToShow and
+showSupplyDemand != showSupplyDemand.None and
+!isNaN(close) and
+rHigh != 0
+then rHigh
+else Double.NaN;
+HighLine.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+HighLine.AssignValueColor(if signal > 0 then Color.Green else Color.Red);
+
+plot LowLine = if dataCount1 <= numberSuppDemandToShow and
+showSupplyDemand != showSupplyDemand.None and
+!isNaN(close) and
+rLow != 0
+then rLow
+else Double.NaN;
+LowLine.SetPaintingStrategy(PaintingStrategy.HORIZONTAL);
+LowLine.AssignValueColor(if signal > 0 then Color.Green else Color.Red);
+
+def hlUp = if signal > 0 then HighLine else Double.NaN;
+def hlDn = if signal < 0 then HighLine else Double.NaN;
+
+AddCloud(if showSupplyDemandCloud then hlUp else Double.NaN, LowLine, Color.Light_Green, Color.Light_Green);
+AddCloud(if showSupplyDemandCloud then hlDn else Double.NaN, LowLine, Color.Light_Red, Color.Light_Red);
+
+
+#Moification per Usethinkscript request to draw lines form one zzlow to another and the same for zzhigh to another zzhigh
+def shsl_low = if zzsave==low then zz else shsl_low[1];
+plot swinglow = shsl_low;
+swinglow.enableApproximation();
+def slcolor = if swinglow != swinglow[1] and swinglow > swinglow[1]
+then 1
+else if slcolor[1] == 1 and swinglow == swinglow[1]
+then 1
+else 0;
+swinglow.assignvalueColor(if slcolor == 1 then color.green else color.red);
+swinglow.setlineWeight(3);
+
+def shsl_high = if zzsave==high then zz else shsl_high[1];
+plot swinghigh = shsl_high;
+swinghigh.enableApproximation();
+swinghigh.setlineWeight(3);
+
+def shcolor = if swinghigh != swinghigh[1] and swinghigh > swinghigh[1]
+then 1
+else if slcolor[1] == 1 and swinghigh == swinghigh[1]
+then 1
+else 0;
+swinghigh.assignvalueColor(if shcolor == 1 then color.green else color.red);
+
+# End ZigZag High Low Supply Demand

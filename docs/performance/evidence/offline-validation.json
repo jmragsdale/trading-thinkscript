@@ -1,0 +1,10 @@
+{
+  "finite_outcomes": true,
+  "unique_events": true,
+  "nonnegative_excursions": true,
+  "cost_stress": true,
+  "corrected_cost_scenario": true,
+  "gross_endpoint_arithmetic": true,
+  "originals_unchanged": true,
+  "pooled_recomputed": true
+}

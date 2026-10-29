@@ -1,0 +1,71 @@
+# BTD Indicator with EMA Confluence and Long/Short Conditions for ThinkorSwim
+
+declare upper;
+
+# Inputs
+input maLength = 50;
+input dipPercentThreshold = 2.0;
+input rallyPercentThreshold = 2.0;
+input rsiLength = 14;
+input oversoldThreshold = 30;
+input overboughtThreshold = 70;
+input volumeMultiplier = 1.5;
+
+# Calculate the reference SMA and percentage differences
+def ma = Average(close, maLength);
+def dipPercent = 100 * (ma - close) / ma;
+def rallyPercent = 100 * (close - ma) / ma;
+
+# Calculate RSI
+def rsiValue = RSI(length = rsiLength);
+
+# Volume condition
+def avgVolume = Average(volume, maLength);
+def highVolume = volume > volumeMultiplier * avgVolume;
+
+# Calculate the EMAs
+def ema10 = ExpAverage(close, 10);
+def ema20 = ExpAverage(close, 20);
+def ema50 = ExpAverage(close, 50);
+def ema200 = ExpAverage(close, 200);
+
+# Long trade conditions
+def isDip = dipPercent >= dipPercentThreshold;
+def longRSICondition = rsiValue < oversoldThreshold;
+def longTrend = close > ema200;
+def longEmaStack = (ema10 > ema20) and (ema20 > ema50) and (ema50 > ema200);
+
+# Short trade conditions
+def isRally = rallyPercent >= rallyPercentThreshold;
+def shortRSICondition = rsiValue > overboughtThreshold;
+def shortTrend = close < ema200;
+def shortEmaStack = (ema10 < ema20) and (ema20 < ema50) and (ema50 < ema200);
+
+# Plot long signal arrow when all long conditions are met
+plot LongSignal = if isDip and longRSICondition and highVolume and longTrend and longEmaStack then low else Double.NaN;
+LongSignal.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+LongSignal.SetDefaultColor(Color.GREEN);
+LongSignal.SetLineWeight(3);
+
+# Plot short signal arrow when all short conditions are met
+plot ShortSignal = if isRally and shortRSICondition and highVolume and shortTrend and shortEmaStack then high else Double.NaN;
+ShortSignal.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+ShortSignal.SetDefaultColor(Color.RED);
+ShortSignal.SetLineWeight(3);
+
+# Plot the EMAs for visual confluence
+plot EMA10Plot = ema10;
+EMA10Plot.SetDefaultColor(Color.CYAN);
+EMA10Plot.SetLineWeight(1);
+
+plot EMA20Plot = ema20;
+EMA20Plot.SetDefaultColor(Color.MAGENTA);
+EMA20Plot.SetLineWeight(1);
+
+plot EMA50Plot = ema50;
+EMA50Plot.SetDefaultColor(Color.YELLOW);
+EMA50Plot.SetLineWeight(1);
+
+plot EMA200Plot = ema200;
+EMA200Plot.SetDefaultColor(Color.RED);
+EMA200Plot.SetLineWeight(2);

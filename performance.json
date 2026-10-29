@@ -1,0 +1,1712 @@
+{
+  "reviewed_on": "2026-10-29",
+  "scope": "Existing local research only; no new backtests, native Thinkorswim tests or broker/live execution. Related models are not exact-source performance.",
+  "source_hash_matches_for_offline_study": [
+    {
+      "original_filename": "DisplacementWickAlerts_Study.ts",
+      "sha256": "aff6d61e92bf191726bebfd142519ffab879a2c62f939cdf4ccf1ff726091082",
+      "library_matches": [
+        "studies/displacement-wick/DisplacementWickAlerts_Study.ts"
+      ]
+    },
+    {
+      "original_filename": "DisplacementWickAlerts_Scanner.ts",
+      "sha256": "7068e16e0620d98880f4b1b02e18deade8ac2922b98c70e798e5d7f9e255dee9",
+      "library_matches": [
+        "scanners/displacement-wick/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts"
+      ]
+    },
+    {
+      "original_filename": "MACDV_Scan_Unified_Regime_SignalType.ts",
+      "sha256": "0375df5c8553053025d91625cd51c6aaaf20453b5e11efa515d1d341ce4ee047",
+      "library_matches": [
+        "scanners/macd-v/MACDV_Scan_Unified_Regime_SignalType.ts"
+      ]
+    },
+    {
+      "original_filename": "MACDV_Chart_Study_Entries_Exits.ts",
+      "sha256": "d4efd595ad4f0cc0d3febc8d78f9606d0b413a40f9df63806a6ad013a4b574ac",
+      "library_matches": [
+        "studies/macd-v/MACDV_Chart_Study_Entries_Exits.ts"
+      ]
+    },
+    {
+      "original_filename": "NShape_QuantFiltered_SPY_Scanner.ts",
+      "sha256": "4a5925a0ccbbb99f101ecf6a15e617f6acb594d89f5727b7fcdff73955feacd9",
+      "library_matches": [
+        "scanners/nshape-spy/NShape_QuantFiltered_SPY_Scanner.ts"
+      ]
+    },
+    {
+      "original_filename": "NShape_QuantFiltered_SPY_Scalp.ts",
+      "sha256": "f63d5606b4a052fa31962488dbce6d9e8296c1d92f663f132fbfd6d92ced2877",
+      "library_matches": [
+        "studies/nshape-spy/NShape_QuantFiltered_SPY_Scalp.ts"
+      ]
+    }
+  ],
+  "schema_version": 2,
+  "result_schema_version": "1.0.0",
+  "normalized_on": "2026-10-29",
+  "legacy_registry": "docs/performance/legacy/performance-v1.json",
+  "format_document": "docs/performance/FORMAT.md",
+  "sources": {
+    "offline-summary": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/summary.csv",
+      "original_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+      "original_bytes": 132861,
+      "evidence": "docs/performance/evidence/offline-summary.csv",
+      "evidence_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-protocol": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/protocol.md",
+      "original_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+      "original_bytes": 2536,
+      "evidence": "docs/performance/evidence/offline-protocol.txt",
+      "evidence_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-parity": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/parity_mapping.md",
+      "original_sha256": "f7a918ee926d36e8b1954b664e3f15d00ab14aad4bbb383c8880de2453f95b89",
+      "original_bytes": 2202,
+      "evidence": "docs/performance/evidence/offline-parity.txt",
+      "evidence_sha256": "4bf70b939afecdbd98bbbb6855c153d1cdf31e8dd84cdc47158de5a810a36d34",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-readme": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/README.md",
+      "original_sha256": "9ba8a7cdf92f65dd57ba7a62f00b6b37fe1bed8234506d56c4973b26a61d05ef",
+      "original_bytes": 2305,
+      "evidence": "docs/performance/evidence/offline-readme.txt",
+      "evidence_sha256": "adfe01fc6b7366a2a1cb16abe032b9a94005ae722999570c4d96eb215df98d56",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-hashes": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/original_hashes.json",
+      "original_sha256": "9a3e9cd32b1ec2391b74885b93ac834fbe92123e20811bd40741e14c59c27212",
+      "original_bytes": 1299,
+      "evidence": "docs/performance/evidence/offline-hashes.json",
+      "evidence_sha256": "3a141060ce1786214ed72703d4ed3dcf76cf658f6aa81877481abfab71dcf02a",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-provenance": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/provenance.json",
+      "original_sha256": "08f9ad2434854985f360e732ff6e6d4e3a1ed483cd3a67dd5446c2d9ad96c9d2",
+      "original_bytes": 935,
+      "evidence": "docs/performance/evidence/offline-provenance.json",
+      "evidence_sha256": "3ef9f59b70fd8d4586082ed98da6da805ab5c4a251802ed21b1ac14dcac40daf",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-costs": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/cost_assumptions.json",
+      "original_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+      "original_bytes": 863,
+      "evidence": "docs/performance/evidence/offline-costs.json",
+      "evidence_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-validation": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/validation.json",
+      "original_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+      "original_bytes": 243,
+      "evidence": "docs/performance/evidence/offline-validation.json",
+      "evidence_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-selected-report": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_quant_adjustment_report.md",
+      "original_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+      "original_bytes": 5093,
+      "evidence": "docs/performance/evidence/nshape-selected-report.txt",
+      "evidence_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-filter-sweep": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/quant_filter_sweep.csv",
+      "original_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+      "original_bytes": 1377833,
+      "evidence": "docs/performance/evidence/nshape-filter-sweep.csv",
+      "evidence_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-simple-report": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_2m_event_study_report.md",
+      "original_sha256": "9aa58d52d9e99bac69ed5054f185de3e7b650f2687caef45c0aa68a489f08a41",
+      "original_bytes": 3653,
+      "evidence": "docs/performance/evidence/nshape-simple-report.txt",
+      "evidence_sha256": "50c6cec1d011f213216300ef17b9a7e1820cb4fbf5f99136927345669c55e1a4",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-simple-summary": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/nshape_event_study_summary.csv",
+      "original_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+      "original_bytes": 7873,
+      "evidence": "docs/performance/evidence/nshape-simple-summary.csv",
+      "evidence_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-native-report": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/native_verification.md",
+      "original_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+      "original_bytes": 2670,
+      "evidence": "docs/performance/evidence/orb-native-report.txt",
+      "evidence_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-original-trades": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/original_trades.csv",
+      "original_sha256": "790814cb5c064445bf79b47c6dbeb80b8bdc2183843e73c4791ef3b73e090267",
+      "original_bytes": 4388,
+      "evidence": "docs/performance/evidence/orb-original-trades.csv",
+      "evidence_sha256": "5859d1c29f64abc4e88e9f333be4d19ff7abab779fc868bea4d7c21f76c0cec1",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-capped-trades": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/capped_trades.csv",
+      "original_sha256": "156b64a4a2dbcd63675166ca56864ab5a3e441309648cd8a2e345594db771f78",
+      "original_bytes": 4213,
+      "evidence": "docs/performance/evidence/orb-capped-trades.csv",
+      "evidence_sha256": "aec5bd8bf969ea55e397f71a53952ed3516106e55c8524a64418ee37963e8ad8",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-research-guide": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/ORB15_MNQ_research_guide.md",
+      "original_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+      "original_bytes": 15564,
+      "evidence": "docs/performance/evidence/orb-research-guide.txt",
+      "evidence_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "wick-verification-update": {
+      "origin": "HOME/Documents/Claude/Projects/JJ Simon Mean Reversion - Prop Firm Automation/strategy_comparison.md",
+      "original_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+      "original_bytes": 11527,
+      "evidence": "docs/performance/evidence/wick-verification-update.txt",
+      "evidence_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "mtf-clean-rescore": {
+      "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-27_incumbent_clean_engine_rescore.md",
+      "original_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+      "original_bytes": 11948,
+      "evidence": "docs/performance/evidence/mtf-clean-rescore.txt",
+      "evidence_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "mtf-cost-rebaseline": {
+      "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-30_leak_restamp_and_clean_rebaseline.md",
+      "original_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+      "original_bytes": 12269,
+      "evidence": "docs/performance/evidence/mtf-cost-rebaseline.txt",
+      "evidence_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "daily-ote-historical": {
+      "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/ote-wheel-scan-tos/backtests/2026-07-15_daily_ote_tos_scanner.md",
+      "original_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+      "original_bytes": 4903,
+      "evidence": "docs/performance/evidence/daily-ote-historical.txt",
+      "evidence_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "wash-python-audit": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/qice_wash_parity_audit.json",
+      "original_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+      "original_bytes": 1832,
+      "evidence": "docs/performance/evidence/wash-python-audit.json",
+      "evidence_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "wash-research-report": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/report.md",
+      "original_sha256": "fe0d151fac4f8a8fd5b3a8ebf632943086a306bca8edadabf54dde1421ed096a",
+      "original_bytes": 36590,
+      "evidence": "docs/performance/evidence/wash-research-report.txt",
+      "evidence_sha256": "9e0e98b98cd0639d5fa130bd533b3502fd59f87186ebb217889820a877c91f81",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-events": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/events.csv",
+      "original_sha256": "36a0ddd51b1c13e36e15c6f0b48c14adcb1d490305c3f5dd6a0390d05d0b5bc6",
+      "original_bytes": 18300709,
+      "evidence": "docs/performance/evidence/offline-events.csv.gz",
+      "evidence_sha256": "aa68d6473929cb2fb997b232495c4cc2f1e777a08b53eec9998adbc4a2f57dc5",
+      "transformation": "Lossless gzip, fixed mtime=0; decompressed bytes equal original CSV. Saved research observations, not a newly run backtest."
+    },
+    "nshape-simple-trades": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/nshape_event_study_trades.csv",
+      "original_sha256": "314403c9e2fcd6c5a3c8ce888e7df0a12877dbbcf90af1370a5a251aedd8c8ae",
+      "original_bytes": 2405633,
+      "evidence": "docs/performance/evidence/nshape-simple-trades.csv.gz",
+      "evidence_sha256": "127df2583a610965e7045321a050ede09b12ef895f0e19818be6b5bbfc51db8f",
+      "transformation": "Lossless gzip, fixed mtime=0; decompressed bytes equal original CSV. Saved research observations, not a newly run backtest."
+    }
+  },
+  "definitions": {
+    "missing": "value=null plus missing_reason; never use zero for missing.",
+    "percent": "0–100; fractions explicitly named.",
+    "R": "P&L / modeled initial trade risk, only when risk is defined.",
+    "profit_factor": "Winning P&L / absolute losing P&L; gross/net/unspecified are separate fields.",
+    "closed_trade_drawdown": "Peak-to-trough cumulative completed-trade net P&L, starting at zero; excludes unrealized excursions.",
+    "native_thinkorswim_performance_verified": false
+  },
+  "profiles": {
+    "macdv": {
+      "kind": "offline-signal-event-study",
+      "document": "docs/performance/macdv.md",
+      "sources": [
+        "offline-summary",
+        "offline-protocol",
+        "offline-parity",
+        "offline-readme",
+        "offline-hashes",
+        "offline-provenance",
+        "offline-costs",
+        "offline-validation"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "macdv-2026-10-01-mnq-corrected-base-c1196ca6f119",
+        "macdv-2026-10-01-mnq-double-total-cost-c02b259864d7",
+        "macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d",
+        "macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5",
+        "macdv-2026-10-01-spy-corrected-base-d2791917fcaa",
+        "macdv-2026-10-01-spy-double-total-cost-e53814dfdf22"
+      ]
+    },
+    "nshape-spy": {
+      "kind": "offline-signal-event-study",
+      "document": "docs/performance/nshape-spy.md",
+      "sources": [
+        "offline-summary",
+        "offline-protocol",
+        "offline-parity",
+        "offline-readme",
+        "offline-hashes",
+        "offline-provenance",
+        "offline-costs",
+        "offline-validation",
+        "nshape-selected-report",
+        "nshape-filter-sweep"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8",
+        "nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b",
+        "nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850",
+        "nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572",
+        "nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a",
+        "nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e",
+        "nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361"
+      ]
+    },
+    "displacement-wick": {
+      "kind": "offline-signal-event-study",
+      "document": "docs/performance/displacement-wick.md",
+      "sources": [
+        "offline-summary",
+        "offline-protocol",
+        "offline-parity",
+        "offline-readme",
+        "offline-hashes",
+        "offline-provenance",
+        "offline-costs",
+        "offline-validation",
+        "wick-verification-update"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e",
+        "displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906",
+        "displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4",
+        "displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668",
+        "displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545",
+        "displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e",
+        "displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f",
+        "displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70",
+        "displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286",
+        "displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5",
+        "displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826"
+      ]
+    },
+    "nshape-simple": {
+      "kind": "related-python-model",
+      "document": "docs/performance/nshape-simple.md",
+      "sources": [
+        "nshape-simple-report",
+        "nshape-simple-summary"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-3-95b70345cc79",
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-5-f6734e501a8e",
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-10-770784695f45",
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-15-f56cf2341b24",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-3-fca7d9d89029",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-5-834d6b61da8e",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-10-ae98693316fb",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-15-4eff4916316a",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-3-513ff0c31837",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-5-33f856724553",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-15-ae39cdf4b9da",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-3-400e6fd9cf7b",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-5-94eb26f6743f",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-10-041cf3d65dc3",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-15-cbaa6d9bf4e0"
+      ]
+    },
+    "orb15-mnq": {
+      "kind": "related-native-pine-simulation",
+      "document": "docs/performance/orb15-mnq.md",
+      "sources": [
+        "orb-native-report",
+        "orb-original-trades",
+        "orb-capped-trades",
+        "orb-research-guide"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "orb15-mnq-2026-10-01-mnq-original-f22dc4a0ecef",
+        "orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894",
+        "orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b",
+        "orb15-mnq-2026-10-01-mnq-historical-stopcap100-132c2a7fc1d6"
+      ]
+    },
+    "mtf-ote": {
+      "kind": "related-clean-python-execution-model",
+      "document": "docs/performance/mtf-ote.md",
+      "sources": [
+        "mtf-clean-rescore",
+        "mtf-cost-rebaseline"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "mtf-ote-2026-07-27-mnq-clean-15m-1m-e6b3d91734ab",
+        "mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d",
+        "mtf-ote-2026-07-27-mgc-clean-15m-1m-40c09a088f6b",
+        "mtf-ote-2026-07-30-mnq-mym-package-incumbent-fixed-r-211aca54ce22",
+        "mtf-ote-2026-07-30-mnq-mym-package-per-contract-cost-5c1912259a49"
+      ]
+    },
+    "ote-wheel": {
+      "kind": "historical-unrevalidated-lineage",
+      "document": "docs/performance/ote-wheel.md",
+      "sources": [
+        "daily-ote-historical",
+        "mtf-clean-rescore",
+        "mtf-cost-rebaseline"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "ote-wheel-2026-07-15-13-equity-futures-symbols-historical-equity-futures-ce354db979a6",
+        "ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc"
+      ]
+    },
+    "wash-rinse-v2": {
+      "kind": "different-model-context-only",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "sources": [
+        "wash-python-audit",
+        "wash-research-report"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86"
+      ]
+    }
+  },
+  "projects": [
+    {
+      "project": "imported-studies/atr-label",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/cci-atr-supertrend",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/dans-squeeze-arrows",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/multi-indicator-dashboard",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/naked-forex-engulfing",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/open-interest-2022-03-01",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/premarket-rth-levels",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/previous-high-low-close",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/prior-period-volume-profile",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/qta-volume-profile",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/relative-vigor-index",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/reversal-candles",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/squeeze-trend-hunter",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/supertrend",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/supply-demand-index",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/trend-reversal-zigzag",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/ultimate-breakout",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/volatility-trailing-stop",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/volume-price-analysis",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "imported-studies/zigzag-supply-demand",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "private-imports/opinicus-volume",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "scanners/breakout",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "scanners/displacement-wick",
+      "status": "offline-signal-event-study",
+      "profile": "displacement-wick",
+      "document": "docs/performance/displacement-wick.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e",
+        "displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906",
+        "displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4",
+        "displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668",
+        "displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545",
+        "displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e",
+        "displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f",
+        "displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70",
+        "displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286",
+        "displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5",
+        "displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826"
+      ]
+    },
+    {
+      "project": "scanners/eye-pattern",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "scanners/macd-v",
+      "status": "offline-signal-event-study",
+      "profile": "macdv",
+      "document": "docs/performance/macdv.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "macdv-2026-10-01-mnq-corrected-base-c1196ca6f119",
+        "macdv-2026-10-01-mnq-double-total-cost-c02b259864d7",
+        "macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d",
+        "macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5",
+        "macdv-2026-10-01-spy-corrected-base-d2791917fcaa",
+        "macdv-2026-10-01-spy-double-total-cost-e53814dfdf22"
+      ]
+    },
+    {
+      "project": "scanners/nshape-spy",
+      "status": "offline-signal-event-study",
+      "profile": "nshape-spy",
+      "document": "docs/performance/nshape-spy.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8",
+        "nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b",
+        "nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850",
+        "nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572",
+        "nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a",
+        "nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e",
+        "nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361"
+      ]
+    },
+    {
+      "project": "scanners/ote-wheel",
+      "status": "historical-unrevalidated-lineage",
+      "profile": "ote-wheel",
+      "document": "docs/performance/ote-wheel.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "ote-wheel-2026-07-15-13-equity-futures-symbols-historical-equity-futures-ce354db979a6",
+        "ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc"
+      ]
+    },
+    {
+      "project": "scanners/warrior-eye",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "scanners/wash-rinse-v2",
+      "status": "different-model-context-only",
+      "profile": "wash-rinse-v2",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86"
+      ]
+    },
+    {
+      "project": "strategies/orb15-mnq",
+      "status": "related-native-pine-simulation",
+      "profile": "orb15-mnq",
+      "document": "docs/performance/orb15-mnq.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "orb15-mnq-2026-10-01-mnq-original-f22dc4a0ecef",
+        "orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894",
+        "orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b",
+        "orb15-mnq-2026-10-01-mnq-historical-stopcap100-132c2a7fc1d6"
+      ]
+    },
+    {
+      "project": "strategies/wash-rinse-v2",
+      "status": "different-model-context-only",
+      "profile": "wash-rinse-v2",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86"
+      ]
+    },
+    {
+      "project": "studies/alert-value",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/auto-trend-lines",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/buy-the-dip",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/displacement-detector",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/displacement-wick",
+      "status": "offline-signal-event-study",
+      "profile": "displacement-wick",
+      "document": "docs/performance/displacement-wick.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e",
+        "displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906",
+        "displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4",
+        "displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668",
+        "displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545",
+        "displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e",
+        "displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f",
+        "displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70",
+        "displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286",
+        "displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5",
+        "displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826"
+      ]
+    },
+    {
+      "project": "studies/ema-3-8-20-crossover",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/eye-pattern",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/ict-displacement-retest",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/macd-v",
+      "status": "offline-signal-event-study",
+      "profile": "macdv",
+      "document": "docs/performance/macdv.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "macdv-2026-10-01-mnq-corrected-base-c1196ca6f119",
+        "macdv-2026-10-01-mnq-double-total-cost-c02b259864d7",
+        "macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d",
+        "macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5",
+        "macdv-2026-10-01-spy-corrected-base-d2791917fcaa",
+        "macdv-2026-10-01-spy-double-total-cost-e53814dfdf22"
+      ]
+    },
+    {
+      "project": "studies/mtf-30m-fvg",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/mtf-ote",
+      "status": "related-clean-python-execution-model",
+      "profile": "mtf-ote",
+      "document": "docs/performance/mtf-ote.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "mtf-ote-2026-07-27-mnq-clean-15m-1m-e6b3d91734ab",
+        "mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d",
+        "mtf-ote-2026-07-27-mgc-clean-15m-1m-40c09a088f6b",
+        "mtf-ote-2026-07-30-mnq-mym-package-incumbent-fixed-r-211aca54ce22",
+        "mtf-ote-2026-07-30-mnq-mym-package-per-contract-cost-5c1912259a49"
+      ]
+    },
+    {
+      "project": "studies/nine-sma-pullback",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/nshape-simple",
+      "status": "related-python-model",
+      "profile": "nshape-simple",
+      "document": "docs/performance/nshape-simple.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-3-95b70345cc79",
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-5-f6734e501a8e",
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-10-770784695f45",
+        "nshape-simple-2026-07-16-spy-target-0-5r-hold-15-f56cf2341b24",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-3-fca7d9d89029",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-5-834d6b61da8e",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-10-ae98693316fb",
+        "nshape-simple-2026-07-16-spy-target-1r-hold-15-4eff4916316a",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-3-513ff0c31837",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-5-33f856724553",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a",
+        "nshape-simple-2026-07-16-spy-target-1-5r-hold-15-ae39cdf4b9da",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-3-400e6fd9cf7b",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-5-94eb26f6743f",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-10-041cf3d65dc3",
+        "nshape-simple-2026-07-16-spy-target-2r-hold-15-cbaa6d9bf4e0"
+      ]
+    },
+    {
+      "project": "studies/nshape-spy",
+      "status": "offline-signal-event-study",
+      "profile": "nshape-spy",
+      "document": "docs/performance/nshape-spy.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8",
+        "nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b",
+        "nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850",
+        "nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572",
+        "nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a",
+        "nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e",
+        "nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361"
+      ]
+    },
+    {
+      "project": "studies/session-volume-profile",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/trading-rush-macd",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/trading-rush-macd-test",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/vwap-rejection",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "studies/wash-rinse-v2",
+      "status": "different-model-context-only",
+      "profile": "wash-rinse-v2",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": [
+        "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86"
+      ]
+    },
+    {
+      "project": "watchlist-columns/covered-call-screen",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    },
+    {
+      "project": "watchlist-columns/gcr-inflection",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false,
+      "run_ids": []
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "macdv-2026-10-01-mnq-corrected-base-c1196ca6f119",
+      "family": "macdv",
+      "label": "corrected-base",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/macdv-2026-10-01-mnq-corrected-base-c1196ca6f119/run.json",
+      "run_sha256": "5609332789fc868b1faeb363ee6de590bbb514682d01cce252d349e450876713",
+      "summary": "docs/performance/runs/macdv-2026-10-01-mnq-corrected-base-c1196ca6f119/summary.json",
+      "summary_sha256": "dd0d148011731f503cf062028222369ec58e2a75891e2ab844a0c3a500a267b4",
+      "markdown": "docs/performance/runs/macdv-2026-10-01-mnq-corrected-base-c1196ca6f119/PERFORMANCE.md",
+      "markdown_sha256": "1d6a7e1ae8a8970a3aad20d8594525e82e0e2f900e41f917a902bb238f42d709"
+    },
+    {
+      "run_id": "macdv-2026-10-01-mnq-double-total-cost-c02b259864d7",
+      "family": "macdv",
+      "label": "double-total-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/macdv-2026-10-01-mnq-double-total-cost-c02b259864d7/run.json",
+      "run_sha256": "65c652513466b7c0d76a45e38de1102558356da3d08956291e0f15ebce9884e8",
+      "summary": "docs/performance/runs/macdv-2026-10-01-mnq-double-total-cost-c02b259864d7/summary.json",
+      "summary_sha256": "52020e5844073c1deba237948cd82d6c4a28f3213403a59d846e6ead15461f9e",
+      "markdown": "docs/performance/runs/macdv-2026-10-01-mnq-double-total-cost-c02b259864d7/PERFORMANCE.md",
+      "markdown_sha256": "e81ad1291aa0fbbad4e16eedb1e59ed22338abdfff38eea5710fa2f2a429c932"
+    },
+    {
+      "run_id": "macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d",
+      "family": "macdv",
+      "label": "original-lower-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d/run.json",
+      "run_sha256": "52484bce98dff6356b2cb237a1906bbda4810d8adaa4c2ae2e4e9a3954de9d44",
+      "summary": "docs/performance/runs/macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d/summary.json",
+      "summary_sha256": "06081b17dbbfd0346f4306cf536f4d19b76180c5844c88c7ca288a2d4c50408d",
+      "markdown": "docs/performance/runs/macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d/PERFORMANCE.md",
+      "markdown_sha256": "5e89f294ea7ece90626689548c80625a0c6c5e45da1ac8e65a8d5801e4b9827a"
+    },
+    {
+      "run_id": "macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5",
+      "family": "macdv",
+      "label": "original-double-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5/run.json",
+      "run_sha256": "b831a84419a5ed896b1595224a953587129dc1187ea31fe0699c0d2478397915",
+      "summary": "docs/performance/runs/macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5/summary.json",
+      "summary_sha256": "2b70b12f1ee8933fcc27122926c6d184a6b3103b15091259394fd32d2ce01477",
+      "markdown": "docs/performance/runs/macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5/PERFORMANCE.md",
+      "markdown_sha256": "5435ad2b756482c1cb2a5c2c0753b22fc493a765dae5143ffeb2e708287aa2ff"
+    },
+    {
+      "run_id": "macdv-2026-10-01-spy-corrected-base-d2791917fcaa",
+      "family": "macdv",
+      "label": "corrected-base",
+      "instrument": "SPY",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/macdv-2026-10-01-spy-corrected-base-d2791917fcaa/run.json",
+      "run_sha256": "85976acbe8ab85026b22f90d5a5d899bb8048703754c3ed7d603f2a96ed6fa55",
+      "summary": "docs/performance/runs/macdv-2026-10-01-spy-corrected-base-d2791917fcaa/summary.json",
+      "summary_sha256": "ed2845116c04eb618af75088e56e1c57686e892f1bd27da3b4f614892df5306b",
+      "markdown": "docs/performance/runs/macdv-2026-10-01-spy-corrected-base-d2791917fcaa/PERFORMANCE.md",
+      "markdown_sha256": "d21d5f1fea36085c683d580cccbdb196e05bfef3556361dec333c753e1bd4550"
+    },
+    {
+      "run_id": "macdv-2026-10-01-spy-double-total-cost-e53814dfdf22",
+      "family": "macdv",
+      "label": "double-total-cost",
+      "instrument": "SPY",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/macdv-2026-10-01-spy-double-total-cost-e53814dfdf22/run.json",
+      "run_sha256": "c91b8c5b9e3785cd42a0dc1840ba55b3d40ecab99dcdca773f062530838afba0",
+      "summary": "docs/performance/runs/macdv-2026-10-01-spy-double-total-cost-e53814dfdf22/summary.json",
+      "summary_sha256": "e1b219b5165734e729ea60bb16d2554b99ee629962046741e8579c434224ad0c",
+      "markdown": "docs/performance/runs/macdv-2026-10-01-spy-double-total-cost-e53814dfdf22/PERFORMANCE.md",
+      "markdown_sha256": "6974ebd8798488ff3384d37d6920e4ee91c17be8ec686f0c304d15ca79572061"
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8",
+      "family": "nshape-spy",
+      "label": "corrected-base",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8/run.json",
+      "run_sha256": "16e7a18c90d2f12c5c820831566ae6af278a6d2f0b7ee3a0444619517000e1df",
+      "summary": "docs/performance/runs/nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8/summary.json",
+      "summary_sha256": "8e4f08194591d86e90e0eda9618fe64a080e50a92412ed9ce743795dae35dec3",
+      "markdown": "docs/performance/runs/nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8/PERFORMANCE.md",
+      "markdown_sha256": "c10bcdbaf2cc8340b87913f6d96d8962ba7018ecb3320c8c0accc6a9c0fe3aad"
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b",
+      "family": "nshape-spy",
+      "label": "double-total-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b/run.json",
+      "run_sha256": "5eb9b6529cf1493ae0430bc147d67982aec73a7550cdeb005623cecdd136ae04",
+      "summary": "docs/performance/runs/nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b/summary.json",
+      "summary_sha256": "1502cc4b7ba181b96cee5839a73e95ccdad8cfb01e173a0424ce541ddac05f7a",
+      "markdown": "docs/performance/runs/nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b/PERFORMANCE.md",
+      "markdown_sha256": "32432f162e1930f451613583c0bbacd7f38455365ccb269b85a7d9fdeae02c55"
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850",
+      "family": "nshape-spy",
+      "label": "original-lower-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850/run.json",
+      "run_sha256": "ee65f7eaf6d3f2b91bc2d3a3736b4c2afe425fe3fe1358d95f91701161df1ff6",
+      "summary": "docs/performance/runs/nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850/summary.json",
+      "summary_sha256": "a8f169f6716d71df026acd16771e2fb27d1eaf330b102d61014c1c92d51ed391",
+      "markdown": "docs/performance/runs/nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850/PERFORMANCE.md",
+      "markdown_sha256": "29c483891301af409a764065d45e2d5bcfda624e33b01272f1906409859afd09"
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572",
+      "family": "nshape-spy",
+      "label": "original-double-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572/run.json",
+      "run_sha256": "140b67f4d1000808b8974d8291a37f2db45ad8dc871e4c9881c16187f36fc921",
+      "summary": "docs/performance/runs/nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572/summary.json",
+      "summary_sha256": "c75540bee9c5c20b32ecd819f71b6ad1716d421cdbcbb8fc3eeb32bd87cff0a4",
+      "markdown": "docs/performance/runs/nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572/PERFORMANCE.md",
+      "markdown_sha256": "0e97c2a4935e9629e6c39dd755a6791910a5019b553be94388c4e682b5e70b15"
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a",
+      "family": "nshape-spy",
+      "label": "corrected-base",
+      "instrument": "SPY",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a/run.json",
+      "run_sha256": "d1bc4fb568200c5d45227dffb50eaff1c175462688638bd978a8286dae708900",
+      "summary": "docs/performance/runs/nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a/summary.json",
+      "summary_sha256": "c732cf46a4d2bd21b94f86008eb0a60827e1aeb0e027126c837839263fc7f107",
+      "markdown": "docs/performance/runs/nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a/PERFORMANCE.md",
+      "markdown_sha256": "170b1bd96d8a66da16346eb1f9109026ddc302359ebd638ad81dac9fe6c3f74d"
+    },
+    {
+      "run_id": "nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e",
+      "family": "nshape-spy",
+      "label": "double-total-cost",
+      "instrument": "SPY",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e/run.json",
+      "run_sha256": "3a5600af3e5be8cf8aa7287ceb11d7b823ee6788f68d67dc4d7bed3e212e7f87",
+      "summary": "docs/performance/runs/nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e/summary.json",
+      "summary_sha256": "0b53503eadd68ef306f9a753fe88a251a25920e24b46a9b2c63c8f149f082fbf",
+      "markdown": "docs/performance/runs/nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e/PERFORMANCE.md",
+      "markdown_sha256": "a3933980c46f0230af9d8622b3136292db026f7d4c415579c8df16453797abda"
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e",
+      "family": "displacement-wick",
+      "label": "corrected-base",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e/run.json",
+      "run_sha256": "6926ea950e8a527ea317b1ab7e819b7871cb0ce271aa116fcbb5bbb7c13c1439",
+      "summary": "docs/performance/runs/displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e/summary.json",
+      "summary_sha256": "e4b5bd657ad204e61d2c74376f0e15682a86ee95a56d87e7481c5df086c99eb8",
+      "markdown": "docs/performance/runs/displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e/PERFORMANCE.md",
+      "markdown_sha256": "a906103b8fa754dd70631b2978c2a0d01e65f730050a9411891ae9f217167732"
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906",
+      "family": "displacement-wick",
+      "label": "double-total-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906/run.json",
+      "run_sha256": "ca9a7f4e6bb3b4d2b05e8fd9d09d1ee91521900534239378268132ee7db509c2",
+      "summary": "docs/performance/runs/displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906/summary.json",
+      "summary_sha256": "9ce610e5c173550366308c9ad6238b5da5333e7c79bea1d78ad12e8b48290958",
+      "markdown": "docs/performance/runs/displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906/PERFORMANCE.md",
+      "markdown_sha256": "c11ac38fa670d7da44764712435f44d00ec144e0f56f70e8304e196aaf15d730"
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4",
+      "family": "displacement-wick",
+      "label": "original-lower-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4/run.json",
+      "run_sha256": "350a86d0c02fe18b317b422700db5fde3b7e3a164f2f6607b524728ba674caaa",
+      "summary": "docs/performance/runs/displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4/summary.json",
+      "summary_sha256": "72ac2b68c27c2bb20f4077a17d36f536fdf395c47075ab040c5379958a3a6754",
+      "markdown": "docs/performance/runs/displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4/PERFORMANCE.md",
+      "markdown_sha256": "d68ddd7a7a7bff77afff746ec9f0892b97b713e142f99e5a060578b3a02ab5e8"
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668",
+      "family": "displacement-wick",
+      "label": "original-double-cost",
+      "instrument": "MNQ",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668/run.json",
+      "run_sha256": "2932319383a040f7a7dff9723b822941e24482d5887dc3cf04df6e3159fc0973",
+      "summary": "docs/performance/runs/displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668/summary.json",
+      "summary_sha256": "9117047a2b26787b1831c0dd34fdbd11aef8555dadef4628ae164556a54a4eb0",
+      "markdown": "docs/performance/runs/displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668/PERFORMANCE.md",
+      "markdown_sha256": "87b4e219f3076a678d4844d05b765d0ce5a70e0160fe0b9d274504ca6109ccc7"
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545",
+      "family": "displacement-wick",
+      "label": "corrected-base",
+      "instrument": "SPY",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545/run.json",
+      "run_sha256": "e70a806bec3adaa3fe43b92dfa98358870c65cb242e779d4919cf32709dd0405",
+      "summary": "docs/performance/runs/displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545/summary.json",
+      "summary_sha256": "a7a8e301ed5181587ee6047f1458bbcc4ff9a97593a0348b9dc3f4db416b4e2f",
+      "markdown": "docs/performance/runs/displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545/PERFORMANCE.md",
+      "markdown_sha256": "2ecb8e1707a2ead52fb9d582952f3214bbd9132d9e9856d377fc5894e6245832"
+    },
+    {
+      "run_id": "displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e",
+      "family": "displacement-wick",
+      "label": "double-total-cost",
+      "instrument": "SPY",
+      "record_type": "signal-event",
+      "status": "reported",
+      "source_relationship": "frozen",
+      "run": "docs/performance/runs/displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e/run.json",
+      "run_sha256": "4ebc0b0f6aa9b567849568be48a552c5d234eb97035a3dee4218eae9cf67cba9",
+      "summary": "docs/performance/runs/displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e/summary.json",
+      "summary_sha256": "755d8591f7f789cf7e2ec63d0f29d65c0ddf03325dc14cd9845ef5bfef79dbdf",
+      "markdown": "docs/performance/runs/displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e/PERFORMANCE.md",
+      "markdown_sha256": "72a18b92b9c67618a759f0b5bfb5fc8badb6cadd9ae73d4fb42e74463915d304"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-3-95b70345cc79",
+      "family": "nshape-simple",
+      "label": "target-0.5r-hold-3",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-3-95b70345cc79/run.json",
+      "run_sha256": "04fcc34e77df92cd5a402ab55a82d0639c93488cd7a75b4f6d3054122b3a0ab2",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-3-95b70345cc79/summary.json",
+      "summary_sha256": "42551db40b0496e3aaef25b90ff484ee291d560c455ae25f1ff6a047a928b280",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-3-95b70345cc79/PERFORMANCE.md",
+      "markdown_sha256": "f13b2958d341a8f7f7c6e233ef6e15c65e3baf2f37edf756ceb730f906f89696"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-5-f6734e501a8e",
+      "family": "nshape-simple",
+      "label": "target-0.5r-hold-5",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-5-f6734e501a8e/run.json",
+      "run_sha256": "fd3b7a4cc2956013d954cdc6675a158fdae49db4bf30923d294a91e81791e5c9",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-5-f6734e501a8e/summary.json",
+      "summary_sha256": "218ef7c7a7fe9aea3807a72491e925527587be44345015c3829d9d59a40eef66",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-5-f6734e501a8e/PERFORMANCE.md",
+      "markdown_sha256": "64833d6bc2ca47670ec7b666046e0775188b11c6ddd0d40e2de335ebe98aa3de"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-10-770784695f45",
+      "family": "nshape-simple",
+      "label": "target-0.5r-hold-10",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-10-770784695f45/run.json",
+      "run_sha256": "a29df954a73e6ac655c2104c1217736b88c57a27e1e2545442d34157929a009f",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-10-770784695f45/summary.json",
+      "summary_sha256": "5f85c61e27ee89f1cc27d9a5bcefc8c20354edbda7b8b223766928696adb7080",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-10-770784695f45/PERFORMANCE.md",
+      "markdown_sha256": "11f31e1408117b59764e88a2b164543dfd6349c1b9243bdac11340d34f997509"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-0-5r-hold-15-f56cf2341b24",
+      "family": "nshape-simple",
+      "label": "target-0.5r-hold-15",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-15-f56cf2341b24/run.json",
+      "run_sha256": "0170b2a07f3e5911878871a4c3f556b01ba25b76110966c4b9a1f84dbaea0e8e",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-15-f56cf2341b24/summary.json",
+      "summary_sha256": "629aa393ffc6f8ad7ee142779dc6ec400fc478a9972483d6d49e53414d514e59",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-0-5r-hold-15-f56cf2341b24/PERFORMANCE.md",
+      "markdown_sha256": "c0fe08683196286d172e00b082b61b6ac00de7cbadef861b604ad5ee05023167"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-3-fca7d9d89029",
+      "family": "nshape-simple",
+      "label": "target-1r-hold-3",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-3-fca7d9d89029/run.json",
+      "run_sha256": "5d235ddb397c1c6e5da606aa41acabaa97e0f974d1ef188b87b096086f18d3b8",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-3-fca7d9d89029/summary.json",
+      "summary_sha256": "4bf31b541e30191413f0cd2da746a4107f6446e7c2736bef436327fb4e7def24",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-3-fca7d9d89029/PERFORMANCE.md",
+      "markdown_sha256": "b79dbfe1217c7e5c5a702408567c4dc999f0b9791f0bc43dedd6f094a565ff0f"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-5-834d6b61da8e",
+      "family": "nshape-simple",
+      "label": "target-1r-hold-5",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-5-834d6b61da8e/run.json",
+      "run_sha256": "ec5204a924bccc2289ed54cf3cf1c9fd8445f881f6eb43118117aba2bf64f26b",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-5-834d6b61da8e/summary.json",
+      "summary_sha256": "230170ffee45d7a588b1c9b01c197296d60a59c1f7b1f475f5046c809daf1c23",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-5-834d6b61da8e/PERFORMANCE.md",
+      "markdown_sha256": "ea615da8cb0a2e0947fa5f9b1b3f0371d9e1bd38e8c54a7d6657ca0e03935144"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-10-ae98693316fb",
+      "family": "nshape-simple",
+      "label": "target-1r-hold-10",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-10-ae98693316fb/run.json",
+      "run_sha256": "95e0dafdf6dda266216825896317108e5a2c3db24bad16adbc680cc621c6c9aa",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-10-ae98693316fb/summary.json",
+      "summary_sha256": "eebdc9718130efd4b3f108acf8b110db81a4ccd973d81fb3b9e45c82f750a339",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-10-ae98693316fb/PERFORMANCE.md",
+      "markdown_sha256": "32fd8c8b23135a90a843da0c736b48e87ad0391e60f61d33f68d9b17ff803563"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1r-hold-15-4eff4916316a",
+      "family": "nshape-simple",
+      "label": "target-1r-hold-15",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-15-4eff4916316a/run.json",
+      "run_sha256": "e865f2c0741ce358de6bb440e1725e6f004d469201017f137080586f544f331c",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-15-4eff4916316a/summary.json",
+      "summary_sha256": "ab2bcdb29bf39094da5f579321d64801dd4d45b0b0368d92326339171a63e96e",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1r-hold-15-4eff4916316a/PERFORMANCE.md",
+      "markdown_sha256": "f8896903d16980d13e3f6c2af6214b87a8af6adfd9db6e3b2841ffeb99103ace"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-3-513ff0c31837",
+      "family": "nshape-simple",
+      "label": "target-1.5r-hold-3",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-3-513ff0c31837/run.json",
+      "run_sha256": "7094cbce001c9a5d36e91edb4dc809a32c3f90e09505a31818c835b60898bced",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-3-513ff0c31837/summary.json",
+      "summary_sha256": "f920d1899a9c62e4b4747fa2e2a1ad1ce367423ca1b6a34464412b577d63f640",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-3-513ff0c31837/PERFORMANCE.md",
+      "markdown_sha256": "dd4698861058b930b6bed82e37d690fe8afaa95bcee32c70840189e34ef44a72"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-5-33f856724553",
+      "family": "nshape-simple",
+      "label": "target-1.5r-hold-5",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-5-33f856724553/run.json",
+      "run_sha256": "048ee08d66a4aea4015f79e0abdee2e7a1e2de31693f8c5ab10aab683f02a2da",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-5-33f856724553/summary.json",
+      "summary_sha256": "b1034d7d96459a5402383927cd375e5a1559a2430ac61c7702d20a0975d48fd0",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-5-33f856724553/PERFORMANCE.md",
+      "markdown_sha256": "e1eecee6cdbd288200fbd58309db50409bd5af3357c858788f2b1573afc5800b"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a",
+      "family": "nshape-simple",
+      "label": "target-1.5r-hold-10",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a/run.json",
+      "run_sha256": "63eb8d5e7e43ecedb825f71be80a860ffb0fe6011bfba14473e007c286f8c5aa",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a/summary.json",
+      "summary_sha256": "9548766331584ad0d46db69f1b50736a8b5286e353b63c511622208262399a09",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a/PERFORMANCE.md",
+      "markdown_sha256": "fb1823f4374eec7dc01048980c9e9168136156066089bc4a5f245b2fcd0cd223"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-15-ae39cdf4b9da",
+      "family": "nshape-simple",
+      "label": "target-1.5r-hold-15",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-15-ae39cdf4b9da/run.json",
+      "run_sha256": "d358f91cca1eb06539f8a53a926a18df3c381a3da0748799a228a4fa17a6a85d",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-15-ae39cdf4b9da/summary.json",
+      "summary_sha256": "8ef96b441762fcb0c6bc85ccbeb5f320129ea543bbf34109d9d5cd033cbeff45",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-15-ae39cdf4b9da/PERFORMANCE.md",
+      "markdown_sha256": "8915484aafa62380b253a61b4a8ec5473750f521cf8ac9f3eb326ba91b5f17b7"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-3-400e6fd9cf7b",
+      "family": "nshape-simple",
+      "label": "target-2r-hold-3",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-3-400e6fd9cf7b/run.json",
+      "run_sha256": "b78ae5d4cc94c73bafc3667ac33e514515b3362cce3f7b7a092904fa6ce4f151",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-3-400e6fd9cf7b/summary.json",
+      "summary_sha256": "b0ea9dfff8ee46e9effd17caa76cb47b588ca8cbd176a4ee7f3fb509543c6b97",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-3-400e6fd9cf7b/PERFORMANCE.md",
+      "markdown_sha256": "51ab97a5abd1cbfc56b18afec3b745b620a0ee41f8526793b03648444876b57f"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-5-94eb26f6743f",
+      "family": "nshape-simple",
+      "label": "target-2r-hold-5",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-5-94eb26f6743f/run.json",
+      "run_sha256": "86fe4489de0c799456f680457f4895e99fb91a21b5af3fdd4fbc78ed05679c25",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-5-94eb26f6743f/summary.json",
+      "summary_sha256": "38034869addf5ebcc8ec634cd0e7ab489b3f9fe3839702e17352a58a736e87b8",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-5-94eb26f6743f/PERFORMANCE.md",
+      "markdown_sha256": "13e61710235e09bb61047420bcd0f2b57f75278407573ee5a4b629cd720852ca"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-10-041cf3d65dc3",
+      "family": "nshape-simple",
+      "label": "target-2r-hold-10",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-10-041cf3d65dc3/run.json",
+      "run_sha256": "12d4272597b95d8abedc447298ca926f819e368c03e99f98c15f91490290ad91",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-10-041cf3d65dc3/summary.json",
+      "summary_sha256": "076bd4515494b11c3dd795778dff862716b53142db13c58ccd815fd0e7cf4cd0",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-10-041cf3d65dc3/PERFORMANCE.md",
+      "markdown_sha256": "a05d53e8e00c856981899c0124607559b43e1e13f34abebcdfb585137e90a0a7"
+    },
+    {
+      "run_id": "nshape-simple-2026-07-16-spy-target-2r-hold-15-cbaa6d9bf4e0",
+      "family": "nshape-simple",
+      "label": "target-2r-hold-15",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-15-cbaa6d9bf4e0/run.json",
+      "run_sha256": "5bcf71370877b003b1252f9288d13d1f862987f9293cae655c0e4da608b4dcfa",
+      "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-15-cbaa6d9bf4e0/summary.json",
+      "summary_sha256": "0227f2e41fe8064ab0df490eefeb34890b2b803f74be7cd171bcb72ce7a8219d",
+      "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-2r-hold-15-cbaa6d9bf4e0/PERFORMANCE.md",
+      "markdown_sha256": "60d1a0a949c8873226d3346cd89631d058f4d51f2f246de105c06a50c77f71b5"
+    },
+    {
+      "run_id": "nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361",
+      "family": "nshape-spy",
+      "label": "selected-fixed-r",
+      "instrument": "SPY",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361/run.json",
+      "run_sha256": "f6debb75afe7018aeef10667327a36e8525b8d10ed80fb53c5165165a53aaae0",
+      "summary": "docs/performance/runs/nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361/summary.json",
+      "summary_sha256": "fa957c8dccb6b4b9b67672316cab89c4d1bc582413ebe974673812b3e43835fe",
+      "markdown": "docs/performance/runs/nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361/PERFORMANCE.md",
+      "markdown_sha256": "efc43911fde206977b4ff03669586b28c148bf274dcd41e0f6ef85b571a0d7ab"
+    },
+    {
+      "run_id": "orb15-mnq-2026-10-01-mnq-original-f22dc4a0ecef",
+      "family": "orb15-mnq",
+      "label": "Original",
+      "instrument": "MNQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-original-f22dc4a0ecef/run.json",
+      "run_sha256": "d7b0849478b87e0b41d112326b3ebb82b14f8015c330ce0560ef91fa33a2c137",
+      "summary": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-original-f22dc4a0ecef/summary.json",
+      "summary_sha256": "22f7b0d32a1350472a8e14ab6ae0ec4989e660847463f4eb2f30a5d19d7408de",
+      "markdown": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-original-f22dc4a0ecef/PERFORMANCE.md",
+      "markdown_sha256": "074fd8b4d8a57572c152ff452015c0f64983d41f6460705e700d2a3fb1b570fb"
+    },
+    {
+      "run_id": "orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894",
+      "family": "orb15-mnq",
+      "label": "StopCap100",
+      "instrument": "MNQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894/run.json",
+      "run_sha256": "74e3a17f2ae6f899e3ed5cdb9bddad4e143efaec4e31cfc031bfa19e98c558d6",
+      "summary": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894/summary.json",
+      "summary_sha256": "b6545b8fcdca3a5cbfebd8083a93ed1445cbc0fe8fb71e18001fb1ddd049e98a",
+      "markdown": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894/PERFORMANCE.md",
+      "markdown_sha256": "143f78e1ed1cb7360cb09f6054d0dabdac6101c8d4586919b44ebbecd1c6a17f"
+    },
+    {
+      "run_id": "orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b",
+      "family": "orb15-mnq",
+      "label": "historical-Original",
+      "instrument": "MNQ",
+      "record_type": "strategy",
+      "status": "historical-unrevalidated",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b/run.json",
+      "run_sha256": "c8b5989dfac116b1ea21df28b79419a70aa014abc71d42e4fdab8008f2ef2fb9",
+      "summary": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b/summary.json",
+      "summary_sha256": "d28163022bfb0c60a6d6ef82b69ee50fc142b818239112970796c18b9362d7bd",
+      "markdown": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b/PERFORMANCE.md",
+      "markdown_sha256": "2d9186eaf4d0bd7cec5d770d33e83c9b425c0878227d502498c47ef73c2aae4a"
+    },
+    {
+      "run_id": "orb15-mnq-2026-10-01-mnq-historical-stopcap100-132c2a7fc1d6",
+      "family": "orb15-mnq",
+      "label": "historical-StopCap100",
+      "instrument": "MNQ",
+      "record_type": "strategy",
+      "status": "historical-unrevalidated",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-historical-stopcap100-132c2a7fc1d6/run.json",
+      "run_sha256": "a3c904114350be4c4eb14af156a589d319c05a8df6467e8bd64990648db0b293",
+      "summary": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-historical-stopcap100-132c2a7fc1d6/summary.json",
+      "summary_sha256": "44377db105d47149c7942adda16980635707848ff6efc3cecd748454d02a4e90",
+      "markdown": "docs/performance/runs/orb15-mnq-2026-10-01-mnq-historical-stopcap100-132c2a7fc1d6/PERFORMANCE.md",
+      "markdown_sha256": "8cf116ed3cde2fdde457d4cf09437b6a06b3c841af8daec0749049b182c86930"
+    },
+    {
+      "run_id": "displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f",
+      "family": "displacement-wick",
+      "label": "market-lb100-cd3-pause1",
+      "instrument": "NQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f/run.json",
+      "run_sha256": "8e0f10388ffbf7cef2f4fc13faa7c6867df0128eccdd465e2e90fd7b87e6193c",
+      "summary": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f/summary.json",
+      "summary_sha256": "7347deb9c4a361dca600698c4d20f9896e500ee6649be2f42ed22dd9f86a4f1a",
+      "markdown": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f/PERFORMANCE.md",
+      "markdown_sha256": "208ff30feb4a472106769f879c3a5a3cdb7d1a07f6750964205cf7ce734b56e8"
+    },
+    {
+      "run_id": "displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70",
+      "family": "displacement-wick",
+      "label": "market-lb100-cd0-pause0",
+      "instrument": "NQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70/run.json",
+      "run_sha256": "e90db1c57f5a13a56824db988ac927bdaa0419a13c91bd8734fce84b09dbc2c3",
+      "summary": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70/summary.json",
+      "summary_sha256": "ebba1fc3c3e274581d6b26c7117052ffeb5bcec304419a192f79772880c012dd",
+      "markdown": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70/PERFORMANCE.md",
+      "markdown_sha256": "cc31604114a42887da3cd5d55574d275f13ee878deaae640b91d7005e886c2b5"
+    },
+    {
+      "run_id": "displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286",
+      "family": "displacement-wick",
+      "label": "market-lb20-cd3-pause1",
+      "instrument": "NQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286/run.json",
+      "run_sha256": "098685a6fe2c59be9195f9539cda17773fda1eec0304950176d53213d28fdf2d",
+      "summary": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286/summary.json",
+      "summary_sha256": "fb95316ba653d77a14618b4698ec016089840efef8709dade4334db663745aef",
+      "markdown": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286/PERFORMANCE.md",
+      "markdown_sha256": "5460b504d6f7a679161f69d2ff394ef1482e69b89297a4085067bb895b56d174"
+    },
+    {
+      "run_id": "displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5",
+      "family": "displacement-wick",
+      "label": "market-lb20-cd0-pause0",
+      "instrument": "NQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5/run.json",
+      "run_sha256": "52b790bc5f08c966e6f65573379b7124e22e9ce695958700d6b8b4b7284da923",
+      "summary": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5/summary.json",
+      "summary_sha256": "dec4a3ec4f3c568f07a9af6ed09fc4d29713184086afa36a9ea331d3f1b70b74",
+      "markdown": "docs/performance/runs/displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5/PERFORMANCE.md",
+      "markdown_sha256": "8686a4f4a6f9be93589fe71e228b4e44368eccb7d5f9a4046efe879b4b5d9632"
+    },
+    {
+      "run_id": "displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826",
+      "family": "displacement-wick",
+      "label": "withdrawn-sandbox",
+      "instrument": "NQ",
+      "record_type": "strategy",
+      "status": "withdrawn",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826/run.json",
+      "run_sha256": "4ea619fe2210bb301d2873811a9821ebdb8d1df1e672d326d700dfa006b18882",
+      "summary": "docs/performance/runs/displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826/summary.json",
+      "summary_sha256": "9ad359b1caee17ca4fceac60cdf69fb4240fd5e348faf0eeddff63243200b074",
+      "markdown": "docs/performance/runs/displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826/PERFORMANCE.md",
+      "markdown_sha256": "f0d0f80931c224b4fa9da4a29059aed1d45b7d867f6c6d8d52f4514c10e7f81f"
+    },
+    {
+      "run_id": "mtf-ote-2026-07-27-mnq-clean-15m-1m-e6b3d91734ab",
+      "family": "mtf-ote",
+      "label": "clean-15m-1m",
+      "instrument": "MNQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/mtf-ote-2026-07-27-mnq-clean-15m-1m-e6b3d91734ab/run.json",
+      "run_sha256": "c24fd963f16ef1f24c5151346797f6f1b18bdb40f80c0a09100eba862a64bbe8",
+      "summary": "docs/performance/runs/mtf-ote-2026-07-27-mnq-clean-15m-1m-e6b3d91734ab/summary.json",
+      "summary_sha256": "572e66c7d602a4bf82e91080226724420547b817d46a114b3f64bd09032b0304",
+      "markdown": "docs/performance/runs/mtf-ote-2026-07-27-mnq-clean-15m-1m-e6b3d91734ab/PERFORMANCE.md",
+      "markdown_sha256": "2f3def9cccbd0fd8253c927d5ffa8c60c321389fe12a9f693a95c5b48813a832"
+    },
+    {
+      "run_id": "mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d",
+      "family": "mtf-ote",
+      "label": "clean-15m-1m",
+      "instrument": "MYM",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d/run.json",
+      "run_sha256": "e5f5560b69f1d880f83763581b19a09eb2093930b768b099fe28015f33a48bdc",
+      "summary": "docs/performance/runs/mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d/summary.json",
+      "summary_sha256": "69399c3c109d2e12fb1572be6419e959681985661d8a4e5972e6fb6f02f5ef3b",
+      "markdown": "docs/performance/runs/mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d/PERFORMANCE.md",
+      "markdown_sha256": "9e24abdb1d8fb40f7a975ac5a260e3b1dc565c96c500830c3d73c90ff97c1289"
+    },
+    {
+      "run_id": "mtf-ote-2026-07-27-mgc-clean-15m-1m-40c09a088f6b",
+      "family": "mtf-ote",
+      "label": "clean-15m-1m",
+      "instrument": "MGC",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/mtf-ote-2026-07-27-mgc-clean-15m-1m-40c09a088f6b/run.json",
+      "run_sha256": "70577783f61dd37795212a4929756f75f2f260d9ffdc12aad78a34e4024b952c",
+      "summary": "docs/performance/runs/mtf-ote-2026-07-27-mgc-clean-15m-1m-40c09a088f6b/summary.json",
+      "summary_sha256": "f963830620e4babb3ee75447156ce0a62d1d6635e815f978ac2eb516042d18a2",
+      "markdown": "docs/performance/runs/mtf-ote-2026-07-27-mgc-clean-15m-1m-40c09a088f6b/PERFORMANCE.md",
+      "markdown_sha256": "5f0e40a70fbf8738aaaa39c8106faf7f97a0262fcdef28527e53200b25c77c85"
+    },
+    {
+      "run_id": "mtf-ote-2026-07-30-mnq-mym-package-incumbent-fixed-r-211aca54ce22",
+      "family": "mtf-ote",
+      "label": "package-incumbent-fixed-r",
+      "instrument": "MNQ+MYM",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/mtf-ote-2026-07-30-mnq-mym-package-incumbent-fixed-r-211aca54ce22/run.json",
+      "run_sha256": "9907b37829f8bf8b44c206a501cc5de4689dba61f06f96026c7152fa0e4c4a05",
+      "summary": "docs/performance/runs/mtf-ote-2026-07-30-mnq-mym-package-incumbent-fixed-r-211aca54ce22/summary.json",
+      "summary_sha256": "6a486fcb1e2dc248526da3e11abae7d38821b7eaf187baca9b68a5fbbc3e0e04",
+      "markdown": "docs/performance/runs/mtf-ote-2026-07-30-mnq-mym-package-incumbent-fixed-r-211aca54ce22/PERFORMANCE.md",
+      "markdown_sha256": "de1ead04d82b445e00aab5952fe0d35d7b78dca9ae7851e2d89b0fe8fba40afd"
+    },
+    {
+      "run_id": "mtf-ote-2026-07-30-mnq-mym-package-per-contract-cost-5c1912259a49",
+      "family": "mtf-ote",
+      "label": "package-per-contract-cost",
+      "instrument": "MNQ+MYM",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/mtf-ote-2026-07-30-mnq-mym-package-per-contract-cost-5c1912259a49/run.json",
+      "run_sha256": "0b411f0c4e8dfd6dacb9b3ec1343984d024abc218015663f04ae4f9169f95aaf",
+      "summary": "docs/performance/runs/mtf-ote-2026-07-30-mnq-mym-package-per-contract-cost-5c1912259a49/summary.json",
+      "summary_sha256": "abb805bfe62e43a259d7d37f384df3eb513ddc533ccad0701cdfe61284f12de6",
+      "markdown": "docs/performance/runs/mtf-ote-2026-07-30-mnq-mym-package-per-contract-cost-5c1912259a49/PERFORMANCE.md",
+      "markdown_sha256": "f02b498dfcdb076f965ab5064d9090b73a619dd218778a6178110ee925fbed75"
+    },
+    {
+      "run_id": "ote-wheel-2026-07-15-13-equity-futures-symbols-historical-equity-futures-ce354db979a6",
+      "family": "ote-wheel",
+      "label": "historical-equity-futures",
+      "instrument": "13 equity/futures symbols",
+      "record_type": "historical-aggregate",
+      "status": "historical-unrevalidated",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/ote-wheel-2026-07-15-13-equity-futures-symbols-historical-equity-futures-ce354db979a6/run.json",
+      "run_sha256": "b21313dc07ffeb2e7b4c12526b33e7b202d1806afe2a18a6a78c4ae5bf3b6183",
+      "summary": "docs/performance/runs/ote-wheel-2026-07-15-13-equity-futures-symbols-historical-equity-futures-ce354db979a6/summary.json",
+      "summary_sha256": "aa3f615c5ad9077d419b1ba8e342cf03ba349193a8a06d9370361084c42d4370",
+      "markdown": "docs/performance/runs/ote-wheel-2026-07-15-13-equity-futures-symbols-historical-equity-futures-ce354db979a6/PERFORMANCE.md",
+      "markdown_sha256": "f64e29c533d93fddb957fd803aecc6974b0b325a36cc5622e013a34868e7ff43"
+    },
+    {
+      "run_id": "ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc",
+      "family": "ote-wheel",
+      "label": "historical-fx",
+      "instrument": "8 FX majors",
+      "record_type": "historical-aggregate",
+      "status": "historical-unrevalidated",
+      "source_relationship": "related-model",
+      "run": "docs/performance/runs/ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc/run.json",
+      "run_sha256": "fe7d490de5945e9d4279651c26855518aafb41734d9b8518d4507139dc8c08ff",
+      "summary": "docs/performance/runs/ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc/summary.json",
+      "summary_sha256": "aead2b34c8f3ef7e6d6c8b0976670dc5d830367c86a680ad7efeb33520214be1",
+      "markdown": "docs/performance/runs/ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc/PERFORMANCE.md",
+      "markdown_sha256": "63693aeb91cb58b8a92431888789e0d200626ec34a4574330a3cf7ecd479c1b8"
+    },
+    {
+      "run_id": "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86",
+      "family": "wash-rinse-v2",
+      "label": "different-python-default",
+      "instrument": "MNQ",
+      "record_type": "strategy",
+      "status": "reported",
+      "source_relationship": "different-model",
+      "run": "docs/performance/runs/wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86/run.json",
+      "run_sha256": "d890a009e6e6c42199cbaa224fcf277babfd8c02128430c3c3f6034d03c19c8a",
+      "summary": "docs/performance/runs/wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86/summary.json",
+      "summary_sha256": "7d070bb625481487c9250ecaaccfc651a225a39ef5761fda1ba69f981e693306",
+      "markdown": "docs/performance/runs/wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86/PERFORMANCE.md",
+      "markdown_sha256": "7702a960ae28b0b7a0eacf6e85dcae42efd92c4966373d8fd7eee23a2d44bfb5"
+    }
+  ]
+}

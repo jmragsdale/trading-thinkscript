@@ -1,0 +1,5805 @@
+{
+  "schema_version": 1,
+  "organized_on": "2026-10-29",
+  "projects": [
+    {
+      "path": "imported-studies/atr-label",
+      "title": "Daily ATR Label",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Displays an ATR label calculated from completed bars of a selected base aggregation.",
+      "usage": "Use on a compatible price chart; defaults are DAY, length 14 and Wilders smoothing. Toggle showlabel to hide the display.",
+      "caveats": "Today-high/low and daily-range definitions are computed but not displayed. Secondary aggregation prevents direct Stock Hacker use.",
+      "attribution": "Installed under a shared name; no individual author identified.",
+      "primary": "imported-studies/atr-label/shared_shared_ThinkATR.thinkscript",
+      "active_files": [
+        "imported-studies/atr-label/shared_shared_ThinkATR.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_shared_ThinkATR"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/cci-atr-supertrend",
+      "title": "CCI ATR and Supertrend Combination",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Combines a Supertrend line with a CCI/ATR trend line and colors the result according to agreement.",
+      "usage": "Use as a chart overlay. Saved defaults use Hull ATR length 4, CCI length 50 and ATR trend length 21. The header describes 1- and 5-minute use.",
+      "caveats": "The source promotional language is not evidence of reversal accuracy. Current-bar trend changes remain provisional.",
+      "attribution": "Source credits Mobius Supertrend and a DTEK combined version dated August 10, 2019.",
+      "primary": "imported-studies/cci-atr-supertrend/shared_shared_VINCE_CCI_ATR.thinkscript",
+      "active_files": [
+        "imported-studies/cci-atr-supertrend/shared_shared_VINCE_CCI_ATR.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_shared_VINCE_CCI_ATR"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/dans-squeeze-arrows",
+      "title": "Dans Squeeze and Centered Oscillator Arrows",
+      "aggregation": "Lower pane on the selected chart timeframe",
+      "description": "Displays two centered oscillator lines/arrows with Bollinger-versus-Keltner squeeze state and optional bar painting.",
+      "usage": "Use in a lower pane; paintBars defaults Off. Begin with the saved oscillator lengths and 20-bar squeeze settings.",
+      "caveats": "The price references derived from negative half-period offsets use future bars. Historical oscillator/arrows can revise; do not treat them as causal signals without redesign and testing.",
+      "attribution": "Installed under a useTOS shared name; component hints preserved.",
+      "primary": "imported-studies/dans-squeeze-arrows/shared_usetos_dans_sqz_arrows.thinkscript",
+      "active_files": [
+        "imported-studies/dans-squeeze-arrows/shared_usetos_dans_sqz_arrows.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_usetos_dans_sqz_arrows"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/multi-indicator-dashboard",
+      "title": "Multi-Indicator Dashboard Labels",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Combines SPY/QQQ/VXX directional-movement labels with current-symbol momentum, CCI, RSI, MOBO, EMA stacking, squeeze and Heikin-Ashi status.",
+      "usage": "Add to a price chart and inspect the labels with the saved inputs. It requests SPY, QQQ and VXX data in addition to the chart symbol.",
+      "caveats": "The QQQ ATR definition mixes SPY high with QQQ close/low. Several EMA-stack lengths are hard-coded despite similarly named inputs. Label colors and source claims are not a performance measure.",
+      "attribution": "A shared composite; source includes Mobius, Lar and rad14733 attribution for components.",
+      "primary": "imported-studies/multi-indicator-dashboard/shared_personal_dashboard_labels.thinkscript",
+      "active_files": [
+        "imported-studies/multi-indicator-dashboard/shared_personal_dashboard_labels.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_personal_dashboard_labels"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/naked-forex-engulfing",
+      "title": "Naked Forex Engulfing Colors",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Colors price bars from engulfing-style candle and prior-direction conditions.",
+      "usage": "Add to a price chart and review the saved 7-bar room-to-the-left and largest-candle inputs. Yellow/white mark the coded bearish/bullish branches; other bars are magenta.",
+      "caveats": "The saved largestCandle expression uses Max(range, period), not a rolling highest range. The bullish expression chains numeric differences as booleans. These are questionable saved rules; no repair was made.",
+      "attribution": "Assembled by BenTen at useThinkScript; source credits a TradingView conversion.",
+      "primary": "imported-studies/naked-forex-engulfing/NakedFXEngulfing.thinkscript",
+      "active_files": [
+        "imported-studies/naked-forex-engulfing/NakedFXEngulfing.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "NakedFXEngulfing"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/open-interest-2022-03-01",
+      "title": "Open Interest Levels — March 1, 2022 Snapshot",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Plots hard-coded call and put open-interest levels and premium labels for fourteen named symbols.",
+      "usage": "Keep as a historical reference for the snapshot date stated in the header. There are no configurable inputs or live option-chain requests.",
+      "caveats": "The header explicitly says only valid March 1, 2022. Levels and premiums are static, including historical symbol/price scales; this is not current open-interest data.",
+      "attribution": "Source credits Quant Trading App (2021-2022).",
+      "primary": "imported-studies/open-interest-2022-03-01/OpenInterestCustom.thinkscript",
+      "active_files": [
+        "imported-studies/open-interest-2022-03-01/OpenInterestCustom.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "OpenInterestCustom"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/premarket-rth-levels",
+      "title": "Globex and Regular-Session Highs/Lows",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Draws Globex, regular-session and prior regular-session extremes, with optional endpoint bubbles.",
+      "usage": "Use an intraday chart with the intended extended-hours history available; bubbles=yes is the only top-level input.",
+      "caveats": "HighestAll/LowestAll and last-chart-bar state make lines depend on the loaded chart endpoint. Regular-session definitions follow the symbol; not a verified chronological signal model.",
+      "attribution": "Source credits Nube, 2018.",
+      "primary": "imported-studies/premarket-rth-levels/shared_shared_shared_ThinkPreMarkHighsLows.thinkscript",
+      "active_files": [
+        "imported-studies/premarket-rth-levels/shared_shared_shared_ThinkPreMarkHighsLows.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_shared_shared_ThinkPreMarkHighsLows"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/previous-high-low-close",
+      "title": "Previous High, Low and Close",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Displays the current daily open, previous daily close/high/low and additional offset levels on the latest chart day.",
+      "usage": "Use on an intraday price chart with sufficient prior-session data. There are no exposed inputs.",
+      "caveats": "Daily secondary series and GetLastDay-based display make this a latest-session visual overlay, not a historical scanner. Session data determines daily levels.",
+      "attribution": "Installed under a shared name; no individual author identified in the header.",
+      "primary": "imported-studies/previous-high-low-close/shared_shared_shared_ThinkHighLowClose.thinkscript",
+      "active_files": [
+        "imported-studies/previous-high-low-close/shared_shared_shared_ThinkHighLowClose.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_shared_shared_ThinkHighLowClose"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/prior-period-volume-profile",
+      "title": "Prior-Period Volume Profile",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Displays prior-day, prior-week and prior-month volume-profile value-area and point-of-control levels.",
+      "usage": "Use a price chart with volume data. Toggle daily, weekly and monthly level groups and their historical visibility; daily and weekly are enabled by default.",
+      "caveats": "Latest-day/week/month display logic and the loaded chart history affect which levels appear. Source uses a future-bar reference to locate an edge bubble, so do not interpret every negative index as a trade signal.",
+      "attribution": "Source credits tony_futures.",
+      "primary": "imported-studies/prior-period-volume-profile/CustomVolumeProfile.thinkscript",
+      "active_files": [
+        "imported-studies/prior-period-volume-profile/CustomVolumeProfile.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "CustomVolumeProfile"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/qta-volume-profile",
+      "title": "QTA Volume Profile",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Displays daily volume profiles with a point of control and configurable value area.",
+      "usage": "Use a chart with volume data. Saved defaults show POC and value area, 68% value area, 60 opacity and tick-size rows.",
+      "caveats": "The session profile follows chart data and session settings. Several configuration values are internal definitions rather than editable inputs.",
+      "attribution": "Source credits Bryant Littrean / Thinkorswim and Quant Trading App.",
+      "primary": "imported-studies/qta-volume-profile/QTA_Volume_Profile.thinkscript",
+      "active_files": [
+        "imported-studies/qta-volume-profile/QTA_Volume_Profile.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "QTA_Volume_Profile"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/relative-vigor-index",
+      "title": "Relative Vigor Index",
+      "aggregation": "Lower pane on the selected chart timeframe",
+      "description": "Plots a smoothed ratio of close-minus-open to high-minus-low, its signal line and a reference level.",
+      "usage": "Use in a lower chart pane. Begin with p=14 and level1=0; compare the RVI and signal lines.",
+      "caveats": "This is Relative Vigor, not Relative Volatility Index. No native alerts or strategy orders are included.",
+      "attribution": "Assembled by BenTen at useThinkScript; credits an Ehlers RVI TradingView conversion.",
+      "primary": "imported-studies/relative-vigor-index/RVI.thinkscript",
+      "active_files": [
+        "imported-studies/relative-vigor-index/RVI.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "RVI"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/reversal-candles",
+      "title": "Blown Top, Saikou and Hikui Reversal Candles",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Marks three reversal-candle patterns from relative range, extremes, candle body and prior-bar comparisons.",
+      "usage": "Use as an upper chart study; n=10 governs the Blown Top branch and n2=5 the Saikou/Hikui branches.",
+      "caveats": "Arrows and bubbles describe candle geometry. No position tracking, stop model, alerts or measured reversal probabilities are supplied.",
+      "attribution": "Source credits Mobius, including 2014-2016 chat-room versions.",
+      "primary": "imported-studies/reversal-candles/Reversal_Candles.thinkscript",
+      "active_files": [
+        "imported-studies/reversal-candles/Reversal_Candles.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "Reversal_Candles"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/squeeze-trend-hunter",
+      "title": "Squeeze Trend Hunter / Perfect Leading Composite",
+      "aggregation": "Lower pane on the selected chart timeframe",
+      "description": "Combines WaveTrend, Donchian bands, squeeze/momentum displays and a centered oscillator arrow component in a lower pane.",
+      "usage": "Either installed alias has identical source. Use the saved lengths initially; review showLines, bubbles and alert switches. Keep displace=0 if retaining the unshifted band settings.",
+      "caveats": "The centered oscillator uses future price references derived from nHo1/nHo2. Historical arrows can revise; the leading name does not establish usable forward prediction.",
+      "attribution": "Source credits LazyBear, BenTen, Chris Ball, rad14733 and named component concepts.",
+      "primary": "imported-studies/squeeze-trend-hunter/Squeeze_Trend_Hunter.thinkscript",
+      "active_files": [
+        "imported-studies/squeeze-trend-hunter/Squeeze_Trend_Hunter.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "Squeeze_Trend_Hunter",
+        "shared_personal_perfect_leading_movingzeroline"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/supertrend",
+      "title": "Mobius Supertrend",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Plots an ATR-based alternating trend line with optional price-bar coloring and crossing bubbles.",
+      "usage": "Use on a price chart. Saved defaults are ATR multiplier 1, length 4, Hull averaging and PaintBars=yes.",
+      "caveats": "The recursive line can change on the active candle. Bubbles are visual references, not simulated fills or execution instructions.",
+      "attribution": "Source credits Mobius, version V03.10.2015.",
+      "primary": "imported-studies/supertrend/supertrend.thinkscript",
+      "active_files": [
+        "imported-studies/supertrend/supertrend.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "supertrend"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/supply-demand-index",
+      "title": "Supply/Demand Index Support and Resistance",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Uses a volume/price demand index to create demand support, supply resistance and overhead resistance bands.",
+      "usage": "Add to a price chart with volume data. Start with n=5 and DemandIndexValue=0.35.",
+      "caveats": "HighestAll selects the latest active zone locations across chart history. The display is chart-end dependent and does not establish a chronological historical entry signal.",
+      "attribution": "Source credits Mobius, V01.01.2020.",
+      "primary": "imported-studies/supply-demand-index/Supply_and_Demand_Index_Support_Resistance.thinkscript",
+      "active_files": [
+        "imported-studies/supply-demand-index/Supply_and_Demand_Index_Support_Resistance.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "Supply_and_Demand_Index_Support_Resistance"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/trend-reversal-zigzag",
+      "title": "Trend Reversal ZigZag Arrows",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Combines 9/14/21 EMA state definitions with ZigZagHighLow-derived bullish and bearish arrows.",
+      "usage": "Install as a chart study. method selects smoothed average highs/lows versus raw highs/lows.",
+      "caveats": "The saved file has two output plots despite Scanner in its header. ZigZag pivots can revise; it is not a direct one-plot Stock Hacker filter or a validated non-repainting signal.",
+      "attribution": "Source credits theelderwand / useThinkScript.",
+      "primary": "imported-studies/trend-reversal-zigzag/shared_shared_ThinkScriptTrendReverse.thinkscript",
+      "active_files": [
+        "imported-studies/trend-reversal-zigzag/shared_shared_ThinkScriptTrendReverse.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_shared_ThinkScriptTrendReverse"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/ultimate-breakout",
+      "title": "Top Ultimate Breakout",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Plots rolling breakout entry/exit bands and ATR-based target references for a selected buy or sell mode.",
+      "usage": "Both installed aliases contain identical bytes, including default Buy. Set BuyorSell explicitly for the desired direction; inspect entry/exit lookbacks and display toggles.",
+      "caveats": "The Sell-named script does not default to Sell. A saved low-band expression repeats L2 rather than averaging L2/L3. Current-day-only display follows the loaded chart.",
+      "attribution": "Source credits hoojsn and tomsk, with version history through January 22, 2020.",
+      "primary": "imported-studies/ultimate-breakout/shared_shared_ThinkTopBreakoutBuy.thinkscript",
+      "active_files": [
+        "imported-studies/ultimate-breakout/shared_shared_ThinkTopBreakoutBuy.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_shared_ThinkTopBreakoutBuy",
+        "shared_shared_ThinkTopBreakoutSell"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/volatility-trailing-stop",
+      "title": "Volatility Trailing Stop",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Maintains an ATR trailing level using the highest close in an uptrend or lowest close in a downtrend.",
+      "usage": "Add to a price chart; defaults are ATR period 10, factor 1.5, initial long state and simple averaging.",
+      "caveats": "A plotted trailing level is a reference, not a broker stop. Initial state and active-candle changes affect its path.",
+      "attribution": "Source credits Steve Coombs, version 1.1.",
+      "primary": "imported-studies/volatility-trailing-stop/VolatilityStop.thinkscript",
+      "active_files": [
+        "imported-studies/volatility-trailing-stop/VolatilityStop.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "VolatilityStop"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/volume-price-analysis",
+      "title": "Volume Price Analysis",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Classifies price spread, closing location, volume and trend slopes into upthrust, test, weakness and strength patterns with chart symbols and labels.",
+      "usage": "Add to a chart and read the symbol legend in the source header. Start with volumeEMALength=30; bar colors and alerts are optional and off by default.",
+      "caveats": "This is a NinjaTrader VPA conversion with documented symbol-shape substitutions. Labels such as strength/reversal are heuristic pattern descriptions, not verified probabilities or order flow.",
+      "attribution": "Shared conversion; original component comments and symbol legend preserved.",
+      "primary": "imported-studies/volume-price-analysis/shared_shared_shared_ThinkVolumePriceAnalysis.thinkscript",
+      "active_files": [
+        "imported-studies/volume-price-analysis/shared_shared_shared_ThinkVolumePriceAnalysis.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "shared_shared_shared_ThinkVolumePriceAnalysis"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "imported-studies/zigzag-supply-demand",
+      "title": "ZigZag High/Low Supply and Demand",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Plots ZigZag pivots and supply/demand references with optional reversal arrows, price/volume bubbles and alerts.",
+      "usage": "Use on a price chart. Review percentage, absolute and ATR reversal settings; arrows and alerts are off by default.",
+      "caveats": "ZigZag pivots and the latest leg can revise as later bars arrive. A source confirmation label is not proof of a non-repainting historical strategy.",
+      "attribution": "Source credits ZZZ, Linus, Lar and tomsk; version history through January 12, 2020.",
+      "primary": "imported-studies/zigzag-supply-demand/ZigZagHL.thinkscript",
+      "active_files": [
+        "imported-studies/zigzag-supply-demand/ZigZagHL.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "ZigZagHL"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "private-imports/opinicus-volume",
+      "title": "Opinicus Volume Data — Local Reference",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Shows current-day volume versus a prior 30-day average and current-bar volume versus a prior 30-bar average.",
+      "usage": "For local use, add to the chart volume area; review the visibility inputs and saved 200% unusual-volume threshold. Daily aggregation must be compatible with the chart.",
+      "caveats": "The source header explicitly limits the software to individual use. Captured source remains local and is excluded from the GitHub upload ZIP. It is included only in the separate local installed-script backup.",
+      "attribution": "Source credits Kyle / Opinicus Holdings, 2018-2019; individual-use-only header preserved.",
+      "primary": "private-imports/opinicus-volume/shared_shared_OpinicusVolumen.thinkscript",
+      "active_files": [
+        "private-imports/opinicus-volume/shared_shared_OpinicusVolumen.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": false,
+      "tos_aliases": [
+        "shared_shared_OpinicusVolumen"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "scanners/breakout",
+      "title": "Breakout Scanner",
+      "aggregation": "DAY",
+      "description": "Finds new lookback highs with a strong daily gain, elevated volume, and price above a long-term moving average.",
+      "usage": "Set the scan aggregation to DAY. Start with the saved 126-bar lookback, 2x volume, 10% daily gain and 200-bar moving average. Use the alert companion on a daily chart.",
+      "caveats": "The anti-repeat condition compares the high 20 bars ago with the current lookback high. Earlier mixed chart code is kept only in versions.",
+      "primary": "scanners/breakout/breakout_scanner_thinkscript.txt",
+      "active_files": [
+        "scanners/breakout/BreakoutScanner_AlertStudy.ts",
+        "scanners/breakout/breakout_scanner_thinkscript.txt"
+      ],
+      "archived_files": [
+        "scanners/breakout/versions/breakout_scanner_thinkscript_original_2025-12-31.txt"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "scanners/displacement-wick",
+      "title": "Displacement Wick Scanner",
+      "aggregation": "User-selected scan timeframe",
+      "description": "Screens for new displacement-wick setups, first sweeps of stored wick levels, or both.",
+      "usage": "Choose scan_for: New Setups, Wick Sweeps, or Both. Match chart and scan aggregation; max_zone_age_bars defaults to 50. Add the companion alert study to the matching chart.",
+      "caveats": "The corrected source has one scan plot and explicit stored-zone initialization. The archived original has multiple plots and is unsuitable for direct Stock Hacker use.",
+      "primary": "scanners/displacement-wick/DisplacementWickAlerts_Scanner.ts",
+      "active_files": [
+        "scanners/displacement-wick/DisplacementWickAlerts_AlertStudy.ts",
+        "scanners/displacement-wick/DisplacementWickAlerts_Scanner.ts"
+      ],
+      "archived_files": [
+        "scanners/displacement-wick/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "offline-signal-event-study",
+        "profile": "displacement-wick",
+        "document": "docs/performance/displacement-wick.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e",
+          "displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906",
+          "displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4",
+          "displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668",
+          "displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545",
+          "displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e",
+          "displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f",
+          "displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70",
+          "displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286",
+          "displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5",
+          "displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826"
+        ]
+      }
+    },
+    {
+      "path": "scanners/eye-pattern",
+      "title": "Eye Pattern Scanner",
+      "aggregation": "Daily is the companion study use case; selected in scan UI",
+      "description": "Finds the Eye Pattern moving-average recovery with trend, volume contraction, pullback and candle-quality conditions.",
+      "usage": "Paste the CrystalClear scanner into Stock Hacker and keep the existing signal plot. Start on daily bars to compare with the chart study; use the alert companion at the same aggregation.",
+      "caveats": "Alternative outputs are commented out. Enabling multiple plots breaks the scanner requirement. Quality scores are internal heuristics, not measured win probabilities.",
+      "primary": "scanners/eye-pattern/EyePattern_Scanner_CrystalClear.txt",
+      "active_files": [
+        "scanners/eye-pattern/EyePattern_AlertStudy.txt",
+        "scanners/eye-pattern/EyePattern_Scanner_CrystalClear.txt"
+      ],
+      "archived_files": [
+        "scanners/eye-pattern/versions/EyePattern_Scanner__2025-10-21.txt"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "scanners/macd-v",
+      "title": "MACD-V Unified Scanner",
+      "aggregation": "User-selected scan timeframe",
+      "description": "Screens MACD-V conditions with price bounds, market regime, and entry or exit signal selection.",
+      "usage": "Set priceMin/priceMax, choose regime (Any, Bull, Bear, Stage2, Stage4 or Stage3), then choose signalType. Both selects both entry directions. Match the alert companion settings and chart aggregation.",
+      "caveats": "Default price bounds are $2-$20. ExitLong and ExitShort screen momentum conditions; they do not know your actual account positions.",
+      "primary": "scanners/macd-v/MACDV_Scan_Unified_Regime_SignalType.ts",
+      "active_files": [
+        "scanners/macd-v/MACDV_AlertStudy.ts",
+        "scanners/macd-v/MACDV_Scan_Unified_Regime_SignalType.ts"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "offline-signal-event-study",
+        "profile": "macdv",
+        "document": "docs/performance/macdv.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "macdv-2026-10-01-mnq-corrected-base-c1196ca6f119",
+          "macdv-2026-10-01-mnq-double-total-cost-c02b259864d7",
+          "macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d",
+          "macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5",
+          "macdv-2026-10-01-spy-corrected-base-d2791917fcaa",
+          "macdv-2026-10-01-spy-double-total-cost-e53814dfdf22"
+        ]
+      }
+    },
+    {
+      "path": "scanners/nshape-spy",
+      "title": "NShape Quant-Filtered SPY Scanner",
+      "aggregation": "1 minute",
+      "description": "Screens the filtered three-candle NShape setup, optionally retaining recent signals for multiple bars.",
+      "usage": "Set scan aggregation to 1 minute. Begin with scanLongs=yes, scanShorts=no and 1330-1530 time inputs. Keep optional current-bar and relative-volume filters at their saved defaults until comparing the chart.",
+      "caveats": "signalLookbackBars defaults to 2, so a scan result can remain after the setup bar. The companion alerts on the raw setup event rather than each retained scan result.",
+      "primary": "scanners/nshape-spy/NShape_QuantFiltered_SPY_Scanner.ts",
+      "active_files": [
+        "scanners/nshape-spy/NShape_QuantFiltered_SPY_AlertStudy.ts",
+        "scanners/nshape-spy/NShape_QuantFiltered_SPY_Scanner.ts"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "offline-signal-event-study",
+        "profile": "nshape-spy",
+        "document": "docs/performance/nshape-spy.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8",
+          "nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b",
+          "nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850",
+          "nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572",
+          "nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a",
+          "nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e",
+          "nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361"
+        ]
+      }
+    },
+    {
+      "path": "scanners/ote-wheel",
+      "title": "OTE Wheel Scanner and Chart Helper",
+      "aggregation": "DAY",
+      "description": "Finds bullish or bearish 62-79% retracements after a confirmed sweep and displacement, filtered by price, dollar volume, risk distance and gaps.",
+      "usage": "Use OTE_WheelScan.ts in a daily Stock Hacker filter. Select side and universe bounds. Add OTE_WheelHelper_Study.ts to a daily chart for zones, protected swings and suggested strike levels; match its inputs to the scanner.",
+      "caveats": "The active v4 source removed the event-offset earnings gate. Verify upcoming earnings separately before using a candidate. Suggested strikes do not test option liquidity, premiums, assignment or executable fills. The helper is chart-only.",
+      "primary": "scanners/ote-wheel/OTE_WheelScan.ts",
+      "active_files": [
+        "scanners/ote-wheel/OTE_WheelHelper_Study.ts",
+        "scanners/ote-wheel/OTE_WheelScan.ts"
+      ],
+      "archived_files": [
+        "scanners/ote-wheel/versions/OTE_WheelScan_original_2026-07-15.ts",
+        "scanners/ote-wheel/versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript",
+        "scanners/ote-wheel/versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "historical-unrevalidated-lineage",
+        "profile": "ote-wheel",
+        "document": "docs/performance/ote-wheel.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "ote-wheel-2026-07-15-13-equity-futures-symbols-historical-equity-futures-ce354db979a6",
+          "ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc"
+        ]
+      }
+    },
+    {
+      "path": "scanners/warrior-eye",
+      "title": "Warrior Eye Hybrid Scanner",
+      "aggregation": "1 or 5 minutes; regular session",
+      "description": "Combines low-priced momentum, relative bar volume and an intraday moving-average pullback/recovery with a measured reward-to-risk filter.",
+      "usage": "Use 1- or 5-minute scan aggregation during regular hours. Review price limits and the gain-from-RTH-open, relative-volume and volatility thresholds. Use a matching chart with the companion alert study.",
+      "caveats": "Share float is not enforced. Relative volume is measured against prior bars, not daily share volume. Quality score has no demonstrated predictive probability.",
+      "primary": "scanners/warrior-eye/WarriorEye_Hybrid_DayTrading_Scanner.txt",
+      "active_files": [
+        "scanners/warrior-eye/WarriorEye_AlertStudy.txt",
+        "scanners/warrior-eye/WarriorEye_Hybrid_DayTrading_Scanner.txt"
+      ],
+      "archived_files": [
+        "scanners/warrior-eye/versions/WarriorEye_Hybrid_DayTrading_Scanner_original_2025-10-22.txt"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "scanners/wash-rinse-v2",
+      "title": "Wash and Rinse v2 Scanner",
+      "aggregation": "Daily for swing screening or intraday as configured",
+      "description": "Screens bullish, bearish or either close-back-through wash-and-rinse events using confirmed pivots or reconstructed prior-period levels.",
+      "usage": "Paste the corrected scan, choose scanSide, then select Swing or PrevDay. Daily swing and 5-minute intraday are documented starting contexts. Match EXT/session settings with the comparison chart.",
+      "caveats": "The only active output is scan. maxRinseBars=0 means uncapped. The earlier README referenced obsolete BearishWR/BullishWR scan outputs; use scanSide in this version.",
+      "primary": "scanners/wash-rinse-v2/WashRinse_v2_Scan_Corrected.ts",
+      "active_files": [
+        "scanners/wash-rinse-v2/WashRinse_v2_AlertStudy.ts",
+        "scanners/wash-rinse-v2/WashRinse_v2_Scan_Corrected.ts"
+      ],
+      "archived_files": [
+        "scanners/wash-rinse-v2/versions/WashRinse_v2_Scan__2026-08-25.ts"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "different-model-context-only",
+        "profile": "wash-rinse-v2",
+        "document": "docs/performance/wash-rinse-v2.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86"
+        ]
+      }
+    },
+    {
+      "path": "strategies/orb15-mnq",
+      "title": "ORB15 MNQ Historical Research Strategy",
+      "aggregation": "Exact /MNQ:XCME symbol, standard 1-minute time chart",
+      "description": "Models a 09:30-09:44 ET opening-range breakout, one contract and one entry per session, with Original and frozen StopCap100 variants.",
+      "usage": "Create a separate Strategy on /MNQ:XCME one-minute TIME bars. Verify chart type before setting confirmedOneMinuteTimeChart=yes. Start in Original mode, then compare StopCap100 in a separate run. Review the custom net ledger and incomplete-model label, not just order markers.",
+      "caveats": "Research only. The saved source starts disabled. AddOrder markers are shifted one bar after retrospectively modeled fills; its custom ledger is the model record. HighFirst/LowFirst select assumed historical price paths. Costs are fixed at $1.90 round trip plus the coded slippage assumptions. StopCap100 uses a 48.75-point distance cap, not a guaranteed $100 maximum loss; gaps and the unprotected entry bar can exceed it. Thinkorswim compilation and native parity remain unverified.",
+      "primary": "strategies/orb15-mnq/ORB15_MNQ_Research.thinkscript",
+      "active_files": [
+        "strategies/orb15-mnq/ORB15_MNQ_Research.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "related-native-pine-simulation",
+        "profile": "orb15-mnq",
+        "document": "docs/performance/orb15-mnq.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "orb15-mnq-2026-10-01-mnq-original-f22dc4a0ecef",
+          "orb15-mnq-2026-10-01-mnq-stopcap100-77e371ad3894",
+          "orb15-mnq-2026-10-01-mnq-historical-original-cb1e9d3bcb3b",
+          "orb15-mnq-2026-10-01-mnq-historical-stopcap100-132c2a7fc1d6"
+        ]
+      }
+    },
+    {
+      "path": "strategies/wash-rinse-v2",
+      "title": "Wash and Rinse v2 Strategy",
+      "aggregation": "SPY intraday is the documented research context",
+      "description": "Models next-bar-open entries after a rinse, locked stops beyond the wash extreme, R-multiple targets and optional end-of-day exits.",
+      "usage": "Create a Strategy, paste the corrected source, and review tradeSize and session inputs before generating a report. Compare individual rinse, entry and exit bars; use the related study and scanner for visual screening.",
+      "caveats": "tradeSize defaults to 100. rMult=2.0 is explicitly unconfirmed in earlier research. Same-bar stop/target touches use a stop-first OHLC convention; reports do not resolve actual intrabar sequence. open[-1] occurs only in documented next-bar AddOrder price expressions.",
+      "primary": "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts",
+      "active_files": [
+        "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts"
+      ],
+      "archived_files": [
+        "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_audit_2026-08-25.ts",
+        "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts",
+        "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy__2026-08-25.ts"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "different-model-context-only",
+        "profile": "wash-rinse-v2",
+        "document": "docs/performance/wash-rinse-v2.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86"
+        ]
+      }
+    },
+    {
+      "path": "studies/alert-value",
+      "title": "AlertValue SMA Placeholder",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Plots the platform SimpleMovingAvg study with its built-in defaults.",
+      "usage": "Add as a chart study if you need this saved SMA wrapper; there are no exposed inputs.",
+      "caveats": "Despite its name, the source contains no Alert() call. It is not a saved alert configuration.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/alert-value/AlertValue.thinkscript",
+      "active_files": [
+        "studies/alert-value/AlertValue.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "AlertValue"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/auto-trend-lines",
+      "title": "Automatic Regression Trend Lines",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Draws three pairs of regression-style channel lines using InertiaAll and whole-chart maximum deviations.",
+      "usage": "Use on a price chart with the saved 50, 30 and 10 bar lengths. Read each channel as a visual trend reference.",
+      "caveats": "InertiaAll and HighestAll depend on the loaded chart. Historical lines can change when history or the chart endpoint changes; not a demonstrated causal signal.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/auto-trend-lines/AutoTL.thinkscript",
+      "active_files": [
+        "studies/auto-trend-lines/AutoTL.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "AutoTL"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/buy-the-dip",
+      "title": "Buy the Dip with EMA Confluence",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Combines distance from an SMA, RSI extremes, elevated volume and 10/20/50/200 EMA stacking to mark bullish dips and bearish rallies.",
+      "usage": "Add to a chart and begin with the saved 50-bar SMA, 2% distance thresholds, RSI 14 and 1.5x volume filter.",
+      "caveats": "Signals require multiple simultaneous conditions and may be sparse. No orders or measured outcomes are implemented.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/buy-the-dip/BTDStudy.thinkscript",
+      "active_files": [
+        "studies/buy-the-dip/BTDStudy.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "BTDStudy"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/displacement-detector",
+      "title": "Displacement Detector and Candle Combinations",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Grades candle bodies against historical body deviation, optionally requires a fair-value gap, and marks consecutive or flat-edge displacement combinations.",
+      "usage": "Use on a price chart. Start with a 100-bar body baseline, requireFVG=yes, all four strength levels enabled, and the saved flat/consecutive detection settings.",
+      "caveats": "Current-bar bodies, gaps and combinations can change before close. This is a separate detector from the displacement-wick reversal family.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/displacement-detector/Displacement_Detector.thinkscript",
+      "active_files": [
+        "studies/displacement-detector/Displacement_Detector.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "Displacement_Detector"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/displacement-wick",
+      "title": "Displacement Wick Reversal Study",
+      "aggregation": "User-selected chart timeframe",
+      "description": "Highlights large displacement candles, stores qualifying wick zones, and marks potential reversal entries when those zones are swept.",
+      "usage": "Add the study to a chart. Choose displacement and wick thresholds, then enable the zone, target and label displays you need. Compare its signals with the separate scanner before treating them as equivalent.",
+      "caveats": "The scanner was later corrected independently; chart/scanner signal parity has not been demonstrated. Target plots are visual levels.",
+      "primary": "studies/displacement-wick/DisplacementWickAlerts_Study.ts",
+      "active_files": [
+        "studies/displacement-wick/DisplacementWickAlerts_Study.ts"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "offline-signal-event-study",
+        "profile": "displacement-wick",
+        "document": "docs/performance/displacement-wick.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "displacement-wick-2026-10-01-mnq-corrected-base-4dc8b5bebc6e",
+          "displacement-wick-2026-10-01-mnq-double-total-cost-7554dd684906",
+          "displacement-wick-2026-10-01-mnq-original-lower-cost-30286a6173d4",
+          "displacement-wick-2026-10-01-mnq-original-double-cost-c5143b5c6668",
+          "displacement-wick-2026-10-01-spy-corrected-base-a79e7b9bf545",
+          "displacement-wick-2026-10-01-spy-double-total-cost-1efbe445659e",
+          "displacement-wick-2026-06-21-nq-market-lb100-cd3-pause1-af8fde09ef9f",
+          "displacement-wick-2026-06-21-nq-market-lb100-cd0-pause0-f2cfcbde7f70",
+          "displacement-wick-2026-06-21-nq-market-lb20-cd3-pause1-0fc10bf8c286",
+          "displacement-wick-2026-06-21-nq-market-lb20-cd0-pause0-dc1fc00d2bd5",
+          "displacement-wick-2026-06-21-nq-withdrawn-sandbox-1790b7580826"
+        ]
+      }
+    },
+    {
+      "path": "studies/ema-3-8-20-crossover",
+      "title": "EMA 3/8/20/50 Crossover Display",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Plots EMA clouds, an SMA, crossover arrows and labels comparing the moving averages and price.",
+      "usage": "Install as a Study: TOS stores it in Studies despite Strategy in its name. Keep displace=0 for the saved unshifted display.",
+      "caveats": "No AddOrder calls or strategy P&L are present. Positive displace changes the SMA reference to a future offset. Some labels retain hard-coded period names even when inputs change.",
+      "attribution": "Saved name references a 3/8/20 EMA framework; authorship not identified.",
+      "primary": "studies/ema-3-8-20-crossover/EMA3820CrossoverStrategy.thinkscript",
+      "active_files": [
+        "studies/ema-3-8-20-crossover/EMA3820CrossoverStrategy.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "EMA3820CrossoverStrategy"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/eye-pattern",
+      "title": "Eye Pattern Reversal Study",
+      "aggregation": "Daily chart is the documented use case",
+      "description": "Shows a fast moving average recovering above a rising slow moving average after a bounded, lower-volume pullback. Includes entry arrows, stop and target levels, and optional bar coloring.",
+      "usage": "Begin with a daily chart and the saved 5/20 moving averages. Use showStopAndTargets for the plotted reference levels and showMovingAverages to inspect the setup.",
+      "caveats": "Historical variants include Simple and the earlier Study. The names maxPullbackDays and volumeLookback describe bars when used on other aggregations; chart/scanner equivalence is unverified.",
+      "primary": "studies/eye-pattern/EyePattern_CrystalClear.txt",
+      "active_files": [
+        "studies/eye-pattern/EyePattern_CrystalClear.txt"
+      ],
+      "archived_files": [
+        "studies/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
+        "studies/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt",
+        "studies/eye-pattern/versions/EyePattern_Study__2025-10-21.txt"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/ict-displacement-retest",
+      "title": "ICT Displacement Retest Study",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Tests a prior secondary-timeframe range against ATR, a current volume contraction and a retest of the prior candle boundary.",
+      "usage": "Use a chart at or below the selected customAggregation; the saved setting is FIVE_MIN. Inspect the boolean bullish/bearish retest plots.",
+      "caveats": "Secondary aggregation makes it chart-only. Current secondary-bar volume is provisional. The exact boundary conditions are the saved implementation, not independently verified ICT rule parity.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/ict-displacement-retest/ICTDisplacementStudy.thinkscript",
+      "active_files": [
+        "studies/ict-displacement-retest/ICTDisplacementStudy.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "ICTDisplacementStudy"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/macd-v",
+      "title": "MACD-V Entry and Exit Study",
+      "aggregation": "User-selected chart timeframe",
+      "description": "Normalizes MACD by ATR and combines momentum bands with moving-average regimes to mark buy, sell and momentum-exit conditions.",
+      "usage": "Add to a chart and start with 12/26/9 MACD, ATR 26 and the saved 50/150 momentum thresholds. Enable showArrows and, when needed, enableExitAlerts.",
+      "caveats": "Signal arrows and exit alerts are indicator conditions. No ThinkScript trade report or exact chart/scanner parity was supplied.",
+      "primary": "studies/macd-v/MACDV_Chart_Study_Entries_Exits.ts",
+      "active_files": [
+        "studies/macd-v/MACDV_Chart_Study_Entries_Exits.ts"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "offline-signal-event-study",
+        "profile": "macdv",
+        "document": "docs/performance/macdv.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "macdv-2026-10-01-mnq-corrected-base-c1196ca6f119",
+          "macdv-2026-10-01-mnq-double-total-cost-c02b259864d7",
+          "macdv-2026-10-01-mnq-original-lower-cost-eea75ff7690d",
+          "macdv-2026-10-01-mnq-original-double-cost-c5f39f3da0c5",
+          "macdv-2026-10-01-spy-corrected-base-d2791917fcaa",
+          "macdv-2026-10-01-spy-double-total-cost-e53814dfdf22"
+        ]
+      }
+    },
+    {
+      "path": "studies/mtf-30m-fvg",
+      "title": "30-Minute FVG with Midpoint Alerts",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Projects the latest active bullish and bearish 30-minute fair-value gaps and their midpoint lines onto a lower-timeframe chart.",
+      "usage": "The source describes a 3-minute chart with fixed 30-minute secondary series. Enable showCE/showBands and review the bullish and bearish sweep-plus-close alert toggles.",
+      "caveats": "The 30-minute series uses the current higher-timeframe bar. A detected gap and alert condition can change before that bar closes. Alert messages explicitly say 3m even on other chart intervals.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/mtf-30m-fvg/MTF30MINFVG.thinkscript",
+      "active_files": [
+        "studies/mtf-30m-fvg/MTF30MINFVG.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "MTF30MINFVG"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/mtf-ote",
+      "title": "Multi-Timeframe OTE Zones",
+      "aggregation": "Chart 5 minutes / bias 1 hour, or chart DAY / bias WEEK",
+      "description": "Displays 62-79% retracement zones after a swing sweep and displacement, with an optional higher-timeframe range-midpoint bias filter.",
+      "usage": "Add only as a chart study. For the saved intraday example use 5-minute bars and HOUR bias. For daily use select WEEK bias. Choose a secondary aggregation compatible with the chart and match enough history for the bias lookback.",
+      "caveats": "The source evaluates secondary aggregation definitions even when useHTFBias is off, so that toggle does not make it scan-safe. Prior completed higher-timeframe bars are used. Recursive startup and chart replay still need native verification.",
+      "primary": "studies/mtf-ote/MTF_OTE_TOS.ts",
+      "active_files": [
+        "studies/mtf-ote/MTF_OTE_TOS.ts"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "related-clean-python-execution-model",
+        "profile": "mtf-ote",
+        "document": "docs/performance/mtf-ote.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "mtf-ote-2026-07-27-mnq-clean-15m-1m-e6b3d91734ab",
+          "mtf-ote-2026-07-27-mym-clean-15m-1m-304a7ecefd1d",
+          "mtf-ote-2026-07-27-mgc-clean-15m-1m-40c09a088f6b",
+          "mtf-ote-2026-07-30-mnq-mym-package-incumbent-fixed-r-211aca54ce22",
+          "mtf-ote-2026-07-30-mnq-mym-package-per-contract-cost-5c1912259a49"
+        ]
+      }
+    },
+    {
+      "path": "studies/nine-sma-pullback",
+      "title": "9 SMA Pullback Study",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Marks bullish pullbacks to a rising 9 SMA above the 20 SMA, with consolidation, volume and price-range filters.",
+      "usage": "Add as a chart study and inspect the saved $1-$50 universe, 9/20 SMAs, 1.5% pullback tolerance and green-candle bounce conditions.",
+      "caveats": "Its today expression compares a date with itself and is always true: the displayed daily entry count is a cumulative loaded-history count. P&L labels mark stored signal prices to the current close; they are not executed or realized trade returns.",
+      "attribution": "No author identified; production/high-quality wording in the source is not validation.",
+      "primary": "studies/nine-sma-pullback/NineSMAPullback.thinkscript",
+      "active_files": [
+        "studies/nine-sma-pullback/NineSMAPullback.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "NineSMAPullback"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/nshape-simple",
+      "title": "NShape Simple Study",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Detects bullish and bearish three-candle impulse/retrace/continuation patterns with basic body and volume tests, entry/stop/target plots and alerts.",
+      "usage": "Add as a chart study; start with targetR=2 and useC2LowForStop=yes. Enable debug labels if you need to inspect unmet pattern conditions.",
+      "caveats": "This simpler variant lacks the quant-filtered SPY study time, EMA, VWAP and range filters. The source says confirmed, but current-bar close and volume are still provisional.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/nshape-simple/NShape_Simple_Study.thinkscript",
+      "active_files": [
+        "studies/nshape-simple/NShape_Simple_Study.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "NShape_Simple_Study"
+      ],
+      "performance": {
+        "status": "related-python-model",
+        "profile": "nshape-simple",
+        "document": "docs/performance/nshape-simple.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "nshape-simple-2026-07-16-spy-target-0-5r-hold-3-95b70345cc79",
+          "nshape-simple-2026-07-16-spy-target-0-5r-hold-5-f6734e501a8e",
+          "nshape-simple-2026-07-16-spy-target-0-5r-hold-10-770784695f45",
+          "nshape-simple-2026-07-16-spy-target-0-5r-hold-15-f56cf2341b24",
+          "nshape-simple-2026-07-16-spy-target-1r-hold-3-fca7d9d89029",
+          "nshape-simple-2026-07-16-spy-target-1r-hold-5-834d6b61da8e",
+          "nshape-simple-2026-07-16-spy-target-1r-hold-10-ae98693316fb",
+          "nshape-simple-2026-07-16-spy-target-1r-hold-15-4eff4916316a",
+          "nshape-simple-2026-07-16-spy-target-1-5r-hold-3-513ff0c31837",
+          "nshape-simple-2026-07-16-spy-target-1-5r-hold-5-33f856724553",
+          "nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a",
+          "nshape-simple-2026-07-16-spy-target-1-5r-hold-15-ae39cdf4b9da",
+          "nshape-simple-2026-07-16-spy-target-2r-hold-3-400e6fd9cf7b",
+          "nshape-simple-2026-07-16-spy-target-2r-hold-5-94eb26f6743f",
+          "nshape-simple-2026-07-16-spy-target-2r-hold-10-041cf3d65dc3",
+          "nshape-simple-2026-07-16-spy-target-2r-hold-15-cbaa6d9bf4e0"
+        ]
+      }
+    },
+    {
+      "path": "studies/nshape-spy",
+      "title": "NShape Quant-Filtered SPY Study",
+      "aggregation": "SPY, 1-minute chart",
+      "description": "Detects a three-candle impulse, retrace and continuation pattern with volume, EMA, session VWAP, time and range filters. Plots entry, stop and target references.",
+      "usage": "Reproduce the documented SPY setup first: one-minute bars, bullish only, 13:30-15:30 ET, EMA20/VWAP/range filters enabled, 1.5R target and candle-2-low stop.",
+      "caveats": "The source calls this a tested configuration; this organization did not reproduce that research. Bearish signals are off by default. This is a study, not an execution strategy.",
+      "primary": "studies/nshape-spy/NShape_QuantFiltered_SPY_Scalp.ts",
+      "active_files": [
+        "studies/nshape-spy/NShape_QuantFiltered_SPY_Scalp.ts"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "offline-signal-event-study",
+        "profile": "nshape-spy",
+        "document": "docs/performance/nshape-spy.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "nshape-spy-2026-10-01-mnq-corrected-base-b1537ad880c8",
+          "nshape-spy-2026-10-01-mnq-double-total-cost-24b9e8590d1b",
+          "nshape-spy-2026-10-01-mnq-original-lower-cost-672234b78850",
+          "nshape-spy-2026-10-01-mnq-original-double-cost-2a6a90f8d572",
+          "nshape-spy-2026-10-01-spy-corrected-base-bb8a28d1a40a",
+          "nshape-spy-2026-10-01-spy-double-total-cost-dc0794edbc0e",
+          "nshape-spy-2026-07-16-spy-selected-fixed-r-9212b01e6361"
+        ]
+      }
+    },
+    {
+      "path": "studies/session-volume-profile",
+      "title": "Session-Zone Volume Profile",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Starts a new volume profile when the chart moves among premarket, regular session and after-hours time zones.",
+      "usage": "Use intraday bars with extended-session data as needed. Saved boundaries are 04:00, 09:30 and 16:00; tick-size rows, 70% value area and endpoint bubbles are enabled.",
+      "caveats": "These clock boundaries are fixed in the source, not symbol-specific exchange-session detection. The debug plot is hidden unless debug=yes.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/session-volume-profile/VProfile.thinkscript",
+      "active_files": [
+        "studies/session-volume-profile/VProfile.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "VProfile"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/trading-rush-macd",
+      "title": "Trading Rush MACD, VWAP and EMA Display",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Plots daily VWAP, an EMA and MACD crossover arrows conditioned on VWAP side and prior MACD sign.",
+      "usage": "Both installed names are exact duplicates. Use an intraday chart for the saved daily VWAP context and review MACD 12/26/9 and EMA 200.",
+      "caveats": "The plotted 200 EMA is not used in the saved buy/sell conditions. This is a study, not a 200-EMA-filtered execution strategy.",
+      "attribution": "Named Trading Rush framework; no individual author identified in the captured source.",
+      "primary": "studies/trading-rush-macd/TradingRushMACD200EMA.thinkscript",
+      "active_files": [
+        "studies/trading-rush-macd/TradingRushMACD200EMA.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "TradingRushMACD200EMA",
+        "TradingRushMACD200EMA2"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/trading-rush-macd-test",
+      "title": "Trading Rush MACD Test Oscillator",
+      "aggregation": "Lower pane on the selected chart timeframe",
+      "description": "Plots MACD value, signal and histogram with volume markers, zero-side crossover markers and alert calls.",
+      "usage": "Preserve as an experimental lower-pane source. Review its 12/26/9 MACD and volume settings before attempting a native compile.",
+      "caveats": "The captured source contains curly quotation marks and en-dash subtraction characters that may cause compiler errors. They were preserved rather than silently repaired. No current compiler check was performed.",
+      "attribution": "No individual author identified in the captured source.",
+      "primary": "studies/trading-rush-macd-test/TradingRushMACD200EMATest.thinkscript",
+      "active_files": [
+        "studies/trading-rush-macd-test/TradingRushMACD200EMATest.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "TradingRushMACD200EMATest"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/vwap-rejection",
+      "title": "VWAP Rejection Arrows",
+      "aggregation": "User-selected chart timeframe; see source-specific usage",
+      "description": "Draws VWAP and marks bullish/bearish three-bar rejection patterns with a configurable raw-price distance.",
+      "usage": "Use a chart compatible with the selected DAY/WEEK/MONTH VWAP period. Default distance=0.50 is a price-unit amount, not a percent.",
+      "caveats": "The preceding candle is compared with the current VWAP value in some conditions. The deviation inputs are not used by the plotted VWAP or signal logic. No fills or alerts are implemented.",
+      "attribution": "No author identified in the captured source.",
+      "primary": "studies/vwap-rejection/VWAPReject.thinkscript",
+      "active_files": [
+        "studies/vwap-rejection/VWAPReject.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "installed source captured; fresh compile/replay not performed",
+      "publish": true,
+      "tos_aliases": [
+        "VWAPReject"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "studies/wash-rinse-v2",
+      "title": "Wash and Rinse v2 Study",
+      "aggregation": "Intraday or daily; match level mode and session",
+      "description": "Marks a sweep of a prior reference level followed by a close back through it, displaying wash levels and extremes.",
+      "usage": "Select Swing for confirmed pivots or PrevDay for reconstructed prior-period levels. Keep confirmedAlertsOnly=yes to alert using a closed bar, one bar later. Match the chart session to any companion scanner.",
+      "caveats": "Swing pivots confirm pivotStrength bars later. PrevDay is reconstructed from available primary bars and session settings; on weekly/monthly charts it means the previous primary period.",
+      "primary": "studies/wash-rinse-v2/WashRinse_v2_Study_Corrected.ts",
+      "active_files": [
+        "studies/wash-rinse-v2/WashRinse_v2_Study_Corrected.ts"
+      ],
+      "archived_files": [
+        "studies/wash-rinse-v2/versions/WashRinse_v2_Study__2026-08-25.ts"
+      ],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "different-model-context-only",
+        "profile": "wash-rinse-v2",
+        "document": "docs/performance/wash-rinse-v2.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": [
+          "wash-rinse-v2-2026-10-01-mnq-different-python-default-a1b0d3c86a86"
+        ]
+      }
+    },
+    {
+      "path": "watchlist-columns/covered-call-screen",
+      "title": "Covered-Call Candidate Watchlist Labels",
+      "aggregation": "DAY; cached candle-session flag false; LAST price",
+      "description": "Displays BUY/HOLD/AVOID labels from stock price, implied-volatility range rank, average volume, RSI, EMA trend and ATR conditions.",
+      "usage": "Create a Custom Quote using the source text. Match the cached daily aggregation and LAST price setting. CC Indi and CC Indi2 are exact duplicate definitions.",
+      "caveats": "BUY is a subset of HOLD, so both labels can be true at once. No division-by-zero guard is present in the implied-volatility rank. The script does not inspect option chains, spread, expiry, premium, 100-share affordability or the actual account.",
+      "primary": "watchlist-columns/covered-call-screen/CC_Indi.thinkscript",
+      "active_files": [
+        "watchlist-columns/covered-call-screen/CC_Indi.thinkscript"
+      ],
+      "archived_files": [],
+      "native_validation": "cached quote source captured; native compile/display not retested",
+      "tos_aliases": [
+        "CC Indi",
+        "CC Indi2"
+      ],
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    },
+    {
+      "path": "watchlist-columns/gcr-inflection",
+      "title": "GCR Inflection Column",
+      "aggregation": "User-selected custom-quote aggregation",
+      "description": "Produces a signed numeric inflection code using RSI extremes, Bollinger-band contact, and elevated volume.",
+      "usage": "Create a Custom Quote in a watchlist, paste the source, and select its aggregation. Read GCRSignal: -1 bearish setup, 0 neutral, +1 bullish setup. As a chart study, the delivered source shows its numeric plot; optional price overlays remain commented out.",
+      "caveats": "Stochastic and divergence logic are disabled in the saved source. strongBearish and strongBullish therefore remain false, so the advertised -2/+2 codes and strong-signal alerts cannot occur. Several exposed inputs have no effect. This numeric column is not a Boolean Stock Hacker filter.",
+      "primary": "watchlist-columns/gcr-inflection/GCR_Strategy_Scanner_ThinkScript.ts",
+      "active_files": [
+        "watchlist-columns/gcr-inflection/GCR_Strategy_Scanner_ThinkScript.ts"
+      ],
+      "archived_files": [],
+      "native_validation": "not verified in this organization",
+      "performance": {
+        "status": "no-matched-quantitative-evidence",
+        "profile": null,
+        "document": "docs/PERFORMANCE.md",
+        "native_thinkorswim_performance_verified": false,
+        "run_ids": []
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "imported-studies/atr-label/shared_shared_ThinkATR.thinkscript",
+      "project": "imported-studies/atr-label",
+      "role": "chart-study",
+      "sha256": "39a6efc3582b5e3ac4f679cb59cc669aa25c6da8fc90fceb53630d12830622fd",
+      "bytes": 488,
+      "inputs": [
+        {
+          "name": "ATRLength",
+          "default": "14"
+        },
+        {
+          "name": "averagetype",
+          "default": "AverageType.WILDERS"
+        },
+        {
+          "name": "BasePeriod",
+          "default": "AggregationPeriod.DAY"
+        },
+        {
+          "name": "showlabel",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_ThinkATR"
+      ],
+      "tos_aliases": [
+        "shared_shared_ThinkATR"
+      ],
+      "publish": true,
+      "attribution": "Installed under a shared name; no individual author identified."
+    },
+    {
+      "path": "imported-studies/cci-atr-supertrend/shared_shared_VINCE_CCI_ATR.thinkscript",
+      "project": "imported-studies/cci-atr-supertrend",
+      "role": "chart-study",
+      "sha256": "a84eba369a232b5d45fe1ba67903c2cb9df3dc66c8ec2f8c5dc406e36ccec676",
+      "bytes": 1741,
+      "inputs": [
+        {
+          "name": "ST_Atr_Mult",
+          "default": "1.0"
+        },
+        {
+          "name": "ST_Length",
+          "default": "4"
+        },
+        {
+          "name": "ST_AvgType",
+          "default": "AverageType.HULL"
+        },
+        {
+          "name": "lengthCCI",
+          "default": "50"
+        },
+        {
+          "name": "lengthATR",
+          "default": "21"
+        },
+        {
+          "name": "AtrFactor",
+          "default": "1.0"
+        }
+      ],
+      "plot_names": [
+        "ST_ATR_COMBO"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_VINCE_CCI_ATR"
+      ],
+      "tos_aliases": [
+        "shared_shared_VINCE_CCI_ATR"
+      ],
+      "publish": true,
+      "attribution": "Source credits Mobius Supertrend and a DTEK combined version dated August 10, 2019."
+    },
+    {
+      "path": "imported-studies/dans-squeeze-arrows/shared_usetos_dans_sqz_arrows.thinkscript",
+      "project": "imported-studies/dans-squeeze-arrows",
+      "role": "chart-study",
+      "sha256": "40c48e7ca4b09d7890ec828fa540a1e0805d798ee3dc6444387b5257c6e15a69",
+      "bytes": 4837,
+      "inputs": [
+        {
+          "name": "paintBars",
+          "default": "{default Off, Fast, Slow}"
+        },
+        {
+          "name": "showLines",
+          "default": "Yes"
+        },
+        {
+          "name": "price",
+          "default": "close"
+        },
+        {
+          "name": "nHoMA",
+          "default": "8"
+        },
+        {
+          "name": "nHo1",
+          "default": "17"
+        },
+        {
+          "name": "nHo2",
+          "default": "34"
+        },
+        {
+          "name": "nHoSm",
+          "default": "8"
+        },
+        {
+          "name": "hoTypeMA",
+          "default": "AverageType.Exponential"
+        },
+        {
+          "name": "hoType1",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "hoType2",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "hoTypeSM",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "bbKcLength",
+          "default": "20"
+        },
+        {
+          "name": "bbDevUp",
+          "default": "2.0"
+        },
+        {
+          "name": "kcFactor",
+          "default": "1.5"
+        },
+        {
+          "name": "bbKcAvgType",
+          "default": "AverageType.SIMPLE"
+        }
+      ],
+      "plot_names": [
+        "U1",
+        "D1",
+        "U2",
+        "D2",
+        "Osc1",
+        "Osc2",
+        "Zero"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_usetos_dans_sqz_arrows"
+      ],
+      "tos_aliases": [
+        "shared_usetos_dans_sqz_arrows"
+      ],
+      "publish": true,
+      "attribution": "Installed under a useTOS shared name; component hints preserved."
+    },
+    {
+      "path": "imported-studies/multi-indicator-dashboard/shared_personal_dashboard_labels.thinkscript",
+      "project": "imported-studies/multi-indicator-dashboard",
+      "role": "chart-study",
+      "sha256": "b3d892dd0edce572ded45923d38cc1f75a15079165f09c88984c81a1ab26113b",
+      "bytes": 12458,
+      "inputs": [
+        {
+          "name": "show_stacked_label",
+          "default": "yes"
+        },
+        {
+          "name": "show_ema_label",
+          "default": "yes"
+        },
+        {
+          "name": "rsilength",
+          "default": "5"
+        },
+        {
+          "name": "lengthmo",
+          "default": "5"
+        },
+        {
+          "name": "lengthcci",
+          "default": "13"
+        },
+        {
+          "name": "lengthmobo",
+          "default": "10"
+        },
+        {
+          "name": "Num_Dev_Dn",
+          "default": "-0.8"
+        },
+        {
+          "name": "Num_Dev_up",
+          "default": "0.8"
+        },
+        {
+          "name": "AverageType",
+          "default": "AverageType.HULL"
+        },
+        {
+          "name": "ema1Length",
+          "default": "8"
+        },
+        {
+          "name": "ema2Length",
+          "default": "21"
+        },
+        {
+          "name": "ema3Length",
+          "default": "34"
+        },
+        {
+          "name": "ema4Length",
+          "default": "55"
+        },
+        {
+          "name": "ema5Length",
+          "default": "89"
+        },
+        {
+          "name": "showXovers",
+          "default": "yes"
+        },
+        {
+          "name": "useAlerts",
+          "default": "no"
+        },
+        {
+          "name": "alertType",
+          "default": "Alert.BAR"
+        },
+        {
+          "name": "buySound",
+          "default": "Sound.DING"
+        },
+        {
+          "name": "sellSound",
+          "default": "Sound.BELL"
+        },
+        {
+          "name": "colorBars",
+          "default": "no"
+        }
+      ],
+      "plot_names": [
+        "SpyDMP",
+        "SpyDMM",
+        "QQQDMP",
+        "QQQDMM",
+        "VxxDMP",
+        "VxxDMM"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_personal_dashboard_labels"
+      ],
+      "tos_aliases": [
+        "shared_personal_dashboard_labels"
+      ],
+      "publish": true,
+      "attribution": "A shared composite; source includes Mobius, Lar and rad14733 attribution for components."
+    },
+    {
+      "path": "imported-studies/naked-forex-engulfing/NakedFXEngulfing.thinkscript",
+      "project": "imported-studies/naked-forex-engulfing",
+      "role": "chart-study",
+      "sha256": "0bb21ac15b69c184c77ab876d2534ba785b6a05847b1bfde1142ff642d3149d7",
+      "bytes": 1002,
+      "inputs": [
+        {
+          "name": "roomToTheLeftPeriod",
+          "default": "7"
+        },
+        {
+          "name": "largestCandlePeriod",
+          "default": "7"
+        }
+      ],
+      "plot_names": [],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/NakedFXEngulfing"
+      ],
+      "tos_aliases": [
+        "NakedFXEngulfing"
+      ],
+      "publish": true,
+      "attribution": "Assembled by BenTen at useThinkScript; source credits a TradingView conversion."
+    },
+    {
+      "path": "imported-studies/open-interest-2022-03-01/OpenInterestCustom.thinkscript",
+      "project": "imported-studies/open-interest-2022-03-01",
+      "role": "chart-study",
+      "sha256": "b3235a6bb91b1c4ffb6fb94c8985a7e19a4f5f74a6254363d100feaabe80b50f",
+      "bytes": 5287,
+      "inputs": [],
+      "plot_names": [
+        "oi_call_1",
+        "oi_call_2",
+        "oi_call_3",
+        "oi_call_4",
+        "oi_call_5",
+        "oi_put_1",
+        "oi_put_2",
+        "oi_put_3",
+        "oi_put_4",
+        "oi_put_5"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/OpenInterestCustom"
+      ],
+      "tos_aliases": [
+        "OpenInterestCustom"
+      ],
+      "publish": true,
+      "attribution": "Source credits Quant Trading App (2021-2022)."
+    },
+    {
+      "path": "imported-studies/premarket-rth-levels/shared_shared_shared_ThinkPreMarkHighsLows.thinkscript",
+      "project": "imported-studies/premarket-rth-levels",
+      "role": "chart-study",
+      "sha256": "261a0ba2428b6c4d8aa6068a2a171e7f144ab5bac573b0466549a6e0e06dcd35",
+      "bytes": 3498,
+      "inputs": [
+        {
+          "name": "bubbles",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "priorBar",
+        "GlobexHigh",
+        "GlobexLow",
+        "HighRTH",
+        "LowRTH",
+        "PreviousHighRTH",
+        "PreviousLowRTH"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_shared_ThinkPreMarkHighsLows"
+      ],
+      "tos_aliases": [
+        "shared_shared_shared_ThinkPreMarkHighsLows"
+      ],
+      "publish": true,
+      "attribution": "Source credits Nube, 2018."
+    },
+    {
+      "path": "imported-studies/previous-high-low-close/shared_shared_shared_ThinkHighLowClose.thinkscript",
+      "project": "imported-studies/previous-high-low-close",
+      "role": "chart-study",
+      "sha256": "20a4411f4c65f56fb7c4cecfe720beec00457a7dc1ab0e30539ca3d2db3894e6",
+      "bytes": 1322,
+      "inputs": [],
+      "plot_names": [
+        "OpenPivot",
+        "yClose",
+        "yhi",
+        "sweethi",
+        "ylo",
+        "sweetlo"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_shared_ThinkHighLowClose"
+      ],
+      "tos_aliases": [
+        "shared_shared_shared_ThinkHighLowClose"
+      ],
+      "publish": true,
+      "attribution": "Installed under a shared name; no individual author identified in the header."
+    },
+    {
+      "path": "imported-studies/prior-period-volume-profile/CustomVolumeProfile.thinkscript",
+      "project": "imported-studies/prior-period-volume-profile",
+      "role": "chart-study",
+      "sha256": "e6d11a88eb13233c1734ae14972c3b0261dd03cf57702634bb88389b663095ab",
+      "bytes": 5052,
+      "inputs": [
+        {
+          "name": "showDaily",
+          "default": "yes"
+        },
+        {
+          "name": "showAllDailies",
+          "default": "no"
+        },
+        {
+          "name": "showWeekly",
+          "default": "yes"
+        },
+        {
+          "name": "showAllWeeks",
+          "default": "yes"
+        },
+        {
+          "name": "showMonthly",
+          "default": "no"
+        },
+        {
+          "name": "showBubbles",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "vahprev",
+        "pocprev",
+        "valprev",
+        "vahprevweek",
+        "pocprevweek",
+        "valprevweek",
+        "vahprevmonth",
+        "pocprevmonth",
+        "valprevmonth"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/CustomVolumeProfile"
+      ],
+      "tos_aliases": [
+        "CustomVolumeProfile"
+      ],
+      "publish": true,
+      "attribution": "Source credits tony_futures."
+    },
+    {
+      "path": "imported-studies/qta-volume-profile/QTA_Volume_Profile.thinkscript",
+      "project": "imported-studies/qta-volume-profile",
+      "role": "chart-study",
+      "sha256": "bba65d91cb6519db94bb10a5716acdfdd241a57539fe6754db0c3ac7b140b204",
+      "bytes": 3090,
+      "inputs": [
+        {
+          "name": "showPointOfControl",
+          "default": "yes"
+        },
+        {
+          "name": "showValueArea",
+          "default": "yes"
+        },
+        {
+          "name": "valueAreaPercent",
+          "default": "68"
+        },
+        {
+          "name": "opacity",
+          "default": "60"
+        }
+      ],
+      "plot_names": [
+        "POC",
+        "ProfileHigh",
+        "ProfileLow",
+        "VAHigh",
+        "VALow"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/QTA_Volume_Profile"
+      ],
+      "tos_aliases": [
+        "QTA_Volume_Profile"
+      ],
+      "publish": true,
+      "attribution": "Source credits Bryant Littrean / Thinkorswim and Quant Trading App."
+    },
+    {
+      "path": "imported-studies/relative-vigor-index/RVI.thinkscript",
+      "project": "imported-studies/relative-vigor-index",
+      "role": "chart-study",
+      "sha256": "103af76586611b7208f4aaca3dedeee13713ea420046b1e496759df3e8129ced",
+      "bytes": 661,
+      "inputs": [
+        {
+          "name": "p",
+          "default": "14"
+        },
+        {
+          "name": "level1",
+          "default": "0"
+        }
+      ],
+      "plot_names": [
+        "line1",
+        "line2",
+        "z1"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/RVI"
+      ],
+      "tos_aliases": [
+        "RVI"
+      ],
+      "publish": true,
+      "attribution": "Assembled by BenTen at useThinkScript; credits an Ehlers RVI TradingView conversion."
+    },
+    {
+      "path": "imported-studies/reversal-candles/Reversal_Candles.thinkscript",
+      "project": "imported-studies/reversal-candles",
+      "role": "chart-study",
+      "sha256": "c56b786d28ff53c2717d5f8363ca2b51ae10098875f96790fa54b4da1a7f209f",
+      "bytes": 1842,
+      "inputs": [
+        {
+          "name": "n",
+          "default": "10"
+        },
+        {
+          "name": "n2",
+          "default": "5"
+        }
+      ],
+      "plot_names": [
+        "HighRB",
+        "Saikou",
+        "Hikui"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/Reversal_Candles"
+      ],
+      "tos_aliases": [
+        "Reversal_Candles"
+      ],
+      "publish": true,
+      "attribution": "Source credits Mobius, including 2014-2016 chat-room versions."
+    },
+    {
+      "path": "imported-studies/squeeze-trend-hunter/Squeeze_Trend_Hunter.thinkscript",
+      "project": "imported-studies/squeeze-trend-hunter",
+      "role": "chart-study",
+      "sha256": "7f6f1954a157e21c2c2ff69b611689334b7434a524f2149f5916d3eff05bf063",
+      "bytes": 9083,
+      "inputs": [
+        {
+          "name": "price",
+          "default": "close"
+        },
+        {
+          "name": "showLines",
+          "default": "Yes"
+        },
+        {
+          "name": "Channel_Length",
+          "default": "10"
+        },
+        {
+          "name": "Average_Length",
+          "default": "21"
+        },
+        {
+          "name": "over_bought_1",
+          "default": "60"
+        },
+        {
+          "name": "over_bought_2",
+          "default": "53"
+        },
+        {
+          "name": "over_sold_1",
+          "default": "-60"
+        },
+        {
+          "name": "over_sold_2",
+          "default": "-53"
+        },
+        {
+          "name": "show_bubbles",
+          "default": "yes"
+        },
+        {
+          "name": "show_sec_bbls",
+          "default": "no"
+        },
+        {
+          "name": "show_alerts",
+          "default": "yes"
+        },
+        {
+          "name": "length_donchian",
+          "default": "34"
+        },
+        {
+          "name": "length",
+          "default": "20"
+        },
+        {
+          "name": "Num_Dev_Dn",
+          "default": "-2.0"
+        },
+        {
+          "name": "Num_Dev_up",
+          "default": "2.0"
+        },
+        {
+          "name": "averageType",
+          "default": "AverageType.SIMPLE"
+        },
+        {
+          "name": "displace",
+          "default": "0"
+        },
+        {
+          "name": "factorhigh",
+          "default": "1.0"
+        },
+        {
+          "name": "factormid",
+          "default": "1.5"
+        },
+        {
+          "name": "factorlow",
+          "default": "2.0"
+        },
+        {
+          "name": "trueRangeAverageType",
+          "default": "AverageType.SIMPLE"
+        },
+        {
+          "name": "nHoMA",
+          "default": "8"
+        },
+        {
+          "name": "nHo1",
+          "default": "17"
+        },
+        {
+          "name": "nHo2",
+          "default": "34"
+        },
+        {
+          "name": "nHoSm",
+          "default": "8"
+        },
+        {
+          "name": "hoTypeMA",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "hoType1",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "hoType2",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "hoTypeSM",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "bbKcLength",
+          "default": "20"
+        },
+        {
+          "name": "bbDevUp",
+          "default": "2.0"
+        },
+        {
+          "name": "kcFactor",
+          "default": "1.5"
+        },
+        {
+          "name": "bbKcAvgType",
+          "default": "AverageType.SIMPLE"
+        }
+      ],
+      "plot_names": [
+        "obLevel1",
+        "osLevel1",
+        "obLevel2",
+        "osLevel2",
+        "wt1_1",
+        "wt2_1",
+        "Signal",
+        "Signal2_",
+        "upperBand",
+        "lowerBand",
+        "middleBand",
+        "squeezeline",
+        "momentum",
+        "U1",
+        "D1",
+        "U2",
+        "D2"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/Squeeze_Trend_Hunter",
+        "tos-installed/2026-10-29/study/shared_personal_perfect_leading_movingzeroline"
+      ],
+      "tos_aliases": [
+        "Squeeze_Trend_Hunter",
+        "shared_personal_perfect_leading_movingzeroline"
+      ],
+      "publish": true,
+      "attribution": "Source credits LazyBear, BenTen, Chris Ball, rad14733 and named component concepts."
+    },
+    {
+      "path": "imported-studies/supertrend/supertrend.thinkscript",
+      "project": "imported-studies/supertrend",
+      "role": "chart-study",
+      "sha256": "23542bfcbb28dccbae6a888c343520b2bdfb75d6fceedeb8f51995b59ac60ab7",
+      "bytes": 1558,
+      "inputs": [
+        {
+          "name": "AtrMult",
+          "default": "1.0"
+        },
+        {
+          "name": "nATR",
+          "default": "4"
+        },
+        {
+          "name": "AvgType",
+          "default": "AverageType.HULL"
+        },
+        {
+          "name": "PaintBars",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "SuperTrend"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/supertrend"
+      ],
+      "tos_aliases": [
+        "supertrend"
+      ],
+      "publish": true,
+      "attribution": "Source credits Mobius, version V03.10.2015."
+    },
+    {
+      "path": "imported-studies/supply-demand-index/Supply_and_Demand_Index_Support_Resistance.thinkscript",
+      "project": "imported-studies/supply-demand-index",
+      "role": "chart-study",
+      "sha256": "e3f757a9a042185f02924e5a03c55c891438be25b36270f0fed26df405d214c1",
+      "bytes": 3657,
+      "inputs": [
+        {
+          "name": "n",
+          "default": "5"
+        },
+        {
+          "name": "DemandIndexValue",
+          "default": "0.35"
+        }
+      ],
+      "plot_names": [
+        "DL",
+        "DH",
+        "SH",
+        "SL",
+        "RL",
+        "RH"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/Supply_and_Demand_Index_Support_Resistance"
+      ],
+      "tos_aliases": [
+        "Supply_and_Demand_Index_Support_Resistance"
+      ],
+      "publish": true,
+      "attribution": "Source credits Mobius, V01.01.2020."
+    },
+    {
+      "path": "imported-studies/trend-reversal-zigzag/shared_shared_ThinkScriptTrendReverse.thinkscript",
+      "project": "imported-studies/trend-reversal-zigzag",
+      "role": "chart-study",
+      "sha256": "481846173e2b67cf0dbd0eabbb6e0680dc4a88646ad3c8d1a867fe69e1fb6855",
+      "bytes": 3069,
+      "inputs": [
+        {
+          "name": "method",
+          "default": "{default average, high_low}"
+        }
+      ],
+      "plot_names": [
+        "upArrow",
+        "downArrow"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_ThinkScriptTrendReverse"
+      ],
+      "tos_aliases": [
+        "shared_shared_ThinkScriptTrendReverse"
+      ],
+      "publish": true,
+      "attribution": "Source credits theelderwand / useThinkScript."
+    },
+    {
+      "path": "imported-studies/ultimate-breakout/shared_shared_ThinkTopBreakoutBuy.thinkscript",
+      "project": "imported-studies/ultimate-breakout",
+      "role": "chart-study",
+      "sha256": "bfd58a60ee70e39f5da47441efc89089c98a10cffe8054b52db0ab1156bb8dd8",
+      "bytes": 5460,
+      "inputs": [
+        {
+          "name": "BuyorSell",
+          "default": "{default Buy, Sell}"
+        },
+        {
+          "name": "ShowTodayOnly",
+          "default": "yes"
+        },
+        {
+          "name": "ShowEntryExitBands",
+          "default": "yes"
+        },
+        {
+          "name": "ShowBubbles",
+          "default": "yes"
+        },
+        {
+          "name": "BuyEntry",
+          "default": "3"
+        },
+        {
+          "name": "SellEntry",
+          "default": "3"
+        },
+        {
+          "name": "BuyExit",
+          "default": "20"
+        },
+        {
+          "name": "SellExit",
+          "default": "20"
+        },
+        {
+          "name": "ATRLength",
+          "default": "50"
+        },
+        {
+          "name": "TargetATRMult",
+          "default": "1"
+        },
+        {
+          "name": "DisplayLines",
+          "default": "yes"
+        },
+        {
+          "name": "PriceDigit",
+          "default": "2"
+        }
+      ],
+      "plot_names": [
+        "entry",
+        "exit",
+        "pBTarget",
+        "pBTarget2",
+        "pEntryLine"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_ThinkTopBreakoutBuy",
+        "tos-installed/2026-10-29/study/shared_shared_ThinkTopBreakoutSell"
+      ],
+      "tos_aliases": [
+        "shared_shared_ThinkTopBreakoutBuy",
+        "shared_shared_ThinkTopBreakoutSell"
+      ],
+      "publish": true,
+      "attribution": "Source credits hoojsn and tomsk, with version history through January 22, 2020."
+    },
+    {
+      "path": "imported-studies/volatility-trailing-stop/VolatilityStop.thinkscript",
+      "project": "imported-studies/volatility-trailing-stop",
+      "role": "chart-study",
+      "sha256": "349083cd4d6b2fdbb7ece96ed6d00aa66fd64a9b6341068b1957c1099fffcca5",
+      "bytes": 2098,
+      "inputs": [
+        {
+          "name": "ATRPeriod",
+          "default": "10"
+        },
+        {
+          "name": "ATRFactor",
+          "default": "1.5"
+        },
+        {
+          "name": "firstTrade",
+          "default": "{default long, short}"
+        },
+        {
+          "name": "averageType",
+          "default": "AverageType.SIMPLE"
+        }
+      ],
+      "plot_names": [
+        "TrailingStop"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/VolatilityStop"
+      ],
+      "tos_aliases": [
+        "VolatilityStop"
+      ],
+      "publish": true,
+      "attribution": "Source credits Steve Coombs, version 1.1."
+    },
+    {
+      "path": "imported-studies/volume-price-analysis/shared_shared_shared_ThinkVolumePriceAnalysis.thinkscript",
+      "project": "imported-studies/volume-price-analysis",
+      "role": "chart-study",
+      "sha256": "3ae650d8b06e7ede7a78b2e60a1246ed9a2eda1d35e24e14e54daae6b4b19ef3",
+      "bytes": 21573,
+      "inputs": [
+        {
+          "name": "volumeEMALength",
+          "default": "30"
+        },
+        {
+          "name": "narrowSpreadFactor",
+          "default": "0.7"
+        },
+        {
+          "name": "wideSpreadFactor",
+          "default": "1.5"
+        },
+        {
+          "name": "aboveAvgVolfactor",
+          "default": "1.5"
+        },
+        {
+          "name": "ultraHighVolfactor",
+          "default": "2"
+        },
+        {
+          "name": "highCloseFactor",
+          "default": "0.70"
+        },
+        {
+          "name": "lowCloseFactor",
+          "default": "0.25"
+        },
+        {
+          "name": "colorBars",
+          "default": "{default false, true}"
+        },
+        {
+          "name": "trendText",
+          "default": "{false, default true}"
+        },
+        {
+          "name": "volumeDefinitions",
+          "default": "{ false, default true }"
+        },
+        {
+          "name": "alerts",
+          "default": "{ default false, true }"
+        }
+      ],
+      "plot_names": [
+        "upThrustBarPlot",
+        "reversalLikelyBarPlot",
+        "isNewConfirmedUpThrustBarPlot",
+        "strengthInDownTrendPlot",
+        "strengthInDownTrend1Plot",
+        "supplyTestInUpTrendBarPlot",
+        "successfulSupplyTestBarPlot",
+        "stopVolBarPlot",
+        "isStrengthConfirmationBarPlot",
+        "isPseudoUpThrustBarPlot",
+        "pseudoUpThrustConfirmationPlot",
+        "weaknessBarPlot",
+        "strengthInDownTrend2Plot",
+        "distributionBarPlot",
+        "supplyTestBarPlot",
+        "noDemandBarPlot",
+        "noSupplyBarPlot",
+        "effortToMoveUpBarPlot",
+        "effortToMoveDownBarPlot"
+      ],
+      "alert_calls": 1,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_shared_ThinkVolumePriceAnalysis"
+      ],
+      "tos_aliases": [
+        "shared_shared_shared_ThinkVolumePriceAnalysis"
+      ],
+      "publish": true,
+      "attribution": "Shared conversion; original component comments and symbol legend preserved."
+    },
+    {
+      "path": "imported-studies/zigzag-supply-demand/ZigZagHL.thinkscript",
+      "project": "imported-studies/zigzag-supply-demand",
+      "role": "chart-study",
+      "sha256": "7a8c93bfef4ad216c603a03878386cb4489d04de4730d7aee6a8014cc0402bf6",
+      "bytes": 8317,
+      "inputs": [
+        {
+          "name": "showBubblesChange",
+          "default": "no"
+        },
+        {
+          "name": "showBubblesPrice",
+          "default": "no"
+        },
+        {
+          "name": "showBubblesBarCount",
+          "default": "no"
+        },
+        {
+          "name": "showBubblesVolume",
+          "default": "no"
+        },
+        {
+          "name": "showArrows",
+          "default": "no"
+        },
+        {
+          "name": "useAlerts",
+          "default": "no"
+        },
+        {
+          "name": "numberSuppDemandToShow",
+          "default": "2"
+        },
+        {
+          "name": "showSupplyDemand",
+          "default": "{default Pivot, Arrow, None}"
+        },
+        {
+          "name": "showSupplyDemandCloud",
+          "default": "yes"
+        },
+        {
+          "name": "BubbleOffset",
+          "default": ".50000"
+        },
+        {
+          "name": "PercentAmount",
+          "default": ".01"
+        },
+        {
+          "name": "RevAmount",
+          "default": ".15"
+        },
+        {
+          "name": "ATRreversal",
+          "default": "1.0"
+        },
+        {
+          "name": "ATRlength",
+          "default": "5"
+        }
+      ],
+      "plot_names": [
+        "zzp",
+        "zzdot",
+        "U1",
+        "D1",
+        "HighLine",
+        "LowLine",
+        "swinglow",
+        "swinghigh"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "tos-installed/2026-10-29/study/ZigZagHL"
+      ],
+      "tos_aliases": [
+        "ZigZagHL"
+      ],
+      "publish": true,
+      "attribution": "Source credits ZZZ, Linus, Lar and tomsk; version history through January 12, 2020."
+    },
+    {
+      "path": "private-imports/opinicus-volume/shared_shared_OpinicusVolumen.thinkscript",
+      "project": "private-imports/opinicus-volume",
+      "role": "chart-study",
+      "sha256": "b6956d146eb0aca7f24e2999a84d86be1cd2c19a25aa750dd2c4a91a6759b3d6",
+      "bytes": 2564,
+      "inputs": [
+        {
+          "name": "Show30DayAvg",
+          "default": "yes"
+        },
+        {
+          "name": "ShowTodayVolume",
+          "default": "yes"
+        },
+        {
+          "name": "ShowPercentOf30DayAvg",
+          "default": "yes"
+        },
+        {
+          "name": "UnusualVolumePercent",
+          "default": "200"
+        },
+        {
+          "name": "Show30BarAvg",
+          "default": "yes"
+        },
+        {
+          "name": "ShowCurrentBar",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/shared_shared_OpinicusVolumen"
+      ],
+      "tos_aliases": [
+        "shared_shared_OpinicusVolumen"
+      ],
+      "publish": false,
+      "attribution": "Source credits Kyle / Opinicus Holdings, 2018-2019; individual-use-only header preserved."
+    },
+    {
+      "path": "references/gcr-scanner-queries/GCR_ThinkScript_Scanner_Queries.txt",
+      "project": null,
+      "role": "reference-snippets",
+      "sha256": "17d6df47f2be61a76393b938e174ecdceafc5054a034a4538a1e60f683ae98a3",
+      "bytes": 8278,
+      "origins": [
+        "original-projects/trading-breakout-scanner/GCR_ThinkScript_Scanner_Queries.txt"
+      ]
+    },
+    {
+      "path": "references/warrior-eye-workspace/TOS_WORKSPACE_SETUP_WarriorEye.txt",
+      "project": null,
+      "role": "reference-snippets",
+      "sha256": "3238b14ded55d74b7d011571b0f5d97cc87dd59ead3748b1cb7cd8b0cd653e30",
+      "bytes": 21455,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/TradingView/Eye Pattern Strategy/TOS_WORKSPACE_SETUP_WarriorEye.txt"
+      ]
+    },
+    {
+      "path": "scanners/breakout/BreakoutScanner_AlertStudy.ts",
+      "project": "scanners/breakout",
+      "role": "alert-study",
+      "sha256": "ebf84e9954be39536d6ba844ffc7435fac62015faca169a7ecb95c9d7662d279",
+      "bytes": 1293,
+      "inputs": [
+        {
+          "name": "lookbackPeriod",
+          "default": "126"
+        },
+        {
+          "name": "volumeMultiple",
+          "default": "2.0"
+        },
+        {
+          "name": "minDailyGainPercent",
+          "default": "10.0"
+        },
+        {
+          "name": "longTermMALength",
+          "default": "200"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 1,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/breakout-scanner-thinkscript/BreakoutScanner_AlertStudy.ts",
+        "trading-library/TOS Import Bundle/Studies/BreakoutScanner_Alert.ts",
+        "trading-library/thinkscript/breakout-scanner-thinkscript/BreakoutScanner_AlertStudy.ts"
+      ]
+    },
+    {
+      "path": "scanners/breakout/breakout_scanner_thinkscript.txt",
+      "project": "scanners/breakout",
+      "role": "scanner",
+      "sha256": "6092794bd0213fa4224a4b0057c33fc34f18d344fb228394a82105c2153968d0",
+      "bytes": 1110,
+      "inputs": [
+        {
+          "name": "lookbackPeriod",
+          "default": "126"
+        },
+        {
+          "name": "volumeMultiple",
+          "default": "2.0"
+        },
+        {
+          "name": "minDailyGainPercent",
+          "default": "10.0"
+        },
+        {
+          "name": "longTermMALength",
+          "default": "200"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/breakout-scanner-thinkscript/breakout_scanner_thinkscript.txt",
+        "trading-library/TOS Import Bundle/Studies/BreakoutScanner_Scan.ts",
+        "trading-library/thinkscript/breakout-scanner-thinkscript/breakout_scanner_thinkscript.txt"
+      ]
+    },
+    {
+      "path": "scanners/breakout/versions/breakout_scanner_thinkscript_original_2025-12-31.txt",
+      "project": "scanners/breakout",
+      "role": "archived-source",
+      "sha256": "8d74ec0b436cf4ebeda5dcee6a626a5c263de5005cff4a9fff741e3c12348f93",
+      "bytes": 5575,
+      "inputs": [
+        {
+          "name": "lookbackPeriod",
+          "default": "126"
+        },
+        {
+          "name": "volumeMultiple",
+          "default": "2.0"
+        },
+        {
+          "name": "minDailyGainPercent",
+          "default": "10.0"
+        },
+        {
+          "name": "longTermMALength",
+          "default": "200"
+        }
+      ],
+      "plot_names": [
+        "LongTermMA",
+        "BreakoutMarker"
+      ],
+      "alert_calls": 1,
+      "origins": [
+        "original-projects/trading-breakout-scanner/breakout_scanner_thinkscript.txt",
+        "trading-library/ChatGPT Trading Scripts/breakout-scanner-thinkscript/versions/breakout_scanner_thinkscript_original_2025-12-31.txt",
+        "trading-library/thinkscript/breakout-scanner-thinkscript/versions/breakout_scanner_thinkscript_original_2025-12-31.txt"
+      ]
+    },
+    {
+      "path": "scanners/displacement-wick/DisplacementWickAlerts_AlertStudy.ts",
+      "project": "scanners/displacement-wick",
+      "role": "alert-study",
+      "sha256": "3414714402c48c34d569c0a69a0e3558a84483fe39b2497fffab1a66b0968710",
+      "bytes": 3862,
+      "inputs": [
+        {
+          "name": "displacement_length",
+          "default": "100"
+        },
+        {
+          "name": "min_displacement_strength",
+          "default": "1"
+        },
+        {
+          "name": "displacement_require_fvg",
+          "default": "no"
+        },
+        {
+          "name": "min_wick_pct",
+          "default": "20.0"
+        },
+        {
+          "name": "min_wick_body_ratio",
+          "default": "0.25"
+        },
+        {
+          "name": "max_zone_age_bars",
+          "default": "50"
+        },
+        {
+          "name": "scan_for",
+          "default": "{default \"New Setups\", \"Wick Sweeps\", \"Both\"}"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "scan_signal"
+      ],
+      "alert_calls": 4,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/displacement-wick-scanner-tos/DisplacementWickAlerts_AlertStudy.ts",
+        "trading-library/TOS Import Bundle/Studies/DispWick_Alert.ts",
+        "trading-library/thinkscript/displacement-wick-scanner-tos/DisplacementWickAlerts_AlertStudy.ts"
+      ]
+    },
+    {
+      "path": "scanners/displacement-wick/DisplacementWickAlerts_Scanner.ts",
+      "project": "scanners/displacement-wick",
+      "role": "scanner",
+      "sha256": "fead94d0959f40eb043ac2136047a420e193d61244cdd88377a72b6dcbae0e66",
+      "bytes": 3284,
+      "inputs": [
+        {
+          "name": "displacement_length",
+          "default": "100"
+        },
+        {
+          "name": "min_displacement_strength",
+          "default": "1"
+        },
+        {
+          "name": "displacement_require_fvg",
+          "default": "no"
+        },
+        {
+          "name": "min_wick_pct",
+          "default": "20.0"
+        },
+        {
+          "name": "min_wick_body_ratio",
+          "default": "0.25"
+        },
+        {
+          "name": "max_zone_age_bars",
+          "default": "50"
+        },
+        {
+          "name": "scan_for",
+          "default": "{default \"New Setups\", \"Wick Sweeps\", \"Both\"}"
+        }
+      ],
+      "plot_names": [
+        "scan_signal"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/displacement-wick-scanner-tos/DisplacementWickAlerts_Scanner.ts",
+        "trading-library/TOS Import Bundle/Studies/DispWick_Scanner.ts",
+        "trading-library/thinkscript/displacement-wick-scanner-tos/DisplacementWickAlerts_Scanner.ts"
+      ]
+    },
+    {
+      "path": "scanners/displacement-wick/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts",
+      "project": "scanners/displacement-wick",
+      "role": "archived-source",
+      "sha256": "7068e16e0620d98880f4b1b02e18deade8ac2922b98c70e798e5d7f9e255dee9",
+      "bytes": 4052,
+      "inputs": [
+        {
+          "name": "displacement_length",
+          "default": "100"
+        },
+        {
+          "name": "min_displacement_strength",
+          "default": "1"
+        },
+        {
+          "name": "displacement_require_fvg",
+          "default": "no"
+        },
+        {
+          "name": "min_wick_pct",
+          "default": "20.0"
+        },
+        {
+          "name": "min_wick_body_ratio",
+          "default": "0.25"
+        },
+        {
+          "name": "scan_for",
+          "default": "{default \"New Setups\", \"Wick Sweeps\", \"Both\"}"
+        }
+      ],
+      "plot_names": [
+        "scan_signal",
+        "ShortSetup",
+        "LongSetup",
+        "ShortEntry",
+        "LongEntry",
+        "DisplacementStrength"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-downloads/Pine Scripts/tos - displacement wicks/DisplacementWickAlerts_Scanner.ts",
+        "trading-library/ChatGPT Trading Scripts/displacement-wick-scanner-tos/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts",
+        "trading-library/thinkscript/displacement-wick-scanner-tos/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts"
+      ]
+    },
+    {
+      "path": "scanners/eye-pattern/EyePattern_AlertStudy.txt",
+      "project": "scanners/eye-pattern",
+      "role": "alert-study",
+      "sha256": "8ee2b9ba5b9e041b1ed6a4872c534b4b90760d2668625c34ebac27ec8e4b1e20",
+      "bytes": 5050,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "5"
+        },
+        {
+          "name": "slowLength",
+          "default": "20"
+        },
+        {
+          "name": "volumeContractionPercent",
+          "default": "30"
+        },
+        {
+          "name": "volumeLookback",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackPercent",
+          "default": "15"
+        },
+        {
+          "name": "maxPullbackDays",
+          "default": "30"
+        },
+        {
+          "name": "ma20SlopeMinimum",
+          "default": "0.0001"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "signal"
+      ],
+      "alert_calls": 1,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/eye-pattern-scanner/EyePattern_AlertStudy.txt",
+        "trading-library/TOS Import Bundle/Studies/EyePattern_Alert.ts"
+      ]
+    },
+    {
+      "path": "scanners/eye-pattern/EyePattern_Scanner_CrystalClear.txt",
+      "project": "scanners/eye-pattern",
+      "role": "scanner",
+      "sha256": "648eed57d233df64dfd6f2ee41446c594c705a78416e44b73e96e19d7b458d9a",
+      "bytes": 4837,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "5"
+        },
+        {
+          "name": "slowLength",
+          "default": "20"
+        },
+        {
+          "name": "volumeContractionPercent",
+          "default": "30"
+        },
+        {
+          "name": "volumeLookback",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackPercent",
+          "default": "15"
+        },
+        {
+          "name": "maxPullbackDays",
+          "default": "30"
+        },
+        {
+          "name": "ma20SlopeMinimum",
+          "default": "0.0001"
+        }
+      ],
+      "plot_names": [
+        "signal"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/TradingView/Eye Pattern Strategy/EyePattern_Scanner_CrystalClear.txt",
+        "trading-library/ChatGPT Trading Scripts/eye-pattern-scanner/EyePattern_Scanner_CrystalClear.txt",
+        "trading-library/TOS Import Bundle/Studies/EyePattern_Scanner.ts"
+      ]
+    },
+    {
+      "path": "scanners/eye-pattern/versions/EyePattern_Scanner__2025-10-21.txt",
+      "project": "scanners/eye-pattern",
+      "role": "archived-source",
+      "sha256": "019da0d17823833d91edc9e9c4fe2c6160de02fdeb1153a9f17b57501f541bd6",
+      "bytes": 3173,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "5"
+        },
+        {
+          "name": "slowLength",
+          "default": "20"
+        },
+        {
+          "name": "volumeContractionPercent",
+          "default": "30"
+        },
+        {
+          "name": "volumeLookback",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackPercent",
+          "default": "15"
+        },
+        {
+          "name": "maxPullbackDays",
+          "default": "30"
+        },
+        {
+          "name": "ma20SlopeMinimum",
+          "default": "0.0001"
+        }
+      ],
+      "plot_names": [
+        "CurrentEntry",
+        "PatternForming",
+        "MA5_Above_MA20",
+        "MA20_Uptrend",
+        "VolumeContract",
+        "DaysInPullback",
+        "PullbackPct",
+        "LowerShadow",
+        "SetupScore",
+        "RiskReward"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/EyePattern_Scanner.txt",
+        "trading-library/ChatGPT Trading Scripts/eye-pattern-scanner/versions/EyePattern_Scanner__2025-10-21.txt"
+      ]
+    },
+    {
+      "path": "scanners/macd-v/MACDV_AlertStudy.ts",
+      "project": "scanners/macd-v",
+      "role": "alert-study",
+      "sha256": "ab2c957838134f4ae3bf2d35c1173c6cb433a00b7967bace47a63670575b91a6",
+      "bytes": 3555,
+      "inputs": [
+        {
+          "name": "fastLen",
+          "default": "12"
+        },
+        {
+          "name": "slowLen",
+          "default": "26"
+        },
+        {
+          "name": "sigLen",
+          "default": "9"
+        },
+        {
+          "name": "atrLen",
+          "default": "26"
+        },
+        {
+          "name": "ema50Len",
+          "default": "50"
+        },
+        {
+          "name": "ema200Len",
+          "default": "200"
+        },
+        {
+          "name": "strongThreshold",
+          "default": "50"
+        },
+        {
+          "name": "extremeThreshold",
+          "default": "150"
+        },
+        {
+          "name": "priceMin",
+          "default": "2.0"
+        },
+        {
+          "name": "priceMax",
+          "default": "20.0"
+        },
+        {
+          "name": "regime",
+          "default": "{ default Any, Bull, Bear, Stage2, Stage4, Stage3 }"
+        },
+        {
+          "name": "signalType",
+          "default": "{ default Both, BuyOnly, SellOnly, ExitLong, ExitShort }"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 4,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/macd-v-unified-scanner/MACDV_AlertStudy.ts",
+        "trading-library/TOS Import Bundle/Studies/MACDV_Alert.ts"
+      ]
+    },
+    {
+      "path": "scanners/macd-v/MACDV_Scan_Unified_Regime_SignalType.ts",
+      "project": "scanners/macd-v",
+      "role": "scanner",
+      "sha256": "0375df5c8553053025d91625cd51c6aaaf20453b5e11efa515d1d341ce4ee047",
+      "bytes": 2549,
+      "inputs": [
+        {
+          "name": "fastLen",
+          "default": "12"
+        },
+        {
+          "name": "slowLen",
+          "default": "26"
+        },
+        {
+          "name": "sigLen",
+          "default": "9"
+        },
+        {
+          "name": "atrLen",
+          "default": "26"
+        },
+        {
+          "name": "ema50Len",
+          "default": "50"
+        },
+        {
+          "name": "ema200Len",
+          "default": "200"
+        },
+        {
+          "name": "strongThreshold",
+          "default": "50"
+        },
+        {
+          "name": "extremeThreshold",
+          "default": "150"
+        },
+        {
+          "name": "priceMin",
+          "default": "2.0"
+        },
+        {
+          "name": "priceMax",
+          "default": "20.0"
+        },
+        {
+          "name": "regime",
+          "default": "{ default Any, Bull, Bear, Stage2, Stage4, Stage3 }"
+        },
+        {
+          "name": "signalType",
+          "default": "{ default Both, BuyOnly, SellOnly, ExitLong, ExitShort }"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/Projects/Miscellaneous_Trading_Projects/MACDV_Scan_Unified_Regime_SignalType.ts",
+        "trading-library/ChatGPT Trading Scripts/macd-v-unified-scanner/MACDV_Scan_Unified_Regime_SignalType.ts",
+        "trading-library/TOS Import Bundle/Studies/MACDV_Scanner.ts"
+      ]
+    },
+    {
+      "path": "scanners/nshape-spy/NShape_QuantFiltered_SPY_AlertStudy.ts",
+      "project": "scanners/nshape-spy",
+      "role": "alert-study",
+      "sha256": "d1eaf86c9e6a66185eb0b18f87a1a4e82e509a02cde1bf5343461c2a155e9dbd",
+      "bytes": 4126,
+      "inputs": [
+        {
+          "name": "volLen",
+          "default": "20"
+        },
+        {
+          "name": "bodyPctMin",
+          "default": "0.50"
+        },
+        {
+          "name": "volUpMultC1",
+          "default": "1.10"
+        },
+        {
+          "name": "retraceMaxPct",
+          "default": "0.80"
+        },
+        {
+          "name": "volRetraceMaxFrac",
+          "default": "1.00"
+        },
+        {
+          "name": "volUpMultC3",
+          "default": "1.10"
+        },
+        {
+          "name": "useTimeFilter",
+          "default": "yes"
+        },
+        {
+          "name": "startTime",
+          "default": "1330"
+        },
+        {
+          "name": "endTime",
+          "default": "1530"
+        },
+        {
+          "name": "useEMAFilter",
+          "default": "yes"
+        },
+        {
+          "name": "emaLen",
+          "default": "20"
+        },
+        {
+          "name": "useVWAPFilter",
+          "default": "yes"
+        },
+        {
+          "name": "useRangeFilter",
+          "default": "yes"
+        },
+        {
+          "name": "rangeLen",
+          "default": "20"
+        },
+        {
+          "name": "rangeMult",
+          "default": "1.00"
+        },
+        {
+          "name": "useCurrentBarVolumeFilter",
+          "default": "no"
+        },
+        {
+          "name": "minCurrentBarVolume",
+          "default": "100000"
+        },
+        {
+          "name": "useRelativeVolumeFilter",
+          "default": "no"
+        },
+        {
+          "name": "minRelativeVolume",
+          "default": "1.20"
+        },
+        {
+          "name": "scanLongs",
+          "default": "yes"
+        },
+        {
+          "name": "scanShorts",
+          "default": "no"
+        },
+        {
+          "name": "signalLookbackBars",
+          "default": "2"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/nshape-quantfiltered-spy-scanner/NShape_QuantFiltered_SPY_AlertStudy.ts",
+        "trading-library/TOS Import Bundle/Studies/NShape_SPY_Alert.ts",
+        "trading-library/thinkscript/nshape-quantfiltered-spy-scanner/NShape_QuantFiltered_SPY_AlertStudy.ts"
+      ]
+    },
+    {
+      "path": "scanners/nshape-spy/NShape_QuantFiltered_SPY_Scanner.ts",
+      "project": "scanners/nshape-spy",
+      "role": "scanner",
+      "sha256": "4a5925a0ccbbb99f101ecf6a15e617f6acb594d89f5727b7fcdff73955feacd9",
+      "bytes": 3735,
+      "inputs": [
+        {
+          "name": "volLen",
+          "default": "20"
+        },
+        {
+          "name": "bodyPctMin",
+          "default": "0.50"
+        },
+        {
+          "name": "volUpMultC1",
+          "default": "1.10"
+        },
+        {
+          "name": "retraceMaxPct",
+          "default": "0.80"
+        },
+        {
+          "name": "volRetraceMaxFrac",
+          "default": "1.00"
+        },
+        {
+          "name": "volUpMultC3",
+          "default": "1.10"
+        },
+        {
+          "name": "useTimeFilter",
+          "default": "yes"
+        },
+        {
+          "name": "startTime",
+          "default": "1330"
+        },
+        {
+          "name": "endTime",
+          "default": "1530"
+        },
+        {
+          "name": "useEMAFilter",
+          "default": "yes"
+        },
+        {
+          "name": "emaLen",
+          "default": "20"
+        },
+        {
+          "name": "useVWAPFilter",
+          "default": "yes"
+        },
+        {
+          "name": "useRangeFilter",
+          "default": "yes"
+        },
+        {
+          "name": "rangeLen",
+          "default": "20"
+        },
+        {
+          "name": "rangeMult",
+          "default": "1.00"
+        },
+        {
+          "name": "useCurrentBarVolumeFilter",
+          "default": "no"
+        },
+        {
+          "name": "minCurrentBarVolume",
+          "default": "100000"
+        },
+        {
+          "name": "useRelativeVolumeFilter",
+          "default": "no"
+        },
+        {
+          "name": "minRelativeVolume",
+          "default": "1.20"
+        },
+        {
+          "name": "scanLongs",
+          "default": "yes"
+        },
+        {
+          "name": "scanShorts",
+          "default": "no"
+        },
+        {
+          "name": "signalLookbackBars",
+          "default": "2"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/thinkscript/NShape_QuantFiltered_SPY_Scanner.ts",
+        "trading-library/ChatGPT Trading Scripts/nshape-quantfiltered-spy-scanner/NShape_QuantFiltered_SPY_Scanner.ts",
+        "trading-library/TOS Import Bundle/Studies/NShape_SPY_Scanner.ts",
+        "trading-library/thinkscript/nshape-quantfiltered-spy-scanner/NShape_QuantFiltered_SPY_Scanner.ts"
+      ]
+    },
+    {
+      "path": "scanners/ote-wheel/OTE_WheelHelper_Study.ts",
+      "project": "scanners/ote-wheel",
+      "role": "chart-helper",
+      "sha256": "9db82b10281ca8e7d57ec2f26620ea8ab8ab258bf71a8b1d40984e9b70962958",
+      "bytes": 6677,
+      "inputs": [
+        {
+          "name": "side",
+          "default": "{default Bull, Bear}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "2"
+        },
+        {
+          "name": "maxDisplacementBars",
+          "default": "3"
+        },
+        {
+          "name": "maxZoneAgeBars",
+          "default": "15"
+        },
+        {
+          "name": "requireWick",
+          "default": "yes"
+        },
+        {
+          "name": "wickBodyRatio",
+          "default": "1.25"
+        },
+        {
+          "name": "minPrice",
+          "default": "2.0"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.0"
+        },
+        {
+          "name": "useDollarVolume",
+          "default": "yes"
+        },
+        {
+          "name": "minAvgDollarVol",
+          "default": "5000000"
+        },
+        {
+          "name": "minRiskPct",
+          "default": "1.0"
+        },
+        {
+          "name": "maxRiskPct",
+          "default": "10.0"
+        },
+        {
+          "name": "gapGuardPct",
+          "default": "6.0"
+        },
+        {
+          "name": "strikeIncrement",
+          "default": "0.5"
+        },
+        {
+          "name": "strikeCushionPct",
+          "default": "1.0"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        },
+        {
+          "name": "alertWhenZoneArmed",
+          "default": "no"
+        }
+      ],
+      "plot_names": [
+        "SuggestedStrike",
+        "ZoneNear",
+        "ZoneFar",
+        "ProtectedSwing"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/ote-wheel-scan-tos/OTE_WheelHelper_Study.ts",
+        "trading-library/TOS Import Bundle/Studies/OTE_Wheel_Helper.ts"
+      ]
+    },
+    {
+      "path": "scanners/ote-wheel/OTE_WheelScan.ts",
+      "project": "scanners/ote-wheel",
+      "role": "scanner",
+      "sha256": "a750aeb435c3042e25ab5efd11828a0dd2f4c479c6aadf2a3c8d41b6ed8ad7ed",
+      "bytes": 5249,
+      "inputs": [
+        {
+          "name": "side",
+          "default": "{default Bull, Bear}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "2"
+        },
+        {
+          "name": "maxDisplacementBars",
+          "default": "3"
+        },
+        {
+          "name": "maxZoneAgeBars",
+          "default": "15"
+        },
+        {
+          "name": "requireWick",
+          "default": "yes"
+        },
+        {
+          "name": "wickBodyRatio",
+          "default": "1.25"
+        },
+        {
+          "name": "minPrice",
+          "default": "2.0"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.0"
+        },
+        {
+          "name": "useDollarVolume",
+          "default": "yes"
+        },
+        {
+          "name": "minAvgDollarVol",
+          "default": "5000000"
+        },
+        {
+          "name": "minRiskPct",
+          "default": "1.0"
+        },
+        {
+          "name": "maxRiskPct",
+          "default": "10.0"
+        },
+        {
+          "name": "gapGuardPct",
+          "default": "6.0"
+        }
+      ],
+      "plot_names": [
+        "Tradeable"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/ote-wheel-scan-tos/OTE_WheelScan.ts",
+        "trading-library/TOS Import Bundle/Studies/OTE_Wheel_Scanner.ts"
+      ]
+    },
+    {
+      "path": "scanners/ote-wheel/versions/OTE_WheelScan_original_2026-07-15.ts",
+      "project": "scanners/ote-wheel",
+      "role": "archived-source",
+      "sha256": "ec30a75df12fffca5bba86f3f3c71e041a07d0f36701c5f0b329d2c39641aa29",
+      "bytes": 5308,
+      "inputs": [
+        {
+          "name": "side",
+          "default": "{default Bull, Bear}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "2"
+        },
+        {
+          "name": "maxDisplacementBars",
+          "default": "3"
+        },
+        {
+          "name": "maxZoneAgeBars",
+          "default": "15"
+        },
+        {
+          "name": "requireWick",
+          "default": "yes"
+        },
+        {
+          "name": "wickBodyRatio",
+          "default": "1.25"
+        },
+        {
+          "name": "minPrice",
+          "default": "2.0"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.0"
+        },
+        {
+          "name": "useDollarVolume",
+          "default": "yes"
+        },
+        {
+          "name": "minAvgDollarVol",
+          "default": "5000000"
+        },
+        {
+          "name": "minRiskPct",
+          "default": "1.0"
+        },
+        {
+          "name": "maxRiskPct",
+          "default": "10.0"
+        },
+        {
+          "name": "gapGuardPct",
+          "default": "6.0"
+        },
+        {
+          "name": "avoidEarnings",
+          "default": "yes"
+        },
+        {
+          "name": "earningsBufferBars",
+          "default": "7"
+        },
+        {
+          "name": "strikeIncrement",
+          "default": "0.5"
+        },
+        {
+          "name": "strikeCushionPct",
+          "default": "1.0"
+        }
+      ],
+      "plot_names": [
+        "Tradeable",
+        "SuggestedStrike",
+        "ZoneNear",
+        "ZoneFar",
+        "ProtectedSwing"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "project-research/Prop Eval Farm/thinkscript/OTE_WheelScan.ts",
+        "trading-library/ChatGPT Trading Scripts/ote-wheel-scan-tos/versions/OTE_WheelScan_original_2026-07-15.ts"
+      ]
+    },
+    {
+      "path": "scanners/ote-wheel/versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript",
+      "project": "scanners/ote-wheel",
+      "role": "installed-snapshot",
+      "sha256": "910669776756235b06a58a0ce80d76c14fe5c51b8cc5e1adb7f926ab1053d157",
+      "bytes": 6869,
+      "inputs": [
+        {
+          "name": "side",
+          "default": "{default Bull, Bear}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "2"
+        },
+        {
+          "name": "maxDisplacementBars",
+          "default": "3"
+        },
+        {
+          "name": "maxZoneAgeBars",
+          "default": "15"
+        },
+        {
+          "name": "requireWick",
+          "default": "yes"
+        },
+        {
+          "name": "wickBodyRatio",
+          "default": "1.25"
+        },
+        {
+          "name": "minPrice",
+          "default": "2.0"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.0"
+        },
+        {
+          "name": "useDollarVolume",
+          "default": "yes"
+        },
+        {
+          "name": "minAvgDollarVol",
+          "default": "5000000"
+        },
+        {
+          "name": "minRiskPct",
+          "default": "1.0"
+        },
+        {
+          "name": "maxRiskPct",
+          "default": "10.0"
+        },
+        {
+          "name": "gapGuardPct",
+          "default": "6.0"
+        },
+        {
+          "name": "avoidEarnings",
+          "default": "yes"
+        },
+        {
+          "name": "earningsBufferBars",
+          "default": "7"
+        },
+        {
+          "name": "strikeIncrement",
+          "default": "0.5"
+        },
+        {
+          "name": "strikeCushionPct",
+          "default": "1.0"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        },
+        {
+          "name": "alertWhenZoneArmed",
+          "default": "no"
+        }
+      ],
+      "plot_names": [
+        "SuggestedStrike",
+        "ZoneNear",
+        "ZoneFar",
+        "ProtectedSwing"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "tos-installed/2026-10-29/study/OTE_Wheel_Helper"
+      ],
+      "tos_aliases": [
+        "OTE_Wheel_Helper"
+      ],
+      "publish": true
+    },
+    {
+      "path": "scanners/ote-wheel/versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript",
+      "project": "scanners/ote-wheel",
+      "role": "installed-snapshot",
+      "sha256": "39f9b9c3fbeb8fd605aa3c514170683875e2758b1fb04bac7fa820a870c4af32",
+      "bytes": 5442,
+      "inputs": [
+        {
+          "name": "side",
+          "default": "{default Bull, Bear}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "2"
+        },
+        {
+          "name": "maxDisplacementBars",
+          "default": "3"
+        },
+        {
+          "name": "maxZoneAgeBars",
+          "default": "15"
+        },
+        {
+          "name": "requireWick",
+          "default": "yes"
+        },
+        {
+          "name": "wickBodyRatio",
+          "default": "1.25"
+        },
+        {
+          "name": "minPrice",
+          "default": "2.0"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.0"
+        },
+        {
+          "name": "useDollarVolume",
+          "default": "yes"
+        },
+        {
+          "name": "minAvgDollarVol",
+          "default": "5000000"
+        },
+        {
+          "name": "minRiskPct",
+          "default": "1.0"
+        },
+        {
+          "name": "maxRiskPct",
+          "default": "10.0"
+        },
+        {
+          "name": "gapGuardPct",
+          "default": "6.0"
+        },
+        {
+          "name": "avoidEarnings",
+          "default": "yes"
+        },
+        {
+          "name": "earningsBufferBars",
+          "default": "7"
+        }
+      ],
+      "plot_names": [
+        "Tradeable"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/OTE_Wheel_Scanner"
+      ],
+      "tos_aliases": [
+        "OTE_Wheel_Scanner"
+      ],
+      "publish": true
+    },
+    {
+      "path": "scanners/warrior-eye/WarriorEye_AlertStudy.txt",
+      "project": "scanners/warrior-eye",
+      "role": "alert-study",
+      "sha256": "940bca2e0b011712f97afefaa23f2953b804efaa429d05e6728bb3b5a8dde5cc",
+      "bytes": 4414,
+      "inputs": [
+        {
+          "name": "minPercentGainFromRTHOpen",
+          "default": "10.0"
+        },
+        {
+          "name": "minRelativeBarVolume",
+          "default": "3.0"
+        },
+        {
+          "name": "minPrice",
+          "default": "1.00"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.00"
+        },
+        {
+          "name": "volumeLookbackBars",
+          "default": "30"
+        },
+        {
+          "name": "minAtrPercent",
+          "default": "3.0"
+        },
+        {
+          "name": "fastMALength",
+          "default": "9"
+        },
+        {
+          "name": "slowMALength",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackBars",
+          "default": "10"
+        },
+        {
+          "name": "volumeContractionPct",
+          "default": "50.0"
+        },
+        {
+          "name": "targetLookbackBars",
+          "default": "20"
+        },
+        {
+          "name": "minRiskReward",
+          "default": "2.0"
+        },
+        {
+          "name": "minQualityScore",
+          "default": "10"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "signal"
+      ],
+      "alert_calls": 1,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/warrior-eye-hybrid-scanner/WarriorEye_AlertStudy.txt",
+        "trading-library/TOS Import Bundle/Studies/WarriorEye_Alert.ts"
+      ]
+    },
+    {
+      "path": "scanners/warrior-eye/WarriorEye_Hybrid_DayTrading_Scanner.txt",
+      "project": "scanners/warrior-eye",
+      "role": "scanner",
+      "sha256": "75b69e18692e2743e660713b3aef8d15a9df84b4c8bb0387646429930855a300",
+      "bytes": 4240,
+      "inputs": [
+        {
+          "name": "minPercentGainFromRTHOpen",
+          "default": "10.0"
+        },
+        {
+          "name": "minRelativeBarVolume",
+          "default": "3.0"
+        },
+        {
+          "name": "minPrice",
+          "default": "1.00"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.00"
+        },
+        {
+          "name": "volumeLookbackBars",
+          "default": "30"
+        },
+        {
+          "name": "minAtrPercent",
+          "default": "3.0"
+        },
+        {
+          "name": "fastMALength",
+          "default": "9"
+        },
+        {
+          "name": "slowMALength",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackBars",
+          "default": "10"
+        },
+        {
+          "name": "volumeContractionPct",
+          "default": "50.0"
+        },
+        {
+          "name": "targetLookbackBars",
+          "default": "20"
+        },
+        {
+          "name": "minRiskReward",
+          "default": "2.0"
+        },
+        {
+          "name": "minQualityScore",
+          "default": "10"
+        }
+      ],
+      "plot_names": [
+        "signal"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/warrior-eye-hybrid-scanner/WarriorEye_Hybrid_DayTrading_Scanner.txt",
+        "trading-library/TOS Import Bundle/Studies/WarriorEye_Scanner.ts"
+      ]
+    },
+    {
+      "path": "scanners/warrior-eye/versions/WarriorEye_Hybrid_DayTrading_Scanner_original_2025-10-22.txt",
+      "project": "scanners/warrior-eye",
+      "role": "archived-source",
+      "sha256": "d5f01f04e8507467dab1da3dee0a706dd5e6916f8d88c09f5b1d1deb5db49c1d",
+      "bytes": 10243,
+      "inputs": [
+        {
+          "name": "minPercentGain",
+          "default": "10.0"
+        },
+        {
+          "name": "minRelativeVolume",
+          "default": "3.0"
+        },
+        {
+          "name": "minPrice",
+          "default": "1.00"
+        },
+        {
+          "name": "maxPrice",
+          "default": "20.00"
+        },
+        {
+          "name": "maxFloat",
+          "default": "50000000"
+        },
+        {
+          "name": "volumeLookbackDays",
+          "default": "30"
+        },
+        {
+          "name": "fastMA",
+          "default": "9"
+        },
+        {
+          "name": "slowMA",
+          "default": "20"
+        },
+        {
+          "name": "pullbackBars",
+          "default": "10"
+        },
+        {
+          "name": "volumeContractionPct",
+          "default": "50"
+        },
+        {
+          "name": "minRiskReward",
+          "default": "2.0"
+        }
+      ],
+      "plot_names": [
+        "signal"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/TradingView/Eye Pattern Strategy/WarriorEye_Hybrid_DayTrading_Scanner.txt",
+        "trading-library/ChatGPT Trading Scripts/warrior-eye-hybrid-scanner/versions/WarriorEye_Hybrid_DayTrading_Scanner_original_2025-10-22.txt"
+      ]
+    },
+    {
+      "path": "scanners/wash-rinse-v2/WashRinse_v2_AlertStudy.ts",
+      "project": "scanners/wash-rinse-v2",
+      "role": "alert-study",
+      "sha256": "b9216f356dab7449631ff3b993c88736c4e53d0d2c761ecbc9c72a0c52ceff50",
+      "bytes": 3532,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "scanSide",
+          "default": "{default Bullish, Bearish, Either}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "maxRinseBars",
+          "default": "0"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-scan/WashRinse_v2_AlertStudy.ts",
+        "trading-library/TOS Import Bundle/Studies/WashRinse_v2_Alert.ts",
+        "trading-library/thinkscript/wash-rinse-v2-scan/WashRinse_v2_AlertStudy.ts"
+      ]
+    },
+    {
+      "path": "scanners/wash-rinse-v2/WashRinse_v2_Scan_Corrected.ts",
+      "project": "scanners/wash-rinse-v2",
+      "role": "scanner",
+      "sha256": "5a4410a5853b69709f4778f3099491428748cce1ded984b26f7662a6c4d88d98",
+      "bytes": 2956,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "scanSide",
+          "default": "{default Bullish, Bearish, Either}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "maxRinseBars",
+          "default": "0"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "generated-research/2026-08-25/referenced-chatgpt-conversation-this-is-an/outputs/WashRinse_v2_Scan_Corrected.ts",
+        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-scan/WashRinse_v2_Scan_Corrected.ts",
+        "trading-library/TOS Import Bundle/Studies/WashRinse_v2_Scanner.ts",
+        "trading-library/thinkscript/wash-rinse-v2-scan/WashRinse_v2_Scan_Corrected.ts"
+      ]
+    },
+    {
+      "path": "scanners/wash-rinse-v2/versions/WashRinse_v2_Scan__2026-08-25.ts",
+      "project": "scanners/wash-rinse-v2",
+      "role": "archived-source",
+      "sha256": "75944b2f92706da3e3b99e29e5c05f5c80679ca32055ba9142b87f339cec88b8",
+      "bytes": 1413,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        }
+      ],
+      "plot_names": [
+        "BearishWR",
+        "BullishWR"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-scan/versions/WashRinse_v2_Scan__2026-08-25.ts",
+        "trading-library/thinkscript/wash-rinse-v2-scan/versions/WashRinse_v2_Scan__2026-08-25.ts"
+      ]
+    },
+    {
+      "path": "strategies/orb15-mnq/ORB15_MNQ_Research.thinkscript",
+      "project": "strategies/orb15-mnq",
+      "role": "strategy",
+      "sha256": "99d43201b4d951d2e578cb8d2a10a483ebb41a0d8d9fa5010d4bb60f3a61e5c2",
+      "bytes": 9177,
+      "inputs": [
+        {
+          "name": "configuration",
+          "default": "{default Original, StopCap100}"
+        },
+        {
+          "name": "historicalPath",
+          "default": "{default HighFirst, LowFirst}"
+        },
+        {
+          "name": "showHypotheticalOrderMarkers",
+          "default": "yes"
+        },
+        {
+          "name": "confirmedOneMinuteTimeChart",
+          "default": "no"
+        }
+      ],
+      "plot_names": [
+        "RejectedUnsupported",
+        "NextCode",
+        "ExitPrice",
+        "OpeningHigh",
+        "OpeningLow",
+        "HypotheticalStop",
+        "HypotheticalTarget"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "generated-research/2026-10-01/task-2/overlooked_strategies/orb_platform_research_bundle/ORB15_MNQ_Research.thinkscript",
+        "generated-research/2026-10-01/task-3/ORB15_MNQ_Private_Research_STRATEGY.ts",
+        "generated-research/2026-10-01/task-3/ORB15_MNQ_Research.thinkscript",
+        "generated-research/2026-10-01/task-3/native_verified_bundle/ORB15_MNQ_Research.thinkscript"
+      ]
+    },
+    {
+      "path": "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts",
+      "project": "strategies/wash-rinse-v2",
+      "role": "strategy",
+      "sha256": "d39bf43cf2398d15024fe7af35d8518c081f0c2b642512df6d6e2d59686b9662",
+      "bytes": 8560,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "maxRinseBars",
+          "default": "0"
+        },
+        {
+          "name": "stopOffsetTicks",
+          "default": "1"
+        },
+        {
+          "name": "rMult",
+          "default": "2.0"
+        },
+        {
+          "name": "tradeSize",
+          "default": "100"
+        },
+        {
+          "name": "useSession",
+          "default": "yes"
+        },
+        {
+          "name": "startTradingTime",
+          "default": "935"
+        },
+        {
+          "name": "stopTradingTime",
+          "default": "1530"
+        },
+        {
+          "name": "flattenTime",
+          "default": "1555"
+        },
+        {
+          "name": "allowLongs",
+          "default": "yes"
+        },
+        {
+          "name": "allowShorts",
+          "default": "yes"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [],
+      "alert_calls": 8,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-strategy/WashRinse_v2_Strategy_Corrected.ts",
+        "trading-library/TOS Import Bundle/Strategies/WashRinse_v2_Strategy.ts"
+      ]
+    },
+    {
+      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_audit_2026-08-25.ts",
+      "project": "strategies/wash-rinse-v2",
+      "role": "archived-source",
+      "sha256": "79b57d2de48ba336a6b8dfb210dc12c11f3a0e76d95ec3e02ab15de0b9543313",
+      "bytes": 7248,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "maxRinseBars",
+          "default": "0"
+        },
+        {
+          "name": "stopOffsetTicks",
+          "default": "1"
+        },
+        {
+          "name": "rMult",
+          "default": "2.0"
+        },
+        {
+          "name": "tradeSize",
+          "default": "100"
+        },
+        {
+          "name": "useSession",
+          "default": "yes"
+        },
+        {
+          "name": "startTradingTime",
+          "default": "935"
+        },
+        {
+          "name": "stopTradingTime",
+          "default": "1530"
+        },
+        {
+          "name": "flattenTime",
+          "default": "1555"
+        },
+        {
+          "name": "allowLongs",
+          "default": "yes"
+        },
+        {
+          "name": "allowShorts",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [],
+      "alert_calls": 0,
+      "origins": [
+        "generated-research/2026-08-25/referenced-chatgpt-conversation-this-is-an/outputs/WashRinse_v2_Strategy_Corrected.ts"
+      ]
+    },
+    {
+      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts",
+      "project": "strategies/wash-rinse-v2",
+      "role": "archived-source",
+      "sha256": "2a5187e366c4aa0fc1e5eecb0f878b5ae336b25025c376508e87b0fdb9ff10d6",
+      "bytes": 8324,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "maxRinseBars",
+          "default": "0"
+        },
+        {
+          "name": "stopOffsetTicks",
+          "default": "1"
+        },
+        {
+          "name": "rMult",
+          "default": "2.0"
+        },
+        {
+          "name": "tradeSize",
+          "default": "100"
+        },
+        {
+          "name": "useSession",
+          "default": "yes"
+        },
+        {
+          "name": "startTradingTime",
+          "default": "935"
+        },
+        {
+          "name": "stopTradingTime",
+          "default": "1530"
+        },
+        {
+          "name": "flattenTime",
+          "default": "1555"
+        },
+        {
+          "name": "allowLongs",
+          "default": "yes"
+        },
+        {
+          "name": "allowShorts",
+          "default": "yes"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [],
+      "alert_calls": 8,
+      "origins": [
+        "trading-library/thinkscript/wash-rinse-v2-strategy/WashRinse_v2_Strategy_Corrected.ts"
+      ]
+    },
+    {
+      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy__2026-08-25.ts",
+      "project": "strategies/wash-rinse-v2",
+      "role": "archived-source",
+      "sha256": "ca8be8f93ec3dfeb95fcc41c296d7240af8758ef33e2d8d007599931a0836b3f",
+      "bytes": 4225,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "stopOffsetTicks",
+          "default": "1"
+        },
+        {
+          "name": "rMult",
+          "default": "2.0"
+        },
+        {
+          "name": "tradeSize",
+          "default": "100"
+        },
+        {
+          "name": "useSession",
+          "default": "yes"
+        },
+        {
+          "name": "startTradingTime",
+          "default": "935"
+        },
+        {
+          "name": "stopTradingTime",
+          "default": "1530"
+        },
+        {
+          "name": "flattenTime",
+          "default": "1555"
+        },
+        {
+          "name": "allowLongs",
+          "default": "yes"
+        },
+        {
+          "name": "allowShorts",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [],
+      "alert_calls": 0,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-strategy/versions/WashRinse_v2_Strategy__2026-08-25.ts",
+        "trading-library/thinkscript/wash-rinse-v2-strategy/versions/WashRinse_v2_Strategy__2026-08-25.ts"
+      ]
+    },
+    {
+      "path": "studies/alert-value/AlertValue.thinkscript",
+      "project": "studies/alert-value",
+      "role": "chart-study",
+      "sha256": "8e854fbf31f07291d720af71b957301c7e4d1f44c4c31603e2a486cf55b84b37",
+      "bytes": 39,
+      "inputs": [],
+      "plot_names": [
+        "defaultPlot"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/AlertValue"
+      ],
+      "tos_aliases": [
+        "AlertValue"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/auto-trend-lines/AutoTL.thinkscript",
+      "project": "studies/auto-trend-lines",
+      "role": "chart-study",
+      "sha256": "305aaed44f30173fe99b32ae2058bfdbbc2b0986f8a22f845e5d878b6d2473b2",
+      "bytes": 3033,
+      "inputs": [
+        {
+          "name": "TrendLineLength1",
+          "default": "50"
+        },
+        {
+          "name": "TrendLineLength2",
+          "default": "30"
+        },
+        {
+          "name": "TrendLineLength3",
+          "default": "10"
+        }
+      ],
+      "plot_names": [
+        "TrendLine1a",
+        "TrendLine1b",
+        "TrendLine2a",
+        "TrendLine2b",
+        "TrendLine3a",
+        "TrendLine3b"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/AutoTL"
+      ],
+      "tos_aliases": [
+        "AutoTL"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/buy-the-dip/BTDStudy.thinkscript",
+      "project": "studies/buy-the-dip",
+      "role": "chart-study",
+      "sha256": "0165d71774b23cec2ec6c0a3611b6f74cb773d780691371bf7ed29fffb41baf0",
+      "bytes": 2347,
+      "inputs": [
+        {
+          "name": "maLength",
+          "default": "50"
+        },
+        {
+          "name": "dipPercentThreshold",
+          "default": "2.0"
+        },
+        {
+          "name": "rallyPercentThreshold",
+          "default": "2.0"
+        },
+        {
+          "name": "rsiLength",
+          "default": "14"
+        },
+        {
+          "name": "oversoldThreshold",
+          "default": "30"
+        },
+        {
+          "name": "overboughtThreshold",
+          "default": "70"
+        },
+        {
+          "name": "volumeMultiplier",
+          "default": "1.5"
+        }
+      ],
+      "plot_names": [
+        "LongSignal",
+        "ShortSignal",
+        "EMA10Plot",
+        "EMA20Plot",
+        "EMA50Plot",
+        "EMA200Plot"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/BTDStudy"
+      ],
+      "tos_aliases": [
+        "BTDStudy"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/displacement-detector/Displacement_Detector.thinkscript",
+      "project": "studies/displacement-detector",
+      "role": "chart-study",
+      "sha256": "e9db793bf11413b6861cacbbb7a93c351e264443c59618fcd3de9d29810029d8",
+      "bytes": 9334,
+      "inputs": [
+        {
+          "name": "showDisplacementCandles",
+          "default": "yes"
+        },
+        {
+          "name": "emphasizeDisplacementBodies",
+          "default": "yes"
+        },
+        {
+          "name": "showLevelLabels",
+          "default": "yes"
+        },
+        {
+          "name": "showConsecutiveMarker",
+          "default": "yes"
+        },
+        {
+          "name": "showFlatMarker",
+          "default": "yes"
+        },
+        {
+          "name": "showNearbyFlatComboMarker",
+          "default": "yes"
+        },
+        {
+          "name": "bullishColorRed",
+          "default": "0"
+        },
+        {
+          "name": "bullishColorGreen",
+          "default": "102"
+        },
+        {
+          "name": "bullishColorBlue",
+          "default": "255"
+        },
+        {
+          "name": "bearishColorRed",
+          "default": "255"
+        },
+        {
+          "name": "bearishColorGreen",
+          "default": "215"
+        },
+        {
+          "name": "bearishColorBlue",
+          "default": "0"
+        },
+        {
+          "name": "requireFVG",
+          "default": "yes"
+        },
+        {
+          "name": "displacementLookbackLength",
+          "default": "100"
+        },
+        {
+          "name": "showLevel1",
+          "default": "yes"
+        },
+        {
+          "name": "showLevel2",
+          "default": "yes"
+        },
+        {
+          "name": "showLevel3",
+          "default": "yes"
+        },
+        {
+          "name": "showLevel4",
+          "default": "yes"
+        },
+        {
+          "name": "consecutiveDetectionEnable",
+          "default": "yes"
+        },
+        {
+          "name": "consecutiveMinimumCount",
+          "default": "2"
+        },
+        {
+          "name": "allowAnyDirectionCombo",
+          "default": "yes"
+        },
+        {
+          "name": "flatDetectionEnable",
+          "default": "yes"
+        },
+        {
+          "name": "wickToleranceInTicks",
+          "default": "0.0"
+        },
+        {
+          "name": "nearbyFlatDetectionEnable",
+          "default": "yes"
+        },
+        {
+          "name": "nearbyFlatLookback",
+          "default": "3"
+        },
+        {
+          "name": "enableAlerts",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "BullishDisplacementFlag",
+        "BearishDisplacementFlag",
+        "ConsecutiveBull",
+        "ConsecutiveBear",
+        "FlatBull",
+        "FlatBear",
+        "ComboBull",
+        "ComboBear"
+      ],
+      "alert_calls": 4,
+      "origins": [
+        "tos-installed/2026-10-29/study/Displacement_Detector"
+      ],
+      "tos_aliases": [
+        "Displacement_Detector"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/displacement-wick/DisplacementWickAlerts_Study.ts",
+      "project": "studies/displacement-wick",
+      "role": "chart-study",
+      "sha256": "aff6d61e92bf191726bebfd142519ffab879a2c62f939cdf4ccf1ff726091082",
+      "bytes": 6858,
+      "inputs": [
+        {
+          "name": "displacement_length",
+          "default": "100"
+        },
+        {
+          "name": "min_displacement_strength",
+          "default": "1"
+        },
+        {
+          "name": "displacement_require_fvg",
+          "default": "no"
+        },
+        {
+          "name": "min_wick_pct",
+          "default": "20.0"
+        },
+        {
+          "name": "min_wick_body_ratio",
+          "default": "0.25"
+        },
+        {
+          "name": "show_displacement_candles",
+          "default": "yes"
+        },
+        {
+          "name": "show_wick_zones",
+          "default": "yes"
+        },
+        {
+          "name": "show_targets",
+          "default": "yes"
+        },
+        {
+          "name": "show_labels",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "BullTarget",
+        "BearTarget",
+        "ShortSetup",
+        "LongSetup",
+        "ShortEntry",
+        "LongEntry"
+      ],
+      "alert_calls": 4,
+      "origins": [
+        "trading-downloads/Pine Scripts/tos - displacement wicks/DisplacementWickAlerts_Study.ts",
+        "trading-library/ChatGPT Trading Scripts/displacement-wick-alerts-tos/DisplacementWickAlerts_Study.ts",
+        "trading-library/TOS Import Bundle/Studies/DispWick_Chart.ts",
+        "trading-library/thinkscript/displacement-wick-alerts-tos/DisplacementWickAlerts_Study.ts"
+      ]
+    },
+    {
+      "path": "studies/ema-3-8-20-crossover/EMA3820CrossoverStrategy.thinkscript",
+      "project": "studies/ema-3-8-20-crossover",
+      "role": "chart-study",
+      "sha256": "1bdfeb89f489c661e9bf0ab45f8d54b4514846c5151851fa4a70f04c468f96f2",
+      "bytes": 6298,
+      "inputs": [
+        {
+          "name": "price",
+          "default": "close"
+        },
+        {
+          "name": "EMA1",
+          "default": "3"
+        },
+        {
+          "name": "EMA2",
+          "default": "8"
+        },
+        {
+          "name": "EMA3",
+          "default": "20"
+        },
+        {
+          "name": "EMA4",
+          "default": "50"
+        },
+        {
+          "name": "SMA5",
+          "default": "50"
+        },
+        {
+          "name": "displace",
+          "default": "0"
+        },
+        {
+          "name": "showBreakoutSignals",
+          "default": "no"
+        }
+      ],
+      "plot_names": [
+        "SMA",
+        "ArrowUp1",
+        "ArrowDN1",
+        "ArrowDN2",
+        "ArrowUP2",
+        "ArrowUp3",
+        "ArrowDN3",
+        "ArrowUp4",
+        "ArrowDN4"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/EMA3820CrossoverStrategy"
+      ],
+      "tos_aliases": [
+        "EMA3820CrossoverStrategy"
+      ],
+      "publish": true,
+      "attribution": "Saved name references a 3/8/20 EMA framework; authorship not identified."
+    },
+    {
+      "path": "studies/eye-pattern/EyePattern_CrystalClear.txt",
+      "project": "studies/eye-pattern",
+      "role": "chart-study",
+      "sha256": "8c4391cb7d68b6f0333fff9633fc3b5e317d1f94d52ad7d1c5391ce64f6ab21d",
+      "bytes": 9185,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "5"
+        },
+        {
+          "name": "slowLength",
+          "default": "20"
+        },
+        {
+          "name": "volumeContractionPercent",
+          "default": "30"
+        },
+        {
+          "name": "volumeLookback",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackPercent",
+          "default": "15"
+        },
+        {
+          "name": "maxPullbackDays",
+          "default": "30"
+        },
+        {
+          "name": "ma20SlopeMinimum",
+          "default": "0.0001"
+        },
+        {
+          "name": "showMovingAverages",
+          "default": "yes"
+        },
+        {
+          "name": "showVolumeZones",
+          "default": "no"
+        },
+        {
+          "name": "showStopAndTargets",
+          "default": "yes"
+        },
+        {
+          "name": "colorPriceBars",
+          "default": "yes"
+        },
+        {
+          "name": "showBackgroundAlerts",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "FastMA",
+        "SlowMA",
+        "EntryArrow",
+        "PatternForming",
+        "StopLine",
+        "Target1Line",
+        "Target2Line",
+        "Target3Line",
+        "VolZone"
+      ],
+      "alert_calls": 6,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/TradingView/Eye Pattern Strategy/EyePattern_CrystalClear.txt",
+        "trading-library/ChatGPT Trading Scripts/eye-pattern/EyePattern_CrystalClear.txt",
+        "trading-library/TOS Import Bundle/Studies/EyePattern_Chart.ts",
+        "trading-library/thinkscript/eye-pattern/EyePattern_CrystalClear.txt"
+      ]
+    },
+    {
+      "path": "studies/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
+      "project": "studies/eye-pattern",
+      "role": "archived-source",
+      "sha256": "fae081a2127e8bcfacd6fe5d036a261ee9e82724081c184e32f274e4a5f0ef16",
+      "bytes": 9186,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "5"
+        },
+        {
+          "name": "slowLength",
+          "default": "20"
+        },
+        {
+          "name": "volumeContractionPercent",
+          "default": "30"
+        },
+        {
+          "name": "volumeLookback",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackPercent",
+          "default": "15"
+        },
+        {
+          "name": "maxPullbackDays",
+          "default": "30"
+        },
+        {
+          "name": "ma20SlopeMinimum",
+          "default": "0.0001"
+        },
+        {
+          "name": "showMovingAverages",
+          "default": "yes"
+        },
+        {
+          "name": "showVolumeZones",
+          "default": "no"
+        },
+        {
+          "name": "showStopAndTargets",
+          "default": "yes"
+        },
+        {
+          "name": "colorPriceBars",
+          "default": "yes"
+        },
+        {
+          "name": "showBackgroundAlerts",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "FastMA",
+        "SlowMA",
+        "EntryArrow",
+        "PatternForming",
+        "StopLine",
+        "Target1Line",
+        "Target2Line",
+        "Target3Line",
+        "VolZone"
+      ],
+      "alert_calls": 6,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/Eye Pattern CRYSTAL CLEAR.txt",
+        "trading-library/ChatGPT Trading Scripts/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
+        "trading-library/thinkscript/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt"
+      ]
+    },
+    {
+      "path": "studies/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt",
+      "project": "studies/eye-pattern",
+      "role": "archived-source",
+      "sha256": "777f6e6f4bb3a37cdb059abf74940f65431c5f1d48ce31652e23ba57268743e9",
+      "bytes": 4614,
+      "inputs": [
+        {
+          "name": "showBuySignals",
+          "default": "yes"
+        },
+        {
+          "name": "showMovingAverages",
+          "default": "yes"
+        },
+        {
+          "name": "aggressiveMode",
+          "default": "no"
+        }
+      ],
+      "plot_names": [
+        "FastMA",
+        "SlowMA",
+        "BuyArrow"
+      ],
+      "alert_calls": 3,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/EyePattern_Simple.txt",
+        "trading-library/ChatGPT Trading Scripts/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt",
+        "trading-library/thinkscript/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt"
+      ]
+    },
+    {
+      "path": "studies/eye-pattern/versions/EyePattern_Study__2025-10-21.txt",
+      "project": "studies/eye-pattern",
+      "role": "archived-source",
+      "sha256": "35444c0ebe7c424949b706dced5f804cd2acaa21c8e11b345ad25e346b5685a0",
+      "bytes": 5279,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "5"
+        },
+        {
+          "name": "slowLength",
+          "default": "20"
+        },
+        {
+          "name": "volumeContractionPercent",
+          "default": "30"
+        },
+        {
+          "name": "volumeLookback",
+          "default": "20"
+        },
+        {
+          "name": "maxPullbackPercent",
+          "default": "15"
+        },
+        {
+          "name": "maxPullbackDays",
+          "default": "30"
+        },
+        {
+          "name": "ma20SlopeMinimum",
+          "default": "0.0001"
+        },
+        {
+          "name": "showSignals",
+          "default": "yes"
+        },
+        {
+          "name": "showMAs",
+          "default": "yes"
+        },
+        {
+          "name": "showVolZones",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "FastMA",
+        "SlowMA",
+        "EntryArrow",
+        "VolZone"
+      ],
+      "alert_calls": 5,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/EyePattern_Study.txt",
+        "trading-library/ChatGPT Trading Scripts/eye-pattern/versions/EyePattern_Study__2025-10-21.txt",
+        "trading-library/thinkscript/eye-pattern/versions/EyePattern_Study__2025-10-21.txt"
+      ]
+    },
+    {
+      "path": "studies/ict-displacement-retest/ICTDisplacementStudy.thinkscript",
+      "project": "studies/ict-displacement-retest",
+      "role": "chart-study",
+      "sha256": "99c4b0c259c2c420e8faa8104a4a0f21825a6c54c9e1c5b8fda2347e92a0b148",
+      "bytes": 1054,
+      "inputs": [
+        {
+          "name": "displacementMultiplier",
+          "default": "1.0"
+        },
+        {
+          "name": "volumeDropThreshold",
+          "default": "0.7"
+        },
+        {
+          "name": "customAggregation",
+          "default": "AggregationPeriod.FIVE_MIN"
+        }
+      ],
+      "plot_names": [
+        "scan"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/ICTDisplacementStudy"
+      ],
+      "tos_aliases": [
+        "ICTDisplacementStudy"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/macd-v/MACDV_Chart_Study_Entries_Exits.ts",
+      "project": "studies/macd-v",
+      "role": "chart-study",
+      "sha256": "d4efd595ad4f0cc0d3febc8d78f9606d0b413a40f9df63806a6ad013a4b574ac",
+      "bytes": 3817,
+      "inputs": [
+        {
+          "name": "fastLen",
+          "default": "12"
+        },
+        {
+          "name": "slowLen",
+          "default": "26"
+        },
+        {
+          "name": "sigLen",
+          "default": "9"
+        },
+        {
+          "name": "atrLen",
+          "default": "26"
+        },
+        {
+          "name": "ema200Len",
+          "default": "200"
+        },
+        {
+          "name": "ema50Len",
+          "default": "50"
+        },
+        {
+          "name": "strongThreshold",
+          "default": "50"
+        },
+        {
+          "name": "extremeThreshold",
+          "default": "150"
+        },
+        {
+          "name": "showLabels",
+          "default": "yes"
+        },
+        {
+          "name": "showArrows",
+          "default": "yes"
+        },
+        {
+          "name": "enableExitAlerts",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "BuySignal",
+        "SellSignal",
+        "ExitLongSignal",
+        "ExitShortSignal"
+      ],
+      "alert_calls": 4,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/Projects/Miscellaneous_Trading_Projects/MACDV_Chart_Study_Entries_Exits.ts",
+        "trading-library/ChatGPT Trading Scripts/macd-v-chart-study/MACDV_Chart_Study_Entries_Exits.ts",
+        "trading-library/TOS Import Bundle/Studies/MACDV_Chart.ts",
+        "trading-library/thinkscript/macd-v-chart-study/MACDV_Chart_Study_Entries_Exits.ts"
+      ]
+    },
+    {
+      "path": "studies/mtf-30m-fvg/MTF30MINFVG.thinkscript",
+      "project": "studies/mtf-30m-fvg",
+      "role": "chart-study",
+      "sha256": "7d618f4378686cb4585e263c692a953159910355cc1d49601046e567da7e0beb",
+      "bytes": 5231,
+      "inputs": [
+        {
+          "name": "showBull",
+          "default": "yes"
+        },
+        {
+          "name": "showBear",
+          "default": "yes"
+        },
+        {
+          "name": "showCE",
+          "default": "yes"
+        },
+        {
+          "name": "showBands",
+          "default": "yes"
+        },
+        {
+          "name": "alertOnBullCECloseAbove",
+          "default": "yes"
+        },
+        {
+          "name": "alertOnBearCECloseBelow",
+          "default": "yes"
+        },
+        {
+          "name": "playSound",
+          "default": "yes"
+        },
+        {
+          "name": "sound",
+          "default": "Sound.Ding"
+        }
+      ],
+      "plot_names": [
+        "BullTop",
+        "BullBot",
+        "BearTop",
+        "BearBot",
+        "BullCE",
+        "BearCE"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "tos-installed/2026-10-29/study/MTF30MINFVG"
+      ],
+      "tos_aliases": [
+        "MTF30MINFVG"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/mtf-ote/MTF_OTE_TOS.ts",
+      "project": "studies/mtf-ote",
+      "role": "chart-study",
+      "sha256": "c902e38c0fbf821a1f58492ef484339c63d22b8881bde4cfe32a86906f46a212",
+      "bytes": 4599,
+      "inputs": [
+        {
+          "name": "pivotStrength",
+          "default": "2"
+        },
+        {
+          "name": "maxDisplacementBars",
+          "default": "3"
+        },
+        {
+          "name": "maxZoneAgeBars",
+          "default": "15"
+        },
+        {
+          "name": "requireWick",
+          "default": "yes"
+        },
+        {
+          "name": "wickBodyRatio",
+          "default": "1.25"
+        },
+        {
+          "name": "useHTFBias",
+          "default": "yes"
+        },
+        {
+          "name": "biasAgg",
+          "default": "AggregationPeriod.HOUR"
+        },
+        {
+          "name": "biasLookback",
+          "default": "20"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "BullZoneTop",
+        "BullZoneBot",
+        "BullSwing",
+        "BearZoneBot",
+        "BearZoneTop",
+        "BearSwing",
+        "BullSignal",
+        "BearSignal"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "project-research/Prop Eval Farm/thinkscript/MTF_OTE_TOS.ts",
+        "trading-library/ChatGPT Trading Scripts/mtf-ote-tos/MTF_OTE_TOS.ts",
+        "trading-library/TOS Import Bundle/Studies/MTF_OTE_TOS.ts",
+        "trading-library/thinkscript/mtf-ote-tos/MTF_OTE_TOS.ts"
+      ]
+    },
+    {
+      "path": "studies/nine-sma-pullback/NineSMAPullback.thinkscript",
+      "project": "studies/nine-sma-pullback",
+      "role": "chart-study",
+      "sha256": "7334cbabf8dd65b8287f13f412ea0c987f4519d1ac152c9f707d78deb9614621",
+      "bytes": 6196,
+      "inputs": [
+        {
+          "name": "sma_length",
+          "default": "9"
+        },
+        {
+          "name": "sma_length_2",
+          "default": "20"
+        },
+        {
+          "name": "volume_threshold",
+          "default": "0.75"
+        },
+        {
+          "name": "min_price",
+          "default": "1.00"
+        },
+        {
+          "name": "max_price",
+          "default": "50.00"
+        },
+        {
+          "name": "pullback_tolerance",
+          "default": "0.015"
+        },
+        {
+          "name": "min_flag_bars",
+          "default": "3"
+        }
+      ],
+      "plot_names": [
+        "SMA9_Line",
+        "SMA20_Line",
+        "Entry_Signal"
+      ],
+      "alert_calls": 1,
+      "origins": [
+        "tos-installed/2026-10-29/study/NineSMAPullback"
+      ],
+      "tos_aliases": [
+        "NineSMAPullback"
+      ],
+      "publish": true,
+      "attribution": "No author identified; production/high-quality wording in the source is not validation."
+    },
+    {
+      "path": "studies/nshape-simple/NShape_Simple_Study.thinkscript",
+      "project": "studies/nshape-simple",
+      "role": "chart-study",
+      "sha256": "f3e5605889654345331843d5ee843bc985792a10d5a3ed2707d2d921018f28f8",
+      "bytes": 5482,
+      "inputs": [
+        {
+          "name": "volLen",
+          "default": "20"
+        },
+        {
+          "name": "bodyPctMin",
+          "default": "0.50"
+        },
+        {
+          "name": "volUpMultC1",
+          "default": "1.10"
+        },
+        {
+          "name": "retraceMaxPct",
+          "default": "0.80"
+        },
+        {
+          "name": "volRetraceMaxFrac",
+          "default": "1.00"
+        },
+        {
+          "name": "volUpMultC3",
+          "default": "1.10"
+        },
+        {
+          "name": "targetR",
+          "default": "2.0"
+        },
+        {
+          "name": "useC2LowForStop",
+          "default": "yes"
+        },
+        {
+          "name": "paintBars",
+          "default": "yes"
+        },
+        {
+          "name": "showBubbles",
+          "default": "yes"
+        },
+        {
+          "name": "showDebugLabels",
+          "default": "no"
+        }
+      ],
+      "plot_names": [
+        "Bull_Signal",
+        "Bull_Entry",
+        "Bull_Stop",
+        "Bull_Target",
+        "Bear_Signal",
+        "Bear_Entry",
+        "Bear_Stop",
+        "Bear_Target"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "tos-installed/2026-10-29/study/NShape_Simple_Study"
+      ],
+      "tos_aliases": [
+        "NShape_Simple_Study"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/nshape-spy/NShape_QuantFiltered_SPY_Scalp.ts",
+      "project": "studies/nshape-spy",
+      "role": "chart-study",
+      "sha256": "f63d5606b4a052fa31962488dbce6d9e8296c1d92f663f132fbfd6d92ced2877",
+      "bytes": 5939,
+      "inputs": [
+        {
+          "name": "volLen",
+          "default": "20"
+        },
+        {
+          "name": "bodyPctMin",
+          "default": "0.50"
+        },
+        {
+          "name": "volUpMultC1",
+          "default": "1.10"
+        },
+        {
+          "name": "retraceMaxPct",
+          "default": "0.80"
+        },
+        {
+          "name": "volRetraceMaxFrac",
+          "default": "1.00"
+        },
+        {
+          "name": "volUpMultC3",
+          "default": "1.10"
+        },
+        {
+          "name": "targetR",
+          "default": "1.5"
+        },
+        {
+          "name": "useC2LowForStop",
+          "default": "yes"
+        },
+        {
+          "name": "useTimeFilter",
+          "default": "yes"
+        },
+        {
+          "name": "startTime",
+          "default": "1330"
+        },
+        {
+          "name": "endTime",
+          "default": "1530"
+        },
+        {
+          "name": "useEMAFilter",
+          "default": "yes"
+        },
+        {
+          "name": "emaLen",
+          "default": "20"
+        },
+        {
+          "name": "useVWAPFilter",
+          "default": "yes"
+        },
+        {
+          "name": "useRangeFilter",
+          "default": "yes"
+        },
+        {
+          "name": "rangeLen",
+          "default": "20"
+        },
+        {
+          "name": "rangeMult",
+          "default": "1.00"
+        },
+        {
+          "name": "showBullSignals",
+          "default": "yes"
+        },
+        {
+          "name": "showBearSignals",
+          "default": "no"
+        },
+        {
+          "name": "paintBars",
+          "default": "yes"
+        },
+        {
+          "name": "showBubbles",
+          "default": "yes"
+        },
+        {
+          "name": "showLabels",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "Bull_Signal",
+        "Bull_Entry",
+        "Bull_Stop",
+        "Bull_Target",
+        "Bear_Signal",
+        "Bear_Entry",
+        "Bear_Stop",
+        "Bear_Target"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "trading-downloads/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/thinkscript/NShape_QuantFiltered_SPY_Scalp.ts",
+        "trading-library/ChatGPT Trading Scripts/nshape-quantfiltered-spy-scalp/NShape_QuantFiltered_SPY_Scalp.ts",
+        "trading-library/TOS Import Bundle/Studies/NShape_SPY_Chart.ts",
+        "trading-library/thinkscript/nshape-quantfiltered-spy-scalp/NShape_QuantFiltered_SPY_Scalp.ts"
+      ]
+    },
+    {
+      "path": "studies/session-volume-profile/VProfile.thinkscript",
+      "project": "studies/session-volume-profile",
+      "role": "chart-study",
+      "sha256": "2375e6adfc472201ca252d56a3e0c5b7787e2884b920dfa236abe21483117777",
+      "bytes": 3126,
+      "inputs": [
+        {
+          "name": "pricePerRowHeightMode",
+          "default": "{AUTOMATIC, default TICKSIZE, CUSTOM}"
+        },
+        {
+          "name": "customRowHeight",
+          "default": "1.0"
+        },
+        {
+          "name": "onExpansion",
+          "default": "no"
+        },
+        {
+          "name": "profiles",
+          "default": "1000"
+        },
+        {
+          "name": "showPointOfControl",
+          "default": "yes"
+        },
+        {
+          "name": "showValueArea",
+          "default": "yes"
+        },
+        {
+          "name": "valueAreaPercent",
+          "default": "70"
+        },
+        {
+          "name": "opacity",
+          "default": "20"
+        },
+        {
+          "name": "debug",
+          "default": "no"
+        },
+        {
+          "name": "bubbles",
+          "default": "yes"
+        },
+        {
+          "name": "n",
+          "default": "2"
+        }
+      ],
+      "plot_names": [
+        "x",
+        "POC",
+        "ProfileHigh",
+        "ProfileLow",
+        "VAHigh",
+        "VALow"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/VProfile"
+      ],
+      "tos_aliases": [
+        "VProfile"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/trading-rush-macd-test/TradingRushMACD200EMATest.thinkscript",
+      "project": "studies/trading-rush-macd-test",
+      "role": "chart-study",
+      "sha256": "a030f1afd001e8e5c755435fb37c4cfcb324f74fba5c7b8feffdb4d38728ec71",
+      "bytes": 2302,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "12"
+        },
+        {
+          "name": "slowLength",
+          "default": "26"
+        },
+        {
+          "name": "MACDLength",
+          "default": "9"
+        },
+        {
+          "name": "averageType",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "HighVolume",
+          "default": "yes"
+        },
+        {
+          "name": "VolumeAveragingLength",
+          "default": "20"
+        },
+        {
+          "name": "VolumePercentThreshold",
+          "default": "60"
+        }
+      ],
+      "plot_names": [
+        "Value",
+        "Avg",
+        "Diff",
+        "ZeroLine",
+        "HiVolArrow",
+        "belowZeroCross",
+        "aboveZeroCross"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "tos-installed/2026-10-29/study/TradingRushMACD200EMATest"
+      ],
+      "tos_aliases": [
+        "TradingRushMACD200EMATest"
+      ],
+      "publish": true,
+      "attribution": "No individual author identified in the captured source."
+    },
+    {
+      "path": "studies/trading-rush-macd/TradingRushMACD200EMA.thinkscript",
+      "project": "studies/trading-rush-macd",
+      "role": "chart-study",
+      "sha256": "bdb50e87c640eb8b662a04a7e005e3789d9316437ab5aa21930075b6148c3887",
+      "bytes": 813,
+      "inputs": [
+        {
+          "name": "fastLength",
+          "default": "12"
+        },
+        {
+          "name": "slowLength",
+          "default": "26"
+        },
+        {
+          "name": "macdLength",
+          "default": "9"
+        },
+        {
+          "name": "averageType",
+          "default": "AverageType.EXPONENTIAL"
+        },
+        {
+          "name": "price",
+          "default": "close"
+        },
+        {
+          "name": "EMAperiod",
+          "default": "200"
+        }
+      ],
+      "plot_names": [
+        "VWAP1",
+        "trendma",
+        "buymacd",
+        "sellmacd"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/TradingRushMACD200EMA",
+        "tos-installed/2026-10-29/study/TradingRushMACD200EMA2"
+      ],
+      "tos_aliases": [
+        "TradingRushMACD200EMA",
+        "TradingRushMACD200EMA2"
+      ],
+      "publish": true,
+      "attribution": "Named Trading Rush framework; no individual author identified in the captured source."
+    },
+    {
+      "path": "studies/vwap-rejection/VWAPReject.thinkscript",
+      "project": "studies/vwap-rejection",
+      "role": "chart-study",
+      "sha256": "817772bb5d3f94cefdd4a7711cf24d22fa610286c62580ea78ad9908dacd8635",
+      "bytes": 2889,
+      "inputs": [
+        {
+          "name": "numDevDn",
+          "default": "-2.0"
+        },
+        {
+          "name": "numDevUp",
+          "default": "2.0"
+        },
+        {
+          "name": "timeFrame",
+          "default": "{ default DAY, WEEK, MONTH }"
+        },
+        {
+          "name": "distance",
+          "default": "0.50"
+        }
+      ],
+      "plot_names": [
+        "VWAP",
+        "bullish",
+        "bearish"
+      ],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/study/VWAPReject"
+      ],
+      "tos_aliases": [
+        "VWAPReject"
+      ],
+      "publish": true,
+      "attribution": "No author identified in the captured source."
+    },
+    {
+      "path": "studies/wash-rinse-v2/WashRinse_v2_Study_Corrected.ts",
+      "project": "studies/wash-rinse-v2",
+      "role": "chart-study",
+      "sha256": "0eee0a34a4d3cb77fc3cc9ac2586f598ac1fa9500f5f544c0a64f475de409110",
+      "bytes": 5223,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "maxRinseBars",
+          "default": "0"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        },
+        {
+          "name": "confirmedAlertsOnly",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "BearishWR",
+        "BullishWR",
+        "WashLineHigh",
+        "WashLineLow",
+        "WashExtremeH",
+        "WashExtremeL"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "generated-research/2026-08-25/referenced-chatgpt-conversation-this-is-an/outputs/WashRinse_v2_Study_Corrected.ts",
+        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-study/WashRinse_v2_Study_Corrected.ts",
+        "trading-library/TOS Import Bundle/Studies/WashRinse_v2_Study.ts",
+        "trading-library/thinkscript/wash-rinse-v2-study/WashRinse_v2_Study_Corrected.ts"
+      ]
+    },
+    {
+      "path": "studies/wash-rinse-v2/versions/WashRinse_v2_Study__2026-08-25.ts",
+      "project": "studies/wash-rinse-v2",
+      "role": "archived-source",
+      "sha256": "471875906e4eb3eea25bab0a6af42d29b229c79924ab3daea54f33ac498a0d53",
+      "bytes": 3824,
+      "inputs": [
+        {
+          "name": "levelMode",
+          "default": "{default Swing, PrevDay}"
+        },
+        {
+          "name": "pivotStrength",
+          "default": "5"
+        },
+        {
+          "name": "maxRinseBars",
+          "default": "0"
+        },
+        {
+          "name": "alertsOn",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "BearishWR",
+        "BullishWR",
+        "WashLineHigh",
+        "WashLineLow",
+        "WashExtremeH",
+        "WashExtremeL"
+      ],
+      "alert_calls": 2,
+      "origins": [
+        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-study/versions/WashRinse_v2_Study__2026-08-25.ts",
+        "trading-library/thinkscript/wash-rinse-v2-study/versions/WashRinse_v2_Study__2026-08-25.ts"
+      ]
+    },
+    {
+      "path": "watchlist-columns/covered-call-screen/CC_Indi.thinkscript",
+      "project": "watchlist-columns/covered-call-screen",
+      "role": "custom-quote",
+      "sha256": "63123ab55758a9b22ce5ea87cb98ecef6ca0d062d7be9d2887e85b719497cf0c",
+      "bytes": 1513,
+      "inputs": [],
+      "plot_names": [],
+      "alert_calls": 0,
+      "origins": [
+        "tos-installed/2026-10-29/custom-quote/CC Indi",
+        "tos-installed/2026-10-29/custom-quote/CC Indi2"
+      ],
+      "tos_aliases": [
+        "CC Indi",
+        "CC Indi2"
+      ],
+      "publish": true
+    },
+    {
+      "path": "watchlist-columns/gcr-inflection/GCR_Strategy_Scanner_ThinkScript.ts",
+      "project": "watchlist-columns/gcr-inflection",
+      "role": "custom-quote",
+      "sha256": "30e5214c6f1c2e24f432d8598beadb87358af9b465e99eda3c99cd0518ad239e",
+      "bytes": 8980,
+      "inputs": [
+        {
+          "name": "rsiLength",
+          "default": "14"
+        },
+        {
+          "name": "rsiOverbought",
+          "default": "75"
+        },
+        {
+          "name": "rsiOversold",
+          "default": "25"
+        },
+        {
+          "name": "stochLength",
+          "default": "14"
+        },
+        {
+          "name": "stochOverbought",
+          "default": "80"
+        },
+        {
+          "name": "stochOversold",
+          "default": "20"
+        },
+        {
+          "name": "volumeMALength",
+          "default": "20"
+        },
+        {
+          "name": "volumeSpikeMultiplier",
+          "default": "2.0"
+        },
+        {
+          "name": "volumeExhaustionMultiplier",
+          "default": "2.5"
+        },
+        {
+          "name": "bbLength",
+          "default": "20"
+        },
+        {
+          "name": "bbNumDevUp",
+          "default": "2.0"
+        },
+        {
+          "name": "bbNumDevDn",
+          "default": "2.0"
+        },
+        {
+          "name": "fastEMALength",
+          "default": "9"
+        },
+        {
+          "name": "slowEMALength",
+          "default": "21"
+        },
+        {
+          "name": "trendEMALength",
+          "default": "50"
+        },
+        {
+          "name": "divergenceLookback",
+          "default": "30"
+        },
+        {
+          "name": "enableDivergence",
+          "default": "no"
+        },
+        {
+          "name": "showSignals",
+          "default": "yes"
+        },
+        {
+          "name": "showLabels",
+          "default": "yes"
+        }
+      ],
+      "plot_names": [
+        "GCRSignal"
+      ],
+      "alert_calls": 4,
+      "origins": [
+        "original-projects/trading-breakout-scanner/GCR_Strategy_Scanner_ThinkScript.ts",
+        "trading-library/ChatGPT Trading Scripts/gcr-inflection-scanner-thinkscript/GCR_Strategy_Scanner_ThinkScript.ts",
+        "trading-library/TOS Import Bundle/Studies/GCR_Inflection_Scan.ts",
+        "trading-library/thinkscript/gcr-inflection-scanner-thinkscript/GCR_Strategy_Scanner_ThinkScript.ts"
+      ]
+    }
+  ],
+  "tos_capture": {
+    "captured_on": "2026-10-29",
+    "studies": 61,
+    "strategies": 1,
+    "reconciliation": "tos-inventory.json",
+    "scope": "current locally cached user-defined study/strategy source; not chart overrides or unsaved editor buffers",
+    "custom_quotes": 2
+  }
+}

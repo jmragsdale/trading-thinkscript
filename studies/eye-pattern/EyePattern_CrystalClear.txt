@@ -1,0 +1,252 @@
+# Eye Pattern CRYSTAL CLEAR - ThinkorSwim Study
+# Ultra-clear visual signals for easy trading
+# Version 2.0 - Enhanced Visibility
+
+declare upper;
+
+# === INPUTS ===
+input fastLength = 5;
+input slowLength = 20;
+input volumeContractionPercent = 30;
+input volumeLookback = 20;
+input maxPullbackPercent = 15;
+input maxPullbackDays = 30;
+input ma20SlopeMinimum = 0.0001;
+
+# Display options
+input showMovingAverages = yes;
+input showVolumeZones = no; # Turn OFF yellow dots by default
+input showStopAndTargets = yes;
+input colorPriceBars = yes;
+input showBackgroundAlerts = yes;
+
+# === MOVING AVERAGES ===
+def MA5 = SimpleMovingAvg(close, fastLength);
+def MA20 = SimpleMovingAvg(close, slowLength);
+
+# Plot MAs with high visibility
+plot FastMA = if showMovingAverages then MA5 else Double.NaN;
+FastMA.SetDefaultColor(Color.CYAN);
+FastMA.SetLineWeight(3);
+
+plot SlowMA = if showMovingAverages then MA20 else Double.NaN;
+SlowMA.SetDefaultColor(Color.MAGENTA);
+SlowMA.SetLineWeight(3);
+
+# === PATTERN DETECTION ===
+
+# 1. MA20 must be rising
+def MA20_Slope = (MA20 - MA20[1]) / MA20[1];
+def MA20_Rising = MA20_Slope > ma20SlopeMinimum;
+
+# 2. Detect crossovers
+def MA5_CrossedBelow = MA5[1] >= MA20[1] and MA5 < MA20;
+def MA5_CrossedAbove = MA5[1] <= MA20[1] and MA5 > MA20;
+
+# 3. Volume analysis
+def maxVolume = Highest(volume, volumeLookback);
+def volumeContracted = volume <= maxVolume * (volumeContractionPercent / 100);
+
+# 4. Pullback validation
+def recentHigh = Highest(high, maxPullbackDays);
+def pullbackPercent = ((recentHigh - close) / recentHigh) * 100;
+def validPullback = pullbackPercent <= maxPullbackPercent;
+
+# 5. Count days in pullback
+def daysSinceCrossBelow;
+if MA5_CrossedBelow {
+    daysSinceCrossBelow = 1;
+} else if daysSinceCrossBelow[1] > 0 and MA5 < MA20 {
+    daysSinceCrossBelow = daysSinceCrossBelow[1] + 1;
+} else {
+    daysSinceCrossBelow = 0;
+}
+
+def withinTimeLimit = daysSinceCrossBelow <= maxPullbackDays and daysSinceCrossBelow > 0;
+
+# 6. Lower shadow detection
+def bodyLow = Min(open, close);
+def lowerShadow = bodyLow - low;
+def bodySize = AbsValue(close - open);
+def hasLowerShadow = lowerShadow > bodySize * 0.5;
+
+# === ENTRY SIGNAL (The "Eye" Pattern) ===
+def eyePatternForming = 
+    daysSinceCrossBelow[1] > 0 and 
+    daysSinceCrossBelow[1] <= maxPullbackDays and
+    MA5 >= MA20 and
+    MA20_Rising and
+    volumeContracted and
+    validPullback;
+
+def entrySignal = eyePatternForming and MA5_CrossedAbove;
+
+# Track if we're in a trade
+def inTrade = if entrySignal then 1 
+              else if inTrade[1] == 1 and close > 0 then 1 
+              else 0;
+
+# === STOP LOSS & TARGETS ===
+def entryPrice = if entrySignal then close else entryPrice[1];
+def swingLow = Lowest(low, 5);
+def stopLoss = if entrySignal then Min(swingLow, low - lowerShadow * 0.5) else stopLoss[1];
+
+def riskAmount = entryPrice - stopLoss;
+def target1 = entryPrice + (riskAmount * 1.5);
+def target2 = entryPrice + (riskAmount * 2.0);
+def target3 = entryPrice + (riskAmount * 3.0);
+
+# === VISUAL SIGNALS ===
+
+# 1. ENTRY SIGNAL - Big Green Arrow
+plot EntryArrow = if entrySignal then low * 0.99 else Double.NaN;
+EntryArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+EntryArrow.SetDefaultColor(Color.GREEN);
+EntryArrow.SetLineWeight(5);
+
+# 2. PATTERN FORMING - Yellow Triangle (Warning)
+plot PatternForming = if eyePatternForming and !entrySignal then low * 0.995 else Double.NaN;
+PatternForming.SetPaintingStrategy(PaintingStrategy.TRIANGLE);
+PatternForming.SetDefaultColor(Color.YELLOW);
+PatternForming.SetLineWeight(4);
+
+# 3. STOP LOSS LINE (when in trade)
+plot StopLine = if showStopAndTargets and inTrade[1] == 1 then stopLoss[1] else Double.NaN;
+StopLine.SetDefaultColor(Color.RED);
+StopLine.SetLineWeight(2);
+StopLine.SetStyle(Curve.SHORT_DASH);
+
+# 4. TARGET LINES (when in trade)
+plot Target1Line = if showStopAndTargets and inTrade[1] == 1 then target1[1] else Double.NaN;
+Target1Line.SetDefaultColor(Color.GREEN);
+Target1Line.SetLineWeight(1);
+Target1Line.SetStyle(Curve.SHORT_DASH);
+
+plot Target2Line = if showStopAndTargets and inTrade[1] == 1 then target2[1] else Double.NaN;
+Target2Line.SetDefaultColor(Color.GREEN);
+Target2Line.SetLineWeight(1);
+Target2Line.SetStyle(Curve.SHORT_DASH);
+
+plot Target3Line = if showStopAndTargets and inTrade[1] == 1 then target3[1] else Double.NaN;
+Target3Line.SetDefaultColor(Color.LIGHT_GREEN);
+Target3Line.SetLineWeight(2);
+Target3Line.SetStyle(Curve.SHORT_DASH);
+
+# 5. Volume contraction dots (optional)
+plot VolZone = if showVolumeZones and volumeContracted then low * 0.99 else Double.NaN;
+VolZone.SetPaintingStrategy(PaintingStrategy.POINTS);
+VolZone.SetDefaultColor(Color.YELLOW);
+VolZone.SetLineWeight(2);
+
+# === PRICE BAR COLORING ===
+AssignPriceColor(
+    if !colorPriceBars then Color.CURRENT
+    else if entrySignal then Color.GREEN
+    else if eyePatternForming then Color.YELLOW
+    else if MA5 > MA20 and MA20_Rising then Color.CYAN
+    else if MA5 < MA20 and daysSinceCrossBelow > 0 then Color.ORANGE
+    else if MA5 < MA20 then Color.RED
+    else Color.GRAY
+);
+
+# === BACKGROUND COLORING ===
+AddCloud(
+    if showBackgroundAlerts and entrySignal then high else Double.NaN,
+    if showBackgroundAlerts and entrySignal then low else Double.NaN,
+    Color.DARK_GREEN,
+    Color.DARK_GREEN
+);
+
+AddCloud(
+    if showBackgroundAlerts and eyePatternForming and !entrySignal then high else Double.NaN,
+    if showBackgroundAlerts and eyePatternForming and !entrySignal then low else Double.NaN,
+    Color.DARK_ORANGE,
+    Color.DARK_ORANGE
+);
+
+# === LABELS (Crystal Clear) ===
+
+# Status Label
+AddLabel(yes, 
+    if entrySignal then "🎯 BUY NOW! 🎯"
+    else if eyePatternForming then "⚠️ PATTERN FORMING"
+    else if MA5 > MA20 and MA20_Rising then "✓ UPTREND"
+    else if daysSinceCrossBelow > 0 then "📊 PULLBACK (" + daysSinceCrossBelow + "d)"
+    else "⏸ NO SIGNAL",
+    if entrySignal then Color.WHITE
+    else if eyePatternForming then Color.YELLOW
+    else if MA5 > MA20 and MA20_Rising then Color.CYAN
+    else Color.GRAY
+);
+
+# Trade Details (only show when signal active)
+AddLabel(entrySignal, "ENTRY: $" + Round(close, 2), Color.CYAN);
+AddLabel(entrySignal, "STOP: $" + Round(stopLoss, 2) + " (-" + Round(((entryPrice - stopLoss)/entryPrice)*100, 1) + "%)", Color.RED);
+AddLabel(entrySignal, "T1: $" + Round(target1, 2), Color.GREEN);
+AddLabel(entrySignal, "T2: $" + Round(target2, 2), Color.GREEN);
+AddLabel(entrySignal, "T3: $" + Round(target3, 2), Color.LIGHT_GREEN);
+AddLabel(entrySignal, "R/R: " + Round((target1-close)/(close-stopLoss), 2) + ":1", Color.WHITE);
+
+# MA Status
+AddLabel(yes, "5MA: " + Round(MA5, 2), if MA5 > MA20 then Color.CYAN else Color.GRAY);
+AddLabel(yes, "20MA: " + Round(MA20, 2), if MA20_Rising then Color.MAGENTA else Color.GRAY);
+
+# Volume Status
+AddLabel(yes, "Vol: " + AsPercent(volume/Average(volume, volumeLookback)), 
+    if volumeContracted then Color.YELLOW else Color.GRAY);
+
+# Pattern Quality Score
+def patternScore = 
+    (if MA5 > MA20 then 2 else 0) +
+    (if MA20_Rising then 2 else 0) +
+    (if volumeContracted then 2 else 0) +
+    (if validPullback then 2 else 0) +
+    (if hasLowerShadow then 1 else 0) +
+    (if withinTimeLimit then 1 else 0);
+
+AddLabel(eyePatternForming or entrySignal, 
+    "Quality: " + patternScore + "/10",
+    if patternScore >= 8 then Color.GREEN
+    else if patternScore >= 6 then Color.YELLOW
+    else Color.RED
+);
+
+# === CHART BUBBLES ===
+
+# Entry bubble
+AddChartBubble(entrySignal, low * 0.98, 
+    "BUY\n$" + Round(close, 2), 
+    Color.GREEN, no);
+
+# Stop bubble
+AddChartBubble(entrySignal, stopLoss, 
+    "STOP\n$" + Round(stopLoss, 2) + "\n-" + Round(((entryPrice - stopLoss)/entryPrice)*100, 1) + "%", 
+    Color.RED, no);
+
+# Target bubbles
+AddChartBubble(entrySignal, target1, 
+    "T1\n$" + Round(target1, 2) + "\n+" + Round(((target1 - entryPrice)/entryPrice)*100, 1) + "%", 
+    Color.GREEN, yes);
+
+AddChartBubble(entrySignal, target2, 
+    "T2\n$" + Round(target2, 2) + "\n+" + Round(((target2 - entryPrice)/entryPrice)*100, 1) + "%", 
+    Color.GREEN, yes);
+
+AddChartBubble(entrySignal, target3, 
+    "T3\n$" + Round(target3, 2) + "\n+" + Round(((target3 - entryPrice)/entryPrice)*100, 1) + "%", 
+    Color.LIGHT_GREEN, yes);
+
+# === ALERTS ===
+Alert(entrySignal, "🎯 EYE PATTERN - BUY SIGNAL! 🎯", Alert.BAR, Sound.Chimes);
+Alert(eyePatternForming and !eyePatternForming[1], "⚠️ Eye Pattern Forming - Get Ready!", Alert.BAR, Sound.Ding);
+Alert(inTrade[1] and close <= stopLoss[1], "🛑 STOP LOSS HIT - EXIT NOW!", Alert.BAR, Sound.Ring);
+Alert(inTrade[1] and close >= target1[1] and close[1] < target1[1], "🎯 TARGET 1 REACHED!", Alert.BAR, Sound.Bell);
+Alert(inTrade[1] and close >= target2[1] and close[1] < target2[1], "🎯 TARGET 2 REACHED!", Alert.BAR, Sound.Bell);
+Alert(inTrade[1] and close >= target3[1] and close[1] < target3[1], "🎯 TARGET 3 REACHED!", Alert.BAR, Sound.Bell);
+
+# === DRAWING EXPLANATION ===
+# 🟢 Green Arrow = BUY NOW (entry signal)
+# 🟡 Yellow Triangle = Pattern forming (get ready)
+# 🔴 Red Dashed Line = Stop Loss
+# 🟢 Green Dashed Lines = Profit Targets (3 levels)
+# Bar Colors: Green=Entry | Yellow=Forming | Cyan=Uptrend | Orange=Pullback | Red=Downtrend

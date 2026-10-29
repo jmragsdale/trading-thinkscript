@@ -1,0 +1,24 @@
+{
+  "MNQ": {
+    "path": "[LOCAL_HOME]/Downloads/Trading/Strategies & Tools/Luchi OB Research/data/GLBX-20260610-KPH7QJVAD4/glbx-mdp3-20210610-20260609.ohlcv-1m.csv",
+    "sha256": "a6ecb847be006e8cdba28c9d2a1855b4399c6892a2cf114e81079a1cdc361772",
+    "raw_selected_rows": 2800329,
+    "invalid_ohlc": 0,
+    "duplicate_symbol_time": 0,
+    "bars": 1770091,
+    "first": "2021-06-10 00:00:00-04:00",
+    "last": "2026-06-09 19:59:00-04:00",
+    "contract_changes": 21
+  },
+  "SPY": {
+    "path": "[LOCAL_HOME]/Downloads/Trading/Market Data/xnas-20260712-maje46cnyl/xnas-itch-20210711-20260710.ohlcv-1m.csv",
+    "sha256": "0c39481592a8a06c6f95781a81527896271aa7ed5642589e858e96e77bb515b0",
+    "raw_selected_rows": 948960,
+    "invalid_ohlc": 0,
+    "duplicate_symbol_time": 0,
+    "bars": 948960,
+    "first": "2021-07-12 04:00:00-04:00",
+    "last": "2026-07-10 19:59:00-04:00",
+    "contract_changes": 1
+  }
+}

@@ -1,0 +1,15 @@
+declare upper;
+
+input ATRLength = 14;
+input averagetype = AverageType.WILDERS;
+input BasePeriod = AggregationPeriod.DAY;
+input showlabel = yes;
+
+def ATR = MovingAverage (averagetype, TrueRange(high(period = BasePeriod)[1], close(period = BasePeriod)[1], low(period = BasePeriod)[1]), ATRLength);
+
+def Today_High = Highest(high(period = baseperiod)[0], 1);
+def Today_Low = Lowest(low(period =baseperiod)[0], 1);
+
+def DR = Today_High - Today_Low;
+
+AddLabel(showlabel, "ATR:" +round(ATR,2));

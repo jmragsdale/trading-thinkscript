@@ -1,0 +1,1310 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-29",
+  "scope": "Existing local research only; no new backtests, native Thinkorswim tests or broker/live execution. Related models are not exact-source performance.",
+  "definitions": {
+    "profit_factor": "Gross winning P&L / absolute gross losing P&L unless a table explicitly uses net trade P&L. Model-specific costs are documented.",
+    "R": "Trade P&L normalized to modeled initial trade risk; not dollars or guaranteed realized risk.",
+    "event_forward_return": "Directional terminal close minus next-bar-open entry, less declared cost; no stop/target execution.",
+    "no_matched_evidence": "No attributable quantitative results located in reviewed files; not proof that no other results exist.",
+    "native_thinkorswim_performance_verified": false
+  },
+  "sources": {
+    "offline-summary": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/summary.csv",
+      "original_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+      "original_bytes": 132861,
+      "evidence": "docs/performance/evidence/offline-summary.csv",
+      "evidence_sha256": "0c890b814eea0b5c9f4ea2509ed9760c2105ae0fb7e0329c7c152400173cb33b",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-protocol": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/protocol.md",
+      "original_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+      "original_bytes": 2536,
+      "evidence": "docs/performance/evidence/offline-protocol.txt",
+      "evidence_sha256": "d1c25942e09a7d4a2d3d2df51842592f6993c7636573853b6d54527090aba245",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-parity": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/parity_mapping.md",
+      "original_sha256": "f7a918ee926d36e8b1954b664e3f15d00ab14aad4bbb383c8880de2453f95b89",
+      "original_bytes": 2202,
+      "evidence": "docs/performance/evidence/offline-parity.txt",
+      "evidence_sha256": "4bf70b939afecdbd98bbbb6855c153d1cdf31e8dd84cdc47158de5a810a36d34",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-readme": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/README.md",
+      "original_sha256": "9ba8a7cdf92f65dd57ba7a62f00b6b37fe1bed8234506d56c4973b26a61d05ef",
+      "original_bytes": 2305,
+      "evidence": "docs/performance/evidence/offline-readme.txt",
+      "evidence_sha256": "adfe01fc6b7366a2a1cb16abe032b9a94005ae722999570c4d96eb215df98d56",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-hashes": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/original_hashes.json",
+      "original_sha256": "9a3e9cd32b1ec2391b74885b93ac834fbe92123e20811bd40741e14c59c27212",
+      "original_bytes": 1299,
+      "evidence": "docs/performance/evidence/offline-hashes.json",
+      "evidence_sha256": "3a141060ce1786214ed72703d4ed3dcf76cf658f6aa81877481abfab71dcf02a",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-provenance": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/provenance.json",
+      "original_sha256": "08f9ad2434854985f360e732ff6e6d4e3a1ed483cd3a67dd5446c2d9ad96c9d2",
+      "original_bytes": 935,
+      "evidence": "docs/performance/evidence/offline-provenance.json",
+      "evidence_sha256": "3ef9f59b70fd8d4586082ed98da6da805ab5c4a251802ed21b1ac14dcac40daf",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-costs": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/cost_assumptions.json",
+      "original_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+      "original_bytes": 863,
+      "evidence": "docs/performance/evidence/offline-costs.json",
+      "evidence_sha256": "11484ddd56e77a66386ea0c5eeaa11376dc677b8a780fc8b3deecde2da9e01b6",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "offline-validation": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task/tos_offline_validation/validation.json",
+      "original_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+      "original_bytes": 243,
+      "evidence": "docs/performance/evidence/offline-validation.json",
+      "evidence_sha256": "7a21cadf7fba4a5d1bf7f27f85b0b8b6b5455d41c233ebe01a1cac22d529634c",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-selected-report": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_quant_adjustment_report.md",
+      "original_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+      "original_bytes": 5093,
+      "evidence": "docs/performance/evidence/nshape-selected-report.txt",
+      "evidence_sha256": "3637127a8f109b0e54d43d11de58e133939b129d6fba9d85b02540950b2f854c",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-filter-sweep": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/quant_filter_sweep.csv",
+      "original_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+      "original_bytes": 1377833,
+      "evidence": "docs/performance/evidence/nshape-filter-sweep.csv",
+      "evidence_sha256": "8d7ce43ec1b1409e49abd7d5bc15bc7af6f491ffd99856a7920e92c9fd11ac1b",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-simple-report": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_2m_event_study_report.md",
+      "original_sha256": "9aa58d52d9e99bac69ed5054f185de3e7b650f2687caef45c0aa68a489f08a41",
+      "original_bytes": 3653,
+      "evidence": "docs/performance/evidence/nshape-simple-report.txt",
+      "evidence_sha256": "50c6cec1d011f213216300ef17b9a7e1820cb4fbf5f99136927345669c55e1a4",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "nshape-simple-summary": {
+      "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/nshape_event_study_summary.csv",
+      "original_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+      "original_bytes": 7873,
+      "evidence": "docs/performance/evidence/nshape-simple-summary.csv",
+      "evidence_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-native-report": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/native_verification.md",
+      "original_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+      "original_bytes": 2670,
+      "evidence": "docs/performance/evidence/orb-native-report.txt",
+      "evidence_sha256": "74967a3aae22701c58ff19278ba3dad6cd517073a1caab6cf4c17f979c9894d9",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-original-trades": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/original_trades.csv",
+      "original_sha256": "790814cb5c064445bf79b47c6dbeb80b8bdc2183843e73c4791ef3b73e090267",
+      "original_bytes": 4388,
+      "evidence": "docs/performance/evidence/orb-original-trades.csv",
+      "evidence_sha256": "5859d1c29f64abc4e88e9f333be4d19ff7abab779fc868bea4d7c21f76c0cec1",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-capped-trades": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/capped_trades.csv",
+      "original_sha256": "156b64a4a2dbcd63675166ca56864ab5a3e441309648cd8a2e345594db771f78",
+      "original_bytes": 4213,
+      "evidence": "docs/performance/evidence/orb-capped-trades.csv",
+      "evidence_sha256": "aec5bd8bf969ea55e397f71a53952ed3516106e55c8524a64418ee37963e8ad8",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "orb-research-guide": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-3/ORB15_MNQ_research_guide.md",
+      "original_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+      "original_bytes": 15564,
+      "evidence": "docs/performance/evidence/orb-research-guide.txt",
+      "evidence_sha256": "cf4c250dfac56e423861b15ede3ab15777403292b62b1932ff0192c16328bd95",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "wick-verification-update": {
+      "origin": "HOME/Documents/Claude/Projects/JJ Simon Mean Reversion - Prop Firm Automation/strategy_comparison.md",
+      "original_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+      "original_bytes": 11527,
+      "evidence": "docs/performance/evidence/wick-verification-update.txt",
+      "evidence_sha256": "b371d468fb555cc45f050e04489773c2030bf70dcb57511b868616a4446d3dc7",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "mtf-clean-rescore": {
+      "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-27_incumbent_clean_engine_rescore.md",
+      "original_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+      "original_bytes": 11948,
+      "evidence": "docs/performance/evidence/mtf-clean-rescore.txt",
+      "evidence_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "mtf-cost-rebaseline": {
+      "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-30_leak_restamp_and_clean_rebaseline.md",
+      "original_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+      "original_bytes": 12269,
+      "evidence": "docs/performance/evidence/mtf-cost-rebaseline.txt",
+      "evidence_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "daily-ote-historical": {
+      "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/ote-wheel-scan-tos/backtests/2026-07-15_daily_ote_tos_scanner.md",
+      "original_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+      "original_bytes": 4903,
+      "evidence": "docs/performance/evidence/daily-ote-historical.txt",
+      "evidence_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "wash-python-audit": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/qice_wash_parity_audit.json",
+      "original_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+      "original_bytes": 1832,
+      "evidence": "docs/performance/evidence/wash-python-audit.json",
+      "evidence_sha256": "7e327abca3cc22031c9487f52364771a3a5f1f413e37ed8f043ceec32aa63b1e",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    },
+    "wash-research-report": {
+      "origin": "HOME/Documents/Codex/2026-10-01/task-2/overlooked_strategies/report.md",
+      "original_sha256": "fe0d151fac4f8a8fd5b3a8ebf632943086a306bca8edadabf54dde1421ed096a",
+      "original_bytes": 36590,
+      "evidence": "docs/performance/evidence/wash-research-report.txt",
+      "evidence_sha256": "9e0e98b98cd0639d5fa130bd533b3502fd59f87186ebb217889820a877c91f81",
+      "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+    }
+  },
+  "source_hash_matches_for_offline_study": [
+    {
+      "original_filename": "DisplacementWickAlerts_Study.ts",
+      "sha256": "aff6d61e92bf191726bebfd142519ffab879a2c62f939cdf4ccf1ff726091082",
+      "library_matches": [
+        "studies/displacement-wick/DisplacementWickAlerts_Study.ts"
+      ]
+    },
+    {
+      "original_filename": "DisplacementWickAlerts_Scanner.ts",
+      "sha256": "7068e16e0620d98880f4b1b02e18deade8ac2922b98c70e798e5d7f9e255dee9",
+      "library_matches": [
+        "scanners/displacement-wick/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts"
+      ]
+    },
+    {
+      "original_filename": "MACDV_Scan_Unified_Regime_SignalType.ts",
+      "sha256": "0375df5c8553053025d91625cd51c6aaaf20453b5e11efa515d1d341ce4ee047",
+      "library_matches": [
+        "scanners/macd-v/MACDV_Scan_Unified_Regime_SignalType.ts"
+      ]
+    },
+    {
+      "original_filename": "MACDV_Chart_Study_Entries_Exits.ts",
+      "sha256": "d4efd595ad4f0cc0d3febc8d78f9606d0b413a40f9df63806a6ad013a4b574ac",
+      "library_matches": [
+        "studies/macd-v/MACDV_Chart_Study_Entries_Exits.ts"
+      ]
+    },
+    {
+      "original_filename": "NShape_QuantFiltered_SPY_Scanner.ts",
+      "sha256": "4a5925a0ccbbb99f101ecf6a15e617f6acb594d89f5727b7fcdff73955feacd9",
+      "library_matches": [
+        "scanners/nshape-spy/NShape_QuantFiltered_SPY_Scanner.ts"
+      ]
+    },
+    {
+      "original_filename": "NShape_QuantFiltered_SPY_Scalp.ts",
+      "sha256": "f63d5606b4a052fa31962488dbce6d9e8296c1d92f663f132fbfd6d92ced2877",
+      "library_matches": [
+        "studies/nshape-spy/NShape_QuantFiltered_SPY_Scalp.ts"
+      ]
+    }
+  ],
+  "profiles": {
+    "macdv": {
+      "kind": "offline-signal-event-study",
+      "document": "docs/performance/macdv.md",
+      "sources": [
+        "offline-summary",
+        "offline-protocol",
+        "offline-parity",
+        "offline-readme",
+        "offline-hashes",
+        "offline-provenance",
+        "offline-costs",
+        "offline-validation"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": [
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 1,
+          "events": 2480,
+          "mean_net_points": -1.2841733870967744,
+          "matched_excess_points": 0.1428539459190676,
+          "matched_excess_95_ci": [
+            -0.2047395463410841,
+            0.5184592218370195
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 3,
+          "events": 2468,
+          "mean_net_points": -0.9550648298217183,
+          "matched_excess_points": 0.3972392470524807,
+          "matched_excess_95_ci": [
+            -0.450566771542855,
+            1.299633445713546
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 5,
+          "events": 2462,
+          "mean_net_points": -1.0693135662063362,
+          "matched_excess_points": 0.2241133174982962,
+          "matched_excess_95_ci": [
+            -0.6892194600062354,
+            1.3003093965936954
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 10,
+          "events": 2423,
+          "mean_net_points": -1.1565621130829546,
+          "matched_excess_points": -0.0342482688993577,
+          "matched_excess_95_ci": [
+            -1.2267376484710566,
+            0.9702667638032796
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 1,
+          "events": 1958,
+          "mean_net_points": -0.9769407558733403,
+          "matched_excess_points": 0.4613611294566001,
+          "matched_excess_95_ci": [
+            0.0038670167188891,
+            0.9232534208733132
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 3,
+          "events": 1947,
+          "mean_net_points": -0.9096815613764765,
+          "matched_excess_points": 0.4861150049921311,
+          "matched_excess_95_ci": [
+            -0.3495637625301248,
+            1.3574919724915888
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 5,
+          "events": 1939,
+          "mean_net_points": -1.3954615781330582,
+          "matched_excess_points": -0.0297725323243787,
+          "matched_excess_95_ci": [
+            -1.1500769051788988,
+            1.0532947100123746
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 10,
+          "events": 1906,
+          "mean_net_points": -0.9987932843651628,
+          "matched_excess_points": 0.2518418576534876,
+          "matched_excess_95_ci": [
+            -1.2270495427466612,
+            1.7638605607340585
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 1,
+          "events": 2769,
+          "mean_net_points": -0.0201661249548568,
+          "matched_excess_points": 0.0001385155181566,
+          "matched_excess_95_ci": [
+            -0.0079339165236011,
+            0.0102719337121931
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 3,
+          "events": 2756,
+          "mean_net_points": -0.0109579100145137,
+          "matched_excess_points": 0.0081814650966358,
+          "matched_excess_95_ci": [
+            -0.0078240521760738,
+            0.0261067102662606
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 5,
+          "events": 2745,
+          "mean_net_points": -0.0117850637522763,
+          "matched_excess_points": 0.0063374252954234,
+          "matched_excess_95_ci": [
+            -0.0115154182869266,
+            0.0251837695092274
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 10,
+          "events": 2701,
+          "mean_net_points": -0.0070547945205485,
+          "matched_excess_points": 0.0075187585069179,
+          "matched_excess_95_ci": [
+            -0.0161028161865501,
+            0.0294025827087866
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 1,
+          "events": 2209,
+          "mean_net_points": -0.0208782254413771,
+          "matched_excess_points": 0.0001553539946342,
+          "matched_excess_95_ci": [
+            -0.0116734729677273,
+            0.0119013812081141
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 3,
+          "events": 2199,
+          "mean_net_points": -0.024924965893589,
+          "matched_excess_points": -0.0044621019190207,
+          "matched_excess_95_ci": [
+            -0.0208308356346419,
+            0.0133537542483541
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 5,
+          "events": 2183,
+          "mean_net_points": -0.0358841044434265,
+          "matched_excess_points": -0.016027377229131,
+          "matched_excess_95_ci": [
+            -0.0364696795454538,
+            0.0078072128139868
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "MACDV_short",
+          "aggregation_minutes": 1,
+          "horizon_bars": 10,
+          "events": 2150,
+          "mean_net_points": -0.0199209302325589,
+          "matched_excess_points": -0.0022625734734088,
+          "matched_excess_95_ci": [
+            -0.0333290060801984,
+            0.0270959802393516
+          ]
+        }
+      ]
+    },
+    "nshape-spy": {
+      "kind": "offline-signal-event-study",
+      "document": "docs/performance/nshape-spy.md",
+      "sources": [
+        "offline-summary",
+        "offline-protocol",
+        "offline-parity",
+        "offline-readme",
+        "offline-hashes",
+        "offline-provenance",
+        "offline-costs",
+        "offline-validation",
+        "nshape-selected-report",
+        "nshape-filter-sweep"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": [
+        {
+          "instrument": "MNQ",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 1,
+          "events": 198,
+          "mean_net_points": -0.9045454545454547,
+          "matched_excess_points": 0.5250364671730589,
+          "matched_excess_95_ci": [
+            -0.9075521500747666,
+            1.8126254134100732
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 3,
+          "events": 198,
+          "mean_net_points": -0.31111111111111156,
+          "matched_excess_points": 1.0156448708341663,
+          "matched_excess_95_ci": [
+            -1.044375511972057,
+            2.975344941506856
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 5,
+          "events": 198,
+          "mean_net_points": -1.173484848484848,
+          "matched_excess_points": 0.0668659781655851,
+          "matched_excess_95_ci": [
+            -2.379202189730983,
+            2.857225740217908
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 10,
+          "events": 198,
+          "mean_net_points": -1.3388888888888881,
+          "matched_excess_points": -0.1919218308964909,
+          "matched_excess_95_ci": [
+            -3.5982139293741993,
+            3.475526633384588
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 1,
+          "events": 203,
+          "mean_net_points": -0.005098522167485499,
+          "matched_excess_points": 0.0145969713890813,
+          "matched_excess_95_ci": [
+            -0.0126265916221855,
+            0.0427103467313002
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 3,
+          "events": 203,
+          "mean_net_points": 0.029901477832515903,
+          "matched_excess_points": 0.0473909204355273,
+          "matched_excess_95_ci": [
+            -0.0074179240729893,
+            0.1069386666029936
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 5,
+          "events": 203,
+          "mean_net_points": 0.0218472906403949,
+          "matched_excess_points": 0.037969615898053,
+          "matched_excess_95_ci": [
+            -0.0350280184873202,
+            0.1078175959235044
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "NShape_long",
+          "aggregation_minutes": 1,
+          "horizon_bars": 10,
+          "events": 203,
+          "mean_net_points": 0.013497536945812297,
+          "matched_excess_points": 0.0265746652829486,
+          "matched_excess_95_ci": [
+            -0.0530571381480548,
+            0.1234001708332152
+          ]
+        }
+      ],
+      "selected_fixed_r_model": {
+        "trades": 222,
+        "win_rate_pct": 45.5,
+        "mean_points": 0.08161036036036218,
+        "mean_r": 0.06229173329814366,
+        "profit_factor": 1.6046220590689335,
+        "holdout_used_in_selection": true,
+        "execution_costs_verified": false
+      }
+    },
+    "displacement-wick": {
+      "kind": "offline-signal-event-study",
+      "document": "docs/performance/displacement-wick.md",
+      "sources": [
+        "offline-summary",
+        "offline-protocol",
+        "offline-parity",
+        "offline-readme",
+        "offline-hashes",
+        "offline-provenance",
+        "offline-costs",
+        "offline-validation",
+        "wick-verification-update"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": [
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 1,
+          "events": 1364,
+          "mean_net_points": -2.7091642228739006,
+          "matched_excess_points": -1.0478199058956217,
+          "matched_excess_95_ci": [
+            -2.9676385894755253,
+            0.8807190892774239
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 3,
+          "events": 1285,
+          "mean_net_points": -4.792996108949417,
+          "matched_excess_points": -3.0288352590150445,
+          "matched_excess_95_ci": [
+            -6.160989909159586,
+            0.1497876977655008
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 5,
+          "events": 1189,
+          "mean_net_points": -2.336879730866276,
+          "matched_excess_points": 0.0363901361088462,
+          "matched_excess_95_ci": [
+            -4.193024077562458,
+            4.478849939638778
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 10,
+          "events": 927,
+          "mean_net_points": -5.089158576051784,
+          "matched_excess_points": -1.1878685316735025,
+          "matched_excess_95_ci": [
+            -8.120677188242388,
+            5.489864185946461
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 1,
+          "events": 1352,
+          "mean_net_points": -0.5161982248520709,
+          "matched_excess_points": 0.7732660843598202,
+          "matched_excess_95_ci": [
+            -1.3482586916588688,
+            2.9827273536136136
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 3,
+          "events": 1256,
+          "mean_net_points": -3.823208598726116,
+          "matched_excess_points": -2.5260626470529477,
+          "matched_excess_95_ci": [
+            -6.028061497193974,
+            1.2052913458584404
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 5,
+          "events": 1167,
+          "mean_net_points": -4.193144815766926,
+          "matched_excess_points": -3.3678373321286865,
+          "matched_excess_95_ci": [
+            -8.453340770015016,
+            1.484089689517176
+          ]
+        },
+        {
+          "instrument": "MNQ",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 10,
+          "events": 948,
+          "mean_net_points": -4.368248945147684,
+          "matched_excess_points": -5.385383929438142,
+          "matched_excess_95_ci": [
+            -12.78591410400785,
+            1.56027505138473
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 1,
+          "events": 1077,
+          "mean_net_points": -0.0258727948003727,
+          "matched_excess_points": -0.0041793504185522,
+          "matched_excess_95_ci": [
+            -0.0576783856913604,
+            0.0528008283344477
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 3,
+          "events": 1001,
+          "mean_net_points": -0.0681068931068935,
+          "matched_excess_points": -0.0450250345766331,
+          "matched_excess_95_ci": [
+            -0.1197885538792706,
+            0.0296083812285355
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 5,
+          "events": 926,
+          "mean_net_points": -0.0639254859611222,
+          "matched_excess_points": -0.0261765827307541,
+          "matched_excess_95_ci": [
+            -0.1444938517108779,
+            0.0889497772935983
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_short",
+          "aggregation_minutes": 15,
+          "horizon_bars": 10,
+          "events": 733,
+          "mean_net_points": -0.0047817189631645,
+          "matched_excess_points": 0.0495263799936463,
+          "matched_excess_95_ci": [
+            -0.1377267487864939,
+            0.2390997053247185
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 1,
+          "events": 1110,
+          "mean_net_points": -0.0386531531531535,
+          "matched_excess_points": -0.023046231759579,
+          "matched_excess_95_ci": [
+            -0.0667023626934266,
+            0.022031594104515
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 3,
+          "events": 1036,
+          "mean_net_points": -0.0688175675675682,
+          "matched_excess_points": -0.056691358410545,
+          "matched_excess_95_ci": [
+            -0.134571603514128,
+            0.0381619127989264
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 5,
+          "events": 966,
+          "mean_net_points": -0.0621221532091102,
+          "matched_excess_points": -0.0586029318648434,
+          "matched_excess_95_ci": [
+            -0.1811804385902306,
+            0.065093246543981
+          ]
+        },
+        {
+          "instrument": "SPY",
+          "signal": "Wick_long",
+          "aggregation_minutes": 15,
+          "horizon_bars": 10,
+          "events": 760,
+          "mean_net_points": -0.1036776315789477,
+          "matched_excess_points": -0.1350030253855654,
+          "matched_excess_95_ci": [
+            -0.3123256442818696,
+            0.0433995135379389
+          ]
+        }
+      ]
+    },
+    "nshape-simple": {
+      "kind": "related-python-model",
+      "document": "docs/performance/nshape-simple.md",
+      "sources": [
+        "nshape-simple-report",
+        "nshape-simple-summary"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": {
+        "signals": 719,
+        "target_r": 1,
+        "hold_bars": 15,
+        "win_rate_pct": 47.29,
+        "profit_factor": 0.9076,
+        "mean_r": -0.0553,
+        "mean_points": -0.0236
+      }
+    },
+    "orb15-mnq": {
+      "kind": "related-native-pine-simulation",
+      "document": "docs/performance/orb15-mnq.md",
+      "sources": [
+        "orb-native-report",
+        "orb-original-trades",
+        "orb-capped-trades",
+        "orb-research-guide"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": [
+        {
+          "mode": "Original",
+          "completed_trades": 19,
+          "wins": 7,
+          "win_rate_pct": 36.8421052631579,
+          "net_usd": 98.4,
+          "net_pnl_profit_factor": 1.0508974292660218,
+          "closed_trade_max_drawdown_usd": 836.0,
+          "source": "orb-original-trades"
+        },
+        {
+          "mode": "StopCap100",
+          "completed_trades": 19,
+          "wins": 4,
+          "win_rate_pct": 21.05263157894737,
+          "net_usd": 250.9,
+          "net_pnl_profit_factor": 1.1782593250444051,
+          "closed_trade_max_drawdown_usd": 599.4,
+          "source": "orb-capped-trades"
+        }
+      ]
+    },
+    "mtf-ote": {
+      "kind": "related-clean-python-execution-model",
+      "document": "docs/performance/mtf-ote.md",
+      "sources": [
+        "mtf-clean-rescore",
+        "mtf-cost-rebaseline"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": [
+        {
+          "instrument": "MNQ",
+          "trades": 3273,
+          "win_rate_pct": 34.52,
+          "gross_profit_factor": 1.145,
+          "net_profit_factor": 0.923
+        },
+        {
+          "instrument": "MYM",
+          "trades": 2977,
+          "win_rate_pct": 36.31,
+          "gross_profit_factor": 1.244,
+          "net_profit_factor": 0.77
+        },
+        {
+          "instrument": "MGC",
+          "trades": 2799,
+          "win_rate_pct": 33.65,
+          "gross_profit_factor": 1.111,
+          "net_profit_factor": 0.784
+        }
+      ]
+    },
+    "ote-wheel": {
+      "kind": "historical-unrevalidated-lineage",
+      "document": "docs/performance/ote-wheel.md",
+      "sources": [
+        "daily-ote-historical",
+        "mtf-clean-rescore",
+        "mtf-cost-rebaseline"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": [
+        {
+          "population": "13 equity/futures symbols",
+          "setups": 1643,
+          "mean_r": 0.359,
+          "win_rate_pct": 50.3,
+          "status": "historical-unrevalidated"
+        },
+        {
+          "population": "8 FX majors",
+          "setups": 2283,
+          "mean_r": -0.126,
+          "win_rate_pct": 32.9,
+          "status": "historical-unrevalidated"
+        }
+      ]
+    },
+    "wash-rinse-v2": {
+      "kind": "different-model-context-only",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "sources": [
+        "wash-python-audit",
+        "wash-research-report"
+      ],
+      "native_thinkorswim_performance_verified": false,
+      "metrics": {
+        "trades": 32641,
+        "net_usd": -93038.95,
+        "profit_factor": 0.7334593325984232,
+        "closed_equity_drawdown_usd": 93142.1,
+        "attributable_to_current_thinkscript": false
+      }
+    }
+  },
+  "projects": [
+    {
+      "project": "imported-studies/atr-label",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/cci-atr-supertrend",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/dans-squeeze-arrows",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/multi-indicator-dashboard",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/naked-forex-engulfing",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/open-interest-2022-03-01",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/premarket-rth-levels",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/previous-high-low-close",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/prior-period-volume-profile",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/qta-volume-profile",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/relative-vigor-index",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/reversal-candles",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/squeeze-trend-hunter",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/supertrend",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/supply-demand-index",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/trend-reversal-zigzag",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/ultimate-breakout",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/volatility-trailing-stop",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/volume-price-analysis",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "imported-studies/zigzag-supply-demand",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "private-imports/opinicus-volume",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/breakout",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/displacement-wick",
+      "status": "offline-signal-event-study",
+      "profile": "displacement-wick",
+      "document": "docs/performance/displacement-wick.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/eye-pattern",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/macd-v",
+      "status": "offline-signal-event-study",
+      "profile": "macdv",
+      "document": "docs/performance/macdv.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/nshape-spy",
+      "status": "offline-signal-event-study",
+      "profile": "nshape-spy",
+      "document": "docs/performance/nshape-spy.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/ote-wheel",
+      "status": "historical-unrevalidated-lineage",
+      "profile": "ote-wheel",
+      "document": "docs/performance/ote-wheel.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/warrior-eye",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "scanners/wash-rinse-v2",
+      "status": "different-model-context-only",
+      "profile": "wash-rinse-v2",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "strategies/orb15-mnq",
+      "status": "related-native-pine-simulation",
+      "profile": "orb15-mnq",
+      "document": "docs/performance/orb15-mnq.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "strategies/wash-rinse-v2",
+      "status": "different-model-context-only",
+      "profile": "wash-rinse-v2",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/alert-value",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/auto-trend-lines",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/buy-the-dip",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/displacement-detector",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/displacement-wick",
+      "status": "offline-signal-event-study",
+      "profile": "displacement-wick",
+      "document": "docs/performance/displacement-wick.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/ema-3-8-20-crossover",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/eye-pattern",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/ict-displacement-retest",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/macd-v",
+      "status": "offline-signal-event-study",
+      "profile": "macdv",
+      "document": "docs/performance/macdv.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/mtf-30m-fvg",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/mtf-ote",
+      "status": "related-clean-python-execution-model",
+      "profile": "mtf-ote",
+      "document": "docs/performance/mtf-ote.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/nine-sma-pullback",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/nshape-simple",
+      "status": "related-python-model",
+      "profile": "nshape-simple",
+      "document": "docs/performance/nshape-simple.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/nshape-spy",
+      "status": "offline-signal-event-study",
+      "profile": "nshape-spy",
+      "document": "docs/performance/nshape-spy.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/session-volume-profile",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/trading-rush-macd",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/trading-rush-macd-test",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/vwap-rejection",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "studies/wash-rinse-v2",
+      "status": "different-model-context-only",
+      "profile": "wash-rinse-v2",
+      "document": "docs/performance/wash-rinse-v2.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "watchlist-columns/covered-call-screen",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    },
+    {
+      "project": "watchlist-columns/gcr-inflection",
+      "status": "no-matched-quantitative-evidence",
+      "profile": null,
+      "document": "docs/PERFORMANCE.md",
+      "native_thinkorswim_performance_verified": false
+    }
+  ]
+}

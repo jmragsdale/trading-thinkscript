@@ -1,0 +1,261 @@
+declare upper;
+
+input showDisplacementCandles = yes;
+input emphasizeDisplacementBodies = yes;
+input showLevelLabels = yes;
+input showConsecutiveMarker = yes;
+input showFlatMarker = yes;
+input showNearbyFlatComboMarker = yes;
+
+input bullishColorRed = 0;
+input bullishColorGreen = 102;
+input bullishColorBlue = 255;
+
+input bearishColorRed = 255;
+input bearishColorGreen = 215;
+input bearishColorBlue = 0;
+
+input requireFVG = yes;
+input displacementLookbackLength = 100;
+
+input showLevel1 = yes;
+input showLevel2 = yes;
+input showLevel3 = yes;
+input showLevel4 = yes;
+
+input consecutiveDetectionEnable = yes;
+input consecutiveMinimumCount = 2;
+input allowAnyDirectionCombo = yes;
+
+input flatDetectionEnable = yes;
+input wickToleranceInTicks = 0.0;
+input nearbyFlatDetectionEnable = yes;
+input nearbyFlatLookback = 3;
+
+input enableAlerts = yes;
+
+DefineGlobalColor("BullishDisp", CreateColor(bullishColorRed, bullishColorGreen, bullishColorBlue));
+DefineGlobalColor("BearishDisp", CreateColor(bearishColorRed, bearishColorGreen, bearishColorBlue));
+DefineGlobalColor("BullishSoft", CreateColor(25, 90, 190));
+DefineGlobalColor("BearishSoft", CreateColor(190, 160, 20));
+DefineGlobalColor("Consecutive", CreateColor(255, 179, 0));
+DefineGlobalColor("Flat", CreateColor(224, 64, 251));
+DefineGlobalColor("Combo", CreateColor(255, 23, 68));
+
+def na = Double.NaN;
+def tick = TickSize();
+
+def bodySize = AbsValue(close - open);
+def bodyStdDev = StDev(bodySize, displacementLookbackLength);
+
+def bullishFVG = low > high[2];
+def bearishFVG = high < low[2];
+def hasFVG = bullishFVG or bearishFVG;
+
+def isBullish = close > open;
+def isBearish = close < open;
+
+def rawStrength =
+    if bodyStdDev <= 0 then 0
+    else if bodySize > bodyStdDev * 4 then 4
+    else if bodySize > bodyStdDev * 3 then 3
+    else if bodySize > bodyStdDev * 2 then 2
+    else if bodySize > bodyStdDev then 1
+    else 0;
+
+def displacementStrength =
+    if requireFVG and !hasFVG then 0
+    else if rawStrength == 4 and showLevel4 then 4
+    else if rawStrength == 3 and showLevel3 then 3
+    else if rawStrength == 2 and showLevel2 then 2
+    else if rawStrength == 1 and showLevel1 then 1
+    else 0;
+
+def isDisplacement = displacementStrength > 0;
+def newDisplacement = isDisplacement and !isDisplacement[1];
+
+def flatTolerance = wickToleranceInTicks * tick;
+def isFlatBullish = isBullish and AbsValue(open - low) <= flatTolerance;
+def isFlatBearish = isBearish and AbsValue(open - high) <= flatTolerance;
+def currentFlatDisplacement = flatDetectionEnable and isDisplacement and (isFlatBullish or isFlatBearish);
+
+def nearbyBullFlat =
+    if flatDetectionEnable and nearbyFlatDetectionEnable and isDisplacement and isBullish then
+        fold i = 1 to nearbyFlatLookback + 1 with found = 0
+        do if found == 1 or isFlatBullish[i] then 1 else 0
+    else 0;
+
+def nearbyBearFlat =
+    if flatDetectionEnable and nearbyFlatDetectionEnable and isDisplacement and isBearish then
+        fold j = 1 to nearbyFlatLookback + 1 with found2 = 0
+        do if found2 == 1 or isFlatBearish[j] then 1 else 0
+    else 0;
+
+def nearbyFlatDetected = nearbyBullFlat == 1 or nearbyBearFlat == 1;
+
+def sameDirectionAsPrev =
+    (isBullish and isBullish[1]) or (isBearish and isBearish[1]);
+
+rec consecutiveCount =
+    if !consecutiveDetectionEnable or !isDisplacement then 0
+    else if isDisplacement[1] and (allowAnyDirectionCombo or sameDirectionAsPrev) then consecutiveCount[1] + 1
+    else 1;
+
+def consecutiveTriggered = consecutiveDetectionEnable and consecutiveCount >= consecutiveMinimumCount;
+def consecutiveJustReached = consecutiveTriggered and consecutiveCount[1] < consecutiveMinimumCount;
+
+def comboTriggered = nearbyFlatDetectionEnable and nearbyFlatDetected and consecutiveTriggered and !currentFlatDisplacement;
+def comboJustTriggered = comboTriggered and !comboTriggered[1];
+def flatJustTriggered = currentFlatDisplacement and !currentFlatDisplacement[1];
+
+def strengthText =
+    if displacementStrength == 4 then 4
+    else if displacementStrength == 3 then 3
+    else if displacementStrength == 2 then 2
+    else if displacementStrength == 1 then 1
+    else 0;
+
+AssignPriceColor(
+    if showDisplacementCandles and isDisplacement then
+        if isBullish then GlobalColor("BullishDisp") else GlobalColor("BearishDisp")
+    else Color.CURRENT
+);
+
+def bullBodyTop = if emphasizeDisplacementBodies and isDisplacement and isBullish then Max(open, close) else na;
+def bullBodyBot = if emphasizeDisplacementBodies and isDisplacement and isBullish then Min(open, close) else na;
+def bearBodyTop = if emphasizeDisplacementBodies and isDisplacement and isBearish then Max(open, close) else na;
+def bearBodyBot = if emphasizeDisplacementBodies and isDisplacement and isBearish then Min(open, close) else na;
+
+AddCloud(bullBodyTop, bullBodyBot, GlobalColor("BullishSoft"), GlobalColor("BullishSoft"));
+AddCloud(bearBodyTop, bearBodyBot, GlobalColor("BearishSoft"), GlobalColor("BearishSoft"));
+
+plot BullishDisplacementFlag =
+    if isDisplacement and isBullish then low - tick else na;
+BullishDisplacementFlag.SetPaintingStrategy(PaintingStrategy.SQUARES);
+BullishDisplacementFlag.SetLineWeight(3);
+BullishDisplacementFlag.SetDefaultColor(GlobalColor("BullishDisp"));
+BullishDisplacementFlag.SetHiding(!showDisplacementCandles);
+
+plot BearishDisplacementFlag =
+    if isDisplacement and isBearish then high + tick else na;
+BearishDisplacementFlag.SetPaintingStrategy(PaintingStrategy.SQUARES);
+BearishDisplacementFlag.SetLineWeight(3);
+BearishDisplacementFlag.SetDefaultColor(GlobalColor("BearishDisp"));
+BearishDisplacementFlag.SetHiding(!showDisplacementCandles);
+
+AddChartBubble(
+    showLevelLabels and isDisplacement and isBullish,
+    high + tick,
+    if strengthText == 4 then "4" else if strengthText == 3 then "3" else if strengthText == 2 then "2" else "1",
+    GlobalColor("BullishDisp"),
+    yes
+);
+
+AddChartBubble(
+    showLevelLabels and isDisplacement and isBearish,
+    low - tick,
+    if strengthText == 4 then "4" else if strengthText == 3 then "3" else if strengthText == 2 then "2" else "1",
+    GlobalColor("BearishDisp"),
+    no
+);
+
+plot ConsecutiveBull =
+    if showConsecutiveMarker and consecutiveJustReached and isBullish and !currentFlatDisplacement and !comboTriggered
+    then low - (2 * tick)
+    else na;
+ConsecutiveBull.SetPaintingStrategy(PaintingStrategy.SQUARES);
+ConsecutiveBull.SetLineWeight(4);
+ConsecutiveBull.SetDefaultColor(GlobalColor("Consecutive"));
+
+plot ConsecutiveBear =
+    if showConsecutiveMarker and consecutiveJustReached and isBearish and !currentFlatDisplacement and !comboTriggered
+    then high + (2 * tick)
+    else na;
+ConsecutiveBear.SetPaintingStrategy(PaintingStrategy.SQUARES);
+ConsecutiveBear.SetLineWeight(4);
+ConsecutiveBear.SetDefaultColor(GlobalColor("Consecutive"));
+
+AddChartBubble(
+    showConsecutiveMarker and consecutiveJustReached and isBullish and !currentFlatDisplacement and !comboTriggered,
+    low - (2 * tick),
+    "Consecutive",
+    GlobalColor("Consecutive"),
+    no
+);
+
+AddChartBubble(
+    showConsecutiveMarker and consecutiveJustReached and isBearish and !currentFlatDisplacement and !comboTriggered,
+    high + (2 * tick),
+    "Consecutive",
+    GlobalColor("Consecutive"),
+    yes
+);
+
+plot FlatBull =
+    if showFlatMarker and currentFlatDisplacement and isBullish
+    then low - (3 * tick)
+    else na;
+FlatBull.SetPaintingStrategy(PaintingStrategy.SQUARES);
+FlatBull.SetLineWeight(5);
+FlatBull.SetDefaultColor(GlobalColor("Flat"));
+
+plot FlatBear =
+    if showFlatMarker and currentFlatDisplacement and isBearish
+    then high + (3 * tick)
+    else na;
+FlatBear.SetPaintingStrategy(PaintingStrategy.SQUARES);
+FlatBear.SetLineWeight(5);
+FlatBear.SetDefaultColor(GlobalColor("Flat"));
+
+AddChartBubble(
+    showFlatMarker and currentFlatDisplacement and isBullish,
+    low - (3 * tick),
+    "Flat",
+    GlobalColor("Flat"),
+    no
+);
+
+AddChartBubble(
+    showFlatMarker and currentFlatDisplacement and isBearish,
+    high + (3 * tick),
+    "Flat",
+    GlobalColor("Flat"),
+    yes
+);
+
+plot ComboBull =
+    if showNearbyFlatComboMarker and comboTriggered and isBullish
+    then low - (4 * tick)
+    else na;
+ComboBull.SetPaintingStrategy(PaintingStrategy.SQUARES);
+ComboBull.SetLineWeight(5);
+ComboBull.SetDefaultColor(GlobalColor("Combo"));
+
+plot ComboBear =
+    if showNearbyFlatComboMarker and comboTriggered and isBearish
+    then high + (4 * tick)
+    else na;
+ComboBear.SetPaintingStrategy(PaintingStrategy.SQUARES);
+ComboBear.SetLineWeight(5);
+ComboBear.SetDefaultColor(GlobalColor("Combo"));
+
+AddChartBubble(
+    showNearbyFlatComboMarker and comboTriggered and isBullish,
+    low - (4 * tick),
+    "Consecutive + Nearby Flat",
+    GlobalColor("Combo"),
+    no
+);
+
+AddChartBubble(
+    showNearbyFlatComboMarker and comboTriggered and isBearish,
+    high + (4 * tick),
+    "Consecutive + Nearby Flat",
+    GlobalColor("Combo"),
+    yes
+);
+
+Alert(enableAlerts and newDisplacement, "Displacement detected", Alert.BAR, Sound.Ding);
+Alert(enableAlerts and consecutiveJustReached, "Consecutive displacement detected", Alert.BAR, Sound.Bell);
+Alert(enableAlerts and flatJustTriggered, "Flat displacement candle detected", Alert.BAR, Sound.Chimes);
+Alert(enableAlerts and comboJustTriggered, "Consecutive displacement with nearby same-direction flat candle detected", Alert.BAR, Sound.Ring);

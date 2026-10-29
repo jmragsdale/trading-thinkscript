@@ -1,0 +1,185 @@
+# Incumbent MTF OTE MNQ+MYM package — clean-engine re-score (BACKLOG 0AA)
+
+**Date:** 2026-07-27 · **Agent:** weekly-quant · **Backlog item:** 0AA (P0, CRITICAL)
+**Script:** `scripts/rescore_incumbent_clean_engine_2026-07-27.py`
+**Outputs:** `analysis/incumbent_clean_rescore_2026_07_27/{clean_rescore_scorecard.csv, trade_level_provenance.csv}`
+
+---
+
+## Question
+
+The farm's live-ready headline — **MNQ+MYM 91.8% pass / 6.0% fail / funded-per-slot 1.383** —
+was produced by `scripts/score_mtf_ote_package_exact_rules.py` reading
+`data/{MNQ,MYM,MGC}_london_enriched.csv`. The 2026-07-22 memo established those CSVs are
+written by `MTF OTE/mc_audit/run_volume_analysis.py:84` from `ote_mc_audit.gen_trades`, the
+same generator that carries the B5 lookahead leak, and that they bear the leak's WR signature
+(MNQ 48.9% / MYM 50.1%) versus the clean engine's 33–36%.
+
+**Does the incumbent package survive when only the trade generator is replaced with a
+leak-free one?** Prior on record: no (~10–18% pass), which would mean the farm has no
+validated live strategy. This session decides it.
+
+## Method
+
+The campaign scorer is held **byte-fixed**: the same helper functions (`fill_weekdays`,
+`summarize`, `daily_soft_metrics`, `worst_start_year_edge`, `gate_status`), the same
+`config/exact_prop_rules/myfundedfutures_50k_builder_default_eval.json`, the same combined
+package rules (5 entries/day, −2.5R, +4.5R, 1R=$200), the same rolling-start / 40-weekday
+timeout conventions, and the same `eval_campaign_metrics` code. **Only the trade generator is
+swapped**, so any delta is attributable to the leak rather than to methodology drift.
+
+| | trade source |
+|---|---|
+| control (`leaked`) | `data/{sym}_london_enriched.csv` |
+| treatment (`clean`) | `analysis/independent_exec_audit_2026_07_22/engine_v3.py`, `Cfg(sym, htf=15, chart=1)` |
+
+engine_v3 is run at the **incumbent's own 15/1 geometry** and matching parameters — entry fib
+0.705, stop 0.10×ATR, tp fib 0.0, bias lookback 20, sessions 03:00–05:00 / 09:30–12:00 /
+14:00–15:55 ET (`ote_mc_audit.py:32-50` BASE_GEN vs `engine_v3.py:111-131` Cfg). It applies
+1-minute intrabar sequencing, stop-first on ambiguous bars, no fill before a resting order,
+and no fill on the arm bar. Its MNQ 15/1 baseline reproduces the 2026-07-22 validated figures
+digit-for-digit (n=3273 / WR 34.52% / gPF 1.145 / netPF 0.923), and invariants I1/I4 are clean
+on every leg.
+
+**Harness validity check.** The control run reproduces the published headline **exactly** —
+MNQ+MYM 0.9182 pass / 0.0604 fail / slot 1.3832, and MNQ-only 0.9050 / 0.0544 / 1.067. The
+scorer is therefore doing what it did when the headline was published; the only thing that
+changes below is the trades fed into it.
+
+## Result
+
+### Trade-level provenance (`trade_level_provenance.csv`)
+
+| symbol | leaked n / WR / avgR | clean n / WR / avgR | clean gPF | clean netPF |
+|---|---|---|---:|---:|
+| MNQ | 4,011 / **48.87%** / +0.358 | 3,273 / **34.52%** / +0.095 | 1.145 | 0.923 |
+| MYM | 3,889 / **50.14%** / +0.373 | 2,977 / **36.31%** / +0.156 | 1.244 | 0.770 |
+| MGC | 763 / **47.84%** / +0.280 | 2,799 / **33.65%** / +0.074 | 1.111 | 0.784 |
+
+The leaked MGC list is also **truncated** — it starts 2025-06-10 (763 trades) where the same
+strategy on the same parquet yields 2,799 trades from 2021-07-12. Any MGC claim sourced from
+it was made on ~1 year of data that the data itself did not require.
+
+### Campaign scoring — identical scorer, both generators
+
+| mix | source | pass | fail | timeout | worst-start edge | P(pass) | slot/mo | net PnL | gate |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| MNQ only | leaked | 90.5% | 5.4% | 4.1% | +0.544 | 0.949 | 1.067 | $219,305 | LIVE_READY |
+| **MNQ+MYM** | **leaked** | **91.8%** | **6.0%** | **2.1%** | **+0.660** | **0.947** | **1.383** | **$289,171** | **LIVE_READY** |
+| MNQ+MYM+MGC | leaked | 90.1% | 7.5% | 2.4% | +0.650 | 0.934 | 1.391 | $293,942 | LIVE_READY |
+| MNQ only | clean | 32.9% | 48.4% | 18.7% | −0.485 | 0.492 | 0.403 | $22,998 | **REJECT** |
+| **MNQ+MYM** | **clean** | **43.3%** | **54.4%** | **2.3%** | **−0.336** | **0.456** | **0.623** | **$43,302** | **REJECT** |
+| MNQ+MYM+MGC | clean | 37.2% | 60.4% | 2.3% | −0.613 | 0.391 | 0.612 | $61,885 | **REJECT** |
+
+### Clean, under the two remaining execution assumptions (MNQ+MYM)
+
+| variant | pass | fail | worst-start edge | slot/mo | net PnL | gate |
+|---|---:|---:|---:|---:|---:|---|
+| stop-first, incumbent fixed cost (headline above) | 43.3% | 54.4% | −0.336 | 0.623 | $43,302 | REJECT |
+| target-first intrabar **upper bound** | 53.3% | 44.4% | −0.181 | 0.760 | $91,271 | RESEARCH_ONLY |
+| honest per-trade cost ($2.50/ct RT on actual qty) | 15.5% | 83.8% | −0.923 | 0.292 | **−$104,692** | REJECT |
+
+Even the *optimistic* intrabar bound — resolving every same-minute stop/target collision in
+the trade's favour, which is not a defensible fill assumption — leaves fail at 44.4% and the
+worst-start edge negative. There is no execution assumption inside the honest range that
+recovers the package.
+
+### Holdout (most recent 6 months, split 2025-12-13)
+
+| source | window | pass | fail | P(pass) | slot/mo | net PnL |
+|---|---|---:|---:|---:|---:|---:|
+| leaked | dev | 91.2% | 6.7% | 0.941 | 1.399 | $265,548 |
+| leaked | holdout | 88.4% | 0.0% | 1.000 | 1.245 | $23,623 |
+| clean | dev | 45.5% | 52.9% | 0.471 | 0.664 | $48,623 |
+| clean | **holdout** | **22.5%** | **61.2%** | 0.347 | 0.367 | **−$5,321** |
+
+The clean holdout is **worse** than the clean development window, and loses money. The leaked
+holdout's 0.0% fail rate — a perfect out-of-sample record — is exactly the too-good signature
+a lookahead artifact produces, and is now explained.
+
+### Attribution: it is the leak, not engine strictness
+
+The obvious alternative explanation is that engine_v3's extra constraints (resting-order
+requirement, bias filter) are what depress the clean numbers. Ablated directly:
+
+| leg | strict (default) | no resting-order req | no bias filter | both relaxed |
+|---|---|---|---|---|
+| MNQ 15/1 | n=3,273 WR 34.52% | n=3,641 WR 34.22% | n=4,031 WR 35.82% | n=4,378 WR 34.72% |
+| MYM 15/1 | n=2,977 WR 36.31% | n=3,382 WR 35.04% | n=3,797 WR 35.98% | n=4,200 WR 34.88% |
+
+Relaxing every constraint drives trade counts **past** the leaked lists' 4,011 / 3,889 while
+WR stays inside 34.2–35.8% (MNQ) and 34.9–36.3% (MYM). No combination of fill-model
+permissiveness produces the leaked lists' 48.9% / 50.1%. A ~14pp WR gap at a *higher* trade
+count is not a sequencing difference — it is a generator that knew something at decision time
+that it could not have known.
+
+### Additional void artifact found this session
+
+`scripts/score_mtf_ote_live_faithful.py:92-93` reads the same `*_london_enriched.csv` files.
+**The 2026-07-19 "corrected" headline (86.3% pass / 89.6% campaign P(pass) / 11.7% fail,
+BACKLOG 0y) is therefore also leak-derived and void**, along with its holdout confirmation
+(95.5% / 6.9%). That memo's *structural* findings — the PMT account guard dominates the Pine
+caps, the `dayLosses>=3` gate is inert, the 0.5R cap costs income for no fail-rate benefit —
+were about the risk architecture's relative behaviour and survive as directionally sound, but
+every absolute pass/fail number in it must be restamped.
+
+## Gates checklist (PROTOCOL.md)
+
+| # | gate | status |
+|---|---|---|
+| 1 | Exact-rule campaign scoring | **RUN — package FAILS.** fail 54.4% vs ≤10% gate; worst-start edge −0.336 vs ≥+5%; pass 43.3% vs ≥40% is the only threshold cleared; timeout 2.3% ✓; soft breach 0.0% ✓; hard breach 0 ✓ |
+| 2 | Conservative fills | **PASS.** engine_v3 stop-first on ambiguous 1m bars; residual 1m ambiguity reported as an explicit upper bound, never as the decision metric; no fill before a resting order; no arm-bar fills |
+| 3 | Realistic costs | **PASS.** Scored under both the incumbent fixed convention (MNQ 0.060R / MYM 0.149R at 1R=$200) and engine_v3's per-trade $2.50/ct on actual qty. The honest convention is the *worse* of the two |
+| 4 | Lookahead audit | **PASS — this memo IS the audit.** Leak confirmed by controlled generator swap and quantified by ablation (§ Attribution) |
+| 5 | Portfolio-level limits | **PASS.** Combined 5 entries / −2.5R / +4.5R applied across the mix, plus engine_v3's per-symbol Pine breakers (3 losses / −2.5R / 5 entries / +4.5R) inside the generator |
+| 6 | Sample discipline | **PASS.** 5 years (2021-06 → 2026-06), 6,250 clean MNQ+MYM trades; most recent 6 months held out and scored separately; holdout is worse, not better |
+| 7 | Multiple-testing ledger | **PASS.** Logged in `_tried_ledger.md`. This is a re-score of an existing claim, not a search — 12 scored cells, all reported, none selected on |
+| 8 | Dead-end list | **n/a.** No dead-end family re-tested |
+
+**Not covered:** the PMT account-guard layer is not modelled in this scorer (the exact-rule
+convention never had it). It cannot change the verdict — it is a *restrictive* layer, and the
+2026-07-26 causal-parity run (`analysis/mnq_dual_causal_parity_2026_07_26/RESULTS.md`) found
+that adding it moves the current MNQ config's numbers by ≤3pp and independently reached
+REJECT.
+
+## Verdict
+
+**REJECTED. The incumbent MTF OTE MNQ+MYM package is not live-ready, and never was.**
+
+The 91.8% / 6.0% / 1.383 headline is a lookahead artifact, established by direct measurement
+rather than inference: the same scorer, the same rules, the same 5 years, the same 15/1
+geometry, and a leak-free generator produce **43.3% pass / 54.4% fail / funded-per-slot
+0.623** — and **15.5% / 83.8% / −$104,692** once fills are costed per contract. The prior on
+record (~10–18% pass) was correct in direction and roughly correct in magnitude at honest
+costs.
+
+**The farm currently has no validated live strategy.** The 2026-07-26 causal-parity audit
+independently reached REJECT for the config that is actually deployed (MNQ 30/3 + 60/5), and
+this memo closes the last remaining claim — the MNQ+MYM package the "live-ready" status was
+built on. Every number descending from `*_london_enriched.csv` is void:
+
+- `analysis/mtf_ote_exact_rule_scorecard.csv` / `data/mtf_ote_exact_rule_scorecard.csv`
+- the 86.3% / 11.7% live-faithful headline (2026-07-19 memo, BACKLOG 0y)
+- `data/firm_shape_scorecard_ote.csv` and the multi-firm scaling analysis that consumes it
+- the `spy_0dte` overlay lane (imports the same generator — see `spy-0dte-options-lane` memory)
+- `analysis/monthly_income_distribution.md` and the $/funded-account figures built on it
+
+## Next step
+
+1. **Jermaine decision required** — this is a live-capital question, not a research one. Two
+   accounts are seeded against a package whose validated basis no longer exists. Recommend
+   pausing new eval seeding until something clears gate 1 on a clean engine; existing funded
+   accounts are a separate call.
+2. **Quarantine, don't delete.** Rename the three `*_london_enriched.csv` to
+   `*_london_enriched.LEAKED.csv` in both `data/` and `MTF OTE/mc_audit/`, and add a header
+   note to each consuming script. Proposed, not executed — renaming files three scripts import
+   will break them, and that is a change Jermaine should sequence.
+3. **Re-baseline from the clean engine.** `analysis/incumbent_clean_rescore_2026_07_27/` is
+   the new reference point for MNQ/MYM/MGC 15/1. The clean MGC list also restores 4 years of
+   history the leaked list was missing.
+4. **New backlog item 0AC:** restamp every artifact in the void list above with a
+   leak-derived banner, and re-run the multi-firm scorecard and monthly income distribution
+   off clean lists so the farm's economics are quoted from something real.
+5. Item **0v** (gate-1 resolution methodology) is now more urgent, not less: whatever replaces
+   this package will need a purged/embargoed walk-forward to be defensible, and there is no
+   longer an incumbent to fall back on.

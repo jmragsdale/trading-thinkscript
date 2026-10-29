@@ -1,0 +1,23 @@
+input displacementMultiplier = 1.0;
+input volumeDropThreshold = 0.7;
+input customAggregation = AggregationPeriod.FIVE_MIN;
+
+def dHigh    = high(period = customAggregation);
+def dLow     = low(period = customAggregation);
+def dOpen    = open(period = customAggregation);
+def dClose   = close(period = customAggregation);
+def dVolume  = volume(period = customAggregation);
+
+def dATR = Average(TrueRange(high(period = customAggregation), close(period = customAggregation), low(period = customAggregation)), 14);
+
+def dispRange = dHigh[1] - dLow[1];
+def dispATR   = dATR[1];
+
+def displacementCandle = dispRange > (dispATR * displacementMultiplier);
+def nextCandleVolumeDrop = dVolume < (dVolume[1] * volumeDropThreshold);
+def validDisplacement = displacementCandle and nextCandleVolumeDrop;
+
+def bullishRetest = validDisplacement and (dClose[1] > dOpen[1]) and (close <= dLow[1]) and (open > dLow[1]);
+def bearishRetest = validDisplacement and (dClose[1] < dOpen[1]) and (close >= dHigh[1]) and (open < dHigh[1]);
+
+plot scan = bullishRetest or bearishRetest;

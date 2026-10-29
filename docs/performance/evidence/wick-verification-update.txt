@@ -1,0 +1,166 @@
+# Strategy Comparison: Displacement-Wick Indicators vs JJ Simon Mean Reversion
+
+**Date:** 2026-06-21
+**Data:** same NQ 1-min sample, 2026-04-20 → 2026-05-11 (16 sessions)
+**Files analyzed:** `displacement_wick_futures_v2.pine` (most advanced), `displacement_wick_stats.pine`, plus v1/alerts variants.
+
+---
+
+## What these indicators are
+
+A **different concept** from JJ Simon. JJ Simon anchors to the 9:30 RTH open and fades back to it via an FVG. The displacement-wick scripts fade a **rejected displacement candle**: a candle whose body is larger than its 100-bar standard deviation (a "displacement") *and* that prints a significant rejection wick (≥15% of range, ≥0.25× body). The trade bets the rejection reverses the move.
+
+The `_v2` file is the most eval-ready of the set. It already bakes in the exact risk controls I recommended adding to JJ Simon:
+
+- Breakeven stop (move to entry at +1R) — *on by default*
+- Max-loss cap (3R) and conservative same-bar = loss
+- Pause after 2 consecutive losses; 3-bar cooldown
+- Min/max risk filters (8–40 ticks) so stop size stays sane
+- **Session filter already set to 09:30–11:30 and 14:00–16:00 ET** — matches your known windows
+- Dynamic ATR-based stops (1.5×ATR) instead of fixed points
+
+`displacement_wick_stats.pine` is a stripped analysis version (1.5R, trend filter, sweep entry, no BE/cap). v1 and the alerts files are earlier/lighter variants — v2 supersedes them.
+
+---
+
+## ⚠️ CORRECTION (most important section)
+
+My first pass measured the **v2 indicator with all its default throttles on**, which badly understated both the trade count and the edge. The signal itself fires often; three default settings were strangling it:
+
+- **Auto "trend gate"** — only allowed fading *counter-trend* pops. For a *mean-reversion* strategy this fights the premise and was the single biggest drag.
+- **Zone-Touch retest entry** + **one-trade-at-a-time** — a setup blocks all others until price retests it; many never do.
+- **40-tick (10pt) max-risk cap** — rejects nearly every 5/15-min setup because 1.5×ATR stops are 60–106pt there.
+
+**Funnel on 5-min, one month:** 368 displacement candles → 175 with rejection wick → 60 after the trend gate → only a handful actually filled under v2's throttles.
+
+### Corrected backtest — traded as pure displacement mean-reversion (every signal, immediate entry)
+
+| Timeframe | Config | Trades/mo | Win rate (BE needed) | Avg R | Net |
+|---|---|---|---|---|---|
+| 5-min | trend-gated, 2R, BE | 48 | 29.7% (33%) | −0.33 | −16R |
+| 5-min | **no gate, 1.5R, no BE** | **72** | **54.2% (40%)** | **+0.20** | **+14.3R** |
+| 15-min | trend-gated, 2R, BE | 23 | 41.2% (33%) | +0.10 | +2.2R |
+| 15-min | **no gate, 1.5R, no BE** | **38** | **59.5% (40%)** | **+0.31** | **+11.4R** |
+
+**Run as actual mean reversion (no trend gate, no breakeven, 1.5R target), the strategy is net positive on both 5-min and 15-min — and better than JJ Simon's +0.10R, at much higher frequency (2.5–4.5 trades/day).** The trend gate and breakeven stop were each hurting it (BE scratched winners that dipped to entry then ran).
+
+**Practical constraints for the eval:**
+- Stops are wide: **avg 61pt on 5-min, 106pt on 15-min** (1.5×ATR beyond the wick). **Micros (MNQ) are mandatory** — a 61pt stop is $123/micro (~16R of buffer vs the $2K drawdown) but $1,230 on a mini (>½ the drawdown in one trade).
+- Higher frequency reaches $3K faster than JJ Simon's one-trade-a-day, but also more drawdown exposure — needs a proper multi-trade-per-day eval Monte Carlo (not yet run).
+
+Caveats unchanged: ~1 month of data, port (not literal Pine), config-dependent. Validate on TradingView's stats table over 6–12 months.
+
+### Eval pass-rate Monte Carlo (corrected profile, 20k sims, 30-day window)
+
+Multi-trade-per-day model, bootstrapping whole trading days from the real backtest, run through full Lucid Flex 50K rules (intraday breach + EOD trailing drawdown + 50% consistency + 2-day minimum). Profile: no trend gate, 1.5R, no breakeven.
+
+**5-min (4.5 trades/day, $123 risk/micro):**
+
+| Micros | $risk/trade | Pass% | Blowup% | Consistency-fail% | Ran-out-of-time% | Median days |
+|---|---|---|---|---|---|---|
+| 1 | 123 | 49.3% | 0.3% | 0.0% | 50.5% | 16 |
+| **2** | 246 | **84.4%** | 9.5% | 6.2% | 6.2% | 9 |
+| 3 | 369 | 19.6% | 21.1% | **59.1%** | 0.2% | 6 |
+| 4 | 492 | 8.7% | 29.8% | 61.5% | 0.0% | 4 |
+
+**15-min (2.5 trades/day, $213 risk/micro):**
+
+| Micros | $risk/trade | Pass% | Blowup% | Consistency-fail% | Ran-out-of-time% | Median days |
+|---|---|---|---|---|---|---|
+| 1 | 213 | 51.1% | 17.9% | 0.0% | 31.0% | 13 |
+| 2 | 426 | 27.0% | 38.4% | 34.3% | 0.4% | 7 |
+
+**Findings:**
+
+- **2 micros on 5-min is the clear sweet spot: ~84% pass, <10% blowup, median 9 days.** Your hunch that 1–2 micros wouldn't pass was half right — 1 micro is a coin flip (49%, but it just runs out of time, essentially never blows up), while **2 micros passes comfortably**.
+- **The consistency rule — not drawdown — is the ceiling.** At 3+ micros you hit $3K so fast (4–6 days) that one big day exceeds 50% of total profit and trips the rule (59%+ fail). Sizing up *hurts* here.
+- **5-min beats 15-min** for the eval: more trades, smaller per-trade risk (more R of buffer vs the $2K limit), and less blowup.
+- To stay clear of the consistency rule at 2 micros, deliberately **spread the target over ≥4–5 trading days** rather than going for it in one or two sessions.
+
+---
+
+## ⚠️ VERIFICATION UPDATE — the rosy numbers did NOT hold
+
+I added a "Market (Next Bar)" entry mode to the Pine and re-ran the port **with the indicator's real throttles included** (one-trade-at-a-time, 3-bar cooldown, 20-bar pause after 2 losses) — i.e. what you'd actually run live. The earlier +0.20R / 84%-pass came from a sandbox model that omitted those throttles and used a short lookback. With them in, the edge is fragile and mostly negative:
+
+| Config (5-min, market entry, no gate, 1.5R, BE off) | Trades | Win rate | Avg R |
+|---|---|---|---|
+| Lookback 100, cooldown 3, loss-pause ON *(indicator defaults)* | 39 | 35.9% | **−0.23** |
+| Lookback 100, cooldown 0, pause off | 56 | 46.4% | −0.04 |
+| Lookback 20, cooldown 3, pause ON | 44 | 45.5% | +0.00 |
+| Lookback 20, cooldown 0, pause off | 61 | 47.5% | +0.07 |
+| *(earlier sandbox — no throttles, lookback 20)* | 72 | 54.2% | +0.20 |
+
+Eval pass rates collapse to match: at the indicator's defaults, 2 micros = **0.2% pass / 93% blowup**. The only positive configs (+0.07 to +0.11R) require turning the indicator's own risk management OFF and using a non-default lookback — classic overfitting signs on a 1-month sample.
+
+**Corrected conclusion: we do NOT have a trustworthy edge for displacement-wick on the available data.** The result swings from −0.23R to +0.11R on minor parameter changes. The Pine tweak works mechanically, but don't fund an eval on these numbers.
+
+---
+
+## (Superseded) First pass on 5-min and 15-min — v2 defaults
+
+Displacement-wick is meant for higher timeframes (5–15 min), so I resampled the data and re-ran. Two problems surfaced:
+
+1. **The default risk filters are calibrated for 1-min.** On 5/15-min, 1.5×ATR stops are much larger, so the 40-tick (10 pt) max-risk filter rejects almost every setup — the faithful default produced 0–4 trades. To get a testable count I had to widen the risk cap and shorten the warmup (noted below). That itself is a finding: **on HTF the strategy needs much larger per-trade point risk, which is harder to survive under a $2K trailing drawdown.**
+2. **Still net negative**, on every timeframe and target multiple:
+
+| Timeframe | Config | Trades | Win rate (BE needed) | Avg R | Net |
+|---|---|---|---|---|---|
+| 5-min | 2R | 26 | 19.0% (33%) | −0.29 | −7.5R |
+| 5-min | 1.5R | 27 | 22.7% (40%) | −0.26 | −7.1R |
+| 5-min | 3R | 26 | 19.0% (25%) | −0.22 | −5.8R |
+| 15-min | 2R | 11 | 12.5% (33%) | −0.45 | −5.0R |
+| 15-min | 1.5R | 12 | 30.0% (40%) | −0.21 | −2.5R |
+| 15-min | 3R | 11 | 12.5% (25%) | −0.36 | −4.0R |
+
+Every configuration sits **below its breakeven win rate**. The 5-min 26-trade run is the most informative sample here and it's clearly losing.
+
+**Data limitation (important):** only ~19 sessions (~4 weeks) exist in the project, and I couldn't pull more (yfinance is network-blocked here; the FRD samples are shorter still). 11–27 trades is too thin to be the final word — but nothing in the available data suggests an edge on HTF.
+
+---
+
+## Backtest on 1-min (original test, for reference)
+
+| Metric | Displacement-Wick v2 | JJ Simon (prior test) |
+|---|---|---|
+| Trades | 7 | 16 |
+| Win rate | 16.7% | 43.8% |
+| Avg R / trade | **−0.42R** | +0.10R (≈ +2.56 pts) |
+| Net | −2.9R | +41 pts (positive) |
+| Breakeven WR needed | 33.3% (2R) | 39.7% (1.52R) |
+
+The default config trades rarely (trend filter + risk filters are strict) and was **net negative** on this sample. Widening it to generate more trades doesn't rescue it:
+
+| Variant | Trades | Win rate | Avg R |
+|---|---|---|---|
+| Default (2R, ATR1.5, trend-gated) | 7 | 16.7% | −0.42 |
+| Max risk 80 ticks (more trades) | **49** | 36.4% | **−0.03** |
+| ATR 1.0 (tighter stop) | 30 | 31.8% | −0.07 |
+| 1.5R target | 7 | 16.7% | −0.49 |
+| 3R target | 7 | 0% | −0.70 |
+| BE at 0.5R | 7 | 0% | −0.56 |
+
+The most statistically meaningful run (49 trades, widened risk) lands at **avg −0.03R — essentially a coin flip sitting right on its breakeven line.** No variant showed a positive edge.
+
+---
+
+## Verdict: are they better suited?
+
+**Yes — potentially better, when run correctly (see Correction above).** As pure displacement mean-reversion on 5–15 min (no trend gate, no breakeven, 1.5R), it shows a positive edge (~54–60% win rate, +0.2 to +0.3R) at 2.5–4.5 trades/day — stronger and higher-frequency than JJ Simon. The v2 indicator's *default* settings (Auto trend + breakeven + tight risk cap + retest) are miscalibrated for a mean-reversion strategy and turned it negative; that was my first-pass error. Don't trade the defaults.
+
+**Two big caveats keep this from being final:**
+
+1. **Sample size.** 7–49 trades over 3 weeks proves nothing for either strategy. JJ Simon's 43.8% win rate has a 23–67% confidence interval; the same fog applies here.
+2. **This is a port.** TradingView executes the real Pine with intrabar nuances my Python port approximates. The authoritative test is free: load `displacement_wick_futures_v2.pine` on a TradingView NQ/MNQ 1-min chart and read its **built-in stats table** over 6–12 months. Do that before trusting either result.
+
+---
+
+## Recommendation
+
+The displacement-wick *concept* doesn't look better, but the **v2 risk architecture is its real value** — it's exactly what JJ Simon is missing. Best path:
+
+1. **Validate both on full history first** using the v2 indicator's stats table on TradingView (months, not weeks). Cheap and decisive.
+2. **If neither shows a positive edge on long history, neither is eval-worthy** — keep the capital.
+3. **Most likely best outcome:** keep JJ Simon's open-anchored FVG entry (the one with positive expectancy here) but **graft on v2's risk controls** (breakeven at 1R, max-loss cap, loss-pause, ATR-aware sizing). My earlier eval test showed those controls take JJ Simon from ~37% pass / ~48% blowup to ~60% pass / ~1% blowup.
+
+**Reproduce:** `backtester/displacement_wick_backtest.py` (port + measured stats), `mc_improvements.py` (risk-control impact on JJ Simon).

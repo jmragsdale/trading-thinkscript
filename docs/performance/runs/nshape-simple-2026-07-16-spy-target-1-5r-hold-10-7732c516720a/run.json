@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a",
+  "family": "nshape-simple",
+  "label": "target-1.5r-hold-10",
+  "record_type": "strategy",
+  "reported_on": "2026-07-16",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "7732c516720ae5e8ce7ab7887805c85cd364cda2254d7d5f1bd2f2e4e0573e30",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "studies/nshape-simple",
+        "source_path": "studies/nshape-simple/NShape_Simple_Study.thinkscript",
+        "source_sha256": "f3e5605889654345331843d5ee843bc985792a10d5a3ed2707d2d921018f28f8",
+        "relationship": "related-model"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [],
+    "tested_model_version": null,
+    "inputs": {
+      "target_r": 1.5,
+      "maximum_hold_bars": 10,
+      "stop": "candle-2 extreme",
+      "sides": [
+        "long",
+        "short"
+      ]
+    }
+  },
+  "test_environment": {
+    "engine": "python",
+    "engine_version": null,
+    "instrument": "SPY",
+    "aggregation_minutes": 2,
+    "session": "RTH 09:35–15:30 ET signal window",
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": null,
+    "start": "2021-07-12",
+    "end": "2026-07-10",
+    "reported_period": null,
+    "missing_data_treatment": null,
+    "rollover_treatment": null,
+    "raw_data_hash": null
+  },
+  "execution": {
+    "entry_rule": "Next 2-minute bar open.",
+    "exit_rule": "Candle-2 stop, fixed-R target or maximum hold.",
+    "position_sizing": null,
+    "same_bar_stop_target": "stop-first",
+    "initial_capital_usd": null,
+    "overlap_rule": "Per-signal hypothetical outcomes; overlapping signals are not a single-position portfolio."
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": null,
+    "slippage_points_each_side": null,
+    "total_round_trip_usd": null,
+    "total_round_trip_points": null,
+    "pnl_basis": "unspecified",
+    "description": "Realistic cost deduction not established by retrieved report."
+  },
+  "sample": {
+    "development_period": null,
+    "test_period": null,
+    "test_used_in_selection": null,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "nshape-simple-report",
+      "nshape-simple-summary",
+      "nshape-simple-trades"
+    ],
+    "source_records": {
+      "nshape-simple-report": {
+        "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/spy_nshape_2m_event_study_report.md",
+        "original_sha256": "9aa58d52d9e99bac69ed5054f185de3e7b650f2687caef45c0aa68a489f08a41",
+        "original_bytes": 3653,
+        "evidence": "docs/performance/evidence/nshape-simple-report.txt",
+        "evidence_sha256": "50c6cec1d011f213216300ef17b9a7e1820cb4fbf5f99136927345669c55e1a4",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "nshape-simple-summary": {
+        "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/nshape_event_study_summary.csv",
+        "original_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+        "original_bytes": 7873,
+        "evidence": "docs/performance/evidence/nshape-simple-summary.csv",
+        "evidence_sha256": "9cf9f228dfd5cdd5cce52ceb03d717a9245db4ea58355c9923c31ed4f6e6d2f4",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "nshape-simple-trades": {
+        "origin": "HOME/Downloads/Trading/Strategies & Tools/trading strategies/TradingView/Tradingview Scripts/analysis/spy_nshape_event_study/nshape_event_study_trades.csv",
+        "original_sha256": "314403c9e2fcd6c5a3c8ce888e7df0a12877dbbcf90af1370a5a251aedd8c8ae",
+        "original_bytes": 2405633,
+        "evidence": "docs/performance/evidence/nshape-simple-trades.csv.gz",
+        "evidence_sha256": "127df2583a610965e7045321a050ede09b12ef895f0e19818be6b5bbfc51db8f",
+        "transformation": "Lossless gzip, fixed mtime=0; decompressed bytes equal original CSV. Saved research observations, not a newly run backtest."
+      }
+    }
+  },
+  "validation": {
+    "status": "reported",
+    "source_relationship": "related-model",
+    "native_parity": "not-verified",
+    "lookahead_audit": null,
+    "warnings": [
+      "No native ThinkScript execution parity.",
+      "Saved P&L columns do not establish realistic fee/slippage deduction; basis remains unspecified.",
+      "All/long/short slices overlap; do not sum them."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "script_identity.tested_model_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.provider": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.reported_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.missing_data_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.rollover_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.raw_data_hash": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.position_sizing": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.initial_capital_usd": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.development_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_used_in_selection": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "costs.commission_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.slippage_points_each_side": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_points": "Cost component not separately established; see costs.description and pnl_basis."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a/run.json",
+    "summary": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a/summary.json",
+    "markdown": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a/PERFORMANCE.md",
+    "observations": {
+      "path": "docs/performance/runs/nshape-simple-2026-07-16-spy-target-1-5r-hold-10-7732c516720a/trades.csv",
+      "kind": "trades",
+      "sha256": "fb750d3a2d3f18bb91b1522d532a8179af18f7139d12330b17d2ad4b6433567b",
+      "row_count": 719,
+      "reason": null
+    },
+    "summary_sha256": "9548766331584ad0d46db69f1b50736a8b5286e353b63c511622208262399a09"
+  }
+}

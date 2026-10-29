@@ -1,0 +1,150 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc",
+  "family": "ote-wheel",
+  "label": "historical-fx",
+  "record_type": "historical-aggregate",
+  "reported_on": "2026-07-15",
+  "normalized_on": "2026-10-29",
+  "configuration_sha256": "c2726b2929dc1ba5b2e53325c07698fac941566c9f04f1fb9c6ff58411fa0c5f",
+  "script_identity": {
+    "library_targets": [
+      {
+        "project": "scanners/ote-wheel",
+        "source_path": "scanners/ote-wheel/OTE_WheelScan.ts",
+        "source_sha256": "a750aeb435c3042e25ab5efd11828a0dd2f4c479c6aadf2a3c8d41b6ed8ad7ed",
+        "relationship": "related-model"
+      }
+    ],
+    "tested_model_source_sha256": null,
+    "tested_source_hashes": [],
+    "tested_model_version": null,
+    "inputs": {
+      "aggregation": "daily",
+      "pooled_symbols": 8
+    }
+  },
+  "test_environment": {
+    "engine": "python",
+    "engine_version": null,
+    "instrument": "8 FX majors",
+    "aggregation_minutes": 1440,
+    "session": null,
+    "timezone": "America/New_York",
+    "chart_type": "time bars",
+    "native_thinkorswim_performance_verified": false
+  },
+  "dataset": {
+    "provider": "Owned equity/futures bars plus yfinance five-year equity histories; FX coverage as historical report.",
+    "start": null,
+    "end": null,
+    "reported_period": "Approximate five-year source histories; one common exact calendar not established.",
+    "missing_data_treatment": null,
+    "rollover_treatment": null,
+    "raw_data_hash": null
+  },
+  "execution": {
+    "entry_rule": null,
+    "exit_rule": null,
+    "position_sizing": null,
+    "same_bar_stop_target": null,
+    "initial_capital_usd": null,
+    "overlap_rule": null
+  },
+  "costs": {
+    "currency": "USD",
+    "commission_round_trip_usd": null,
+    "slippage_points_each_side": null,
+    "total_round_trip_usd": null,
+    "total_round_trip_points": null,
+    "pnl_basis": "unspecified",
+    "description": "Realistic cost deduction not established by retrieved report."
+  },
+  "sample": {
+    "development_period": null,
+    "test_period": null,
+    "test_used_in_selection": null,
+    "independent_holdout_verified": false
+  },
+  "evidence": {
+    "source_ids": [
+      "daily-ote-historical",
+      "mtf-clean-rescore",
+      "mtf-cost-rebaseline"
+    ],
+    "source_records": {
+      "daily-ote-historical": {
+        "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/ote-wheel-scan-tos/backtests/2026-07-15_daily_ote_tos_scanner.md",
+        "original_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+        "original_bytes": 4903,
+        "evidence": "docs/performance/evidence/daily-ote-historical.txt",
+        "evidence_sha256": "aea1ad2c25cd5ecb710f47eeaae5174474adccf7ab9b32c810b2eb1fd22b8b49",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "mtf-clean-rescore": {
+        "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-27_incumbent_clean_engine_rescore.md",
+        "original_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+        "original_bytes": 11948,
+        "evidence": "docs/performance/evidence/mtf-clean-rescore.txt",
+        "evidence_sha256": "b0e784445a906176ff4fa17ffe732d30a73d8f1f7d246b1752fb88d707a7f4e1",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      },
+      "mtf-cost-rebaseline": {
+        "origin": "HOME/Documents/Trading Code Library/ChatGPT Trading Scripts/mtf-ote-tos/backtests/2026-07-30_leak_restamp_and_clean_rebaseline.md",
+        "original_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+        "original_bytes": 12269,
+        "evidence": "docs/performance/evidence/mtf-cost-rebaseline.txt",
+        "evidence_sha256": "0895b9d95de87ebb5bbbdcf42527f06a83e986b26647c82d02994a0be1bf0cb8",
+        "transformation": "UTF-8 text; BOM removed if present; user home path replaced with [LOCAL_HOME]. Historical report wording preserved, including superseded claims; use the assessment notes."
+      }
+    }
+  },
+  "validation": {
+    "status": "historical-unrevalidated",
+    "source_relationship": "related-model",
+    "native_parity": "not-verified",
+    "lookahead_audit": "Historical generator lineage unresolved after later leak findings.",
+    "warnings": [
+      "Predates OTE lookahead remediation; no clean daily rerun found.",
+      "Not exact current v4 or installed v3 performance; no option premium/assignment execution.",
+      "Symbol pools are not a capital-weighted portfolio."
+    ],
+    "unavailable_fields": {
+      "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "script_identity.tested_model_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.engine_version": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "test_environment.session": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.start": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.end": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.missing_data_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.rollover_treatment": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "dataset.raw_data_hash": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.entry_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.exit_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.position_sizing": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.same_bar_stop_target": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.initial_capital_usd": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "execution.overlap_rule": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.development_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_period": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "sample.test_used_in_selection": "Not established by the retrieved evidence; not inferred from current library defaults.",
+      "costs.commission_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.slippage_points_each_side": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_usd": "Cost component not separately established; see costs.description and pnl_basis.",
+      "costs.total_round_trip_points": "Cost component not separately established; see costs.description and pnl_basis."
+    }
+  },
+  "artifacts": {
+    "run": "docs/performance/runs/ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc/run.json",
+    "summary": "docs/performance/runs/ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc/summary.json",
+    "markdown": "docs/performance/runs/ote-wheel-2026-07-15-8-fx-majors-historical-fx-c2726b2929dc/PERFORMANCE.md",
+    "observations": {
+      "path": null,
+      "kind": "trades",
+      "sha256": null,
+      "row_count": null,
+      "reason": "Observation-level ledger not available in the retrieved evidence; aggregate report only."
+    },
+    "summary_sha256": "aead2b34c8f3ef7e6d6c8b0976670dc5d830367c86a680ad7efeb33520214be1"
+  }
+}

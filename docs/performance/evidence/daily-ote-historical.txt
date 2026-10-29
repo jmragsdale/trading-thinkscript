@@ -1,0 +1,81 @@
+# Daily-TF OTE Validation + ThinkScript Scanner (2026-07-15)
+
+Purpose: port the OTE mechanism to thinkorswim as a scanner/alert tool for the Schwab side —
+day/swing options and especially wheel entries (CSP/CC placement at structure). Pipeline:
+`MTF OTE/mc_audit/validate_daily_ote_wheel.py`. Scripts: `thinkscript/OTE_WheelScan.ts`
+(scan-safe, single aggregation) and `thinkscript/MTF_OTE_TOS.ts` (chart study, HTF bias,
+alerts).
+
+## Question 1 — does the mechanism work on DAILY bars? YES (4th octave of the fractal)
+
+Engine on daily bars, 13 symbols (SPY RTH-daily, MES/MNQ/MYM/MGC session-daily from owned
+parquets; AAPL MSFT AMD NVDA KO XOM DIS PYPL via yfinance 5y):
+
+- **Pooled: 1,643 setups, avg +0.359R/trade, WR 50.3%** — the best per-trade edge of any
+  timeframe tested (15m ~0.30, 30m ~0.25 MGC, 60m ~0.27-0.36). Fractal confirmed
+  15m -> 30m -> 60m -> 1D, and it extends to single stocks (every one of the 13 positive,
+  range +0.22 to +0.48).
+- Setup frequency ~2/month/symbol -> a 30-50 name scan universe yields a steady handful of
+  fresh zones per week.
+
+## Question 2 — the premium seller's number (zone-hold after a bull zone tap)
+
+Two very different metrics, both computed (pooled):
+
+| Horizon | TOUCH-hold (no intraday breach of swing) | EXPIRY-hold, strike AT swing | EXPIRY-hold, strike 1% beyond swing |
+| --- | ---: | ---: | ---: |
+| 7 trading days | 26.6% | 62.1% | **74.4%** |
+| 14 days | 18.3% | 56.2% | 65.9% |
+| 21 days | 15.8% | 52.2% | 59.5% |
+
+**Honest framing:** ~74% at 7DTE/1%-cushion is roughly comparable to generic short-put win
+rates at similar moneyness — the zone is NOT a free OTM-win-rate upgrade. What the scanner
+actually buys a wheel trader:
+1. **Location** — strikes anchored to a protected swing = assignment happens at a
+   structurally pre-approved discount (the wheel's own philosophy, sharpened), with the
+   +0.36R bounce evidence saying post-assignment recovery odds are favorable.
+2. **Timing** — signals fire after pullbacks, when IV (and premium) is elevated.
+3. The touch-hold row says intraday breaches are COMMON (73%+ within 7d) — early-assignment
+   risk management (roll rules) matters on anything longer than weeklies; prefer short DTE.
+
+## Usage
+
+- **Wheel:** Stock Hacker scan on `OTE_WheelScan` (side=Bull, 1D aggregation, Tradeable
+  true) over the wheel universe; dynamic alert on new symbols. Sell CSP 0-9 DTE, strike at
+  or >=1% below the ProtectedSwing plot. Assignment = planned acquisition; then run
+  covered calls (side=Bear zones flag CC placement on rallies into bearish zones).
+- **Day/swing:** `MTF_OTE_TOS` chart study, 5m chart + 1h bias (or 1D + 1W); arrows +
+  alerts on first zone tap. FINDER ONLY — confirm on the audited TradingView indicator;
+  this port is scanner-grade (single-TF simplification, pivot-based swings, CISD proxy),
+  not the audited execution engine, and was NOT compile-tested (paste into ToS editor;
+  minor syntax fixes may be needed).
+
+## FX pairs: TESTED AND FAILED (2026-07-15)
+
+Same engine, same daily config, 8 majors via yfinance (5y): **pooled 2,283 setups,
+-0.126R/trade, WR 32.9% — negative on all 8** (EURUSD -0.13, GBPUSD -0.11, USDJPY -0.15,
+AUDUSD -0.07, USDCAD -0.19, NZDUSD -0.04, EURGBP -0.10, EURJPY -0.21). The mechanism that
+is positive on every equity/futures symbol at four timeframes LOSES on daily spot FX.
+Caveats: yfinance FX dailies are bid-quoted with midnight-UTC boundaries (daily-candle
+boundary matters for sweep detection), so part of this may be data-artifact — but a uniform
+-0.13R across 8 pairs is a red light, not noise. **Do not deploy the scanner on forex.**
+Any FX revisit goes through CME FX futures intraday data (existing BACKLOG item), not spot
+dailies. (Also moot for scanning: ToS Stock Hacker cannot scan forex — chart study only.)
+
+## v2 scanner guards for the $2-$20 band (added 2026-07-15)
+
+price band (2-20) · 20d avg dollar-volume floor ($5M default) · risk%-of-price band (1-10%:
+skips both noise-zones and binary-risk zones) · gap guard (structure containing a >6%
+overnight gap is disqualified — earnings/news artifacts) · earnings buffer (skip if earnings
+within 7 bars; GetEventOffset may return NaN on some symbols in scans — treated as safe) ·
+SuggestedStrike plot (protected swing cushioned 1%, rounded to strike increment, default
+$0.50). Expect the sub-$20 universe to run noisier than the validated large-cap numbers.
+
+## Boundaries
+
+- ThinkScript = signal-only (no webhooks/automation) -> lives entirely on the Schwab manual
+  side; zero interaction with prop-farm compliance.
+- Scan scripts cannot reference higher timeframes (ToS limitation) -> scanner runs pure
+  daily; the HTF bias filter exists only in the chart study.
+- yfinance dailies are split/dividend-adjusted; ToS shows unadjusted-ish candles — zone
+  levels will differ slightly around distributions. Immaterial for scanning.

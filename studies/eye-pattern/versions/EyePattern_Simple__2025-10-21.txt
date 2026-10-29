@@ -1,0 +1,137 @@
+# Eye Pattern SIMPLIFIED - ThinkorSwim Study
+# Easier to understand version with fewer parameters
+# Best for beginners learning the pattern
+
+declare upper;
+
+# === SIMPLE INPUTS ===
+input showBuySignals = yes;
+input showMovingAverages = yes;
+input aggressiveMode = no; # Set to 'yes' for more signals (less strict)
+
+# === MOVING AVERAGES ===
+def MA5 = SimpleMovingAvg(close, 5);
+def MA20 = SimpleMovingAvg(close, 20);
+
+plot FastMA = if showMovingAverages then MA5 else Double.NaN;
+FastMA.SetDefaultColor(Color.CYAN);
+FastMA.SetLineWeight(2);
+FastMA.SetStyle(Curve.FIRM);
+
+plot SlowMA = if showMovingAverages then MA20 else Double.NaN;
+SlowMA.SetDefaultColor(Color.MAGENTA);
+SlowMA.SetLineWeight(2);
+SlowMA.SetStyle(Curve.FIRM);
+
+# === PATTERN RULES ===
+
+# Rule 1: 20MA must be going UP
+def MA20_GoingUp = MA20 > MA20[5]; # 20MA higher than 5 days ago
+
+# Rule 2: MA5 recently went below MA20, now coming back above
+def MA5_WasBelow = MA5[1] < MA20[1] or MA5[2] < MA20[2] or MA5[3] < MA20[3];
+def MA5_NowAbove = MA5 > MA20;
+def CrossoverPattern = MA5_WasBelow and MA5_NowAbove;
+
+# Rule 3: Volume is LOW (showing accumulation, not distribution)
+def avgVol = Average(volume, 20);
+def currentVolLow = volume < avgVol * 0.8; # 80% of average
+
+# Rule 4: Pullback wasn't too big
+def highLast30 = Highest(high, 30);
+def pullback = ((highLast30 - close) / highLast30) * 100;
+def smallPullback = pullback < 15; # Less than 15%
+
+# Rule 5: Price shows recovery (lower shadows on candles)
+def candleBottom = Min(open, close);
+def lowerWick = candleBottom - low;
+def candleBody = AbsValue(close - open);
+def hasLowerWick = lowerWick > candleBody * 0.3; # Lower wick is significant
+
+# === BUY SIGNAL ===
+def strictBuySignal = 
+    CrossoverPattern and 
+    MA20_GoingUp and 
+    currentVolLow and 
+    smallPullback and 
+    hasLowerWick;
+
+def relaxedBuySignal = 
+    CrossoverPattern and 
+    MA20_GoingUp and 
+    (currentVolLow or hasLowerWick) and 
+    smallPullback;
+
+def BuySignal = if aggressiveMode then relaxedBuySignal else strictBuySignal;
+
+# === VISUAL SIGNALS ===
+
+# Big green arrow when to buy
+plot BuyArrow = if showBuySignals and BuySignal then low * 0.995 else Double.NaN;
+BuyArrow.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
+BuyArrow.SetDefaultColor(Color.GREEN);
+BuyArrow.SetLineWeight(5);
+
+# Color the price bars
+AssignPriceColor(
+    if BuySignal then Color.GREEN
+    else if MA5 > MA20 and MA20_GoingUp then Color.CYAN
+    else if MA5 < MA20 then Color.ORANGE
+    else Color.GRAY
+);
+
+# === STOP LOSS AND TARGETS ===
+def recentLow = Lowest(low, 10);
+def StopPrice = recentLow * 0.995; # Just below recent low
+
+def risk = close - StopPrice;
+def Target1Price = close + (risk * 1.5); # 1.5x reward
+def Target2Price = close + (risk * 2.0); # 2x reward
+def Target3Price = close + (risk * 3.0); # 3x reward
+
+# === CHART LABELS ===
+AddLabel(yes, 
+    if MA5 > MA20 then "5MA ABOVE 20MA ✓" else "5MA BELOW 20MA", 
+    if MA5 > MA20 then Color.GREEN else Color.RED);
+
+AddLabel(yes, 
+    if MA20_GoingUp then "20MA RISING ✓" else "20MA FLAT/FALLING", 
+    if MA20_GoingUp then Color.GREEN else Color.RED);
+
+AddLabel(yes, 
+    if currentVolLow then "VOLUME LOW ✓" else "VOLUME HIGH", 
+    if currentVolLow then Color.YELLOW else Color.GRAY);
+
+AddLabel(BuySignal, "🎯 BUY SIGNAL! 🎯", Color.WHITE);
+
+# Show trade details when signal appears
+AddLabel(BuySignal, "Entry: $" + Round(close, 2), Color.CYAN);
+AddLabel(BuySignal, "Stop: $" + Round(StopPrice, 2), Color.RED);
+AddLabel(BuySignal, "Target 1: $" + Round(Target1Price, 2), Color.GREEN);
+
+# === BUBBLES ON CHART ===
+AddChartBubble(BuySignal, low * 0.99, "BUY\nHERE", Color.GREEN, no);
+AddChartBubble(BuySignal, StopPrice, "STOP\n$" + Round(StopPrice, 2), Color.RED, no);
+AddChartBubble(BuySignal, Target1Price, "Target 1\n$" + Round(Target1Price, 2), Color.GREEN, yes);
+AddChartBubble(BuySignal, Target2Price, "Target 2\n$" + Round(Target2Price, 2), Color.GREEN, yes);
+
+# === ALERTS ===
+Alert(BuySignal, "EYE PATTERN - BUY SIGNAL!", Alert.BAR, Sound.Chimes);
+Alert(close <= StopPrice, "STOP LOSS HIT - EXIT!", Alert.BAR, Sound.Ring);
+Alert(close >= Target1Price, "TARGET 1 REACHED!", Alert.BAR, Sound.Bell);
+
+# === BACKGROUND COLOR ===
+# Highlight the background when pattern is setting up
+AddCloud(
+    if MA5_WasBelow and !MA5_NowAbove and MA20_GoingUp then MA5 else Double.NaN, 
+    MA20, 
+    Color.DARK_GREEN, 
+    Color.DARK_GREEN
+);
+
+# === SIMPLE INSTRUCTIONS ===
+# 1. Wait for green arrow to appear
+# 2. Buy at the close or next open
+# 3. Set stop loss at the red bubble
+# 4. Take partial profits at targets
+# 5. Exit immediately if stop is hit

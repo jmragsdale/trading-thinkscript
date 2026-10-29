@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run.schema.json",
+  "title": "Saved performance run 1.0.0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "family",
+    "label",
+    "record_type",
+    "reported_on",
+    "normalized_on",
+    "configuration_sha256",
+    "script_identity",
+    "test_environment",
+    "dataset",
+    "execution",
+    "costs",
+    "sample",
+    "evidence",
+    "validation",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+-[a-f0-9]{12}$"
+    },
+    "family": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "record_type": {
+      "enum": [
+        "signal-event",
+        "strategy",
+        "historical-aggregate"
+      ]
+    },
+    "reported_on": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "normalized_on": {
+      "type": "string"
+    },
+    "configuration_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "script_identity": {
+      "type": "object",
+      "required": [
+        "library_targets",
+        "tested_model_source_sha256",
+        "tested_source_hashes",
+        "tested_model_version",
+        "inputs"
+      ]
+    },
+    "test_environment": {
+      "type": "object",
+      "required": [
+        "engine",
+        "engine_version",
+        "instrument",
+        "aggregation_minutes",
+        "session",
+        "timezone",
+        "chart_type",
+        "native_thinkorswim_performance_verified"
+      ],
+      "properties": {
+        "native_thinkorswim_performance_verified": {
+          "const": false
+        },
+        "engine": {
+          "enum": [
+            "python",
+            "pine"
+          ]
+        }
+      }
+    },
+    "dataset": {
+      "type": "object",
+      "required": [
+        "provider",
+        "start",
+        "end",
+        "reported_period",
+        "missing_data_treatment",
+        "rollover_treatment",
+        "raw_data_hash"
+      ]
+    },
+    "execution": {
+      "type": "object",
+      "required": [
+        "entry_rule",
+        "exit_rule",
+        "position_sizing",
+        "same_bar_stop_target",
+        "initial_capital_usd",
+        "overlap_rule"
+      ]
+    },
+    "costs": {
+      "type": "object",
+      "required": [
+        "currency",
+        "commission_round_trip_usd",
+        "slippage_points_each_side",
+        "total_round_trip_usd",
+        "total_round_trip_points",
+        "pnl_basis",
+        "description"
+      ]
+    },
+    "sample": {
+      "type": "object",
+      "required": [
+        "development_period",
+        "test_period",
+        "test_used_in_selection",
+        "independent_holdout_verified"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "source_ids",
+        "source_records"
+      ]
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "status",
+        "source_relationship",
+        "native_parity",
+        "lookahead_audit",
+        "warnings",
+        "unavailable_fields"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "reported",
+            "historical-unrevalidated",
+            "withdrawn"
+          ]
+        },
+        "native_parity": {
+          "const": "not-verified"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": [
+        "run",
+        "summary",
+        "summary_sha256",
+        "markdown",
+        "observations"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

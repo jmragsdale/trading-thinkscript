@@ -1,0 +1,305 @@
+# Start of code
+
+#Grab High and Lows for Spy QQQ and VXX
+
+def SpyhiDiff = high("SPY") - high("SPY")[1];
+def SpyloDiff = low("SPY")[1] - low("SPY");
+
+def QQQhiDiff = high("QQQ") - high("QQQ")[1];
+def QQQloDiff = low("QQQ")[1] - low("QQQ");
+
+def VxxhiDiff = high("VXX") - high("VXX")[1];
+def VxxloDiff = low("VXX")[1] - low("VXX");
+
+#Define +/- DM
+
+def SpyPlusDM = if SpyhiDiff > SpyloDiff and SpyhiDiff > 0 then SpyhiDiff else 0;
+def SpyMinusDM =  if SpyloDiff > SpyhiDiff and SpyloDiff > 0 then SpyloDiff else 0;
+
+def QQQPlusDM = if QQQhiDiff > QQQloDiff and QQQhiDiff > 0 then QQQhiDiff else 0;
+def QQQMinusDM =  if QQQloDiff > QQQhiDiff and QQQloDiff > 0 then QQQloDiff else 0;
+
+def VxxplusDM = if VxxhiDiff > VxxloDiff and VxxhiDiff > 0 then VxxhiDiff else 0;
+def VxxminusDM =  if VxxloDiff > VxxhiDiff and VxxloDiff > 0 then VxxloDiff else 0;
+
+#Define Spy/qqq/Vxx ATR
+def SpyATR = MovingAverage(AverageType.Wilders, TrueRange(high("SPY"), Close("SPY"), low("SPY")), 14);
+
+def QQQATR = MovingAverage(AverageType.Wilders, TrueRange(high("SPY"), Close("QQQ"), low("QQQ")), 14);
+
+def VxxATR = MovingAverage(AverageType.Wilders, TrueRange(high("VXX"), close("VXX"), low("VXX")), 14);
+
+#Plotting & Hiding
+
+plot SpyDMP = 100 *  MovingAverage(AverageType.WILDERS, SpyPlusDM, 14) / SpyATR;
+SpyDMP.Hide();
+
+plot SpyDMM = 100 * MovingAverage(AverageType.WILDERS, SpyMinusDM, 14) / SpyATR;
+SpyDMM.Hide();
+
+plot QQQDMP = 100 *  MovingAverage(AverageType.WILDERS, QQQPlusDM, 14) / QQQATR;
+QQQDMP.Hide();
+
+plot QQQDMM = 100 * MovingAverage(AverageType.WILDERS, QQQMinusDM, 14) / QQQATR;
+QQQDMM.Hide();
+
+plot VxxDMP = 100 *  MovingAverage(AverageType.WILDERS, VxxPlusDM, 14) / VxxATR;
+VxxDMP.Hide();
+
+plot VxxDMM = 100 * MovingAverage(AverageType.WILDERS, VxxMinusDM, 14) / VxxATR;
+VxxDMM.Hide();
+
+
+#def SpyDX = if (SpyDMP + SpyDMM > 0) then 100 * AbsValue(SpyDMP - SpyDMM) / (SpyDMP + SpyDMM) else 0;
+#def SpyADX = MovingAverage(AverageType.WILDERS, SpyDX, 14);
+
+#def VxxDX = if (VxxDMP + VxxDMM > 0) then 100 * AbsValue(VxxDMP - VxxDMM) / (VxxDMP + VxxDMM) else 0;
+#def VxxADX = MovingAverage(AverageType.WILDERS, VxxDX, 14);
+
+#labels
+
+AddLabel(yes,"VXX", (if VXXDMP > VXXDMM then COLOR.GREEN else COLOR.RED));
+#AddLabel(yes, if VxxADX > 25 then "Vxx ADX > 25" else "Vxx ADX < 25");
+
+AddLabel(yes,"SPY", (if SPYDMP > SPYDMM then COLOR.GREEN else COLOR.RED));
+#AddLabel(yes, if SpyADX > 25 then "Spy ADX > 25" else "Spy ADX < 25");
+
+AddLabel(yes,"QQQ", (if QQQDMP > QQQDMM then COLOR.GREEN else COLOR.RED));
+#AddLabel(yes, if QQQADX > 25 then "QQQ ADX > 25" else "QQQ ADX < 25");
+
+# Display EMA's Stacked Label
+input show_stacked_label = yes;
+input show_ema_label = yes;
+
+input rsilength = 5;
+def c = close;
+def h = high;
+def l = low;
+def o = open;
+
+#MOMENTUM
+input lengthmo = 5;
+def Momentum = c - c[lengthmo];
+def mopos = if Momentum >= 0 then 3 else 2;
+def moneg = if Momentum < 0 then 3 else 2;
+
+#CCI
+input lengthcci = 13;
+def pricecci = c + l + h;
+def linDev = LinDev(pricecci, lengthcci);
+def CCI = if linDev == 0 then 0 else (pricecci - Average(pricecci, lengthcci)) / linDev / 0.015;
+def cci1 = if CCI >= 0 then 4 else 3;
+def cci2 = if CCI < 0 then 4 else 3;
+
+#RSI
+def rsi = reference RSI(length = rsilength)."RSI";
+def rsi1 = if rsi >= 50 then 5 else 4;
+def rsi2 = if rsi < 50 then 5 else 4;
+
+#Bollinger Bands MOBO
+input lengthmobo = 10;
+input Num_Dev_Dn = -0.8;
+input Num_Dev_up = 0.8;
+
+def sDev = StDev(data = c, length = lengthmobo);
+def Midmobo = Average(c, length = lengthmobo);
+def Lowermobo = Midmobo + Num_Dev_Dn * sDev;
+def Uppermobo = Midmobo + Num_Dev_up * sDev;
+def upmobo = if upmobo[1] == 0 and c >= Uppermobo then 1 else if upmobo[1] == 1 and c > Lowermobo then 1 else 0;
+def upmo = if upmobo and c > Uppermobo then 1 else 0;
+def dnmo = if !upmobo and c > Lowermobo then 1 else 0;
+def mobo1 = if upmobo == 1 then 6 else 5;
+def mobo2 = if upmobo == 0 then 6 else 5;
+########################################################################
+########################################################################
+#Trend
+#Choppiness Indicator from Mobius @My Trade with color changes by Lar
+#Set ADX & SMA to how you trade
+#Indicates Trending or Chop along with current ADX level
+
+def ADXLength = 5; #TOS default 10
+input AverageType = AverageType.HULL;
+def AvgLength = 5; #TOS default 8
+def Lengthchop = 8;
+def Signal = 3;
+def Choppy = 61.8;
+def MidLine = 50;
+def Trending = 38.2;
+def ADX = Round(reference ADX(length = ADXLength), 0);
+def AVG = MovingAverage(AverageType = AverageType, c, AvgLength);
+def CIB = ((Log(Sum(TrueRange(h, c, l), Lengthchop) /
+(Highest(if h >= c[1] then h else
+c[1], Lengthchop) -
+Lowest( if l <= c[1] then l else c[1], Lengthchop)))
+/ Log(10)) / (Log(Lengthchop) / Log(10))) * 100;
+def CI = CIB;
+
+#Choppiness/Trend Indicator
+def chop = if CI > MidLine then 7 else 6;
+def trend1 = if CI < MidLine and c > AVG then 7 else 6;
+def trend2 = if CI < MidLine and c < AVG then 7 else 6;
+
+#Overall
+def uptrend = if mopos == 3 and cci1 == 4 and rsi1 == 5 and mobo1 == 6 then 8 else 7;
+def dntrend = if moneg == 3 and cci2 == 4 and rsi2 == 5 and mobo2 == 6 then 8 else 7;
+
+# EMA Length's
+input ema1Length = 8;
+input ema2Length = 21;
+input ema3Length = 34;
+input ema4Length = 55;
+input ema5Length = 89;
+input showXovers = yes;
+def stackedUp = MovAvgExponential("length" = 8)."AvgExp" is greater than MovAvgExponential("length" = 21)."AvgExp"
+and MovAvgExponential("length" = 21)."AvgExp" is greater than MovAvgExponential("length" = 34)."AvgExp"
+and MovAvgExponential("length" = 34)."AvgExp" is greater than MovAvgExponential("length" = 55)."AvgExp"
+and MovAvgExponential("length" = 55)."AvgExp" is greater than MovAvgExponential("length" = 89)."AvgExp";
+
+
+def stackedDn = MovAvgExponential("length" = 8)."AvgExp" is less than MovAvgExponential("length" = 21)."AvgExp"
+and MovAvgExponential("length" = 21)."AvgExp" is less than MovAvgExponential("length" = 34)."AvgExp"
+and MovAvgExponential("length" = 34)."AvgExp" is less than MovAvgExponential("length" = 55)."AvgExp"
+and MovAvgExponential("length" = 55)."AvgExp" is less than MovAvgExponential("length" = 89)."AvgExp";
+
+
+AddLabel(yes, " Stacked ", if stackedUp then Color.GREEN else if stackedDn then Color.RED else Color.GRAY);
+########################################################################
+########################################################################
+#Squeeze by Mobius @ My Trade with color mod by Lar
+#Look at Cloud Color as a possible indication of direction once squeeze ends
+def nK = 1.5;
+def nBB = 2.0;
+def lengthsqueeze = 20;
+
+def BBHalfWidth = StDev(c, lengthsqueeze);
+def KCHalfWidth = nK * Average(TrueRange(h, c, l), lengthsqueeze);
+def isSqueezed = nBB * BBHalfWidth / KCHalfWidth < 1;
+
+#Squeeze for Longer Term Trend Indicator
+def BBS_Ind = if isSqueezed then 8.2 else Double.NaN;
+
+DefineGlobalColor("Pre_Cyan", CreateColor(0, 150, 200)) ;
+DefineGlobalColor("LabelGreen",  CreateColor(0, 165, 0)) ;
+DefineGlobalColor("Label2Green",  CreateColor(0, 200, 0)) ;
+DefineGlobalColor("LabelRed",  CreateColor(225, 0, 0)) ;
+AddLabel(yes, "MOMENTUM " + Round(Momentum, 2), if Momentum >= 0 then GlobalColor("LabelGreen") else GlobalColor("LabelRed"));
+AddLabel(yes,
+if CCI < -100 and CCI > CCI[1] then "CCI down but rising "  + Round(CCI, 0) else
+if CCI < -100                  then "CCI down & falling "  + Round(CCI, 0) else
+if CCI >  100 and CCI > CCI[1] then "CCI TRENDING "  + Round(CCI, 0) else
+if CCI >  100                  then "CCI Hi but falling "  + Round(CCI, 0) else
+if CCI <    0 and CCI > CCI[1] then "CCI low but rising "  + Round(CCI, 0) else
+if CCI <    0                  then "CCI low & falling "  + Round(CCI, 0) else
+if CCI > CCI[1]                then "CCI Rising " + Round(CCI, 0) else "CCI Falling " + Round(CCI, 0),
+if CCI < -100 and CCI > CCI[1] then Color.VIOLET else
+if CCI < -100                  then Color.DARK_RED  else
+if CCI >  100 and CCI > CCI[1] then GlobalColor("Pre_Cyan") else
+if CCI >  100                  then Color.VIOLET else
+if CCI <    0 and CCI > CCI[1] then Color.VIOLET else
+if CCI <    0                  then GlobalColor("LabelRed") else
+if CCI > CCI[1]                then GlobalColor("LabelGreen") else GlobalColor("LabelRed"));
+AddLabel(yes,
+if rsi < 20   then "RSI bottom " + Round(rsi, 0) else
+if rsi > 80   then "RSI max " + Round(rsi, 0) else
+if rsi > rsi[1] then "RSI Rising " + Round(rsi, 0) else "RSI Falling " + Round(rsi, 0),
+if rsi < 20   then Color.DARK_RED else
+if rsi > 80   then GlobalColor("Label2Green") else
+if rsi > rsi[1] then GlobalColor("LabelGreen") else GlobalColor("LabelRed"));
+AddLabel(yes, if upmobo and upmo then "Mobo Above Upper" else
+              if !upmo and dnmo  then "Mobo Below Lower" else "Mobo Inside",
+              if upmobo and upmo then GlobalColor("LabelGreen") else
+              if !upmo and dnmo then Color.VIOLET else GlobalColor("LabelRed"));
+AddLabel(yes, if CI < 38.2 then "Trending " + Round(CI, 0) else
+              if CI > 61.8 then "CHOPPY " + Round(CI, 0) else "No Chop " + Round(CI, 0),
+              if CI < 38.2 then GlobalColor("Pre_Cyan") else
+              if CI > 61.8 then GlobalColor("LabelRed") else
+              if CI > MidLine then GlobalColor("Label2Green") else GlobalColor("LabelGreen"));
+AddLabel(yes,
+if ADX <= 20   then "ADX No Trend " + Round(ADX, 0) else
+if ADX >  40   then "ADX WOW " + Round(ADX, 0) else  "ADX Trending " + Round(ADX, 0),
+if ADX < 20    then GlobalColor("LabelRed") else
+if ADX > 40    then GlobalColor("Pre_Cyan") else GlobalColor("LabelGreen"));
+
+AddLabel(yes, if uptrend == 8 then "Trend All Up " else if dntrend == 8 then "Trend All Down " else "Trend Mixed ", if uptrend == 8 then GlobalColor("LabelGreen") else if dntrend == 8 then GlobalColor("LabelRed") else Color.GRAY);
+#Count of Periods in consecutive squeeze
+rec count = if isSqueezed then count[1] + 1 else 0;
+AddLabel(yes, if isSqueezed then Concat("Squeeze ", count) else "No Squeeze", Color.DARK_ORANGE);
+########################################################################
+########################################################################
+# Heikin_Ashi_Trend_Dashboard
+# Paints Yellow bar to signal potential trend reversals while Green and Red bars indicate trend direction.
+# Optionally sounds alerts on trend reversal while eliminating most false signals.
+# Optionally paints candles based on HA trend
+# Created by rad14733 for usethinkscript.com
+# v1.0 : 2021-08-17 : Initial release
+
+input useAlerts = no;
+input alertType = Alert.BAR;
+input buySound = Sound.DING;
+input sellSound = Sound.BELL;
+input colorBars = no;
+
+def haClose = ohlc4;
+def haOpen = (haOpen[1] + haClose[1]) / 2;
+def haTrendUp = if haClose >= haOpen then 1 else 0;
+def haTrendDn = if haClose < haOpen then 1 else 0;
+def haSignal =
+  if haTrendUp == 1 and haTrendUp[1] == 1 then 1
+  else if haTrendDn == 1 and haTrendDn[1] == 1 then -1
+  else 0
+;
+
+DefineGlobalColor("Label", Color.ORANGE);
+DefineGlobalColor("UpTrend", Color.GREEN);
+DefineGlobalColor("DnTrend", Color.RED);
+DefineGlobalColor("Transition", Color.YELLOW);
+
+AddLabel(yes, "HA Trend:", GlobalColor("Label"));
+
+AddLabel(yes, " ",
+  if haSignal[4] == 1 then GlobalColor("UpTrend")
+  else if haSignal[4] == -1 then GlobalColor("DnTrend")
+  else GlobalColor("Transition")
+);
+
+AddLabel(yes, " ",
+  if haSignal[3] == 1 then GlobalColor("UpTrend")
+  else if haSignal[3] == -1 then GlobalColor("DnTrend")
+  else GlobalColor("Transition")
+);
+
+AddLabel(yes, " ",
+  if haSignal[2] == 1 then GlobalColor("UpTrend")
+  else if haSignal[2] == -1 then GlobalColor("DnTrend")
+  else GlobalColor("Transition")
+);
+
+AddLabel(yes, " ",
+  if haSignal[1] == 1 then GlobalColor("UpTrend")
+  else if haSignal[1] == -1 then GlobalColor("DnTrend")
+  else GlobalColor("Transition")
+);
+
+AddLabel(yes, " ",
+  if haSignal == 1 then GlobalColor("UpTrend")
+  else if haSignal == -1 then GlobalColor("DnTrend")
+  else GlobalColor("Transition")
+);
+
+Alert(useAlerts and haSignal[1] == 0 and haSignal == 1, "HA Buy Signal", alertType, buySound);
+Alert(useAlerts and haSignal[1] == 0 and haSignal == -1, "HA Sell Signal", alertType, sellSound);
+
+AssignPriceColor(if colorBars then
+  if haSignal == 1 then GlobalColor("UpTrend")
+  else if haSignal == -1 then GlobalColor("DnTrend")
+  else GlobalColor("Transition")
+  else Color.CURRENT
+);
+
+# END - Heikin_Ashi_Trend_Dashboard
+
+#So Simple a monkey could create it Spy & Vxx DMI Labels
+#Green Label = DMI+ > DMI- , Red Label = DMI- > DMI+
+#Xiuying 4/28/2020
+
+#End of code

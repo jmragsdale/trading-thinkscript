@@ -1,0 +1,13 @@
+## Native TradingView verification — 2026-10-01
+
+Pine compiled and executed on the isolated saved layout ORB15 MNQ PRIVATE RESEARCH 2026-10-01 (jRFUHdUF), CME_MINI:MNQ1!, standard one-minute Candles, electronic trading hours, UTC-4 chart display, back-adjustment off. Final saved mode: StopCap100. Source unchanged. TOS native compilation remains unverified: the prior import UI could not select/import the text candidate; it was cancelled without changing existing scripts.
+
+Properties observed: USD50,000 initial capital, quantity1, pyramiding0, default four ticks per bar, on-bar-close execution, commission USD0.95 per contract per side, one-tick slippage, infinite long/short leverage, requested-price limits, one-tick order delay. No routing or alert was created; existing live layouts and alerts were untouched. Source static checks suppress order alerts and contain no routing endpoints.
+
+Native trade exports span September7–October1 (report window September6–October1), nineteen completed one-contract entries in both modes. Entry dates/times/directions/prices/size match exactly. Original net USD98.40 (7 wins); StopCap100 net USD250.90 (4 wins). Thirteen capped exits net minusUSD99.90; three target exits plusUSD485.60. This short sample does not validate edge, a hard loss cap, or five-year parity.
+
+October1 short E=30734.00 at09:46. Exported OR high30856.25/low30734.25. Original plotted stop30856.25 and target30122.75 match R=122.25 and5R=611.25. Original stop fill30856.50 at13:30 nets minusUSD246.90. Capped R48.75 implies stop30782.75/target30490.25; native exit30783.00 at09:53 nets minusUSD99.90 including0.25-point stop slippage andUSD1.90 fees. September21 long E30366.50 exits capped target30610.25 (243.75points=5x48.75), netUSD485.60 at11:39. September18 nonbinding-cap short matches both modes at minusUSD95.90.
+
+Original Research EOD exports normally show16:00; September7 holiday shows18:01. This is consistent with next-available-bar behavior but cannot be proven without that day's bars. September30 Original15:59 is LX (protective price exit), not Research EOD. Entry earliest09:46 agrees with staging after09:45 calculation.
+
+Bar exports contain305 Original and306 capped visible bars beginningOctober1 10:41, after entry; their shared closed-bar OHLC agrees. They omit the opening range/fill bar and cannot establish matched-bar full replay. The frozen synthetic oracle is an independent offline price-path reference and does not replay these native events. Native OHLC path priority, activated-stop rebound, gap, DST and holiday missing-bar semantics remain unresolved parity gates. No optimization or source repair performed.

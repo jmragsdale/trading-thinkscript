@@ -1,0 +1,131 @@
+# MTF_30m_FVG_with_CE_and_Alerts_v1.1
+# 30m FVGs on a 3m chart, CE lines, "sweep + close beyond CE" alerts, latest unmitigated per side
+# Owner-series pattern to avoid forward-reference errors
+
+declare upper;
+
+input showBull = yes;
+input showBear = yes;
+input showCE = yes;
+input showBands = yes;
+input alertOnBullCECloseAbove = yes;
+input alertOnBearCECloseBelow = yes;
+input playSound = yes;
+input sound = Sound.Ding;
+
+def na = Double.NaN;
+def bn = BarNumber();
+
+# ----- Secondary 30m series -----
+def H30 = high (period = AggregationPeriod.THIRTY_MIN);
+def L30 = low  (period = AggregationPeriod.THIRTY_MIN);
+
+# ----- 30m FVG definitions (ICT 3-bar) -----
+def bullNow = L30 > H30[2];
+def bullTop_now = L30;       # closer to current price
+def bullBot_now = H30[2];    # older bar’s high
+def bullCE_now  = (bullTop_now + bullBot_now) / 2;
+
+def bearNow = H30 < L30[2];
+def bearTop_now = L30[2];    # older bar’s low
+def bearBot_now = H30;       # current bar’s high
+def bearCE_now  = (bearTop_now + bearBot_now) / 2;
+
+# ======================================================================
+# BULLISH owner = bottom line  -> avoids fwd ref
+# ======================================================================
+def newBull = showBull and bullNow;
+
+# Bottom (owner): stays until mitigated (primary low <= bottom)
+def bullBot_active = CompoundValue(1,
+    if newBull then bullBot_now
+    else if !IsNaN(bullBot_active[1]) and low > bullBot_active[1] then bullBot_active[1]
+    else na,
+na);
+
+# Top follows the owner’s existence
+def bullTop_active = CompoundValue(1,
+    if newBull then bullTop_now
+    else if !IsNaN(bullTop_active[1]) and !IsNaN(bullBot_active) then bullTop_active[1]
+    else na,
+na);
+
+def bullCE_active = (bullTop_active + bullBot_active) / 2;
+def bullActive = !IsNaN(bullBot_active) and !IsNaN(bullTop_active);
+
+# ======================================================================
+# BEARISH owner = top line
+# ======================================================================
+def newBear = showBear and bearNow;
+
+# Top (owner): stays until mitigated (primary high >= top)
+def bearTop_active = CompoundValue(1,
+    if newBear then bearTop_now
+    else if !IsNaN(bearTop_active[1]) and high < bearTop_active[1] then bearTop_active[1]
+    else na,
+na);
+
+# Bottom follows the owner’s existence
+def bearBot_active = CompoundValue(1,
+    if newBear then bearBot_now
+    else if !IsNaN(bearBot_active[1]) and !IsNaN(bearTop_active) then bearBot_active[1]
+    else na,
+na);
+
+def bearCE_active = (bearTop_active + bearBot_active) / 2;
+def bearActive = !IsNaN(bearTop_active) and !IsNaN(bearBot_active);
+
+# ======================================================================
+# Visuals
+# ======================================================================
+plot BullTop = if showBands and bullActive then bullTop_active else na;
+plot BullBot = if showBands and bullActive then bullBot_active else na;
+BullTop.SetDefaultColor(Color.GREEN);
+BullBot.SetDefaultColor(Color.GREEN);
+BullTop.SetStyle(Curve.SHORT_DASH);
+BullBot.SetStyle(Curve.SHORT_DASH);
+AddCloud(if showBands and bullActive then BullTop else na,
+         if showBands and bullActive then BullBot else na,
+         Color.GREEN, Color.GREEN);
+
+plot BearTop = if showBands and bearActive then bearTop_active else na;
+plot BearBot = if showBands and bearActive then bearBot_active else na;
+BearTop.SetDefaultColor(Color.RED);
+BearBot.SetDefaultColor(Color.RED);
+BearTop.SetStyle(Curve.SHORT_DASH);
+BearBot.SetStyle(Curve.SHORT_DASH);
+AddCloud(if showBands and bearActive then BearTop else na,
+         if showBands and bearActive then BearBot else na,
+         Color.RED, Color.RED);
+
+plot BullCE = if showCE and bullActive then bullCE_active else na;
+BullCE.SetDefaultColor(Color.DARK_GREEN);
+BullCE.SetLineWeight(2);
+
+plot BearCE = if showCE and bearActive then bearCE_active else na;
+BearCE.SetDefaultColor(Color.DARK_RED);
+BearCE.SetLineWeight(2);
+
+AddChartBubble(newBull, bullTop_now, "30m Bull FVG", Color.GREEN, yes);
+AddChartBubble(newBear, bearBot_now, "30m Bear FVG", Color.RED, no);
+
+# ======================================================================
+# CE sweep + close-beyond triggers on PRIMARY TF
+# ======================================================================
+def bullSweep  = bullActive and low <= bullCE_active and high >= bullCE_active;
+def bullCloseA = bullActive and close >  bullCE_active;
+def bullTrig   = bullSweep and bullCloseA;
+
+def bearSweep  = bearActive and high >= bearCE_active and low <= bearCE_active;
+def bearCloseB = bearActive and close <  bearCE_active;
+def bearTrig   = bearSweep and bearCloseB;
+
+# One-shot per instance using simple state
+def bullFired = CompoundValue(1, if newBull then 0 else if bullTrig then 1 else bullFired[1], 0);
+def bearFired = CompoundValue(1, if newBear then 0 else if bearTrig then 1 else bearFired[1], 0);
+
+Alert(alertOnBullCECloseAbove and bullTrig and bullFired[1] == 0,
+      "Bullish 30m FVG: CE swept + 3m close above", Alert.BAR, if playSound then sound else Sound.NoSound);
+
+Alert(alertOnBearCECloseBelow and bearTrig and bearFired[1] == 0,
+      "Bearish 30m FVG: CE swept + 3m close below", Alert.BAR, if playSound then sound else Sound.NoSound);

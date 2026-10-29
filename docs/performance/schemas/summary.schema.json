@@ -1,0 +1,2861 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "summary.schema.json",
+  "title": "Saved performance summary 1.0.0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "record_type",
+    "row_grain",
+    "metric_definitions",
+    "rows"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "record_type": {
+      "enum": [
+        "signal-event",
+        "strategy",
+        "historical-aggregate"
+      ]
+    },
+    "row_grain": {
+      "type": "string"
+    },
+    "metric_definitions": {
+      "type": "string"
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "dimensions",
+          "metrics"
+        ],
+        "properties": {
+          "dimensions": {
+            "type": "object"
+          },
+          "metrics": {
+            "type": "object",
+            "required": [
+              "signals",
+              "completed_trades",
+              "trading_days",
+              "wins",
+              "losses",
+              "breakevens",
+              "win_rate_pct",
+              "profit_factor_gross",
+              "profit_factor_net",
+              "profit_factor_unspecified",
+              "net_profit_usd",
+              "net_profit_usd_low",
+              "net_profit_usd_high",
+              "gross_profit_usd",
+              "net_return_pct",
+              "mean_net_points",
+              "mean_gross_points",
+              "mean_points_unspecified",
+              "mean_net_usd",
+              "mean_r_unspecified",
+              "mean_net_r",
+              "mean_win_usd",
+              "mean_loss_usd",
+              "closed_trade_max_drawdown_usd",
+              "marked_max_drawdown_usd",
+              "marked_max_drawdown_pct",
+              "longest_losing_streak",
+              "matched_excess_points",
+              "excess_ci_low_points",
+              "excess_ci_high_points",
+              "mean_mfe_points",
+              "mean_mae_points",
+              "positive_endpoint_fraction",
+              "monthly_mean_usd",
+              "monthly_median_usd",
+              "losing_months",
+              "months",
+              "touch_hold_pct",
+              "expiry_hold_swing_pct",
+              "expiry_hold_1pct_cushion_pct"
+            ],
+            "properties": {
+              "signals": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "completed_trades": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "trading_days": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "wins": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "losses": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "breakevens": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "win_rate_pct": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "percent"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "profit_factor_gross": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "ratio"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "profit_factor_net": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "ratio"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "profit_factor_unspecified": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "ratio"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "net_profit_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "net_profit_usd_low": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "net_profit_usd_high": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "gross_profit_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "net_return_pct": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "percent"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_net_points": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_gross_points": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_points_unspecified": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_net_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_r_unspecified": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "R"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_net_r": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "R"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_win_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_loss_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "closed_trade_max_drawdown_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "marked_max_drawdown_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "marked_max_drawdown_pct": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "percent"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "longest_losing_streak": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "trades"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "matched_excess_points": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "excess_ci_low_points": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "excess_ci_high_points": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_mfe_points": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "mean_mae_points": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "points"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "positive_endpoint_fraction": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "fraction"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "monthly_mean_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "monthly_median_usd": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "USD"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "losing_months": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "months": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "count"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "touch_hold_pct": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "percent"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expiry_hold_swing_pct": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "percent"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expiry_hold_1pct_cushion_pct": {
+                "type": "object",
+                "required": [
+                  "value",
+                  "unit",
+                  "method",
+                  "source_id",
+                  "missing_reason"
+                ],
+                "properties": {
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unit": {
+                    "const": "percent"
+                  },
+                  "method": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "source_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "missing_reason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "value": {
+                          "type": "null"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "missing_reason": {
+                          "type": "null"
+                        },
+                        "source_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

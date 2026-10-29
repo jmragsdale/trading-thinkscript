@@ -1,0 +1,7 @@
+# Preserve the original source bytes across Git checkouts.
+*.ts -text linguist-language=Text
+*.thinkscript -text linguist-language=Text
+*.txt -text
+*.md text eol=lf
+*.json text eol=lf
+*.py text eol=lf

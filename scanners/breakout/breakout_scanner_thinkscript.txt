@@ -1,0 +1,34 @@
+# Breakout Scanner - corrected Stock Hacker build
+# Aggregation: DAY
+# Stock Hacker requires exactly one plot. The original chart-study version is
+# retained under versions/.
+
+input lookbackPeriod = 126;
+input volumeMultiple = 2.0;
+input minDailyGainPercent = 10.0;
+input longTermMALength = 200;
+
+def validPriorClose = close[1] > 0;
+def dailyChange = if validPriorClose
+    then (close / close[1] - 1) * 100
+    else 0;
+
+def priorHighestHigh = Highest(high[1], lookbackPeriod);
+def averageVolume = Average(volume, 20);
+def longTermMA = Average(close, longTermMALength);
+
+def isNewHigh = high >= priorHighestHigh;
+def isHighVolume = averageVolume > 0 and volume >= averageVolume * volumeMultiple;
+def isStrongGain = dailyChange >= minDailyGainPercent;
+def aboveLongTermMA = close > longTermMA;
+
+# Preserve the original anti-repeat intent: the high 20 bars ago must have
+# been at least 5% below the current lookback high.
+def isFirstBreakout = high[20] < Highest(high, lookbackPeriod) * 0.95;
+
+plot scan =
+    isNewHigh and
+    isHighVolume and
+    isStrongGain and
+    aboveLongTermMA and
+    isFirstBreakout;

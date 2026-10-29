@@ -1,0 +1,291 @@
+# WARRIOR EYE HYBRID - Day Trading Scanner
+# Combines Warrior Trading momentum criteria with Eye Pattern timing
+# Strategy: Find hot stocks, enter on intraday pullbacks with precision
+# Timeframe: Intraday (1min, 5min charts recommended)
+
+# ======================================
+# PHASE 1: WARRIOR MOMENTUM PRE-FILTER
+# ======================================
+
+# === WARRIOR INPUTS ===
+input minPercentGain = 10.0;           # Stock must be up 10% minimum
+input minRelativeVolume = 3.0;         # 3x+ relative volume (lowered from 5x for more results)
+input minPrice = 1.00;                 # Minimum price $1.00
+input maxPrice = 20.00;                # Maximum price $20.00
+input maxFloat = 50000000;             # Max 50M float (adjust based on data availability)
+input volumeLookbackDays = 30;         # 30-day average volume calculation
+
+# === EYE PATTERN INPUTS ===
+input fastMA = 9;                      # Faster MA for intraday (9 period)
+input slowMA = 20;                     # Slower MA (20 period)
+input pullbackBars = 10;               # Max bars in pullback
+input volumeContractionPct = 50;       # Volume must drop 50% during pullback
+input minRiskReward = 2.0;             # Minimum 2:1 reward/risk (Warrior standard)
+
+# ======================================
+# WARRIOR MOMENTUM CRITERIA
+# ======================================
+
+# 1. Price Range Check
+def priceInRange = close >= minPrice and close <= maxPrice;
+
+# 2. Percentage Gain Today
+# Use GetYYYYMMDD() to identify first bar of the day (works on all timeframes)
+def today = GetYYYYMMDD();
+def isNewDay = today != today[1];
+def todayOpen = if isNewDay then open else todayOpen[1];
+def percentChange = if todayOpen > 0 then ((close - todayOpen) / todayOpen) * 100 else 0;
+def isUpEnough = percentChange >= minPercentGain;
+
+# 3. Relative Volume Calculation
+def avgVolume = Average(volume, volumeLookbackDays);
+def relativeVolume = if avgVolume > 0 then volume / avgVolume else 0;
+def hasHighVolume = relativeVolume >= minRelativeVolume;
+
+# 4. Volatility Check (using ATR)
+def atr = Average(TrueRange(high, close, low), 14);
+def atrPercent = (atr / close) * 100;
+def isVolatile = atrPercent >= 3; # At least 3% daily range
+
+# === WARRIOR FILTER PASSED ===
+def warriorFilter = priceInRange and isUpEnough and hasHighVolume and isVolatile;
+
+# ======================================
+# PHASE 2: EYE PATTERN ENTRY TIMING
+# ======================================
+
+# Moving Averages (intraday optimized)
+def MA_Fast = SimpleMovingAvg(close, fastMA);
+def MA_Slow = SimpleMovingAvg(close, slowMA);
+
+# Trend Confirmation (both MAs rising)
+def MA_Slow_Rising = MA_Slow > MA_Slow[1];
+def MA_Fast_Rising = MA_Fast > MA_Fast[1];
+def uptrend = MA_Slow_Rising;
+
+# Crossover Detection
+def bullishCross = MA_Fast[1] <= MA_Slow[1] and MA_Fast > MA_Slow;
+def bearishCross = MA_Fast[1] >= MA_Slow[1] and MA_Fast < MA_Slow;
+
+# Pullback Counter
+def barsInPullback;
+if bearishCross {
+    barsInPullback = 1;
+} else if barsInPullback[1] > 0 and MA_Fast < MA_Slow {
+    barsInPullback = barsInPullback[1] + 1;
+} else {
+    barsInPullback = 0;
+}
+
+def validPullbackDuration = barsInPullback > 0 and barsInPullback <= pullbackBars;
+
+# Volume Contraction During Pullback
+def maxRecentVolume = Highest(volume, pullbackBars);
+def volumeContracted = volume <= maxRecentVolume * (volumeContractionPct / 100.0);
+
+# Lower Shadow Detection (Bullish Reversal Signal)
+def bodyLow = Min(open, close);
+def bodyHigh = Max(open, close);
+def lowerShadowSize = bodyLow - low;
+def upperShadowSize = high - bodyHigh;
+def bodySize = AbsValue(close - open);
+def hasLowerShadow = lowerShadowSize > bodySize * 0.5;
+def isBullishCandle = close > open;
+
+# Pullback Setup Forming
+def pullbackSetup =
+    warriorFilter and
+    uptrend and
+    validPullbackDuration and
+    MA_Fast < MA_Slow and
+    volumeContracted;
+
+# ======================================
+# BUY SIGNAL (Entry Trigger)
+# ======================================
+
+def buySignal =
+    pullbackSetup[1] and
+    bullishCross and
+    isBullishCandle and
+    hasLowerShadow;
+
+# Alternative Buy Signal (aggressive - no lower shadow required)
+def buySignalAggressive =
+    pullbackSetup[1] and
+    bullishCross and
+    isBullishCandle;
+
+# ======================================
+# RISK MANAGEMENT & EXITS
+# ======================================
+
+# Stop Loss: Below recent swing low OR below lower shadow
+def swingLow = Lowest(low, pullbackBars);
+def stopLoss = Min(swingLow, low - lowerShadowSize);
+def riskPerShare = close - stopLoss;
+
+# Profit Targets
+def target1 = close + (riskPerShare * 2.0);  # 2:1 ratio (Warrior standard)
+def target2 = close + (riskPerShare * 3.0);  # 3:1 ratio (extended)
+def target3 = close + (riskPerShare * 5.0);  # 5:1 ratio (runner)
+
+# Risk/Reward Ratio
+def rrRatio = if riskPerShare > 0 then (target1 - close) / riskPerShare else 0;
+def validRiskReward = rrRatio >= minRiskReward;
+
+# Exit Signals
+def exitBearishCross = MA_Fast < MA_Slow; # Fast cross below slow = exit
+def exitBelowMA20 = close < MA_Slow;       # Close below MA20 = exit
+def exitLargeRedCandle = close < open and bodySize > atr * 0.5; # Large red candle
+
+# ======================================
+# PATTERN QUALITY SCORE
+# ======================================
+
+def qualityScore =
+    (if warriorFilter then 3 else 0) +
+    (if hasHighVolume and relativeVolume >= 5 then 2 else if hasHighVolume then 1 else 0) +
+    (if percentChange >= 20 then 2 else if percentChange >= 10 then 1 else 0) +
+    (if volumeContracted then 2 else 0) +
+    (if hasLowerShadow then 2 else 0) +
+    (if validRiskReward then 2 else 0) +
+    (if uptrend then 1 else 0) +
+    (if barsInPullback <= 5 then 1 else 0); # Shorter pullback = better
+
+# Max score = 15 (excellent setup)
+
+# ======================================
+# SCANNER OUTPUT
+# ======================================
+# NOTE: Only ONE plot can be active at a time for scanner columns
+# Uncomment the one you want to use
+
+# PRIMARY SCAN: Conservative Buy Signal (best quality)
+plot signal = buySignal and validRiskReward and qualityScore >= 10;
+
+# ALTERNATIVE SCANS (comment/uncomment as needed):
+# Aggressive buy signal (more opportunities)
+#plot signal = buySignalAggressive and validRiskReward and qualityScore >= 8;
+
+# Setup forming (watchlist - not entry yet)
+#plot signal = pullbackSetup and warriorFilter;
+
+# Quality score only
+#plot signal = if buySignal or pullbackSetup then qualityScore else 0;
+
+# Warrior filter only (momentum stocks)
+#plot signal = warriorFilter;
+
+# Percent gain today
+#plot signal = if warriorFilter then percentChange else 0;
+
+# Relative volume
+#plot signal = if warriorFilter then relativeVolume else 0;
+
+# Risk/Reward ratio
+#plot signal = if buySignal then rrRatio else 0;
+
+# Entry price
+#plot signal = if buySignal then close else Double.NaN;
+
+# Stop loss price
+#plot signal = if buySignal then stopLoss else Double.NaN;
+
+# Target 1 price
+#plot signal = if buySignal then target1 else Double.NaN;
+
+# Target 2 price
+#plot signal = if buySignal then target2 else Double.NaN;
+
+# Bars in pullback
+#plot signal = if pullbackSetup then barsInPullback else 0;
+
+
+# ======================================
+# HOW TO USE THIS SCANNER - LIVE TRADING
+# ======================================
+
+# STEP 1: MORNING PREPARATION (9:00-9:30 AM ET)
+# - Run scanner on 5-min chart with Warrior filter
+# - Look for stocks already up 10%+ with high volume
+# - Create watchlist of top 3-5 momentum stocks
+# - Check news catalyst for each stock
+
+# STEP 2: WAIT FOR PULLBACK SETUP (9:30-10:30 AM ET)
+# - Monitor watchlist stocks for pullbacks to MA20
+# - Wait for volume to contract during pullback
+# - Look for MA9 to cross below MA20 (pullback begins)
+# - DO NOT ENTER YET - let pattern develop
+
+# STEP 3: BUY SIGNAL CONFIRMATION (When Ready)
+# - Wait for MA9 to cross ABOVE MA20 (bullish cross)
+# - Confirm lower shadow on current candle
+# - Check quality score >= 10 for best setups
+# - Verify 2:1 risk/reward minimum
+# - ENTER at close of signal candle OR next candle open
+
+# STEP 4: SET STOPS & TARGETS IMMEDIATELY
+# - Stop Loss: Below swing low or lower shadow
+# - Target 1 (50% position): 2:1 ratio (lock profit)
+# - Target 2 (30% position): 3:1 ratio (extended move)
+# - Target 3 (20% position): 5:1 ratio (runner for big moves)
+
+# STEP 5: MANAGE THE TRADE
+# - If price hits Target 1: Sell 50%, move stop to breakeven
+# - If price hits Target 2: Sell 30%, trail stop on remainder
+# - If price hits Target 3: Trail stop or hold for momentum
+# - EXIT IMMEDIATELY if MA9 crosses below MA20
+# - EXIT if close below MA20
+# - EXIT if large red candle forms
+
+# STEP 6: POST-TRADE REVIEW
+# - Log entry price, exit price, R/R ratio
+# - Note what worked: quality score, catalyst, timing
+# - Review mistakes: early entry, ignoring signals
+# - Adjust scanner inputs based on market conditions
+
+# ======================================
+# SCANNER VARIATIONS FOR DIFFERENT GOALS
+# ======================================
+
+# CONSERVATIVE (Highest Probability):
+# - signal = buySignal and qualityScore >= 12
+# - minRiskReward = 2.5
+# - Fewer trades, better win rate
+
+# AGGRESSIVE (More Opportunities):
+# - signal = buySignalAggressive and qualityScore >= 7
+# - minRiskReward = 1.5
+# - More trades, requires tighter management
+
+# SCALPING (Quick In/Out):
+# - Use 1-min chart
+# - fastMA = 5, slowMA = 13
+# - minRiskReward = 1.5
+# - Exit at first target (2:1)
+
+# SWING SETUP (Multi-day holds):
+# - Use 15-min or 60-min chart
+# - fastMA = 5, slowMA = 20
+# - Look for end-of-day setups
+# - Hold overnight if strong momentum
+
+# ======================================
+# CUSTOM COLUMN SETUP IN THINKORSWIM
+# ======================================
+
+# Create multiple scanner columns for complete picture:
+# Column 1: BuySignal (use: signal = buySignal)
+# Column 2: Quality (use: signal = qualityScore)
+# Column 3: PercentGain (use: signal = percentChange)
+# Column 4: RelVol (use: signal = relativeVolume)
+# Column 5: RiskReward (use: signal = rrRatio)
+# Column 6: Entry (use: signal = close when buySignal)
+# Column 7: Stop (use: signal = stopLoss when buySignal)
+# Column 8: Target1 (use: signal = target1 when buySignal)
+
+# Filter Results:
+# - BuySignal = 1 (entry now)
+# - Quality >= 10 (high probability)
+# - Sort by: Quality (descending)

@@ -1,0 +1,20 @@
+trade_id,instrument,side,entry_time,exit_time,timestamp_timezone,entry_price,exit_price,quantity,exit_reason,net_pnl_usd,commission_usd_included,reported_favorable_excursion_usd,reported_adverse_excursion_usd,duration_bars
+1,MNQ,short,2026-09-07 10:20,2026-09-07 18:01,UTC-04:00 as exported; no DST conversion inferred,29602.5,29608,1,Research EOD,-12.9,1.9,76.55,-61.45,161
+2,MNQ,short,2026-09-08 09:53,2026-09-08 09:55,UTC-04:00 as exported; no DST conversion inferred,29466,29515,1,SX,-99.9,1.9,21.55,-98.95,2
+3,MNQ,long,2026-09-09 09:49,2026-09-09 11:09,UTC-04:00 as exported; no DST conversion inferred,29506.75,29457.75,1,LX,-99.9,1.9,173.55,-98.95,80
+4,MNQ,long,2026-09-10 09:49,2026-09-10 09:50,UTC-04:00 as exported; no DST conversion inferred,29200.25,29151.25,1,LX,-99.9,1.9,6.05,-98.95,1
+5,MNQ,long,2026-09-11 09:46,2026-09-11 09:52,UTC-04:00 as exported; no DST conversion inferred,29441.25,29392.25,1,LX,-99.9,1.9,61.55,-98.95,6
+6,MNQ,long,2026-09-14 09:46,2026-09-14 12:16,UTC-04:00 as exported; no DST conversion inferred,28968,29211.75,1,LX,485.6,1.9,486.55,-25.45,150
+7,MNQ,long,2026-09-15 09:46,2026-09-15 10:05,UTC-04:00 as exported; no DST conversion inferred,29442,29393,1,LX,-99.9,1.9,2.55,-98.95,19
+8,MNQ,long,2026-09-16 09:46,2026-09-16 14:32,UTC-04:00 as exported; no DST conversion inferred,29434.25,29385.25,1,LX,-99.9,1.9,235.55,-98.95,286
+9,MNQ,long,2026-09-17 10:28,2026-09-17 10:47,UTC-04:00 as exported; no DST conversion inferred,29738,29689,1,LX,-99.9,1.9,19.55,-98.95,19
+10,MNQ,short,2026-09-18 09:48,2026-09-18 14:53,UTC-04:00 as exported; no DST conversion inferred,29798.5,29845.5,1,SX,-95.9,1.9,277.55,-94.95,305
+11,MNQ,long,2026-09-21 09:46,2026-09-21 11:39,UTC-04:00 as exported; no DST conversion inferred,30366.5,30610.25,1,LX,485.6,1.9,486.55,-30.45,113
+12,MNQ,long,2026-09-22 09:50,2026-09-22 16:00,UTC-04:00 as exported; no DST conversion inferred,30927.75,31029.5,1,Research EOD,201.6,1.9,275.55,-89.45,370
+13,MNQ,short,2026-09-23 09:46,2026-09-23 10:22,UTC-04:00 as exported; no DST conversion inferred,30901.5,30657.75,1,SX,485.6,1.9,486.55,0,36
+14,MNQ,long,2026-09-24 09:46,2026-09-24 09:53,UTC-04:00 as exported; no DST conversion inferred,30607,30558,1,LX,-99.9,1.9,30.55,-98.95,7
+15,MNQ,long,2026-09-25 09:52,2026-09-25 10:02,UTC-04:00 as exported; no DST conversion inferred,30890.5,30841.5,1,LX,-99.9,1.9,70.55,-98.95,10
+16,MNQ,short,2026-09-28 09:46,2026-09-28 09:49,UTC-04:00 as exported; no DST conversion inferred,30601.25,30650.25,1,SX,-99.9,1.9,17.05,-98.95,3
+17,MNQ,short,2026-09-29 11:26,2026-09-29 11:34,UTC-04:00 as exported; no DST conversion inferred,30545,30594,1,SX,-99.9,1.9,25.05,-98.95,8
+18,MNQ,long,2026-09-30 09:59,2026-09-30 13:26,UTC-04:00 as exported; no DST conversion inferred,30810.5,30761.5,1,LX,-99.9,1.9,190.05,-98.95,207
+19,MNQ,short,2026-10-01 09:46,2026-10-01 09:53,UTC-04:00 as exported; no DST conversion inferred,30734,30783,1,SX,-99.9,1.9,60.05,-98.95,7
