@@ -35,7 +35,7 @@ The [run schema](schemas/run.schema.json) defines the common record. Every run i
 
 | Relationship | Meaning |
 | --- | --- |
-| `frozen` | Offline port identifies frozen ThinkScript input text. Per-target `exact-frozen-source` or `related-version` distinguishes current versus archived source. Native numeric/runtime parity remains unchecked. |
+| `frozen` | Offline port identifies frozen ThinkScript input text. Per-target `exact-frozen-source` or `related-version` distinguishes retained source versus a historical removed revision. Native numeric/runtime parity remains unchecked. |
 | `related-model` | Same research family or concept, without an exact tested ThinkScript implementation match. |
 | `different-model` | Rules materially differ from current scripts; context only. |
 
@@ -95,6 +95,6 @@ To check without changing any files:
 python3 tools/standardize_performance.py --check
 ```
 
-The standardizer uses Python's standard library and the frozen v1 registry, source catalog and saved evidence. It does not need the original home-directory paths, a trading platform or network access. The [frozen v1 registry](legacy/performance-v1.json) is retained unchanged for provenance, not as the current result format.
+The standardizer uses Python's standard library and the frozen v1 registry, source catalog and saved evidence. It does not need the original home-directory paths, a trading platform or network access. The [frozen v1 registry](legacy/performance-v1.json) is retained unchanged for provenance, not as the current result format. Removed code paths in that historical metadata are not current files; the [consolidation manifest](../../source-consolidation.json) records their hashes and replacements.
 
 Checks cover evidence hashes, gzip original-byte hashes, unique observations, every offline scenario/slice count/day/mean, simple NShape ledger reconciliation within published rounding, paired ORB exports, deterministic artifacts, registry/project links and original source-code preservation. The [normalization checks](NORMALIZATION_CHECKS.json) identify the reconciled runs. Aggregate-only reports remain aggregate-only and cannot pass observation reconciliation without missing ledgers. No strategy was rerun and no native TOS parity was certified.

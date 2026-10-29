@@ -10,7 +10,7 @@ Within each detector/side, retain the first event then require more than 10 sign
 
 Matched excess compares with descriptive full-sample year × 30-minute time bucket × EMA200-side means. Confidence intervals are day-block bootstrap 95%, 500 fixed-seed resamples; exploratory multiple comparisons are uncorrected. The tables report all pooled horizons, not a selected best result.
 
-**Adaptation:** 15-minute detector with default strength 1, FVG off, newest zone per side, strict first sweep at age 1–49 bars. The Python port explicitly initializes empty zone state; TOS recursive initialization has not been reconciled. The frozen scanner source matches the archived multi-plot version, not the corrected current single-plot scanner. The chart study hash matches the current study. All pooled mean net returns below are negative.
+**Adaptation:** 15-minute detector with default strength 1, FVG off, newest zone per side, strict first sweep at age 1–49 bars. The Python port explicitly initializes empty zone state; TOS recursive initialization has not been reconciled. The frozen scanner hash identifies the removed older multi-plot version, not the corrected current single-plot scanner. Its tested hash remains in the [consolidation manifest](../../source-consolidation.json). The chart study hash matches the current study. All pooled mean net returns below are negative.
 
 | Instrument | Signal | Bar minutes | Horizon bars | Events | Mean net points/event | Matched excess points | Excess 95% CI |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |

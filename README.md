@@ -2,19 +2,20 @@
 
 A documented collection of thinkorswim studies, scanners, strategies and watchlist columns. Each project includes source, a description, saved defaults, usage notes and known limitations.
 
-**52 projects · 60 current library scripts · 13 historical versions · 2 installed-version snapshots · 2 references**  
+**52 projects · 60 current library scripts · 2 references · one current implementation per script role**  
 One current script is kept as a private imported source. The GitHub package contains its documentation but omits that source.
 
 ## TOS capture completed
 
 Captured and reconciled **64 installed definitions: 61 studies, 1 strategy and 2 custom quotes**, representing 60 distinct source contents. Every installed name maps to an organized source in the [TOS reconciliation](docs/TOS_RECONCILIATION.md) and [installed inventory](tos-inventory.json).
 
-The capture added **35 previously missing distinct scripts and 2 different installed OTE Wheel versions** to the saved-file collection. Four pairs of installed names are exact duplicates. Source was preserved unchanged; no installed script, alert or trading configuration was edited.
+The capture identified **35 previously missing distinct scripts and 2 different installed OTE Wheel versions**. The current library now excludes 13 superseded revisions and those 2 older installed snapshots. Four pairs of installed names share one source each. Retained source code is unchanged; no installed script, alert or trading configuration was edited. See the [consolidation record](docs/CONSOLIDATION.md).
 
 ## Start here
 
+- [Review removed versions and canonical sources](docs/CONSOLIDATION.md)
 - [Open the public GitHub repository](https://github.com/jmragsdale/trading-thinkscript)
-- [Download the packaged library](https://github.com/jmragsdale/trading-thinkscript/releases/download/v2026.10.29/thinkscript-library-2026-10-29.zip)
+- [Download the packaged library](https://github.com/jmragsdale/trading-thinkscript/releases/latest/download/thinkscript-library-2026-10-29.zip)
 - [Install a chart study, scanner, strategy or watchlist column](docs/INSTALLATION.md)
 - [See all installed names, matches and version differences](docs/TOS_RECONCILIATION.md)
 - [Read validation status and known limitations](docs/VALIDATION.md)
@@ -22,7 +23,7 @@ The capture added **35 previously missing distinct scripts and 2 different insta
 - [Understand source provenance and capture coverage](docs/PROVENANCE.md)
 - [Inspect source hashes, defaults and roles](inventory.json)
 
-`.ts`, `.txt` and `.thinkscript` contain ThinkScript here. Use the current source identified by each README. Installed snapshots preserve the TOS version without replacing a newer corrected library default. Saved chart-input overrides and unsaved editor buffers are outside this source capture.
+`.ts`, `.txt` and `.thinkscript` contain ThinkScript here. Use the current source identified by each README. Captured hashes identify older installed versions; only the canonical implementations are distributed. Saved chart-input overrides and unsaved editor buffers are outside this source capture.
 
 ## Browse the library
 

@@ -9,9 +9,6 @@ Shows a fast moving average recovering above a rising slow moving average after 
 | File | Use |
 | --- | --- |
 | [EyePattern_CrystalClear.txt](EyePattern_CrystalClear.txt) | Main chart study |
-| [versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt](versions/Eye%20Pattern%20CRYSTAL%20CLEAR__2025-10-22.txt) | Earlier version — historical reference only |
-| [versions/EyePattern_Simple__2025-10-21.txt](versions/EyePattern_Simple__2025-10-21.txt) | Earlier version — historical reference only |
-| [versions/EyePattern_Study__2025-10-21.txt](versions/EyePattern_Study__2025-10-21.txt) | Earlier version — historical reference only |
 
 ## Usage
 
@@ -52,7 +49,7 @@ Source code was copied unchanged and checked against its SHA-256 provenance. No 
 
 ## Provenance and related files
 
-The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. Earlier distinct code is kept in `versions/` where present. Duplicate copies are consolidated by hash; the originals remain in their source folders.
+The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. The library keeps one current implementation per script role. Superseded versions are listed in the [consolidation record](../../docs/CONSOLIDATION.md); no versions folder is distributed.
 
 [Browse related projects in the library index](../../README.md).
 

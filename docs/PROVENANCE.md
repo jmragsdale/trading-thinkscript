@@ -14,7 +14,7 @@ The later platform capture reconciled all 61 study entries and 1 strategy entry 
 
 All 64 installed definitions are retained as exact raw source locally. They contain 60 distinct source contents. Comparing with the saved collection added 35 new unique scripts and 2 distinct installed OTE versions. All installed aliases, captured hashes and organized destinations are in [tos-inventory.json](../tos-inventory.json); the narrative comparison is in [TOS reconciliation](TOS_RECONCILIATION.md).
 
-The combined local library contains 77 distinct source/reference files across 52 projects. One source is private because its header expressly limits it to individual use; the public package contains 76 source/reference files plus that project's documentation and metadata. Existing imported names do not establish user authorship or an open-source license.
+The original combined capture contained 77 distinct source/reference files. After removing 15 superseded source versions, the current library contains 62 source/reference files across 52 projects: 60 current scripts and 2 references. One current source is private because its header expressly limits it to individual use; the public package contains 61 source/reference files plus that project's documentation and metadata. Existing imported names do not establish user authorship or an open-source license.
 
 ## Preservation and exclusions
 
@@ -22,7 +22,7 @@ No installed TOS source, alerts, inputs or trading settings were edited. The ful
 
 This is a capture of source currently stored in the local account's study/strategy/custom-quote caches. It excludes per-chart input overrides, saved scan/alert configurations, unsaved editor buffers, other accounts and server-side revisions absent from those local caches. Code available only in chat history, compressed archives or unrelated prose was not reconstructed.
 
-Exact duplicate source locations map to one organized copy; different code versions stay distinct. BreakoutScanner_Alert is a single final-newline difference and maps to the existing source, with exact installed bytes preserved in the local full backup. Portable origin labels identify source groups rather than filesystem-relative paths. The full original local source map and maintenance records remain in ignored .local/.
+Exact duplicate source locations map to one organized copy. The current distribution keeps only the documented current implementation per script role. Superseded revisions were removed and their hashes/canonical replacements are recorded in [source-consolidation.json](../source-consolidation.json); historical Git commits and a local backup retain recovery history. BreakoutScanner_Alert is a single final-newline difference and maps to the existing source, with exact installed bytes preserved in the local full backup. Portable origin labels identify source groups rather than filesystem-relative paths. The full original local source map and maintenance records remain in ignored .local/.
 
 ## Research interpretation
 

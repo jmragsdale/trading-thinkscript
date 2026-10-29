@@ -10,7 +10,6 @@ Finds new lookback highs with a strong daily gain, elevated volume, and price ab
 | --- | --- |
 | [BreakoutScanner_AlertStudy.ts](BreakoutScanner_AlertStudy.ts) | Chart alert companion |
 | [breakout_scanner_thinkscript.txt](breakout_scanner_thinkscript.txt) | Main Stock Hacker filter |
-| [versions/breakout_scanner_thinkscript_original_2025-12-31.txt](versions/breakout_scanner_thinkscript_original_2025-12-31.txt) | Earlier version — historical reference only |
 
 ## Usage
 
@@ -49,7 +48,7 @@ Source code was copied unchanged and checked against its SHA-256 provenance. No 
 
 ## Provenance and related files
 
-The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. Earlier distinct code is kept in `versions/` where present. Duplicate copies are consolidated by hash; the originals remain in their source folders.
+The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. The library keeps one current implementation per script role. Superseded versions are listed in the [consolidation record](../../docs/CONSOLIDATION.md); no versions folder is distributed.
 
 [Browse related projects in the library index](../../README.md).
 

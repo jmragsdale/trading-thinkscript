@@ -10,7 +10,6 @@ Screens for new displacement-wick setups, first sweeps of stored wick levels, or
 | --- | --- |
 | [DisplacementWickAlerts_AlertStudy.ts](DisplacementWickAlerts_AlertStudy.ts) | Chart alert companion |
 | [DisplacementWickAlerts_Scanner.ts](DisplacementWickAlerts_Scanner.ts) | Main Stock Hacker filter |
-| [versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts](versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts) | Earlier version — historical reference only |
 
 ## Usage
 
@@ -46,13 +45,13 @@ The scanner itself has no native alert calls. Use the separate chart companion l
 
 ## Limitations and validation
 
-The corrected source has one scan plot and explicit stored-zone initialization. The archived original has multiple plots and is unsuitable for direct Stock Hacker use.
+The corrected source has one scan plot and explicit stored-zone initialization. The removed older scanner had multiple plots and was unsuitable for direct Stock Hacker use.
 
 Source code was copied unchanged and checked against its SHA-256 provenance. No current Thinkorswim compilation, replay, live scan or profitability test was performed for this organization. Earlier research and source-header claims do not establish those checks. See [validation scope](../../docs/VALIDATION.md).
 
 ## Provenance and related files
 
-The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. Earlier distinct code is kept in `versions/` where present. Duplicate copies are consolidated by hash; the originals remain in their source folders.
+The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. The library keeps one current implementation per script role. Superseded versions are listed in the [consolidation record](../../docs/CONSOLIDATION.md); no versions folder is distributed.
 
 [Browse related projects in the library index](../../README.md).
 

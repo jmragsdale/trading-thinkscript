@@ -59,6 +59,38 @@ def defined_plots(text: str) -> list[str]:
     return re.findall(r"\bplot\s+(\w+)\s*(?:=|;)", code, re.I)
 
 
+def verify_consolidation(inventory: dict, errors: list[str]) -> None:
+    """Reject obsolete files and duplicate current implementations."""
+    manifest = json.loads((ROOT / "source-consolidation.json").read_text())
+    indexed = {f["path"]: f for f in inventory["files"]}
+    if len(manifest["removed_sources"]) != manifest["removed_source_count"]:
+        errors.append("Consolidation removal count is inconsistent")
+    for removed in manifest["removed_sources"]:
+        if removed["path"] in indexed or (ROOT / removed["path"]).exists():
+            errors.append(f"Obsolete source remains in current library: {removed['path']}")
+        canonical = indexed.get(removed["canonical_path"])
+        if not canonical or canonical["sha256"] != removed["canonical_sha256"]:
+            errors.append(f"Canonical replacement changed: {removed['path']}")
+    normalized = {}
+    project_roles = set()
+    for source in inventory["files"]:
+        if source["role"] in {"archived-source", "installed-snapshot"} or "versions" in Path(source["path"]).parts:
+            errors.append(f"Superseded implementation in inventory: {source['path']}")
+        if source["role"] == "reference-snippets":
+            continue
+        key = (source["project"], source["role"])
+        if key in project_roles:
+            errors.append(f"Multiple implementations of project role: {key}")
+        project_roles.add(key)
+        path = ROOT / source["path"]
+        if not path.exists():  # Public package deliberately omits private source.
+            continue
+        tokens = tuple(re.findall(r'"(?:\\.|[^"\\])*"|\w+|[^\s]', uncomment(path.read_text())))
+        if tokens in normalized:
+            errors.append(f"Comment/whitespace-only duplicate: {normalized[tokens]} / {source['path']}")
+        normalized[tokens] = source["path"]
+
+
 def verify_performance(inventory: dict, errors: list[str]) -> None:
     """Check evidence integrity and recorded arithmetic, without running a backtest."""
     registry = json.loads((ROOT / "performance.json").read_text())
@@ -88,9 +120,13 @@ def verify_performance(inventory: dict, errors: list[str]) -> None:
         if not set(profile["sources"]).issubset(registry["sources"]):
             errors.append(f"Unknown performance source: {key}")
     indexed = {f["path"]: f["sha256"] for f in inventory["files"]}
+    retired = {f["path"]: f for f in json.loads((ROOT / "source-consolidation.json").read_text())["removed_sources"]}
     for match in registry["source_hash_matches_for_offline_study"]:
-        if not match["library_matches"] or any(indexed.get(p) != match["sha256"] for p in match["library_matches"]):
+        if (not match["library_matches"] and not match.get("removed_library_matches")) or any(indexed.get(p) != match["sha256"] for p in match["library_matches"]):
             errors.append(f"Offline-study source match changed: {match['original_filename']}")
+        for path in match.get("removed_library_matches", []):
+            if path not in retired or retired[path]["sha256"] != match["sha256"]:
+                errors.append(f"Retired research source hash is unaccounted for: {path}")
 
     if registry.get("schema_version") != 2:
         errors.append("Expected version 2 performance registry")
@@ -264,7 +300,13 @@ def main() -> int:
                     errors.append(f"Installed alias destination changed: {item['name']}")
                 if item["match"] == "exact" and digest != item["captured_sha256"]:
                     errors.append(f"Installed exact match is inconsistent: {item['name']}")
+                if item["match"] == "superseded-version":
+                    removed = {f["path"]: f for f in json.loads((ROOT / "source-consolidation.json").read_text())["removed_sources"]}
+                    prior = removed.get(item.get("previous_repository_source"))
+                    if not prior or prior["sha256"] != item["captured_sha256"] or prior["canonical_path"] != item["repository_source"]:
+                        errors.append(f"Installed superseded-version mapping is inconsistent: {item['name']}")
 
+    verify_consolidation(inventory, errors)
     verify_performance(inventory, errors)
 
     if errors:
@@ -285,6 +327,7 @@ def main() -> int:
     if omitted_private:
         print(f"NOTE: {omitted_private} private source intentionally omitted from this public package")
     print("PASS: standardized run contracts/fingerprints, project coverage, evidence hashes, observation arithmetic and reproducible artifacts")
+    print("PASS: one current implementation per project role; no exact or comment/whitespace-only duplicates; retired versions absent")
     print("No new backtest or Thinkorswim compilation, replay, alert or performance test was run.")
     return 0
 

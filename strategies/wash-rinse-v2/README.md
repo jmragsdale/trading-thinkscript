@@ -9,9 +9,6 @@ Models next-bar-open entries after a rinse, locked stops beyond the wash extreme
 | File | Use |
 | --- | --- |
 | [WashRinse_v2_Strategy_Corrected.ts](WashRinse_v2_Strategy_Corrected.ts) | Main historical strategy |
-| [versions/WashRinse_v2_Strategy_Corrected_audit_2026-08-25.ts](versions/WashRinse_v2_Strategy_Corrected_audit_2026-08-25.ts) | Earlier version — historical reference only |
-| [versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts](versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts) | Earlier version — historical reference only |
-| [versions/WashRinse_v2_Strategy__2026-08-25.ts](versions/WashRinse_v2_Strategy__2026-08-25.ts) | Earlier version — historical reference only |
 
 ## Usage
 
@@ -51,7 +48,7 @@ Source code was copied unchanged and checked against its SHA-256 provenance. No 
 
 ## Provenance and related files
 
-The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. Earlier distinct code is kept in `versions/` where present. Duplicate copies are consolidated by hash; the originals remain in their source folders.
+The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. The library keeps one current implementation per script role. Superseded versions are listed in the [consolidation record](../../docs/CONSOLIDATION.md); no versions folder is distributed.
 
 [Browse related projects in the library index](../../README.md).
 

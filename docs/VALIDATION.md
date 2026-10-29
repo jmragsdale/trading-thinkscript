@@ -5,7 +5,7 @@ The organization preserves source behavior and documents usage. It does not esta
 ## Checks performed
 
 - Matched each copied source/reference against a discovered source SHA-256 hash.
-- Consolidated exact duplicates while retaining every distinct matched source version.
+- Consolidated exact duplicates; the later current-only cleanup removes superseded source versions and records canonical replacements.
 - Recorded current versus archived files and native alert companions in `inventory.json`.
 - Captured 61 installed studies, 1 strategy and 2 custom quotes from current local TOS source caches; every installed name has a destination in `tos-inventory.json`.
 - Cross-checked two native exports (AutoTL and AlertValue): export content equals the cached source plus one final newline.
@@ -31,8 +31,8 @@ No fresh Thinkorswim compilation, chronological chart replay, scan execution, al
 | ORB15 MNQ | Historical custom ledger, assumed price paths, shifted order markers, exact symbol/time-chart prerequisites, and no native TOS parity. The cap is not a hard dollar-loss limit. |
 | Warrior Eye | No share-float enforcement; relative volume is bar-based. Quality scores are uncalibrated. |
 | Scanner/chart pairs | Matching names do not establish signal parity; some scanners were corrected separately from their original chart studies. |
-| Earlier versions | Can contain known defects or obsolete settings. They are preserved for provenance and excluded from current-source structural checks. |
-| Installed OTE v3 snapshots | Both retain the earnings event gate removed from the corrected v4 library defaults. Installed source was preserved, not replaced. |
+| Removed earlier versions | Superseded source files are absent from the current distribution. Their hashes remain in the consolidation manifest and historical Git records. |
+| Installed OTE v3 capture | Captured hashes retain the historical relationship; only corrected v4 code is distributed. The installed TOS scripts were not replaced. |
 | AutoTL / some shared level overlays | Whole-chart functions make historical displays dependent on the loaded endpoint. |
 | Squeeze Trend Hunter / Dans oscillator | Centered oscillator components use future price offsets and can revise historical values. |
 | OpenInterestCustom | Fixed March 1, 2022 data; not a live open-interest feed. |
@@ -55,3 +55,7 @@ The [run index](performance/RUNS.md) records 52 historical configurations across
 The standardizer reconciles saved event slices to 55,996 event/horizon observations, simple NShape summaries to 11,504 hypothetical outcomes, and native Pine ORB exports to 19 completed trades per mode. Counts across scenarios, sides and horizons overlap. Aggregate-only results are not converted into invented ledgers. Existing original reports and the v1 registry remain preserved.
 
 `tools/verify_library.py` checks the assertion keywords used in the bundled JSON contracts, configuration fingerprints, deterministic regeneration, observation hashes/arithmetic, project mapping, portable Markdown links and original code hashes. These are data/documentation checks. No new backtests, parameter searches, native TOS tests or broker actions were performed.
+
+## Current-only source checks
+
+The verifier rejects archived/snapshot source roles, versions folders, duplicate project roles, exact content duplicates and comment/whitespace-only duplicates. It verifies each removed file is absent and its canonical replacement hash is unchanged. Historical performance hashes for removed sources remain historical-only. [Consolidation details](CONSOLIDATION.md).

@@ -185,7 +185,7 @@
       "Horizon, year and regime slices overlap and must not be summed.",
       "95% intervals are reported day-block bootstrap, 500 fixed-seed resamples; multiple comparisons uncorrected.",
       "Legacy lower-cost assumption retained separately; corrected-base is the primary cost case.",
-      "Frozen scanner hash matches archived multi-plot scanner, not corrected current scanner. Recursive TOS initialization unresolved."
+      "Frozen scanner hash identifies a removed older multi-plot scanner; its hash remains in consolidation metadata. It does not match the corrected current scanner. Recursive TOS initialization unresolved."
     ],
     "unavailable_fields": {
       "script_identity.tested_model_source_sha256": "Not established by the retrieved evidence; not inferred from current library defaults.",

@@ -2,7 +2,7 @@
 
 The public repository is [jmragsdale/trading-thinkscript](https://github.com/jmragsdale/trading-thinkscript). The collection uses `main` for published source, documentation and standardized historical performance records.
 
-The [October 29, 2026 release](https://github.com/jmragsdale/trading-thinkscript/releases/tag/v2026.10.29) provides the [downloadable public ZIP](https://github.com/jmragsdale/trading-thinkscript/releases/download/v2026.10.29/thinkscript-library-2026-10-29.zip). The full installed-source backup stays local.
+The [October 29, 2026 release](https://github.com/jmragsdale/trading-thinkscript/releases/latest) provides the [downloadable public ZIP](https://github.com/jmragsdale/trading-thinkscript/releases/latest/download/thinkscript-library-2026-10-29.zip). The full installed-source backup stays local.
 
 The repository uses relative Markdown links, so its index and project notes work in GitHub's file browser. A GitHub Pages website is optional; it is not needed to browse or download these scripts.
 
@@ -12,7 +12,7 @@ The [TOS reconciliation](TOS_RECONCILIATION.md) now accounts for 64 installed de
 
 The [performance evidence index](PERFORMANCE.md) and `performance.json` are part of the public package. They include historical results with their sample, platform, cost and version limitations. Superseded claims in saved reports are flagged in the assessment notes.
 
-1. Read the root README and review the current versus archived file choices.
+1. Read the root README and the current-source [consolidation record](CONSOLIDATION.md).
 2. Run `python3 tools/verify_library.py`.
 3. Choose the repository visibility and the license you want to apply. No license was assigned during organization; retained attribution and source comments remain intact.
 4. Keep `.local/`, `tos-capture/` and `dist/` out of source uploads. The Opinicus source under `private-imports/` is also Git-ignored because its header says individual use only; its README and metadata can be included. Imported/shared attribution remains in the other project sources and notes.
@@ -33,7 +33,7 @@ After creating an empty GitHub repository, use the actual repository URL supplie
 
 ```bash
 python3 tools/verify_library.py
-git add README.md inventory.json tos-inventory.json performance.json .gitignore .gitattributes docs tools studies imported-studies private-imports scanners strategies watchlist-columns references
+git add README.md inventory.json tos-inventory.json performance.json source-consolidation.json .gitignore .gitattributes docs tools studies imported-studies private-imports scanners strategies watchlist-columns references
 git diff --cached --stat
 git commit -m "Organize custom ThinkScript library and usage guides"
 git branch -M main
@@ -46,3 +46,7 @@ For this collection, the repository URL is `https://github.com/jmragsdale/tradin
 ## Rebuild standardized performance records
 
 Run `python3 tools/standardize_performance.py --write`, then `python3 tools/verify_library.py`. The standardizer uses only bundled saved evidence and Python's standard library. The [format](performance/FORMAT.md) documents schemas, units, nulls, shared observations and historical validation status. Include the source catalog, evidence, run folders, schemas and tools when uploading; `performance.json` indexes them.
+
+## Rebuild the public ZIP
+
+Run `python3 tools/package_library.py`. It verifies the library, packages only current public sources and documentation, and checks a fresh extraction. The single-use-only imported source and local recovery backups stay excluded. No versions folders are distributed.

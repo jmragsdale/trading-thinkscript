@@ -117,7 +117,7 @@ All figures retain their original basis. Unknown means unavailable, not zero. Ex
 - Horizon, year and regime slices overlap and must not be summed.
 - 95% intervals are reported day-block bootstrap, 500 fixed-seed resamples; multiple comparisons uncorrected.
 - Legacy lower-cost assumption retained separately; corrected-base is the primary cost case.
-- Frozen scanner hash matches archived multi-plot scanner, not corrected current scanner. Recursive TOS initialization unresolved.
+- Frozen scanner hash identifies a removed older multi-plot scanner; its hash remains in consolidation metadata. It does not match the corrected current scanner. Recursive TOS initialization unresolved.
 
 Native TOS compilation, runtime parity and broker execution are unverified. Missing source hashes, engine versions, calendars and cost components are listed in `validation.unavailable_fields` in [run.json](run.json). Year/regime slices, when present, remain in the JSON summary. No absent event or trade rows were fabricated.
 

@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "performed_on": "2026-10-29",
+  "policy": "One current implementation per script role; distinct scanner/chart/alert functions retained.",
+  "removed_source_count": 15,
+  "retained_source_reference_count": 62,
+  "retained_current_script_count": 60,
+  "removed_sources": [
+    {
+      "path": "scanners/breakout/versions/breakout_scanner_thinkscript_original_2025-12-31.txt",
+      "sha256": "8d74ec0b436cf4ebeda5dcee6a626a5c263de5005cff4a9fff741e3c12348f93",
+      "bytes": 5575,
+      "project": "scanners/breakout",
+      "role": "archived-source",
+      "canonical_path": "scanners/breakout/breakout_scanner_thinkscript.txt",
+      "canonical_sha256": "6092794bd0213fa4224a4b0057c33fc34f18d344fb228394a82105c2153968d0",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "scanners/displacement-wick/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts",
+      "sha256": "7068e16e0620d98880f4b1b02e18deade8ac2922b98c70e798e5d7f9e255dee9",
+      "bytes": 4052,
+      "project": "scanners/displacement-wick",
+      "role": "archived-source",
+      "canonical_path": "scanners/displacement-wick/DisplacementWickAlerts_Scanner.ts",
+      "canonical_sha256": "fead94d0959f40eb043ac2136047a420e193d61244cdd88377a72b6dcbae0e66",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "scanners/eye-pattern/versions/EyePattern_Scanner__2025-10-21.txt",
+      "sha256": "019da0d17823833d91edc9e9c4fe2c6160de02fdeb1153a9f17b57501f541bd6",
+      "bytes": 3173,
+      "project": "scanners/eye-pattern",
+      "role": "archived-source",
+      "canonical_path": "scanners/eye-pattern/EyePattern_Scanner_CrystalClear.txt",
+      "canonical_sha256": "648eed57d233df64dfd6f2ee41446c594c705a78416e44b73e96e19d7b458d9a",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "scanners/ote-wheel/versions/OTE_WheelScan_original_2026-07-15.ts",
+      "sha256": "ec30a75df12fffca5bba86f3f3c71e041a07d0f36701c5f0b329d2c39641aa29",
+      "bytes": 5308,
+      "project": "scanners/ote-wheel",
+      "role": "archived-source",
+      "canonical_path": "scanners/ote-wheel/OTE_WheelScan.ts",
+      "canonical_sha256": "a750aeb435c3042e25ab5efd11828a0dd2f4c479c6aadf2a3c8d41b6ed8ad7ed",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "scanners/ote-wheel/versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript",
+      "sha256": "910669776756235b06a58a0ce80d76c14fe5c51b8cc5e1adb7f926ab1053d157",
+      "bytes": 6869,
+      "project": "scanners/ote-wheel",
+      "role": "installed-snapshot",
+      "canonical_path": "scanners/ote-wheel/OTE_WheelHelper_Study.ts",
+      "canonical_sha256": "9db82b10281ca8e7d57ec2f26620ea8ab8ab258bf71a8b1d40984e9b70962958",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "scanners/ote-wheel/versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript",
+      "sha256": "39f9b9c3fbeb8fd605aa3c514170683875e2758b1fb04bac7fa820a870c4af32",
+      "bytes": 5442,
+      "project": "scanners/ote-wheel",
+      "role": "installed-snapshot",
+      "canonical_path": "scanners/ote-wheel/OTE_WheelScan.ts",
+      "canonical_sha256": "a750aeb435c3042e25ab5efd11828a0dd2f4c479c6aadf2a3c8d41b6ed8ad7ed",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "scanners/warrior-eye/versions/WarriorEye_Hybrid_DayTrading_Scanner_original_2025-10-22.txt",
+      "sha256": "d5f01f04e8507467dab1da3dee0a706dd5e6916f8d88c09f5b1d1deb5db49c1d",
+      "bytes": 10243,
+      "project": "scanners/warrior-eye",
+      "role": "archived-source",
+      "canonical_path": "scanners/warrior-eye/WarriorEye_Hybrid_DayTrading_Scanner.txt",
+      "canonical_sha256": "75b69e18692e2743e660713b3aef8d15a9df84b4c8bb0387646429930855a300",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "scanners/wash-rinse-v2/versions/WashRinse_v2_Scan__2026-08-25.ts",
+      "sha256": "75944b2f92706da3e3b99e29e5c05f5c80679ca32055ba9142b87f339cec88b8",
+      "bytes": 1413,
+      "project": "scanners/wash-rinse-v2",
+      "role": "archived-source",
+      "canonical_path": "scanners/wash-rinse-v2/WashRinse_v2_Scan_Corrected.ts",
+      "canonical_sha256": "5a4410a5853b69709f4778f3099491428748cce1ded984b26f7662a6c4d88d98",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_audit_2026-08-25.ts",
+      "sha256": "79b57d2de48ba336a6b8dfb210dc12c11f3a0e76d95ec3e02ab15de0b9543313",
+      "bytes": 7248,
+      "project": "strategies/wash-rinse-v2",
+      "role": "archived-source",
+      "canonical_path": "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts",
+      "canonical_sha256": "d39bf43cf2398d15024fe7af35d8518c081f0c2b642512df6d6e2d59686b9662",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts",
+      "sha256": "2a5187e366c4aa0fc1e5eecb0f878b5ae336b25025c376508e87b0fdb9ff10d6",
+      "bytes": 8324,
+      "project": "strategies/wash-rinse-v2",
+      "role": "archived-source",
+      "canonical_path": "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts",
+      "canonical_sha256": "d39bf43cf2398d15024fe7af35d8518c081f0c2b642512df6d6e2d59686b9662",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy__2026-08-25.ts",
+      "sha256": "ca8be8f93ec3dfeb95fcc41c296d7240af8758ef33e2d8d007599931a0836b3f",
+      "bytes": 4225,
+      "project": "strategies/wash-rinse-v2",
+      "role": "archived-source",
+      "canonical_path": "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts",
+      "canonical_sha256": "d39bf43cf2398d15024fe7af35d8518c081f0c2b642512df6d6e2d59686b9662",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "studies/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
+      "sha256": "fae081a2127e8bcfacd6fe5d036a261ee9e82724081c184e32f274e4a5f0ef16",
+      "bytes": 9186,
+      "project": "studies/eye-pattern",
+      "role": "archived-source",
+      "canonical_path": "studies/eye-pattern/EyePattern_CrystalClear.txt",
+      "canonical_sha256": "8c4391cb7d68b6f0333fff9633fc3b5e317d1f94d52ad7d1c5391ce64f6ab21d",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "studies/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt",
+      "sha256": "777f6e6f4bb3a37cdb059abf74940f65431c5f1d48ce31652e23ba57268743e9",
+      "bytes": 4614,
+      "project": "studies/eye-pattern",
+      "role": "archived-source",
+      "canonical_path": "studies/eye-pattern/EyePattern_CrystalClear.txt",
+      "canonical_sha256": "8c4391cb7d68b6f0333fff9633fc3b5e317d1f94d52ad7d1c5391ce64f6ab21d",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "studies/eye-pattern/versions/EyePattern_Study__2025-10-21.txt",
+      "sha256": "35444c0ebe7c424949b706dced5f804cd2acaa21c8e11b345ad25e346b5685a0",
+      "bytes": 5279,
+      "project": "studies/eye-pattern",
+      "role": "archived-source",
+      "canonical_path": "studies/eye-pattern/EyePattern_CrystalClear.txt",
+      "canonical_sha256": "8c4391cb7d68b6f0333fff9633fc3b5e317d1f94d52ad7d1c5391ce64f6ab21d",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    },
+    {
+      "path": "studies/wash-rinse-v2/versions/WashRinse_v2_Study__2026-08-25.ts",
+      "sha256": "471875906e4eb3eea25bab0a6af42d29b229c79924ab3daea54f33ac498a0d53",
+      "bytes": 3824,
+      "project": "studies/wash-rinse-v2",
+      "role": "archived-source",
+      "canonical_path": "studies/wash-rinse-v2/WashRinse_v2_Study_Corrected.ts",
+      "canonical_sha256": "0eee0a34a4d3cb77fc3cc9ac2586f598ac1fa9500f5f544c0a64f475de409110",
+      "reason": "Superseded source version; retain the documented current implementation.",
+      "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
+    }
+  ],
+  "exact_duplicate_installed_alias_groups": [
+    {
+      "installed_aliases": [
+        "shared_personal_perfect_leading_movingzeroline",
+        "Squeeze_Trend_Hunter"
+      ],
+      "captured_sha256": "7f6f1954a157e21c2c2ff69b611689334b7434a524f2149f5916d3eff05bf063",
+      "canonical_source": "imported-studies/squeeze-trend-hunter/Squeeze_Trend_Hunter.thinkscript"
+    },
+    {
+      "installed_aliases": [
+        "shared_shared_ThinkTopBreakoutBuy",
+        "shared_shared_ThinkTopBreakoutSell"
+      ],
+      "captured_sha256": "bfd58a60ee70e39f5da47441efc89089c98a10cffe8054b52db0ab1156bb8dd8",
+      "canonical_source": "imported-studies/ultimate-breakout/shared_shared_ThinkTopBreakoutBuy.thinkscript"
+    },
+    {
+      "installed_aliases": [
+        "TradingRushMACD200EMA",
+        "TradingRushMACD200EMA2"
+      ],
+      "captured_sha256": "bdb50e87c640eb8b662a04a7e005e3789d9316437ab5aa21930075b6148c3887",
+      "canonical_source": "studies/trading-rush-macd/TradingRushMACD200EMA.thinkscript"
+    },
+    {
+      "installed_aliases": [
+        "CC Indi",
+        "CC Indi2"
+      ],
+      "captured_sha256": "63123ab55758a9b22ce5ea87cb98ecef6ca0d062d7be9d2887e85b719497cf0c",
+      "canonical_source": "watchlist-columns/covered-call-screen/CC_Indi.thinkscript"
+    }
+  ],
+  "installed_tos_sources_modified": false,
+  "notes": [
+    "Duplicate installed names already shared one source file.",
+    "Current chart, scanner, helper and alert companions are different roles, not obsolete revisions.",
+    "Historical research records retain tested hashes; retired source versions are not silently replaced in backtest attribution.",
+    "Prior Git commits and the ignored local backup retain recovery history; current distribution has no versions folders."
+  ]
+}

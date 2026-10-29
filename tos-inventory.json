@@ -11,11 +11,14 @@
       "platform_type": "strategy",
       "captured_sha256": "2a5187e366c4aa0fc1e5eecb0f878b5ae336b25025c376508e87b0fdb9ff10d6",
       "captured_bytes": 8324,
-      "repository_source": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts",
-      "repository_sha256": "2a5187e366c4aa0fc1e5eecb0f878b5ae336b25025c376508e87b0fdb9ff10d6",
-      "match": "exact",
+      "repository_source": "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts",
+      "repository_sha256": "d39bf43cf2398d15024fe7af35d8518c081f0c2b642512df6d6e2d59686b9662",
+      "match": "superseded-version",
       "initial_comparison": "exact match",
-      "publish": true
+      "publish": true,
+      "previous_repository_source": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts",
+      "previous_repository_sha256": "2a5187e366c4aa0fc1e5eecb0f878b5ae336b25025c376508e87b0fdb9ff10d6",
+      "replacement_note": "Captured installed bytes are recorded by hash; current library keeps the documented canonical version. Installed TOS source was not edited."
     },
     {
       "name": "AlertValue",
@@ -143,11 +146,14 @@
       "platform_type": "study",
       "captured_sha256": "fae081a2127e8bcfacd6fe5d036a261ee9e82724081c184e32f274e4a5f0ef16",
       "captured_bytes": 9186,
-      "repository_source": "studies/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
-      "repository_sha256": "fae081a2127e8bcfacd6fe5d036a261ee9e82724081c184e32f274e4a5f0ef16",
-      "match": "exact",
+      "repository_source": "studies/eye-pattern/EyePattern_CrystalClear.txt",
+      "repository_sha256": "8c4391cb7d68b6f0333fff9633fc3b5e317d1f94d52ad7d1c5391ce64f6ab21d",
+      "match": "superseded-version",
       "initial_comparison": "exact match",
-      "publish": true
+      "publish": true,
+      "previous_repository_source": "studies/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
+      "previous_repository_sha256": "fae081a2127e8bcfacd6fe5d036a261ee9e82724081c184e32f274e4a5f0ef16",
+      "replacement_note": "Captured installed bytes are recorded by hash; current library keeps the documented canonical version. Installed TOS source was not edited."
     },
     {
       "name": "EyePattern_Alert",
@@ -341,22 +347,28 @@
       "platform_type": "study",
       "captured_sha256": "910669776756235b06a58a0ce80d76c14fe5c51b8cc5e1adb7f926ab1053d157",
       "captured_bytes": 6869,
-      "repository_source": "scanners/ote-wheel/versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript",
-      "repository_sha256": "910669776756235b06a58a0ce80d76c14fe5c51b8cc5e1adb7f926ab1053d157",
-      "match": "exact",
+      "repository_source": "scanners/ote-wheel/OTE_WheelHelper_Study.ts",
+      "repository_sha256": "9db82b10281ca8e7d57ec2f26620ea8ab8ab258bf71a8b1d40984e9b70962958",
+      "match": "superseded-version",
       "initial_comparison": "changed installed version",
-      "publish": true
+      "publish": true,
+      "previous_repository_source": "scanners/ote-wheel/versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript",
+      "previous_repository_sha256": "910669776756235b06a58a0ce80d76c14fe5c51b8cc5e1adb7f926ab1053d157",
+      "replacement_note": "Captured installed bytes are recorded by hash; current library keeps the documented canonical version. Installed TOS source was not edited."
     },
     {
       "name": "OTE_Wheel_Scanner",
       "platform_type": "study",
       "captured_sha256": "39f9b9c3fbeb8fd605aa3c514170683875e2758b1fb04bac7fa820a870c4af32",
       "captured_bytes": 5442,
-      "repository_source": "scanners/ote-wheel/versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript",
-      "repository_sha256": "39f9b9c3fbeb8fd605aa3c514170683875e2758b1fb04bac7fa820a870c4af32",
-      "match": "exact",
+      "repository_source": "scanners/ote-wheel/OTE_WheelScan.ts",
+      "repository_sha256": "a750aeb435c3042e25ab5efd11828a0dd2f4c479c6aadf2a3c8d41b6ed8ad7ed",
+      "match": "superseded-version",
       "initial_comparison": "changed installed version",
-      "publish": true
+      "publish": true,
+      "previous_repository_source": "scanners/ote-wheel/versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript",
+      "previous_repository_sha256": "39f9b9c3fbeb8fd605aa3c514170683875e2758b1fb04bac7fa820a870c4af32",
+      "replacement_note": "Captured installed bytes are recorded by hash; current library keeps the documented canonical version. Installed TOS source was not edited."
     },
     {
       "name": "QTA_Volume_Profile",

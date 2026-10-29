@@ -80,7 +80,7 @@ No matched source-specific quantitative results were found for the newly capture
 
 The [machine-readable registry](../performance.json) maps all projects to evidence profiles, portable original locations and SHA-256 hashes. [Saved evidence](performance/evidence/) includes aggregate tables and hypothetical trade exports, not raw market-data feeds or account exports. Home paths were redacted; original and distributed-file hashes are recorded separately. Original report wording may include superseded conclusions: use the assessment notes above.
 
-During organization, the offline study's frozen ThinkScript hashes were matched to current study/scanner files and the archived wick scanner. The selected NShape full-sample row was checked against its saved sweep. ORB net totals/wins were reconciled to exit rows, and PF/closed-trade drawdown calculated from those rows. No historical strategy was rerun. See [validation scope](VALIDATION.md).
+During organization, the offline study's frozen ThinkScript hashes were checked against retained files and the consolidation manifest for the retired older wick scanner. The selected NShape full-sample row was checked against its saved sweep. ORB net totals/wins were reconciled to exit rows, and PF/closed-trade drawdown calculated from those rows. No historical strategy was rerun. See [validation scope](VALIDATION.md).
 
 <!-- STANDARDIZED PERFORMANCE: START -->
 ## Standardized data

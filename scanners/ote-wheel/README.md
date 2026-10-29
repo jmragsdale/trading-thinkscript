@@ -10,7 +10,6 @@ Finds bullish or bearish 62-79% retracements after a confirmed sweep and displac
 | --- | --- |
 | [OTE_WheelHelper_Study.ts](OTE_WheelHelper_Study.ts) | Chart helper; keep outside Stock Hacker |
 | [OTE_WheelScan.ts](OTE_WheelScan.ts) | Main Stock Hacker filter |
-| [versions/OTE_WheelScan_original_2026-07-15.ts](versions/OTE_WheelScan_original_2026-07-15.ts) | Earlier version — historical reference only |
 
 ## Usage
 
@@ -61,17 +60,13 @@ Source code was copied unchanged and checked against its SHA-256 provenance. No 
 
 ## Provenance and related files
 
-The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. Earlier distinct code is kept in `versions/` where present. Duplicate copies are consolidated by hash; the originals remain in their source folders.
+The [inventory](../../inventory.json) records file hashes, roles and portable source-location labels. The library keeps one current implementation per script role. Superseded versions are listed in the [consolidation record](../../docs/CONSOLIDATION.md); no versions folder is distributed.
 
 [Browse related projects in the library index](../../README.md).
 
-### Installed TOS snapshot: OTE_Wheel_Scanner
+## Installed-source relationship
 
-[Captured installed v3 source](versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript) differs from the repository v4 source: it retains `avoidEarnings`, `earningsBufferBars` and the `GetEventOffset(Events.EARNINGS, 0)` earnings gate. It is preserved as an installed snapshot, not made the recommended current source. The installed script was not changed.
-
-### Installed TOS snapshot: OTE_Wheel_Helper
-
-[Captured installed v3 source](versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript) differs from the repository v4 source: it retains `avoidEarnings`, `earningsBufferBars` and the `GetEventOffset(Events.EARNINGS, 0)` earnings gate. It is preserved as an installed snapshot, not made the recommended current source. The installed script was not changed.
+The captured installed OTE scanner/helper were v3 with an earnings event gate. The current library retains only the corrected v4 scanner and helper. Older installed files were removed from the distribution; their captured hashes remain in [tos-inventory.json](../../tos-inventory.json). This cleanup did not replace the scripts inside TOS.
 
 ## Performance evidence
 

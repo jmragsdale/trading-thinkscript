@@ -562,9 +562,7 @@
         "scanners/breakout/BreakoutScanner_AlertStudy.ts",
         "scanners/breakout/breakout_scanner_thinkscript.txt"
       ],
-      "archived_files": [
-        "scanners/breakout/versions/breakout_scanner_thinkscript_original_2025-12-31.txt"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "no-matched-quantitative-evidence",
@@ -586,9 +584,7 @@
         "scanners/displacement-wick/DisplacementWickAlerts_AlertStudy.ts",
         "scanners/displacement-wick/DisplacementWickAlerts_Scanner.ts"
       ],
-      "archived_files": [
-        "scanners/displacement-wick/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "offline-signal-event-study",
@@ -622,9 +618,7 @@
         "scanners/eye-pattern/EyePattern_AlertStudy.txt",
         "scanners/eye-pattern/EyePattern_Scanner_CrystalClear.txt"
       ],
-      "archived_files": [
-        "scanners/eye-pattern/versions/EyePattern_Scanner__2025-10-21.txt"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "no-matched-quantitative-evidence",
@@ -705,11 +699,7 @@
         "scanners/ote-wheel/OTE_WheelHelper_Study.ts",
         "scanners/ote-wheel/OTE_WheelScan.ts"
       ],
-      "archived_files": [
-        "scanners/ote-wheel/versions/OTE_WheelScan_original_2026-07-15.ts",
-        "scanners/ote-wheel/versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript",
-        "scanners/ote-wheel/versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "historical-unrevalidated-lineage",
@@ -734,9 +724,7 @@
         "scanners/warrior-eye/WarriorEye_AlertStudy.txt",
         "scanners/warrior-eye/WarriorEye_Hybrid_DayTrading_Scanner.txt"
       ],
-      "archived_files": [
-        "scanners/warrior-eye/versions/WarriorEye_Hybrid_DayTrading_Scanner_original_2025-10-22.txt"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "no-matched-quantitative-evidence",
@@ -758,9 +746,7 @@
         "scanners/wash-rinse-v2/WashRinse_v2_AlertStudy.ts",
         "scanners/wash-rinse-v2/WashRinse_v2_Scan_Corrected.ts"
       ],
-      "archived_files": [
-        "scanners/wash-rinse-v2/versions/WashRinse_v2_Scan__2026-08-25.ts"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "different-model-context-only",
@@ -809,11 +795,7 @@
       "active_files": [
         "strategies/wash-rinse-v2/WashRinse_v2_Strategy_Corrected.ts"
       ],
-      "archived_files": [
-        "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_audit_2026-08-25.ts",
-        "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts",
-        "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy__2026-08-25.ts"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "different-model-context-only",
@@ -999,11 +981,7 @@
       "active_files": [
         "studies/eye-pattern/EyePattern_CrystalClear.txt"
       ],
-      "archived_files": [
-        "studies/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
-        "studies/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt",
-        "studies/eye-pattern/versions/EyePattern_Study__2025-10-21.txt"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "no-matched-quantitative-evidence",
@@ -1334,9 +1312,7 @@
       "active_files": [
         "studies/wash-rinse-v2/WashRinse_v2_Study_Corrected.ts"
       ],
-      "archived_files": [
-        "studies/wash-rinse-v2/versions/WashRinse_v2_Study__2026-08-25.ts"
-      ],
+      "archived_files": [],
       "native_validation": "not verified in this organization",
       "performance": {
         "status": "different-model-context-only",
@@ -2620,41 +2596,6 @@
       ]
     },
     {
-      "path": "scanners/breakout/versions/breakout_scanner_thinkscript_original_2025-12-31.txt",
-      "project": "scanners/breakout",
-      "role": "archived-source",
-      "sha256": "8d74ec0b436cf4ebeda5dcee6a626a5c263de5005cff4a9fff741e3c12348f93",
-      "bytes": 5575,
-      "inputs": [
-        {
-          "name": "lookbackPeriod",
-          "default": "126"
-        },
-        {
-          "name": "volumeMultiple",
-          "default": "2.0"
-        },
-        {
-          "name": "minDailyGainPercent",
-          "default": "10.0"
-        },
-        {
-          "name": "longTermMALength",
-          "default": "200"
-        }
-      ],
-      "plot_names": [
-        "LongTermMA",
-        "BreakoutMarker"
-      ],
-      "alert_calls": 1,
-      "origins": [
-        "original-projects/trading-breakout-scanner/breakout_scanner_thinkscript.txt",
-        "trading-library/ChatGPT Trading Scripts/breakout-scanner-thinkscript/versions/breakout_scanner_thinkscript_original_2025-12-31.txt",
-        "trading-library/thinkscript/breakout-scanner-thinkscript/versions/breakout_scanner_thinkscript_original_2025-12-31.txt"
-      ]
-    },
-    {
       "path": "scanners/displacement-wick/DisplacementWickAlerts_AlertStudy.ts",
       "project": "scanners/displacement-wick",
       "role": "alert-study",
@@ -2751,53 +2692,6 @@
       ]
     },
     {
-      "path": "scanners/displacement-wick/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts",
-      "project": "scanners/displacement-wick",
-      "role": "archived-source",
-      "sha256": "7068e16e0620d98880f4b1b02e18deade8ac2922b98c70e798e5d7f9e255dee9",
-      "bytes": 4052,
-      "inputs": [
-        {
-          "name": "displacement_length",
-          "default": "100"
-        },
-        {
-          "name": "min_displacement_strength",
-          "default": "1"
-        },
-        {
-          "name": "displacement_require_fvg",
-          "default": "no"
-        },
-        {
-          "name": "min_wick_pct",
-          "default": "20.0"
-        },
-        {
-          "name": "min_wick_body_ratio",
-          "default": "0.25"
-        },
-        {
-          "name": "scan_for",
-          "default": "{default \"New Setups\", \"Wick Sweeps\", \"Both\"}"
-        }
-      ],
-      "plot_names": [
-        "scan_signal",
-        "ShortSetup",
-        "LongSetup",
-        "ShortEntry",
-        "LongEntry",
-        "DisplacementStrength"
-      ],
-      "alert_calls": 0,
-      "origins": [
-        "trading-downloads/Pine Scripts/tos - displacement wicks/DisplacementWickAlerts_Scanner.ts",
-        "trading-library/ChatGPT Trading Scripts/displacement-wick-scanner-tos/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts",
-        "trading-library/thinkscript/displacement-wick-scanner-tos/versions/DisplacementWickAlerts_Scanner_original_2026-01-10.ts"
-      ]
-    },
-    {
       "path": "scanners/eye-pattern/EyePattern_AlertStudy.txt",
       "project": "scanners/eye-pattern",
       "role": "alert-study",
@@ -2890,60 +2784,6 @@
         "trading-downloads/Strategies & Tools/trading strategies/TradingView/Eye Pattern Strategy/EyePattern_Scanner_CrystalClear.txt",
         "trading-library/ChatGPT Trading Scripts/eye-pattern-scanner/EyePattern_Scanner_CrystalClear.txt",
         "trading-library/TOS Import Bundle/Studies/EyePattern_Scanner.ts"
-      ]
-    },
-    {
-      "path": "scanners/eye-pattern/versions/EyePattern_Scanner__2025-10-21.txt",
-      "project": "scanners/eye-pattern",
-      "role": "archived-source",
-      "sha256": "019da0d17823833d91edc9e9c4fe2c6160de02fdeb1153a9f17b57501f541bd6",
-      "bytes": 3173,
-      "inputs": [
-        {
-          "name": "fastLength",
-          "default": "5"
-        },
-        {
-          "name": "slowLength",
-          "default": "20"
-        },
-        {
-          "name": "volumeContractionPercent",
-          "default": "30"
-        },
-        {
-          "name": "volumeLookback",
-          "default": "20"
-        },
-        {
-          "name": "maxPullbackPercent",
-          "default": "15"
-        },
-        {
-          "name": "maxPullbackDays",
-          "default": "30"
-        },
-        {
-          "name": "ma20SlopeMinimum",
-          "default": "0.0001"
-        }
-      ],
-      "plot_names": [
-        "CurrentEntry",
-        "PatternForming",
-        "MA5_Above_MA20",
-        "MA20_Uptrend",
-        "VolumeContract",
-        "DaysInPullback",
-        "PullbackPct",
-        "LowerShadow",
-        "SetupScore",
-        "RiskReward"
-      ],
-      "alert_calls": 0,
-      "origins": [
-        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/EyePattern_Scanner.txt",
-        "trading-library/ChatGPT Trading Scripts/eye-pattern-scanner/versions/EyePattern_Scanner__2025-10-21.txt"
       ]
     },
     {
@@ -3456,274 +3296,6 @@
       ]
     },
     {
-      "path": "scanners/ote-wheel/versions/OTE_WheelScan_original_2026-07-15.ts",
-      "project": "scanners/ote-wheel",
-      "role": "archived-source",
-      "sha256": "ec30a75df12fffca5bba86f3f3c71e041a07d0f36701c5f0b329d2c39641aa29",
-      "bytes": 5308,
-      "inputs": [
-        {
-          "name": "side",
-          "default": "{default Bull, Bear}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "2"
-        },
-        {
-          "name": "maxDisplacementBars",
-          "default": "3"
-        },
-        {
-          "name": "maxZoneAgeBars",
-          "default": "15"
-        },
-        {
-          "name": "requireWick",
-          "default": "yes"
-        },
-        {
-          "name": "wickBodyRatio",
-          "default": "1.25"
-        },
-        {
-          "name": "minPrice",
-          "default": "2.0"
-        },
-        {
-          "name": "maxPrice",
-          "default": "20.0"
-        },
-        {
-          "name": "useDollarVolume",
-          "default": "yes"
-        },
-        {
-          "name": "minAvgDollarVol",
-          "default": "5000000"
-        },
-        {
-          "name": "minRiskPct",
-          "default": "1.0"
-        },
-        {
-          "name": "maxRiskPct",
-          "default": "10.0"
-        },
-        {
-          "name": "gapGuardPct",
-          "default": "6.0"
-        },
-        {
-          "name": "avoidEarnings",
-          "default": "yes"
-        },
-        {
-          "name": "earningsBufferBars",
-          "default": "7"
-        },
-        {
-          "name": "strikeIncrement",
-          "default": "0.5"
-        },
-        {
-          "name": "strikeCushionPct",
-          "default": "1.0"
-        }
-      ],
-      "plot_names": [
-        "Tradeable",
-        "SuggestedStrike",
-        "ZoneNear",
-        "ZoneFar",
-        "ProtectedSwing"
-      ],
-      "alert_calls": 0,
-      "origins": [
-        "project-research/Prop Eval Farm/thinkscript/OTE_WheelScan.ts",
-        "trading-library/ChatGPT Trading Scripts/ote-wheel-scan-tos/versions/OTE_WheelScan_original_2026-07-15.ts"
-      ]
-    },
-    {
-      "path": "scanners/ote-wheel/versions/OTE_Wheel_Helper_installed_2026-10-29.thinkscript",
-      "project": "scanners/ote-wheel",
-      "role": "installed-snapshot",
-      "sha256": "910669776756235b06a58a0ce80d76c14fe5c51b8cc5e1adb7f926ab1053d157",
-      "bytes": 6869,
-      "inputs": [
-        {
-          "name": "side",
-          "default": "{default Bull, Bear}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "2"
-        },
-        {
-          "name": "maxDisplacementBars",
-          "default": "3"
-        },
-        {
-          "name": "maxZoneAgeBars",
-          "default": "15"
-        },
-        {
-          "name": "requireWick",
-          "default": "yes"
-        },
-        {
-          "name": "wickBodyRatio",
-          "default": "1.25"
-        },
-        {
-          "name": "minPrice",
-          "default": "2.0"
-        },
-        {
-          "name": "maxPrice",
-          "default": "20.0"
-        },
-        {
-          "name": "useDollarVolume",
-          "default": "yes"
-        },
-        {
-          "name": "minAvgDollarVol",
-          "default": "5000000"
-        },
-        {
-          "name": "minRiskPct",
-          "default": "1.0"
-        },
-        {
-          "name": "maxRiskPct",
-          "default": "10.0"
-        },
-        {
-          "name": "gapGuardPct",
-          "default": "6.0"
-        },
-        {
-          "name": "avoidEarnings",
-          "default": "yes"
-        },
-        {
-          "name": "earningsBufferBars",
-          "default": "7"
-        },
-        {
-          "name": "strikeIncrement",
-          "default": "0.5"
-        },
-        {
-          "name": "strikeCushionPct",
-          "default": "1.0"
-        },
-        {
-          "name": "alertsOn",
-          "default": "yes"
-        },
-        {
-          "name": "alertWhenZoneArmed",
-          "default": "no"
-        }
-      ],
-      "plot_names": [
-        "SuggestedStrike",
-        "ZoneNear",
-        "ZoneFar",
-        "ProtectedSwing"
-      ],
-      "alert_calls": 2,
-      "origins": [
-        "tos-installed/2026-10-29/study/OTE_Wheel_Helper"
-      ],
-      "tos_aliases": [
-        "OTE_Wheel_Helper"
-      ],
-      "publish": true
-    },
-    {
-      "path": "scanners/ote-wheel/versions/OTE_Wheel_Scanner_installed_2026-10-29.thinkscript",
-      "project": "scanners/ote-wheel",
-      "role": "installed-snapshot",
-      "sha256": "39f9b9c3fbeb8fd605aa3c514170683875e2758b1fb04bac7fa820a870c4af32",
-      "bytes": 5442,
-      "inputs": [
-        {
-          "name": "side",
-          "default": "{default Bull, Bear}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "2"
-        },
-        {
-          "name": "maxDisplacementBars",
-          "default": "3"
-        },
-        {
-          "name": "maxZoneAgeBars",
-          "default": "15"
-        },
-        {
-          "name": "requireWick",
-          "default": "yes"
-        },
-        {
-          "name": "wickBodyRatio",
-          "default": "1.25"
-        },
-        {
-          "name": "minPrice",
-          "default": "2.0"
-        },
-        {
-          "name": "maxPrice",
-          "default": "20.0"
-        },
-        {
-          "name": "useDollarVolume",
-          "default": "yes"
-        },
-        {
-          "name": "minAvgDollarVol",
-          "default": "5000000"
-        },
-        {
-          "name": "minRiskPct",
-          "default": "1.0"
-        },
-        {
-          "name": "maxRiskPct",
-          "default": "10.0"
-        },
-        {
-          "name": "gapGuardPct",
-          "default": "6.0"
-        },
-        {
-          "name": "avoidEarnings",
-          "default": "yes"
-        },
-        {
-          "name": "earningsBufferBars",
-          "default": "7"
-        }
-      ],
-      "plot_names": [
-        "Tradeable"
-      ],
-      "alert_calls": 0,
-      "origins": [
-        "tos-installed/2026-10-29/study/OTE_Wheel_Scanner"
-      ],
-      "tos_aliases": [
-        "OTE_Wheel_Scanner"
-      ],
-      "publish": true
-    },
-    {
       "path": "scanners/warrior-eye/WarriorEye_AlertStudy.txt",
       "project": "scanners/warrior-eye",
       "role": "alert-study",
@@ -3866,67 +3438,6 @@
       ]
     },
     {
-      "path": "scanners/warrior-eye/versions/WarriorEye_Hybrid_DayTrading_Scanner_original_2025-10-22.txt",
-      "project": "scanners/warrior-eye",
-      "role": "archived-source",
-      "sha256": "d5f01f04e8507467dab1da3dee0a706dd5e6916f8d88c09f5b1d1deb5db49c1d",
-      "bytes": 10243,
-      "inputs": [
-        {
-          "name": "minPercentGain",
-          "default": "10.0"
-        },
-        {
-          "name": "minRelativeVolume",
-          "default": "3.0"
-        },
-        {
-          "name": "minPrice",
-          "default": "1.00"
-        },
-        {
-          "name": "maxPrice",
-          "default": "20.00"
-        },
-        {
-          "name": "maxFloat",
-          "default": "50000000"
-        },
-        {
-          "name": "volumeLookbackDays",
-          "default": "30"
-        },
-        {
-          "name": "fastMA",
-          "default": "9"
-        },
-        {
-          "name": "slowMA",
-          "default": "20"
-        },
-        {
-          "name": "pullbackBars",
-          "default": "10"
-        },
-        {
-          "name": "volumeContractionPct",
-          "default": "50"
-        },
-        {
-          "name": "minRiskReward",
-          "default": "2.0"
-        }
-      ],
-      "plot_names": [
-        "signal"
-      ],
-      "alert_calls": 0,
-      "origins": [
-        "trading-downloads/Strategies & Tools/trading strategies/TradingView/Eye Pattern Strategy/WarriorEye_Hybrid_DayTrading_Scanner.txt",
-        "trading-library/ChatGPT Trading Scripts/warrior-eye-hybrid-scanner/versions/WarriorEye_Hybrid_DayTrading_Scanner_original_2025-10-22.txt"
-      ]
-    },
-    {
       "path": "scanners/wash-rinse-v2/WashRinse_v2_AlertStudy.ts",
       "project": "scanners/wash-rinse-v2",
       "role": "alert-study",
@@ -3997,32 +3508,6 @@
         "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-scan/WashRinse_v2_Scan_Corrected.ts",
         "trading-library/TOS Import Bundle/Studies/WashRinse_v2_Scanner.ts",
         "trading-library/thinkscript/wash-rinse-v2-scan/WashRinse_v2_Scan_Corrected.ts"
-      ]
-    },
-    {
-      "path": "scanners/wash-rinse-v2/versions/WashRinse_v2_Scan__2026-08-25.ts",
-      "project": "scanners/wash-rinse-v2",
-      "role": "archived-source",
-      "sha256": "75944b2f92706da3e3b99e29e5c05f5c80679ca32055ba9142b87f339cec88b8",
-      "bytes": 1413,
-      "inputs": [
-        {
-          "name": "levelMode",
-          "default": "{default Swing, PrevDay}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "5"
-        }
-      ],
-      "plot_names": [
-        "BearishWR",
-        "BullishWR"
-      ],
-      "alert_calls": 0,
-      "origins": [
-        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-scan/versions/WashRinse_v2_Scan__2026-08-25.ts",
-        "trading-library/thinkscript/wash-rinse-v2-scan/versions/WashRinse_v2_Scan__2026-08-25.ts"
       ]
     },
     {
@@ -4131,193 +3616,6 @@
       "origins": [
         "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-strategy/WashRinse_v2_Strategy_Corrected.ts",
         "trading-library/TOS Import Bundle/Strategies/WashRinse_v2_Strategy.ts"
-      ]
-    },
-    {
-      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_audit_2026-08-25.ts",
-      "project": "strategies/wash-rinse-v2",
-      "role": "archived-source",
-      "sha256": "79b57d2de48ba336a6b8dfb210dc12c11f3a0e76d95ec3e02ab15de0b9543313",
-      "bytes": 7248,
-      "inputs": [
-        {
-          "name": "levelMode",
-          "default": "{default Swing, PrevDay}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "5"
-        },
-        {
-          "name": "maxRinseBars",
-          "default": "0"
-        },
-        {
-          "name": "stopOffsetTicks",
-          "default": "1"
-        },
-        {
-          "name": "rMult",
-          "default": "2.0"
-        },
-        {
-          "name": "tradeSize",
-          "default": "100"
-        },
-        {
-          "name": "useSession",
-          "default": "yes"
-        },
-        {
-          "name": "startTradingTime",
-          "default": "935"
-        },
-        {
-          "name": "stopTradingTime",
-          "default": "1530"
-        },
-        {
-          "name": "flattenTime",
-          "default": "1555"
-        },
-        {
-          "name": "allowLongs",
-          "default": "yes"
-        },
-        {
-          "name": "allowShorts",
-          "default": "yes"
-        }
-      ],
-      "plot_names": [],
-      "alert_calls": 0,
-      "origins": [
-        "generated-research/2026-08-25/referenced-chatgpt-conversation-this-is-an/outputs/WashRinse_v2_Strategy_Corrected.ts"
-      ]
-    },
-    {
-      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy_Corrected_catalog_2026-08-30.ts",
-      "project": "strategies/wash-rinse-v2",
-      "role": "archived-source",
-      "sha256": "2a5187e366c4aa0fc1e5eecb0f878b5ae336b25025c376508e87b0fdb9ff10d6",
-      "bytes": 8324,
-      "inputs": [
-        {
-          "name": "levelMode",
-          "default": "{default Swing, PrevDay}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "5"
-        },
-        {
-          "name": "maxRinseBars",
-          "default": "0"
-        },
-        {
-          "name": "stopOffsetTicks",
-          "default": "1"
-        },
-        {
-          "name": "rMult",
-          "default": "2.0"
-        },
-        {
-          "name": "tradeSize",
-          "default": "100"
-        },
-        {
-          "name": "useSession",
-          "default": "yes"
-        },
-        {
-          "name": "startTradingTime",
-          "default": "935"
-        },
-        {
-          "name": "stopTradingTime",
-          "default": "1530"
-        },
-        {
-          "name": "flattenTime",
-          "default": "1555"
-        },
-        {
-          "name": "allowLongs",
-          "default": "yes"
-        },
-        {
-          "name": "allowShorts",
-          "default": "yes"
-        },
-        {
-          "name": "alertsOn",
-          "default": "yes"
-        }
-      ],
-      "plot_names": [],
-      "alert_calls": 8,
-      "origins": [
-        "trading-library/thinkscript/wash-rinse-v2-strategy/WashRinse_v2_Strategy_Corrected.ts"
-      ]
-    },
-    {
-      "path": "strategies/wash-rinse-v2/versions/WashRinse_v2_Strategy__2026-08-25.ts",
-      "project": "strategies/wash-rinse-v2",
-      "role": "archived-source",
-      "sha256": "ca8be8f93ec3dfeb95fcc41c296d7240af8758ef33e2d8d007599931a0836b3f",
-      "bytes": 4225,
-      "inputs": [
-        {
-          "name": "levelMode",
-          "default": "{default Swing, PrevDay}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "5"
-        },
-        {
-          "name": "stopOffsetTicks",
-          "default": "1"
-        },
-        {
-          "name": "rMult",
-          "default": "2.0"
-        },
-        {
-          "name": "tradeSize",
-          "default": "100"
-        },
-        {
-          "name": "useSession",
-          "default": "yes"
-        },
-        {
-          "name": "startTradingTime",
-          "default": "935"
-        },
-        {
-          "name": "stopTradingTime",
-          "default": "1530"
-        },
-        {
-          "name": "flattenTime",
-          "default": "1555"
-        },
-        {
-          "name": "allowLongs",
-          "default": "yes"
-        },
-        {
-          "name": "allowShorts",
-          "default": "yes"
-        }
-      ],
-      "plot_names": [],
-      "alert_calls": 0,
-      "origins": [
-        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-strategy/versions/WashRinse_v2_Strategy__2026-08-25.ts",
-        "trading-library/thinkscript/wash-rinse-v2-strategy/versions/WashRinse_v2_Strategy__2026-08-25.ts"
       ]
     },
     {
@@ -4758,173 +4056,6 @@
         "trading-library/ChatGPT Trading Scripts/eye-pattern/EyePattern_CrystalClear.txt",
         "trading-library/TOS Import Bundle/Studies/EyePattern_Chart.ts",
         "trading-library/thinkscript/eye-pattern/EyePattern_CrystalClear.txt"
-      ]
-    },
-    {
-      "path": "studies/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
-      "project": "studies/eye-pattern",
-      "role": "archived-source",
-      "sha256": "fae081a2127e8bcfacd6fe5d036a261ee9e82724081c184e32f274e4a5f0ef16",
-      "bytes": 9186,
-      "inputs": [
-        {
-          "name": "fastLength",
-          "default": "5"
-        },
-        {
-          "name": "slowLength",
-          "default": "20"
-        },
-        {
-          "name": "volumeContractionPercent",
-          "default": "30"
-        },
-        {
-          "name": "volumeLookback",
-          "default": "20"
-        },
-        {
-          "name": "maxPullbackPercent",
-          "default": "15"
-        },
-        {
-          "name": "maxPullbackDays",
-          "default": "30"
-        },
-        {
-          "name": "ma20SlopeMinimum",
-          "default": "0.0001"
-        },
-        {
-          "name": "showMovingAverages",
-          "default": "yes"
-        },
-        {
-          "name": "showVolumeZones",
-          "default": "no"
-        },
-        {
-          "name": "showStopAndTargets",
-          "default": "yes"
-        },
-        {
-          "name": "colorPriceBars",
-          "default": "yes"
-        },
-        {
-          "name": "showBackgroundAlerts",
-          "default": "yes"
-        }
-      ],
-      "plot_names": [
-        "FastMA",
-        "SlowMA",
-        "EntryArrow",
-        "PatternForming",
-        "StopLine",
-        "Target1Line",
-        "Target2Line",
-        "Target3Line",
-        "VolZone"
-      ],
-      "alert_calls": 6,
-      "origins": [
-        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/Eye Pattern CRYSTAL CLEAR.txt",
-        "trading-library/ChatGPT Trading Scripts/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt",
-        "trading-library/thinkscript/eye-pattern/versions/Eye Pattern CRYSTAL CLEAR__2025-10-22.txt"
-      ]
-    },
-    {
-      "path": "studies/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt",
-      "project": "studies/eye-pattern",
-      "role": "archived-source",
-      "sha256": "777f6e6f4bb3a37cdb059abf74940f65431c5f1d48ce31652e23ba57268743e9",
-      "bytes": 4614,
-      "inputs": [
-        {
-          "name": "showBuySignals",
-          "default": "yes"
-        },
-        {
-          "name": "showMovingAverages",
-          "default": "yes"
-        },
-        {
-          "name": "aggressiveMode",
-          "default": "no"
-        }
-      ],
-      "plot_names": [
-        "FastMA",
-        "SlowMA",
-        "BuyArrow"
-      ],
-      "alert_calls": 3,
-      "origins": [
-        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/EyePattern_Simple.txt",
-        "trading-library/ChatGPT Trading Scripts/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt",
-        "trading-library/thinkscript/eye-pattern/versions/EyePattern_Simple__2025-10-21.txt"
-      ]
-    },
-    {
-      "path": "studies/eye-pattern/versions/EyePattern_Study__2025-10-21.txt",
-      "project": "studies/eye-pattern",
-      "role": "archived-source",
-      "sha256": "35444c0ebe7c424949b706dced5f804cd2acaa21c8e11b345ad25e346b5685a0",
-      "bytes": 5279,
-      "inputs": [
-        {
-          "name": "fastLength",
-          "default": "5"
-        },
-        {
-          "name": "slowLength",
-          "default": "20"
-        },
-        {
-          "name": "volumeContractionPercent",
-          "default": "30"
-        },
-        {
-          "name": "volumeLookback",
-          "default": "20"
-        },
-        {
-          "name": "maxPullbackPercent",
-          "default": "15"
-        },
-        {
-          "name": "maxPullbackDays",
-          "default": "30"
-        },
-        {
-          "name": "ma20SlopeMinimum",
-          "default": "0.0001"
-        },
-        {
-          "name": "showSignals",
-          "default": "yes"
-        },
-        {
-          "name": "showMAs",
-          "default": "yes"
-        },
-        {
-          "name": "showVolZones",
-          "default": "yes"
-        }
-      ],
-      "plot_names": [
-        "FastMA",
-        "SlowMA",
-        "EntryArrow",
-        "VolZone"
-      ],
-      "alert_calls": 5,
-      "origins": [
-        "trading-downloads/Strategies & Tools/trading strategies/Archive/eye_pattern_old/EyePattern_Study.txt",
-        "trading-library/ChatGPT Trading Scripts/eye-pattern/versions/EyePattern_Study__2025-10-21.txt",
-        "trading-library/thinkscript/eye-pattern/versions/EyePattern_Study__2025-10-21.txt"
       ]
     },
     {
@@ -5642,44 +4773,6 @@
       ]
     },
     {
-      "path": "studies/wash-rinse-v2/versions/WashRinse_v2_Study__2026-08-25.ts",
-      "project": "studies/wash-rinse-v2",
-      "role": "archived-source",
-      "sha256": "471875906e4eb3eea25bab0a6af42d29b229c79924ab3daea54f33ac498a0d53",
-      "bytes": 3824,
-      "inputs": [
-        {
-          "name": "levelMode",
-          "default": "{default Swing, PrevDay}"
-        },
-        {
-          "name": "pivotStrength",
-          "default": "5"
-        },
-        {
-          "name": "maxRinseBars",
-          "default": "0"
-        },
-        {
-          "name": "alertsOn",
-          "default": "yes"
-        }
-      ],
-      "plot_names": [
-        "BearishWR",
-        "BullishWR",
-        "WashLineHigh",
-        "WashLineLow",
-        "WashExtremeH",
-        "WashExtremeL"
-      ],
-      "alert_calls": 2,
-      "origins": [
-        "trading-library/ChatGPT Trading Scripts/wash-rinse-v2-study/versions/WashRinse_v2_Study__2026-08-25.ts",
-        "trading-library/thinkscript/wash-rinse-v2-study/versions/WashRinse_v2_Study__2026-08-25.ts"
-      ]
-    },
-    {
       "path": "watchlist-columns/covered-call-screen/CC_Indi.thinkscript",
       "project": "watchlist-columns/covered-call-screen",
       "role": "custom-quote",
@@ -5801,5 +4894,12 @@
     "reconciliation": "tos-inventory.json",
     "scope": "current locally cached user-defined study/strategy source; not chart overrides or unsaved editor buffers",
     "custom_quotes": 2
+  },
+  "consolidation": {
+    "performed_on": "2026-10-29",
+    "manifest": "source-consolidation.json",
+    "policy": "One current implementation per script role; distinct scanner/chart/alert functions retained.",
+    "removed_older_sources": 15,
+    "historical_git_commit": "6ea331ffc9fa3130f9b790763400017ecab17c11"
   }
 }

@@ -56,6 +56,9 @@ def normalize(check=False):
  for key,s in sources.items():assert digest((ROOT/s['evidence']).read_bytes())==s['evidence_sha256'],key
  project_groups={key:[p['project'] for p in legacy['projects'] if p['profile']==key] for key in legacy['profiles']}
  files={f['path']:f for f in inv['files']};projects={p['path']:p for p in inv['projects']}
+ consolidation=read_json('source-consolidation.json')
+ removed_files={f['path']:f for f in consolidation['removed_sources']}
+ historical_files=files|removed_files
  frozen={m['sha256'] for m in legacy['source_hash_matches_for_offline_study']}
  null_reason='Not supplied by the saved evidence; no new test was run.'
  def row(dim,source,method='reported',missing=null_reason,**values):
@@ -75,7 +78,7 @@ def normalize(check=False):
   rid=slug+'-'+fingerprint[:12];folder=f'{BASE}/runs/{rid}'
   costs=cost or {'currency':'USD','commission_round_trip_usd':None,'slippage_points_each_side':None,'total_round_trip_usd':None,'total_round_trip_points':None,'pnl_basis':'unspecified','description':'Realistic cost deduction not established by retrieved report.'}
   r={'schema_version':VERSION,'run_id':rid,'family':family,'label':label,'record_type':kind,'reported_on':reported,'normalized_on':DATE,'configuration_sha256':fingerprint,
-     'script_identity':{'library_targets':targets,'tested_model_source_sha256':None,'tested_source_hashes':sorted({m['sha256'] for m in legacy['source_hash_matches_for_offline_study'] if any(files[p]['project'] in project_groups[family] for p in m['library_matches'])}) if match=='frozen' else [],'tested_model_version':None,'inputs':config},
+     'script_identity':{'library_targets':targets,'tested_model_source_sha256':None,'tested_source_hashes':sorted({m['sha256'] for m in legacy['source_hash_matches_for_offline_study'] if any(historical_files[p]['project'] in project_groups[family] for p in m['library_matches'])}) if match=='frozen' else [],'tested_model_version':None,'inputs':config},
      'test_environment':{'engine':engine,'engine_version':None,'instrument':instrument,'aggregation_minutes':bar,'session':None,'timezone':'America/New_York','chart_type':'time bars','native_thinkorswim_performance_verified':False},
      'dataset':{'provider':None,'start':start,'end':end,'reported_period':period,'missing_data_treatment':None,'rollover_treatment':None,'raw_data_hash':None,**(dataset or {})},
      'execution':{'entry_rule':None,'exit_rule':None,'position_sizing':None,'same_bar_stop_target':None,'initial_capital_usd':None,'overlap_rule':None,**(execution or {})},
@@ -108,7 +111,7 @@ def normalize(check=False):
     if scenario.startswith('original'):warning+=['Legacy lower-cost assumption retained separately; corrected-base is the primary cost case.']
     if family=='macdv':warning+=['Index-futures study removes scanner $2–$20 price gate; exit alerts are not executed.']
     if family=='nshape-spy':warning+=['MNQ transfer is experimental. Scanner persistence is counted once per raw event.','Does not reproduce the selected 222-trade fixed-R model.']
-    if family=='displacement-wick':warning+=['Frozen scanner hash matches archived multi-plot scanner, not corrected current scanner. Recursive TOS initialization unresolved.']
+    if family=='displacement-wick':warning+=['Frozen scanner hash identifies a removed older multi-plot scanner; its hash remains in consolidation metadata. It does not match the corrected current scanner. Recursive TOS initialization unresolved.']
     config={'cost_scenario':scenario,'direction':'both' if family!='nshape-spy' else 'long','horizon_bars':[1,3,5,10],'de_overlap_bars':10,'default_detector':True}
     if family=='nshape-spy':config|={'time_start':'13:30','time_end_exclusive':'15:30','ema_length':20,'ema_filter':True,'calendar_vwap_filter':True,'range_filter':True}
     if family=='displacement-wick':config|={'strength':1,'fvg':False,'zone_age_min':1,'zone_age_max':49}
@@ -262,6 +265,15 @@ def normalize(check=False):
  # Preserve v1 data unchanged as provenance; v2 registry is an index rather than heterogeneous metric objects.
  registry={k:v for k,v in legacy.items() if k not in ['schema_version','profiles','projects','definitions','sources']}
  registry|={'schema_version':2,'result_schema_version':VERSION,'normalized_on':DATE,'legacy_registry':BASE+'/legacy/performance-v1.json','format_document':BASE+'/FORMAT.md','sources':sources,'definitions':{'missing':'value=null plus missing_reason; never use zero for missing.','percent':'0–100; fractions explicitly named.','R':'P&L / modeled initial trade risk, only when risk is defined.','profit_factor':'Winning P&L / absolute losing P&L; gross/net/unspecified are separate fields.','closed_trade_drawdown':'Peak-to-trough cumulative completed-trade net P&L, starting at zero; excludes unrealized excursions.','native_thinkorswim_performance_verified':False},'profiles':{},'projects':[],'runs':[]}
+ registry['source_hash_matches_for_offline_study']=[]
+ for original in legacy['source_hash_matches_for_offline_study']:
+  match=dict(original)
+  match['library_matches']=[p for p in original['library_matches'] if p in files]
+  match['removed_library_matches']=[p for p in original['library_matches'] if p in removed_files]
+  if match['removed_library_matches']:
+   match['retired_source_manifest']='source-consolidation.json'
+   match['note']='Historical tested source hash retained; retired implementation removed from current distribution. Canonical replacement is a different source version.'
+  registry['source_hash_matches_for_offline_study'].append(match)
  for key,profile in legacy['profiles'].items():registry['profiles'][key]={k:v for k,v in profile.items() if k not in ['metrics','selected_fixed_r_model']}|{'run_ids':profile_runs[key]}
  for p in legacy['projects']:
   entry=p|{'run_ids':profile_runs[p['profile']] if p['profile'] else []};registry['projects'].append(entry)
