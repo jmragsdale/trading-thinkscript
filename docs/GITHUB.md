@@ -2,6 +2,8 @@
 
 The public repository is [jmragsdale/trading-thinkscript](https://github.com/jmragsdale/trading-thinkscript). The collection uses `main` for published source, documentation and standardized historical performance records.
 
+The [October 29, 2026 release](https://github.com/jmragsdale/trading-thinkscript/releases/tag/v2026.10.29) provides the [downloadable public ZIP](https://github.com/jmragsdale/trading-thinkscript/releases/download/v2026.10.29/thinkscript-library-2026-10-29.zip). The full installed-source backup stays local.
+
 The repository uses relative Markdown links, so its index and project notes work in GitHub's file browser. A GitHub Pages website is optional; it is not needed to browse or download these scripts.
 
 ## Before upload

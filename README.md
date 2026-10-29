@@ -14,6 +14,7 @@ The capture added **35 previously missing distinct scripts and 2 different insta
 ## Start here
 
 - [Open the public GitHub repository](https://github.com/jmragsdale/trading-thinkscript)
+- [Download the packaged library](https://github.com/jmragsdale/trading-thinkscript/releases/download/v2026.10.29/thinkscript-library-2026-10-29.zip)
 - [Install a chart study, scanner, strategy or watchlist column](docs/INSTALLATION.md)
 - [See all installed names, matches and version differences](docs/TOS_RECONCILIATION.md)
 - [Read validation status and known limitations](docs/VALIDATION.md)
